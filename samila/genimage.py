@@ -8,7 +8,7 @@ from .params import *
 
 class GenerativeImage:
 
-    def __int__(self, function1, function2):
+    def __init__(self, function1, function2):
         self.function1 = function1
         self.function2 = function2
 
