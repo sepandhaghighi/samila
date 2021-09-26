@@ -45,9 +45,6 @@ setup(
         'Tracker': 'https://github.com/sepandhaghighi/samila/issues',
     },
     install_requires=[],
-    extras_require={
-        "dev": get_dev_requires()
-    },
     python_requires='>=3.5',
     classifiers=[
         'Natural Language :: English',
