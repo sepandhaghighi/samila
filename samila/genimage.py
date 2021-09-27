@@ -49,6 +49,19 @@ class GenerativeImage:
             spot_size=DEFAULT_SPOT_SIZE,
             size=DEFAULT_IMAGE_SIZE,
             projection=DEFAULT_PROJECTION):
+        """
+        Plot the generated art.
+
+        :param color: point colors
+        :type color: str
+        :param spot_size: point spot size
+        :type spot_size: float
+        :param size: figure size
+        :type size: tuple
+        :param projection: projection type
+        :type projection: str
+        :return: None
+        """
         fig = plt.figure()
         fig.set_size_inches(size[0], size[1])
         ax = fig.add_subplot(111, projection=projection)
