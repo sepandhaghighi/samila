@@ -35,6 +35,8 @@ class GenerativeImage:
         self.data1 = []
         self.data2 = []
         self.seed = seed
+        if seed is None:
+            self.seed = random.randint(0, 2 ** 20)
         random.seed(self.seed)
         range1 = list(float_range(start, stop, step))
         range2 = list(float_range(start, stop, step))
