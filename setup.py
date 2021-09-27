@@ -32,7 +32,7 @@ def read_description():
 setup(
     name='samila',
     packages=['samila'],
-    version='5.3',
+    version='0.1',
     description='Generative ART',
     long_description="",
     long_description_content_type='text/markdown',
