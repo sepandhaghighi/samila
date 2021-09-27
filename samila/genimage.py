@@ -19,6 +19,19 @@ class GenerativeImage:
             start=DEFAULT_START,
             step=DEFAULT_STEP,
             stop=DEFAULT_STOP):
+        """
+        Generate a raw format of art.
+
+        :param seed: random seed
+        :type seed: int
+        :param start: range start point
+        :type start: float
+        :param step: range step size
+        :type step: float
+        :param stop: range stop point
+        :type stop: float
+        :return: None
+        """
         self.data1 = []
         self.data2 = []
         self.seed = seed
