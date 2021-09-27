@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Samila functions."""
 
+
 def float_range(start, stop, step):
     """
     Generate float range.
