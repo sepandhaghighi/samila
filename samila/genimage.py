@@ -48,6 +48,7 @@ class GenerativeImage:
     def plot(
             self,
             color=DEFAULT_COLOR,
+            bgcolor=DEFAULT_BACKGROUND_COLOR,
             spot_size=DEFAULT_SPOT_SIZE,
             size=DEFAULT_IMAGE_SIZE,
             projection=DEFAULT_PROJECTION):
@@ -56,6 +57,8 @@ class GenerativeImage:
 
         :param color: point colors
         :type color: str
+        :param bgcolor: background color
+        :type bgcolor: str
         :param spot_size: point spot size
         :type spot_size: float
         :param size: figure size
@@ -66,6 +69,15 @@ class GenerativeImage:
         """
         fig = plt.figure()
         fig.set_size_inches(size[0], size[1])
+        fig.set_facecolor(bgcolor)
         ax = fig.add_subplot(111, projection=projection)
-        ax.scatter(self.data2, self.data1, alpha=0.1, c=color, s=spot_size)
-        ax.axis('off')
+        ax.set_facecolor(bgcolor)
+        ax.scatter(
+            self.data2,
+            self.data1,
+            alpha=0.1,
+            edgecolors=color,
+            s=spot_size)
+        ax.set_axis_off()
+        ax.patch.set_zorder(-1)
+        ax.add_artist(ax.patch)
