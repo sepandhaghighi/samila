@@ -3,7 +3,7 @@
 import random
 import itertools
 import matplotlib.pyplot as plt
-from .functions import float_range
+from .functions import float_range, filter_color
 from .params import *
 
 
@@ -48,6 +48,7 @@ class GenerativeImage:
     def plot(
             self,
             color=DEFAULT_COLOR,
+            bgcolor=DEFAULT_BACKGROUND_COLOR,
             spot_size=DEFAULT_SPOT_SIZE,
             size=DEFAULT_IMAGE_SIZE,
             projection=DEFAULT_PROJECTION):
@@ -56,6 +57,8 @@ class GenerativeImage:
 
         :param color: point colors
         :type color: str
+        :param bgcolor: background color
+        :type bgcolor: str
         :param spot_size: point spot size
         :type spot_size: float
         :param size: figure size
@@ -64,8 +67,20 @@ class GenerativeImage:
         :type projection: str
         :return: None
         """
+        color = filter_color(color) if not None else DEFAULT_COLOR
+        bgcolor = filter_color(
+            bgcolor) if not None else DEFAULT_BACKGROUND_COLOR
         fig = plt.figure()
         fig.set_size_inches(size[0], size[1])
+        fig.set_facecolor(bgcolor)
         ax = fig.add_subplot(111, projection=projection)
-        ax.scatter(self.data2, self.data1, alpha=0.1, c=color, s=spot_size)
-        ax.axis('off')
+        ax.set_facecolor(bgcolor)
+        ax.scatter(
+            self.data2,
+            self.data1,
+            alpha=DEFAULT_ALPHA,
+            edgecolors=color,
+            s=spot_size)
+        ax.set_axis_off()
+        ax.patch.set_zorder(-1)
+        ax.add_artist(ax.patch)

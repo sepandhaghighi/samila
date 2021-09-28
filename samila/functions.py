@@ -17,3 +17,52 @@ def float_range(start, stop, step):
     while start < stop:
         yield float(start)
         start += step
+
+
+def distance_calc(s1, s2):
+    """
+    Calculate Levenshtein distance between two words.
+
+    :param s1: first string
+    :type s1 : str
+    :param s2: second string
+    :type s2 : str
+    :return: distance between two string
+
+    References :
+    1- https://stackoverflow.com/questions/2460177/edit-distance-in-python
+    2- https://en.wikipedia.org/wiki/Levenshtein_distance
+    """
+    if len(s1) > len(s2):
+        s1, s2 = s2, s1
+
+    distances = range(len(s1) + 1)
+    for i2, c2 in enumerate(s2):
+        distances_ = [i2 + 1]
+        for i1, c1 in enumerate(s1):
+            if c1 == c2:
+                distances_.append(distances[i1])
+            else:
+                distances_.append(
+                    1 + min((distances[i1], distances[i1 + 1], distances_[-1])))
+        distances = distances_
+    return distances[-1]
+
+
+def filter_color(color):
+    """
+    Filter given color and return it
+
+    :param color: given color
+    :type color: str or tuple
+    :return: filtered version of color
+    """
+    if isinstance(color, tuple):
+        return color
+    if isinstance(color, str):
+        from .params import VALID_COLORS
+        distance_list = list(map(lambda x: distance_calc(color, x),
+                                 VALID_COLORS))
+        min_distance = min(distance_list)
+        return VALID_COLORS[distance_list.index(min_distance)]
+    return None
