@@ -3,7 +3,7 @@
 import random
 import itertools
 import matplotlib.pyplot as plt
-from .functions import float_range
+from .functions import float_range, filter_color
 from .params import *
 
 
@@ -67,6 +67,9 @@ class GenerativeImage:
         :type projection: str
         :return: None
         """
+        color = filter_color(color) if not None else DEFAULT_COLOR
+        bgcolor = filter_color(
+            bgcolor) if not None else DEFAULT_BACKGROUND_COLOR
         fig = plt.figure()
         fig.set_size_inches(size[0], size[1])
         fig.set_facecolor(bgcolor)
