@@ -75,7 +75,7 @@ class GenerativeImage:
         ax.scatter(
             self.data2,
             self.data1,
-            alpha=0.1,
+            alpha=DEFAULT_ALPHA,
             edgecolors=color,
             s=spot_size)
         ax.set_axis_off()
