@@ -37,11 +37,11 @@ class GenerativeImage:
         self.seed = seed
         if seed is None:
             self.seed = random.randint(0, 2 ** 20)
-        random.seed(self.seed)
         range1 = list(float_range(start, stop, step))
         range2 = list(float_range(start, stop, step))
         range_prod = list(itertools.product(range1, range2))
         for item in range_prod:
+            random.seed(self.seed)
             self.data1.append(self.function1(item[0], item[1]))
             self.data2.append(self.function2(item[0], item[1]))
 
