@@ -37,7 +37,7 @@ setup(
     long_description="",
     long_description_content_type='text/markdown',
     author='Sepand Haghighi',
-    author_email='sepand@pycm.ir',
+    author_email='info@4r7.ir',
     url='https://github.com/sepandhaghighi/samila',
     keywords="generative-art art nft",
     project_urls={
