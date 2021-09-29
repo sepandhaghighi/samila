@@ -28,7 +28,7 @@ jobs:
         pip install --upgrade --upgrade-strategy=only-if-needed -r dev-requirements.txt
     - name: Version check
       run: |
-        python otherfile/version_check.py
+        python otherfiles/version_check.py
       if: matrix.python-version == 3.7
     - name: Other tests
       run: |
