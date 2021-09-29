@@ -8,8 +8,24 @@ from .params import *
 
 
 class GenerativeImage:
+    """
+    Generative Image class.
 
+    >>> def f1(x, y):
+    ...    return random.uniform(-1, 1) * x**2 - math.sin(y**3)
+    >>> def f2(x, y):
+    ...    return random.uniform(-1, 1) * y**3 - math.cos(x**2)
+    >>> GI = GenerativeImage(f1, f2)
+    """
     def __init__(self, function1, function2):
+        """
+        Init method.
+
+        :param function1: Function 1
+        :type function1: python or lambda function
+        :param function2: Function 2
+        :type function2: python or lambda function
+        """
         self.function1 = function1
         self.function2 = function2
 
