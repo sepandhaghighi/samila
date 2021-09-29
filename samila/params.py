@@ -22,6 +22,7 @@ class Projection(Enum):
 
     >>> projection = samila.Projection.POLAR
     """
+
     DEFAULT = DEFAULT_PROJECTION
     POLAR = "polar"
     AITOFF = "aitoff"
