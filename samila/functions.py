@@ -52,7 +52,7 @@ def distance_calc(s1, s2):
 
 def filter_color(color):
     """
-    Filter given color and return it
+    Filter given color and return it.
 
     :param color: given color
     :type color: str or tuple
