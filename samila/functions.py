@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Samila functions."""
 
-from .params import Projection, DEFAULT_PROJECTION
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS
 
 def float_range(start, stop, step):
     """
@@ -61,7 +61,6 @@ def filter_color(color):
     if isinstance(color, tuple):
         return color
     if isinstance(color, str):
-        from .params import VALID_COLORS
         distance_list = list(map(lambda x: distance_calc(color, x),
                                  VALID_COLORS))
         min_distance = min(distance_list)
