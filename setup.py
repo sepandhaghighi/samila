@@ -9,9 +9,9 @@ except ImportError:
 MINIMAL_DESCRIPTION = '''Samila is a generative art generator written in Python, Samila let's you create arts based on many thousand points. The position of every single point is calculated by a formula, which has random parameters. Because of the random numbers, every image looks different.'''
 
 
-def get_dev_requires():
-    """Read dev-requirements.txt."""
-    requirements = open("dev-requirements.txt", "r").read()
+def get_requires():
+    """Read requirements.txt."""
+    requirements = open("requirements.txt", "r").read()
     return list(filter(lambda x: x != "", requirements.split()))
 
 
@@ -34,18 +34,18 @@ setup(
     packages=['samila'],
     version='0.1',
     description='Generative ART',
-    long_description="Samila is a generative art generator written in Python, Samila let's you create arts based on many thousand points. The position of every single point is calculated by a formula, which has random parameters. Because of the random numbers, every image looks different.",
+    long_description=read_description(),
     long_description_content_type='text/markdown',
     author='Sepand Haghighi',
     author_email='info@4r7.ir',
     url='https://github.com/sepandhaghighi/samila',
     download_url='https://github.com/sepandhaghighi/samila/tarball/v0.1',
-    keywords="generative-art art nft",
+    keywords="generative-art art nft file nft-storage",
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/samila',
         'Tracker': 'https://github.com/sepandhaghighi/samila/issues',
     },
-    install_requires=[],
+    install_requires=get_requires(),
     python_requires='>=3.5',
     classifiers=[
         'Natural Language :: English',
