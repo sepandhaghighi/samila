@@ -39,6 +39,7 @@ setup(
     author='Sepand Haghighi',
     author_email='info@4r7.ir',
     url='https://github.com/sepandhaghighi/samila',
+    download_url='https://github.com/sepandhaghighi/samila/tarball/v0.1',
     keywords="generative-art art nft",
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/samila',
