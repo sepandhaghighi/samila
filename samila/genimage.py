@@ -17,6 +17,7 @@ class GenerativeImage:
     ...    return random.uniform(-1, 1) * y**3 - math.cos(x**2)
     >>> GI = GenerativeImage(f1, f2)
     """
+
     def __init__(self, function1, function2):
         """
         Init method.
