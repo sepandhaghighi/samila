@@ -83,9 +83,11 @@ class GenerativeImage:
         :type projection: str
         :return: None
         """
-        color = filter_color(color) if not None else DEFAULT_COLOR
-        bgcolor = filter_color(
-            bgcolor) if not None else DEFAULT_BACKGROUND_COLOR
+        color, bgcolor = map(filter_color, [color, bgcolor])
+        if color is None:
+            color = DEFAULT_COLOR
+        if bgcolor is None:
+            bgcolor = DEFAULT_BACKGROUND_COLOR
         projection = filter_projection(projection)
         fig = plt.figure()
         fig.set_size_inches(size[0], size[1])
