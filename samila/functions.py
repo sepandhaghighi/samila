@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Samila functions."""
 
+from .params import Projection, DEFAULT_PROJECTION
 
 def float_range(start, stop, step):
     """
@@ -66,3 +67,15 @@ def filter_color(color):
         min_distance = min(distance_list)
         return VALID_COLORS[distance_list.index(min_distance)]
     return None
+
+def filter_projection(projection):
+    """
+    Filter given projection.
+
+    :param projection: given projection
+    :type projection: Projection enum
+    :return: filtered version of projection
+    """
+    if isinstance(projection, Projection):
+        return projection.value
+    return DEFAULT_PROJECTION
