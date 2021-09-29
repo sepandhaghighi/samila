@@ -17,6 +17,12 @@ VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
 
 
 class Projection(Enum):
+    """
+    Samila Projection type class.
+
+    >>> projection = samila.Projection.POLAR
+    """
+
     DEFAULT = DEFAULT_PROJECTION
     POLAR = "polar"
     AITOFF = "aitoff"
