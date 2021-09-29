@@ -93,20 +93,67 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 ### Basic
 ```pycon
+>>> import random
+>>> import math
+>>> import matplotlib.pyplot as plt
+>>> from samila import GenerativeImage
+>>> def f1(x,y):
+    result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
+    return result
+>>> def f2(x,y):
+    result = random.uniform(-1,1) * y**3 - math.cos(x**2) + 2*x
+    return result
+>>> g = GenerativeImage(f1,f2)
+>>> g.generate()
+>>> g.plot()
+>>> g.seed
+188781
+>>> plt.show()
 ```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/1.png">	
 
 ### Projection
 ```pycon
+>>> from samila import Projection
+>>> g = GenerativeImage(f1,f2)
+>>> g.generate()
+>>> g.plot(projection=Projection.POLAR)
+>>> g.seed
+829730
+>>> plt.show()
 ```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/2.png">	
 
 ### Range
 ```pycon
+>>> g = GenerativeImage(f1,f2)
+>>> g.generate(start = -2*math.pi,step=0.1,stop=0)
+>>> g.plot()
+>>> g.seed
+234752
+>>> plt.show()
 ```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/3.png">	
 
 ### Color
 ```pycon
+>>> g = GenerativeImage(f1,f2)
+>>> g.generate()
+>>> g.plot(color="yellow",bgcolor="black",projection=Projection.POLAR)
+>>> g.seed
+1018273
+>>> plt.show()
 ```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/4.png">	
 
+### Regeneration
+```pycon
+>>> g = GenerativeImage(f1,f2)
+>>> g.generate(seed=1018273)
+>>> g.plot(projection=Projection.POLAR)
+>>> plt.show()
+```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/5.png">	
 
 ## Issues & bug reports			
 
