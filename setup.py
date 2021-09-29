@@ -6,7 +6,7 @@ except ImportError:
     from distutils.core import setup
 
 
-MINIMAL_DESCRIPTION = ''''''
+MINIMAL_DESCRIPTION = '''Samila is a generative art generator written in Python, Samila let's you create arts based on many thousand points. The position of every single point is calculated by a formula, which has random parameters. Because of the random numbers, every image looks different.'''
 
 
 def get_dev_requires():
@@ -34,11 +34,12 @@ setup(
     packages=['samila'],
     version='0.1',
     description='Generative ART',
-    long_description="",
+    long_description="Samila is a generative art generator written in Python, Samila let's you create arts based on many thousand points. The position of every single point is calculated by a formula, which has random parameters. Because of the random numbers, every image looks different.",
     long_description_content_type='text/markdown',
     author='Sepand Haghighi',
     author_email='info@4r7.ir',
     url='https://github.com/sepandhaghighi/samila',
+    download_url='https://github.com/sepandhaghighi/samila/tarball/v0.1',
     keywords="generative-art art nft",
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/samila',
