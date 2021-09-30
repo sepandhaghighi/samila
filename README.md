@@ -193,7 +193,11 @@ or send an email to [info@4r7.ir](mailto:info@4r7.ir "info@4r7.ir").
 
 ## References			
 
-<blockquote>1- </blockquote>
+<blockquote>1- Schönlieb, Carola-Bibiane, and Franz Schubert. "Random simulations for generative art construction–some examples." Journal of Mathematics and the Arts 7.1 (2013): 29-39.</blockquote>
+
+<blockquote>2- <a href="https://github.com/cutterkom/generativeart">Create Generative Art with R</a></blockquote>
+
+<blockquote>3- <a href="https://nft.storage/">NFT.storage : Free decentralized storage and bandwidth for NFTs</a></blockquote>
 	
 
 ## Show your support
