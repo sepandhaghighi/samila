@@ -161,6 +161,14 @@ Samila is a generative art generator written in Python, Samila let's you create 
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/5.png">	
 
+### NFT.storage
+Upload generated image directly to [NFT.storage](https://NFT.storage)
+
+```pycon
+>>> g.nft_storage(api_key = YOUR_API_KEY)
+{'status': True, 'message': 'Everything seems good'}
+```
+
 ## Issues & bug reports			
 
 Just fill an issue and describe it. We'll check it ASAP!							
