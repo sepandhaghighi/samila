@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `GenerativeImage` class
 - `plot` method
 - `generate` method
+- `nft_storage` method
 
 [Unreleased]: https://github.com/sepandhaghighi/samila/compare/v0.1...dev
 [0.1]: https://github.com/sepandhaghighi/samila/compare/1058677...v0.1
