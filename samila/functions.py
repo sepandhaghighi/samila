@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """Samila functions."""
 
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS
+import requests
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE
 
 def float_range(start, stop, step):
     """
@@ -78,3 +79,29 @@ def filter_projection(projection):
     if isinstance(projection, Projection):
         return projection.value
     return DEFAULT_PROJECTION
+
+def nft_storage_upload(api_key, data):
+    """
+    Upload file to nft.storage.
+
+    :param api_key: API key
+    :type api_key: str
+    :param data: image data
+    :type data: binary
+    :return: result as dict
+    """
+    result = {"status": True, "message": NFT_STORAGE_SUCCESS_MESSAGE}
+    try:
+        headers = {'Authorization': 'Bearer {0}'.format(api_key)}
+        response = requests.post(url=NFT_STORAGE_API,data=data,headers=headers)
+        response_json = response.json()
+        if response_json["ok"]:
+            return result
+        result["status"] = False
+        result["message"] = response_json["error"]["message"]
+        return result
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+        return result
+
