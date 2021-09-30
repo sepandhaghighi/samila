@@ -117,6 +117,6 @@ class GenerativeImage:
         :return: result as dict
         """
         buf = io.BytesIO()
-        fig.savefig(buf, format='png')
+        self.fig.savefig(buf, format='png')
         response = nft_storage_upload(api_key=api_key,data=buf.getvalue())
         return response

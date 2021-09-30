@@ -17,7 +17,7 @@ DEFAULT_SPOT_SIZE = 0.01
 DEFAULT_PROJECTION = None
 VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
 NFT_STORAGE_API = "https://api.nft.storage/upload"
-NFT_STORAGE_SUCCESS_MESSAGE = ""
+NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good"
 
 
 
