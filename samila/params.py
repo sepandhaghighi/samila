@@ -20,7 +20,6 @@ NFT_STORAGE_API = "https://api.nft.storage/upload"
 NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good"
 
 
-
 class Projection(Enum):
     """
     Samila Projection type class.

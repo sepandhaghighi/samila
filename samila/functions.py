@@ -4,6 +4,7 @@
 import requests
 from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE
 
+
 def float_range(start, stop, step):
     """
     Generate float range.
@@ -68,6 +69,7 @@ def filter_color(color):
         return VALID_COLORS[distance_list.index(min_distance)]
     return None
 
+
 def filter_projection(projection):
     """
     Filter given projection.
@@ -79,6 +81,7 @@ def filter_projection(projection):
     if isinstance(projection, Projection):
         return projection.value
     return DEFAULT_PROJECTION
+
 
 def nft_storage_upload(api_key, data):
     """
@@ -93,7 +96,10 @@ def nft_storage_upload(api_key, data):
     result = {"status": True, "message": NFT_STORAGE_SUCCESS_MESSAGE}
     try:
         headers = {'Authorization': 'Bearer {0}'.format(api_key)}
-        response = requests.post(url=NFT_STORAGE_API,data=data,headers=headers)
+        response = requests.post(
+            url=NFT_STORAGE_API,
+            data=data,
+            headers=headers)
         response_json = response.json()
         if response_json["ok"]:
             return result
@@ -104,4 +110,3 @@ def nft_storage_upload(api_key, data):
         result["status"] = False
         result["message"] = str(e)
         return result
-
