@@ -26,6 +26,7 @@ jobs:
         python setup.py install
     - name: First test
       run: |
+        python setup.py install
         python -m samila test
         python -m samila
     - name: Install dev-requirements
