@@ -13,6 +13,5 @@
 ...    return result
 >>> g = GenerativeImage(f1,f2)
 >>> g.generate()
->>> g.plot()
 
 """
