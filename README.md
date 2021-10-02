@@ -2,7 +2,7 @@
 <h1>Samila</h1>
 <br/>
 <br/>
-<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/logo.png">
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/logo.png" width=400 height=400>
 <a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3" /></a>
 <a href="https://codecov.io/gh/sepandhaghighi/samila">
   <img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg" />
