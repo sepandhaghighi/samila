@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `samila_help` function
 - `test.py`
+- `function_test.py`
 ### Changed
 - `README.md` updated
 - `__main__.py` updated
