@@ -1,0 +1,9 @@
+[run]
+branch = True
+omit =
+    */samila/__main__.py
+    */samila/__init__.py
+[report]
+# Regexes for lines to exclude from consideration
+exclude_lines =
+    pragma: no cover
