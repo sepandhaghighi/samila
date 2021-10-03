@@ -2,7 +2,6 @@
 """
 >>> import random
 >>> import math
->>> import matplotlib.pyplot as plt
 >>> from samila import GenerativeImage, Projection
 >>> import pickle
 >>> def f1(x,y):
