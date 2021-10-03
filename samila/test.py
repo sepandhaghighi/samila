@@ -3,7 +3,6 @@
 """
 >>> import random
 >>> import math
->>> import matplotlib.pyplot as plt
 >>> from samila import GenerativeImage
 >>> def f1(x,y):
 ...    result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
