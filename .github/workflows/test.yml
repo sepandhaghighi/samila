@@ -42,5 +42,5 @@ jobs:
       run: |
         python -m vulture samila/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
         python -m bandit -r samila -s B311
-        python -m pydocstyle --match='(?!test).*\.py' -v
+        python -m pydocstyle -v --match-dir=samila
       if: matrix.python-version == 3.7
