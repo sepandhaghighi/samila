@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
->>> import matplotlib
->>> matplotlib.use('TkAgg')
 >>> import random
 >>> import math
 >>> from samila import GenerativeImage, Projection
