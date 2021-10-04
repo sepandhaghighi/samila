@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Basic test file."""
 """
+>>> import matplotlib
+>>> matplotlib.use('TkAgg')
 >>> import random
 >>> import math
 >>> from samila import GenerativeImage
