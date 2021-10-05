@@ -2,8 +2,9 @@
 """
 >>> import random
 >>> import math
+>>> import pickle
 >>> from samila import GenerativeImage, Projection
->>> from samila.functions import isSimilarData
+>>> from samila.functions import isSameData
 >>> import pickle
 >>> def f1(x,y):
 ...    result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
@@ -25,9 +26,13 @@ True
 >>> g.generate(seed=10, start=-2*math.pi, step=0.1, stop=math.pi/2)
 >>> g.seed
 10
->>> isSimilarData(g.data1, "test/test1_1_d1.pkl")
+>>> with open("test/test1_1_d1.pkl", "rb") as fp:
+...    temp_data = pickle.load(fp)
+>>> isSameData(g.data1, temp_data)
 True
->>> isSimilarData(g.data2, "test/test1_1_d2.pkl")
+>>> with open("test/test1_1_d2.pkl", "rb") as fp:
+...    temp_data = pickle.load(fp)
+>>> isSameData(g.data2, temp_data)
 True
 >>> g.plot()
 >>> g.plot(color='red')

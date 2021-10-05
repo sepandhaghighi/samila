@@ -3,7 +3,6 @@
 
 import requests
 from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, OVERVIEW
-import pickle
 
 
 def float_range(start, stop, step):
@@ -123,18 +122,17 @@ def samila_help():
     print("Repo : https://github.com/sepandhaghighi/samila")
 
 
-def isSimilarData(data, path2data, precision=10**-5):
+def isSameData(data1, data2, precision=10**-5):
     """
-    Compare the data is the same with given file.
+    Compare to data to be the same.
 
-    :param data: given data
-    :type data: list
-    :param path2data: comparing data path on storage
-    :type path2data: str
+    :param data1: given data1
+    :type data1: list
+    :param data2: given data2
+    :type data2: list
     :param precision: comparing precision
     :type precision: float
     :return: True if they are the same
     """
-    with open(path2data, "rb") as fp:
-        temp_data = pickle.load(fp)
-    return all(map(lambda x, y: abs(x - y) < precision, data, temp_data))
+    isSame = map(lambda x, y: abs(x - y) < precision, data1, data2)
+    return all(isSame)
