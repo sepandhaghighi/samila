@@ -2,7 +2,7 @@
 """Samila functions."""
 
 import requests
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, OVERVIEW
 
 
 def float_range(start, stop, step):
@@ -110,3 +110,13 @@ def nft_storage_upload(api_key, data):
         result["status"] = False
         result["message"] = str(e)
         return result
+
+
+def samila_help():
+    """
+    Print samila details.
+
+    :return: None
+    """
+    print(OVERVIEW)
+    print("Repo : https://github.com/sepandhaghighi/samila")
