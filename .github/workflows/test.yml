@@ -27,7 +27,7 @@ jobs:
     - name: First test (None macOS)
       run: |
         python -m samila
-      if: matrix.os != macOS-latest
+      if: matrix.os != 'macOS-latest'
     - name: Install dev-requirements
       run: |
         pip install --upgrade --upgrade-strategy=only-if-needed -r dev-requirements.txt
