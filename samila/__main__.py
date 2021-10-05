@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Samila main."""
 
-import doctest
-import sys
 from art import tprint
 from .params import SAMILA_VERSION
 from .functions import samila_help
