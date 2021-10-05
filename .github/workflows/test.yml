@@ -34,7 +34,7 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest test --cov=samila --cov-report=term
-      if: matrix.os != 'macOS-latest' or matrix.python-version != 3.5
+      if: matrix.os != 'macOS-latest' || matrix.python-version != 3.5
     - name: Version check
       run: |
         python otherfiles/version_check.py
