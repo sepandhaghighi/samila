@@ -45,3 +45,7 @@ jobs:
         python -m bandit -r samila -s B311
         python -m pydocstyle -v --match-dir=samila
       if: matrix.python-version == 3.7
+    - name: Codecov
+      run: |
+        codecov
+      if: matrix.python-version == 3.7 && matrix.os == 'ubuntu-latest'
