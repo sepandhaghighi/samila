@@ -122,7 +122,7 @@ def samila_help():
     print("Repo : https://github.com/sepandhaghighi/samila")
 
 
-def isSameData(data1, data2, precision=10**-5):
+def is_same_data(data1, data2, precision=10**-5):
     """
     Compare to data to be the same.
 

@@ -4,7 +4,7 @@
 >>> import math
 >>> import pickle
 >>> from samila import GenerativeImage, Projection
->>> from samila.functions import isSameData
+>>> from samila.functions import is_same_data
 >>> import pickle
 >>> def f1(x,y):
 ...    result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
@@ -28,11 +28,11 @@ True
 10
 >>> with open("test/test1_1_d1.pkl", "rb") as fp:
 ...    temp_data = pickle.load(fp)
->>> isSameData(g.data1, temp_data)
+>>> is_same_data(g.data1, temp_data)
 True
 >>> with open("test/test1_1_d2.pkl", "rb") as fp:
 ...    temp_data = pickle.load(fp)
->>> isSameData(g.data2, temp_data)
+>>> is_same_data(g.data2, temp_data)
 True
 >>> g.plot()
 >>> g.plot(color='red')

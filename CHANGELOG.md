@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `samila_help` function
 - `test.py`
 - `function_test.py`
-- `isSimilarData` function
+- `is_same_data` function
 ### Changed
 - `README.md` updated
 - `__main__.py` updated
