@@ -180,7 +180,7 @@ Samila is simply a transformation between a square-shaped space from the Cartesi
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/transformation.png">
 
 We have set of points in the first space (left square) which can be define as fallow:
-<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S1.png">
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S1.jpg">
 
 And fallowing functions are used for transformation:
 
@@ -193,7 +193,7 @@ And fallowing functions are used for transformation:
     return result
 ```
 
-<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S2.png">
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S2.jpg">
 
 here we uses `Projection.POLAR` so later space will be the polar space and we have:
 
@@ -202,7 +202,7 @@ here we uses `Projection.POLAR` so later space will be the polar space and we ha
 >>> g.generate(seed=10)
 >>> g.plot(projection=Projection.POLAR)
 ```
-<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S2_.png">
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S2_.jpg">
 
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/6.png">
 
