@@ -2,7 +2,7 @@
 """Samila functions."""
 
 import requests
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, OVERVIEW
 
 
 def float_range(start, stop, step):
@@ -110,3 +110,29 @@ def nft_storage_upload(api_key, data):
         result["status"] = False
         result["message"] = str(e)
         return result
+
+
+def samila_help():
+    """
+    Print samila details.
+
+    :return: None
+    """
+    print(OVERVIEW)
+    print("Repo : https://github.com/sepandhaghighi/samila")
+
+
+def is_same_data(data1, data2, precision=10**-5):
+    """
+    Compare two data to be the same.
+
+    :param data1: given data1
+    :type data1: list
+    :param data2: given data2
+    :type data2: list
+    :param precision: comparing precision
+    :type precision: float
+    :return: True if they are the same
+    """
+    is_same = map(lambda x, y: abs(x - y) < precision, data1, data2)
+    return all(is_same)

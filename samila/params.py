@@ -6,6 +6,13 @@ from matplotlib import colors as mcolors
 
 SAMILA_VERSION = "0.1"  # pragma: no cover
 
+OVERVIEW = '''
+Samila is a generative art generator written in Python, Samila let's you
+create arts based on many thousand points. The position of every single
+point is calculated by a formula, which has random parameters.
+Because of the random numbers, every image looks different.
+'''
+
 DEFAULT_START = -1 * math.pi
 DEFAULT_STOP = math.pi
 DEFAULT_STEP = 0.01
