@@ -124,7 +124,7 @@ def samila_help():
 
 def is_same_data(data1, data2, precision=10**-5):
     """
-    Compare to data to be the same.
+    Compare two data to be the same.
 
     :param data1: given data1
     :type data1: list
