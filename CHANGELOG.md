@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `Mathematical Details` section in `REDAME.md`
+- `samila_help` function
+- `test.py`
+- `function_test.py`
+- `is_same_data` function
 ### Changed
 - `README.md` updated
+- `__main__.py` updated
+- `test.yml` updated
 ## [0.1] - 2021-09-30
 ### Added
 - `GenerativeImage` class
