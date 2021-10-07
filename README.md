@@ -15,6 +15,7 @@
    * [Overview](https://github.com/sepandhaghighi/samila#overview)
    * [Installation](https://github.com/sepandhaghighi/samila#installation)
    * [Usage](https://github.com/sepandhaghighi/samila#usage)
+   * [Mathematical details](https://github.com/sepandhaghighi/samila#mathematical-details)
    * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
    * [Dependencies](https://github.com/sepandhaghighi/samila#dependencies)
    * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
@@ -173,7 +174,7 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 {'status': True, 'message': 'Everything seems good'}
 ```
 
-## Mathematical Details
+## Mathematical details
 Samila is simply a transformation between a square-shaped space from the Cartesian coordinate system to any arbitrary coordination given functions (`function1` and `function2`).
 
 ### An Example
@@ -182,7 +183,7 @@ Samila is simply a transformation between a square-shaped space from the Cartesi
 We have set of points in the first space (left square) which can be define as fallow:
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S1.jpg">
 
-And fallowing functions are used for transformation:
+And bellow functions are used for transformation:
 
 ```pycon
 >>> def f1(x,y):
