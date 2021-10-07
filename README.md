@@ -173,6 +173,9 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 {'status': True, 'message': 'Everything seems good'}
 ```
 
+## Mathematical Details
+
+
 ## Issues & bug reports			
 
 Just fill an issue and describe it. We'll check it ASAP!							
