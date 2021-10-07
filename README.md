@@ -174,7 +174,37 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 ```
 
 ## Mathematical Details
+Samila is simply a transformation between a square-shaped space from the Cartesian coordinate system to any arbitrary coordination given functions (`function1` and `function2`).
 
+### An Example
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/transformation.png">
+
+We have set of points in the first space (left square) which can be define as fallow:
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S1.png">
+
+And fallowing functions are used for transformation:
+
+```pycon
+>>> def f1(x,y):
+    result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
+    return result
+>>> def f2(x,y):
+    result = random.uniform(-1,1) * y**3 - math.cos(x**2) + 2*x
+    return result
+```
+
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S2.png">
+
+here we uses `Projection.POLAR` so later space will be the polar space and we have:
+
+```pycon
+>>> g = GenerativeImage(f1,f2)
+>>> g.generate(seed=10)
+>>> g.plot(projection=Projection.POLAR)
+```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S2_.png">
+
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/6.png">
 
 ## Issues & bug reports			
 
