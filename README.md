@@ -15,6 +15,7 @@
    * [Overview](https://github.com/sepandhaghighi/samila#overview)
    * [Installation](https://github.com/sepandhaghighi/samila#installation)
    * [Usage](https://github.com/sepandhaghighi/samila#usage)
+   * [Mathematical details](https://github.com/sepandhaghighi/samila#mathematical-details)
    * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
    * [Dependencies](https://github.com/sepandhaghighi/samila#dependencies)
    * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
@@ -172,6 +173,39 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 >>> g.nft_storage(api_key = YOUR_API_KEY)
 {'status': True, 'message': 'Everything seems good'}
 ```
+
+## Mathematical details
+Samila is simply a transformation between a square-shaped space from the Cartesian coordinate system to any arbitrary coordination given functions (`function1` and `function2`).
+
+### Example
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/transformation.png">
+
+We have set of points in the first space (left square) which can be define as fallow:
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S1.jpg">
+
+And bellow functions are used for transformation:
+
+```pycon
+>>> def f1(x,y):
+    result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
+    return result
+>>> def f2(x,y):
+    result = random.uniform(-1,1) * y**3 - math.cos(x**2) + 2*x
+    return result
+```
+
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S2.jpg">
+
+here we uses `Projection.POLAR` so later space will be the polar space and we have:
+
+```pycon
+>>> g = GenerativeImage(f1,f2)
+>>> g.generate(seed=10)
+>>> g.plot(projection=Projection.POLAR)
+```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S2_.jpg">
+
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/6.png">
 
 ## Issues & bug reports			
 
