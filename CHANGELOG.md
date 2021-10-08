@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `dependabot.yml`
+- `requirements-splitter.py`
 - `Mathematical Details` section in `REDAME.md`
 - `samila_help` function
 - `test.py`
