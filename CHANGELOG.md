@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `function_test.py`
 - `is_same_data` function
 ### Changed
+- `dev-requirements.txt` updated
 - `README.md` updated
 - `__main__.py` updated
 - `test.yml` updated
