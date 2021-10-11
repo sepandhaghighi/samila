@@ -40,7 +40,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 	</tr>
 	<tr>
 		<td align="center">PyPI Counter</td>
-		<td align="center"><a href="http://pepy.tech/count/samila"><img src="http://pepy.tech/badge/samila"></a></td>
+		<td align="center"><a href="http://pepy.tech/project/samila"><img src="http://pepy.tech/badge/samila"></a></td>
 	</tr>
 	<tr>
 		<td align="center">Github Stars</td>
@@ -181,6 +181,7 @@ Samila is simply a transformation between a square-shaped space from the Cartesi
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/transformation.png">
 
 We have set of points in the first space (left square) which can be define as fallow:
+
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S1.jpg">
 
 And bellow functions are used for transformation:
