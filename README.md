@@ -181,6 +181,7 @@ Samila is simply a transformation between a square-shaped space from the Cartesi
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/transformation.png">
 
 We have set of points in the first space (left square) which can be define as fallow:
+
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S1.jpg">
 
 And bellow functions are used for transformation:
