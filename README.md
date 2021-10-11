@@ -180,7 +180,7 @@ Samila is simply a transformation between a square-shaped space from the Cartesi
 ### Example
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/transformation.png">
 
-We have set of points in the first space (left square) which can be define as fallow:
+We have set of points in the first space (left square) which can be define as follow:
 
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S1.jpg">
 
