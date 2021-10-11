@@ -40,7 +40,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 	</tr>
 	<tr>
 		<td align="center">PyPI Counter</td>
-		<td align="center"><a href="http://pepy.tech/count/samila"><img src="http://pepy.tech/badge/samila"></a></td>
+		<td align="center"><a href="http://pepy.tech/project/samila"><img src="http://pepy.tech/badge/samila"></a></td>
 	</tr>
 	<tr>
 		<td align="center">Github Stars</td>
