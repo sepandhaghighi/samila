@@ -15,7 +15,7 @@
    * [Overview](https://github.com/sepandhaghighi/samila#overview)
    * [Installation](https://github.com/sepandhaghighi/samila#installation)
    * [Usage](https://github.com/sepandhaghighi/samila#usage)
-   * [Mathematical details](https://github.com/sepandhaghighi/samila#mathematical-details)
+   * [Mathematical Details](https://github.com/sepandhaghighi/samila#mathematical-details)
    * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
    * [Dependencies](https://github.com/sepandhaghighi/samila#dependencies)
    * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
