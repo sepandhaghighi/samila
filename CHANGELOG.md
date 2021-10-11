@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `README.md` updated
 - `__main__.py` updated
 - `test.yml` updated
+- `nft_storage` method updated
 ## [0.1] - 2021-09-30
 ### Added
 - `GenerativeImage` class
