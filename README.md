@@ -175,12 +175,12 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 ```
 
 ## Mathematical details
-Samila is simply a transformation between a square-shaped space from the Cartesian coordinate system to any arbitrary coordination given functions (`function1` and `function2`).
+Samila is simply a transformation between a square-shaped space from the Cartesian coordinate system to any arbitrary coordination like [Polar coordinate system](https://en.wikipedia.org/wiki/Polar_coordinate_system).
 
 ### Example
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/transformation.png">
 
-We have set of points in the first space (left square) which can be define as fallow:
+We have set of points in the first space (left square) which can be define as follow:
 
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S1.jpg">
 
