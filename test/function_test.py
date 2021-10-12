@@ -53,4 +53,9 @@ False
 False
 >>> result["message"]
 'No figure was found. First run `generate` and `plot` methods.'
+>>> result = g.save_image(file_adr="")
+>>> result["status"]
+False
+>>> result["message"]
+'No figure was found. First run `generate` and `plot` methods.'
 """
