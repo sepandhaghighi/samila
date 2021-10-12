@@ -116,13 +116,13 @@ class GenerativeImage:
         :return: result as dict
         """
         response = save_fig_buf(self.fig)
-        if response["status"] == False:
+        if not response["status"]:
             return {"status": False, "message": response["message"]}
         buf = response["buffer"]
         response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
         return response
 
-    def save_image(self,file_adr):
+    def save_image(self, file_adr):
         """
         Save generated image.
 
@@ -130,4 +130,4 @@ class GenerativeImage:
         :type file_adr: str
         :return: result as dict
         """
-        return save_fig_file(figure = self.fig, file_adr = file_adr)
+        return save_fig_file(figure=self.fig, file_adr=file_adr)

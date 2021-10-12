@@ -112,7 +112,8 @@ def nft_storage_upload(api_key, data):
         result["message"] = str(e)
         return result
 
-def save_fig_file(figure,file_adr):
+
+def save_fig_file(figure, file_adr):
     """
     Save figure as file.
 
@@ -133,6 +134,7 @@ def save_fig_file(figure,file_adr):
         result["message"] = str(e)
         return result
 
+
 def save_fig_buf(figure):
     """
     Save figure as buffer.
@@ -143,7 +145,10 @@ def save_fig_buf(figure):
     """
     if figure is None:
         return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
-    result = {"status": True, "message": FIG_SAVE_SUCCESS_MESSAGE, "buffer": None}
+    result = {
+        "status": True,
+        "message": FIG_SAVE_SUCCESS_MESSAGE,
+        "buffer": None}
     try:
         buf = io.BytesIO()
         figure.savefig(buf, format='png')
@@ -153,6 +158,7 @@ def save_fig_buf(figure):
         result["status"] = False
         result["message"] = str(e)
         return result
+
 
 def samila_help():
     """
