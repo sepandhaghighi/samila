@@ -47,4 +47,10 @@ True
 False
 >>> result['message']
 'API Key is missing, make sure the `Authorization` header has a value in the following format `Bearer {api key}`.'
+>>> g = GenerativeImage(f1,f2)
+>>> result = g.nft_storage(api_key="")
+>>> result["status"]
+False
+>>> result["message"]
+'No figure was found. First run `generate` and `plot` methods.'
 """

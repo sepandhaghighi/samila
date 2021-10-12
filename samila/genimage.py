@@ -116,6 +116,8 @@ class GenerativeImage:
         :type api_key: str
         :return: result as dict
         """
+        if self.fig is None:
+            return {"status": False, "message": NFT_STORAGE_FIG_ERROR_MESSAGE}
         buf = io.BytesIO()
         self.fig.savefig(buf, format='png')
         response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
