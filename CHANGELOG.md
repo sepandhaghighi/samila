@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `test.py`
 - `function_test.py`
 - `is_same_data` function
+- `save_image` method
 ### Changed
 - `dev-requirements.txt` updated
 - `README.md` updated
