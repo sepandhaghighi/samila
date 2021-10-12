@@ -9,6 +9,7 @@ jobs:
   build:
 
     runs-on: ${{ matrix.os }}
+    environment: TEST_SECRET
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
@@ -36,6 +37,8 @@ jobs:
       run: |
         python -m pytest test --cov=samila --cov-report=term
       if: matrix.os != 'macOS-latest' || matrix.python-version != 3.5
+      env:
+        NFT_STORAGE_API_KEY: ${{ secrets.NFT_STORAGE_API_KEY }}
     - name: Version check
       run: |
         python otherfiles/version_check.py
