@@ -111,6 +111,26 @@ def nft_storage_upload(api_key, data):
         result["message"] = str(e)
         return result
 
+def save_fig_file(figure,file_adr):
+    """
+    Save figure as file.
+
+    :param figure: matplotlib figure
+    :type figure: matplotlib.figure.Figure
+    :param file_adr: file addresses
+    :type file_adr: str
+    :return: result as dict
+    """
+    if figure is None:
+        return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
+    result = {"status": True, "message": FIG_SAVE_SUCCESS_MESSAGE}
+    try:
+        figure.savefig(file_adr)
+        return result
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+        return result
 
 def samila_help():
     """
