@@ -25,6 +25,7 @@ DEFAULT_PROJECTION = None
 VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
 NFT_STORAGE_API = "https://api.nft.storage/upload"
 NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good."
+FIG_SAVE_SUCCESS_MESSAGE = "Everything seems good."
 NO_FIG_ERROR_MESSAGE = "No figure was found. First run `generate` and `plot` methods."
 
 
