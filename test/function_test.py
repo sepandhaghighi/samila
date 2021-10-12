@@ -4,6 +4,9 @@
 >>> import math
 >>> import os
 >>> import pickle
+>>> import socket
+>>> def guard(*args, **kwargs):
+...     raise Exception("No internet connection!")
 >>> from samila import GenerativeImage, Projection
 >>> from samila.functions import is_same_data
 >>> import pickle
@@ -76,6 +79,14 @@ False
 >>> result = g.save_image(file_adr="")
 >>> result["status"]
 False
+>>> socket.socket = guard
+>>> g.generate()
+>>> g.plot()
+>>> result = g.nft_storage("")
+>>> result["status"]
+False
+>>> result["message"]
+'No internet connection!'
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 """
