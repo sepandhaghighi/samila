@@ -132,6 +132,27 @@ def save_fig_file(figure,file_adr):
         result["message"] = str(e)
         return result
 
+def save_fig_buf(figure):
+    """
+    Save figure as buffer.
+
+    :param figure: matplotlib figure
+    :type figure: matplotlib.figure.Figure
+    :return: result as dict
+    """
+    if figure is None:
+        return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
+    result = {"status": True, "message": FIG_SAVE_SUCCESS_MESSAGE, "buffer": None}
+    try:
+        buf = io.BytesIO()
+        figure.savefig(buf, format='png')
+        result["buffer"] = buf
+        return result
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+        return result
+
 def samila_help():
     """
     Print samila details.

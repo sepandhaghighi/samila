@@ -4,7 +4,7 @@ import random
 import itertools
 import io
 import matplotlib.pyplot as plt
-from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_fig_file
+from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_fig_file, save_fig_buf
 from .params import *
 
 
@@ -116,10 +116,10 @@ class GenerativeImage:
         :type api_key: str
         :return: result as dict
         """
-        if self.fig is None:
-            return {"status": False, "message": NFT_STORAGE_FIG_ERROR_MESSAGE}
-        buf = io.BytesIO()
-        self.fig.savefig(buf, format='png')
+        response = save_fig_buf(self.fig)
+        if response["status"] == False:
+            return {"status": False, "message": response["message"]}
+        buf = response["buffer"]
         response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
         return response
 
