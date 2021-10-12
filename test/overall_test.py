@@ -3,7 +3,6 @@
 >>> import random
 >>> import math
 >>> import os
->>> import platform
 >>> import pickle
 >>> import socket
 >>> def guard(*args, **kwargs):
@@ -88,13 +87,6 @@ False
 False
 >>> result["message"]
 'No internet connection!'
->>> python_version_tuple = platform.python_version_tuple()
->>> python_version = "{0}.{1}".format(python_version_tuple[0],python_version_tuple[1])
->>> if python_version == "3.7":
-...     NFT_STORAGE_API_KEY = os.environ["NFT_STORAGE_API_KEY"]
-...     g.generate()
-...     g.plot()
-...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY)
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 """
