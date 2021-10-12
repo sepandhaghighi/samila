@@ -81,7 +81,7 @@ False
 False
 >>> socket.socket = guard
 >>> g.generate()
->>> g.plot()
+>>> g.plot(color=2,bgcolor=2)
 >>> result = g.nft_storage("")
 >>> result["status"]
 False
