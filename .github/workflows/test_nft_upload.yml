@@ -1,19 +1,18 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: CI
+name: CI (NFT Upload)
 
 on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ${{ matrix.os }}
     environment: TEST_SECRET
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+        os: [ubuntu-latest]
+        python-version: [3.7]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -25,25 +24,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         python setup.py install
-    - name: First test (None macOS)
+    - name: First test
       run: |
         python -m samila
-      if: matrix.os != 'macOS-latest'
     - name: Test requirements Installation
       run: |
         python otherfiles/requirements-splitter.py
         pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
-    - name: Test with pytest (- NFT upload test)
+    - name: Test with pytest (+ NFT upload test)
       run: |
-        python -m pytest --ignore-glob="*nft_upload_test.py" test --cov=samila --cov-report=term
-      if: matrix.os != 'macOS-latest' || matrix.python-version != 3.5
-    - name: Version check
+        python -m pytest test --cov=samila --cov-report=term
+      env:
+        NFT_STORAGE_API_KEY: ${{ secrets.NFT_STORAGE_API_KEY }}
+    - name: Codecov
       run: |
-        python otherfiles/version_check.py
-      if: matrix.python-version == 3.7
-    - name: Other tests
-      run: |
-        python -m vulture samila/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
-        python -m bandit -r samila -s B311
-        python -m pydocstyle -v --match-dir=samila
-      if: matrix.python-version == 3.7
+        codecov
