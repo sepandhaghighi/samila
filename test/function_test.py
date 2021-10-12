@@ -37,6 +37,7 @@ True
 >>> g.plot()
 >>> g.plot(color='red')
 >>> g.plot(color='red', bgcolor='black')
+>>> g.save_method("test.png")
 >>> from samila import GenerativeImage, Projection
 >>> g.plot(projection=Projection.POLAR, color='red', bgcolor='black')
 >>> g.plot(projection=Projection.POLAR, color=(.1, .2, .8))
