@@ -25,7 +25,7 @@ DEFAULT_PROJECTION = None
 VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
 NFT_STORAGE_API = "https://api.nft.storage/upload"
 NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good."
-NFT_STORAGE_FIG_ERROR_MESSAGE = "No figure was found. First run `generate` and `plot` methods."
+NO_FIG_ERROR_MESSAGE = "No figure was found. First run `generate` and `plot` methods."
 
 
 class Projection(Enum):
