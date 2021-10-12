@@ -5,7 +5,7 @@
 >>> import random
 >>> import time
 >>> from samila import GenerativeImage, Projection
->>> from samila.params VALID_COLORS
+>>> from samila.params import VALID_COLORS
 >>> def f1(x,y):
 ...    result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
 ...    return result
