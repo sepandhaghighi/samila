@@ -33,10 +33,14 @@ jobs:
       run: |
         python otherfiles/requirements-splitter.py
         pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
-    - name: Test with pytest
+    - name: Test with pytest (- NFT upload test)
+      run: |
+        python -m pytest --ignore-glob="*nft_upload_test.py" test --cov=samila --cov-report=term
+      if: matrix.os != 'macOS-latest' || matrix.python-version != 3.5
+    - name: Test with pytest (+ NFT upload test)
       run: |
         python -m pytest test --cov=samila --cov-report=term
-      if: matrix.os != 'macOS-latest' || matrix.python-version != 3.5
+      if: matrix.python-version == 3.7 && matrix.os == 'ubuntu-latest'
       env:
         NFT_STORAGE_API_KEY: ${{ secrets.NFT_STORAGE_API_KEY }}
     - name: Version check
