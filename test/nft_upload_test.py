@@ -24,6 +24,7 @@
 ...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY)
 ...     counter = counter + 1
 ...     status = result["status"]
+...     time.sleep(1)
 >>> status
 True
 """
