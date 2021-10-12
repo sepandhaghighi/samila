@@ -3,7 +3,8 @@
 >>> import os
 >>> import math
 >>> import random
->>> from samila import GenerativeImage, Projection
+>>> import time
+>>> from samila import GenerativeImage
 >>> def f1(x,y):
 ...    result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
 ...    return result
@@ -16,8 +17,13 @@
 >>> NFT_STORAGE_API_KEY = os.environ["NFT_STORAGE_API_KEY"]
 >>> g.generate()
 >>> g.plot()
->>> result = g.nft_storage(api_key=NFT_STORAGE_API_KEY)
->>> print(NFT_STORAGE_API_KEY[:6])
->>> result["status"]
+>>> counter = 0
+>>> try_limit = 3
+>>> status = False
+>>> while(status == False and counter<try_limit):
+...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY)
+...     counter = counter + 1
+...     status = result["status"]
+>>> status
 True
 """
