@@ -2,6 +2,7 @@
 """
 >>> import random
 >>> import math
+>>> import os
 >>> import pickle
 >>> from samila import GenerativeImage, Projection
 >>> from samila.functions import is_same_data
@@ -35,9 +36,18 @@ True
 >>> is_same_data(g.data2, temp_data)
 True
 >>> g.plot()
+>>> result = g.save_image("test.png")
+>>> result["status"]
+True
+>>> result["message"]
+'Everything seems good.'
 >>> g.plot(color='red')
 >>> g.plot(color='red', bgcolor='black')
->>> g.save_method("test.png")
+>>> result = g.save_image("test2.png")
+>>> result["status"]
+True
+>>> result["message"]
+'Everything seems good.'
 >>> from samila import GenerativeImage, Projection
 >>> g.plot(projection=Projection.POLAR, color='red', bgcolor='black')
 >>> g.plot(projection=Projection.POLAR, color=(.1, .2, .8))
@@ -59,4 +69,6 @@ False
 False
 >>> result["message"]
 'No figure was found. First run `generate` and `plot` methods.'
+>>> os.remove("test.png")
+>>> os.remove("test2.png")
 """

@@ -2,7 +2,6 @@
 """Samila generative image."""
 import random
 import itertools
-import io
 import matplotlib.pyplot as plt
 from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_fig_file, save_fig_buf
 from .params import *
