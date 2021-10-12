@@ -69,6 +69,13 @@ False
 False
 >>> result["message"]
 'No figure was found. First run `generate` and `plot` methods.'
+>>> g.fig = 2
+>>> result = g.nft_storage(api_key="")
+>>> result['status']
+False
+>>> result = g.save_image(file_adr="")
+>>> result["status"]
+False
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 """
