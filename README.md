@@ -174,6 +174,14 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 {'status': True, 'message': 'Everything seems good'}
 ```
 
+### Save
+Save generated image
+
+```pycon
+>>> g.save_image(file_adr="test.png")
+{'status': True, 'message': 'Everything seems good'}
+```
+
 ## Mathematical details
 Samila is simply a transformation between a square-shaped space from the Cartesian coordinate system to any arbitrary coordination like [Polar coordinate system](https://en.wikipedia.org/wiki/Polar_coordinate_system).
 

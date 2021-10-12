@@ -2,7 +2,8 @@
 """Samila functions."""
 
 import requests
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, OVERVIEW
+import io
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, OVERVIEW
 
 
 def float_range(start, stop, step):
@@ -105,6 +106,53 @@ def nft_storage_upload(api_key, data):
             return result
         result["status"] = False
         result["message"] = response_json["error"]["message"]
+        return result
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+        return result
+
+
+def save_fig_file(figure, file_adr):
+    """
+    Save figure as file.
+
+    :param figure: matplotlib figure
+    :type figure: matplotlib.figure.Figure
+    :param file_adr: file addresses
+    :type file_adr: str
+    :return: result as dict
+    """
+    if figure is None:
+        return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
+    result = {"status": True, "message": FIG_SAVE_SUCCESS_MESSAGE}
+    try:
+        figure.savefig(file_adr)
+        return result
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+        return result
+
+
+def save_fig_buf(figure):
+    """
+    Save figure as buffer.
+
+    :param figure: matplotlib figure
+    :type figure: matplotlib.figure.Figure
+    :return: result as dict
+    """
+    if figure is None:
+        return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
+    result = {
+        "status": True,
+        "message": FIG_SAVE_SUCCESS_MESSAGE,
+        "buffer": None}
+    try:
+        buf = io.BytesIO()
+        figure.savefig(buf, format='png')
+        result["buffer"] = buf
         return result
     except Exception as e:
         result["status"] = False
