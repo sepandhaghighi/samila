@@ -279,7 +279,7 @@ Xd3Yn2qZJ7VE8nbKw2fS98aLxR5M6WUU3s
 GALPOLPISRHIYHLQER2TLJRGUSZH52RYDK6C3HIU4PSMNAV65Q36EGNL
 <h4>Zilliqa</h4>
 zil1knmz8zj88cf0exr2ry7nav9elehxfcgqu3c5e5
-<hr/>
+<h4>Coffeete</h4>
 <a href="http://www.coffeete.ir/opensource">
 <img src="http://www.coffeete.ir/images/buttons/lemonchiffon.png" style="width:260px;" />
 </a>
