@@ -113,7 +113,7 @@ def nft_storage_upload(api_key, data):
         return result
 
 
-def save_fig_file(figure, file_adr , depth):
+def save_fig_file(figure, file_adr, depth):
     """
     Save figure as file.
 
