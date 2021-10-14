@@ -2,7 +2,9 @@
 """Samila functions."""
 
 import requests
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE
+import io
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, OVERVIEW
+
 
 def float_range(start, stop, step):
     """
@@ -68,6 +70,7 @@ def filter_color(color):
         return VALID_COLORS[distance_list.index(min_distance)]
     return None
 
+
 def filter_projection(projection):
     """
     Filter given projection.
@@ -79,6 +82,7 @@ def filter_projection(projection):
     if isinstance(projection, Projection):
         return projection.value
     return DEFAULT_PROJECTION
+
 
 def nft_storage_upload(api_key, data):
     """
@@ -93,7 +97,10 @@ def nft_storage_upload(api_key, data):
     result = {"status": True, "message": NFT_STORAGE_SUCCESS_MESSAGE}
     try:
         headers = {'Authorization': 'Bearer {0}'.format(api_key)}
-        response = requests.post(url=NFT_STORAGE_API,data=data,headers=headers)
+        response = requests.post(
+            url=NFT_STORAGE_API,
+            data=data,
+            headers=headers)
         response_json = response.json()
         if response_json["ok"]:
             return result
@@ -105,3 +112,75 @@ def nft_storage_upload(api_key, data):
         result["message"] = str(e)
         return result
 
+
+def save_fig_file(figure, file_adr):
+    """
+    Save figure as file.
+
+    :param figure: matplotlib figure
+    :type figure: matplotlib.figure.Figure
+    :param file_adr: file addresses
+    :type file_adr: str
+    :return: result as dict
+    """
+    if figure is None:
+        return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
+    result = {"status": True, "message": FIG_SAVE_SUCCESS_MESSAGE}
+    try:
+        figure.savefig(file_adr)
+        return result
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+        return result
+
+
+def save_fig_buf(figure):
+    """
+    Save figure as buffer.
+
+    :param figure: matplotlib figure
+    :type figure: matplotlib.figure.Figure
+    :return: result as dict
+    """
+    if figure is None:
+        return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
+    result = {
+        "status": True,
+        "message": FIG_SAVE_SUCCESS_MESSAGE,
+        "buffer": None}
+    try:
+        buf = io.BytesIO()
+        figure.savefig(buf, format='png')
+        result["buffer"] = buf
+        return result
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+        return result
+
+
+def samila_help():
+    """
+    Print samila details.
+
+    :return: None
+    """
+    print(OVERVIEW)
+    print("Repo : https://github.com/sepandhaghighi/samila")
+
+
+def is_same_data(data1, data2, precision=10**-5):
+    """
+    Compare two data to be the same.
+
+    :param data1: given data1
+    :type data1: list
+    :param data2: given data2
+    :type data2: list
+    :param precision: comparing precision
+    :type precision: float
+    :return: True if they are the same
+    """
+    is_same = map(lambda x, y: abs(x - y) < precision, data1, data2)
+    return all(is_same)

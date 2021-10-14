@@ -2,9 +2,8 @@
 """Samila generative image."""
 import random
 import itertools
-import io
 import matplotlib.pyplot as plt
-from .functions import float_range, filter_color, filter_projection, nft_storage_upload
+from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_fig_file, save_fig_buf
 from .params import *
 
 
@@ -108,7 +107,7 @@ class GenerativeImage:
         ax.add_artist(ax.patch)
         self.fig = fig
 
-    def nft_storage(self,api_key):
+    def nft_storage(self, api_key):
         """
         Upload image to nft.storage.
 
@@ -116,7 +115,19 @@ class GenerativeImage:
         :type api_key: str
         :return: result as dict
         """
-        buf = io.BytesIO()
-        self.fig.savefig(buf, format='png')
-        response = nft_storage_upload(api_key=api_key,data=buf.getvalue())
+        response = save_fig_buf(self.fig)
+        if not response["status"]:
+            return {"status": False, "message": response["message"]}
+        buf = response["buffer"]
+        response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
         return response
+
+    def save_image(self, file_adr):
+        """
+        Save generated image.
+
+        :param file_adr: file addresses
+        :type file_adr: str
+        :return: result as dict
+        """
+        return save_fig_file(figure=self.fig, file_adr=file_adr)
