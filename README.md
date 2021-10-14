@@ -181,6 +181,12 @@ Save generated image
 >>> g.save_image(file_adr="test.png")
 {'status': True, 'message': 'Everything seems good'}
 ```
+Save generated image in higher resolution
+
+```pycon
+>>> g.save_image(file_adr="test.png",depth=5)
+{'status': True, 'message': 'Everything seems good'}
+```
 
 ## Mathematical details
 Samila is simply a transformation between a square-shaped space from the Cartesian coordinate system to any arbitrary coordination like [Polar coordinate system](https://en.wikipedia.org/wiki/Polar_coordinate_system).

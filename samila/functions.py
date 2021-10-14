@@ -113,7 +113,7 @@ def nft_storage_upload(api_key, data):
         return result
 
 
-def save_fig_file(figure, file_adr):
+def save_fig_file(figure, file_adr , depth):
     """
     Save figure as file.
 
@@ -127,7 +127,11 @@ def save_fig_file(figure, file_adr):
         return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
     result = {"status": True, "message": FIG_SAVE_SUCCESS_MESSAGE}
     try:
-        figure.savefig(file_adr)
+        if depth==1 : 
+            figure.savefig(file_adr)
+        else:
+            figure.savefig(file_adr,dpi=depth*figure.dpi)
+        
         return result
     except Exception as e:
         result["status"] = False
