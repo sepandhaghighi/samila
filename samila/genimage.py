@@ -122,12 +122,14 @@ class GenerativeImage:
         response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
         return response
 
-    def save_image(self, file_adr):
+    def save_image(self, file_adr, depth=1):
         """
         Save generated image.
 
         :param file_adr: file addresses
         :type file_adr: str
+        :param depth: image depth
+        :type depth: float
         :return: result as dict
         """
-        return save_fig_file(figure=self.fig, file_adr=file_adr)
+        return save_fig_file(figure=self.fig, file_adr=file_adr, depth=depth)
