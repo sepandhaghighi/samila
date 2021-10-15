@@ -46,7 +46,7 @@ True
 'Everything seems good.'
 >>> g.plot(color='red')
 >>> g.plot(color='red', bgcolor='black')
->>> result = g.save_image("test2.png")
+>>> result = g.save_image("test2.png", depth=5)
 >>> result["status"]
 True
 >>> result["message"]
