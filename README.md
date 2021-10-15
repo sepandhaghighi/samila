@@ -181,7 +181,7 @@ Save generated image
 >>> g.save_image(file_adr="test.png")
 {'status': True, 'message': 'Everything seems good'}
 ```
-Save generated image in higher resolution
+Save generated image in higher resolutions
 
 ```pycon
 >>> g.save_image(file_adr="test.png", depth=5)
