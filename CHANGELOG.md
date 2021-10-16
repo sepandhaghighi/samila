@@ -6,8 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+### Changed
 - `depth` parameter added to `save_image` method
 - `depth` parameter added to `save_fig_file` function
+- Test system updated
 ## [0.2] - 2021-10-14
 ### Added
 - `dependabot.yml`
@@ -15,13 +17,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `samila_help` function
 - `test.py`
 - `function_test.py`
+- `overall_test.py`
+- `nft_upload_test.py`
 - `is_same_data` function
 - `save_image` method
 ### Changed
 - `dev-requirements.txt` updated
 - `README.md` updated
 - `__main__.py` updated
-- `test.yml` updated
+- Test system updated
 - `nft_storage` method updated
 ## [0.1] - 2021-09-30
 ### Added

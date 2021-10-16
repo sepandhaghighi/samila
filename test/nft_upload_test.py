@@ -22,13 +22,13 @@
 >>> random_bgcolor = random.choice(VALID_COLORS)
 >>> g.plot(projection=random_projection,color=random_color,bgcolor=random_bgcolor)
 >>> counter = 0
->>> try_limit = 3
+>>> try_limit = 5
 >>> status = False
 >>> while(status == False and counter<try_limit):
 ...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY)
 ...     counter = counter + 1
 ...     status = result["status"]
-...     time.sleep(1)
+...     time.sleep(5)
 >>> status
 True
 """
