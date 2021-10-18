@@ -129,7 +129,11 @@ def save_fig_file(figure, file_adr, depth):
         return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
     result = {"status": True, "message": FIG_SAVE_SUCCESS_MESSAGE}
     try:
-        figure.savefig(file_adr, dpi=depth * figure.dpi, facecolor=figure.get_facecolor(), edgecolor='none')
+        figure.savefig(
+            file_adr,
+            dpi=depth * figure.dpi,
+            facecolor=figure.get_facecolor(),
+            edgecolor='none')
         return result
     except Exception as e:
         result["status"] = False
@@ -153,7 +157,11 @@ def save_fig_buf(figure):
         "buffer": None}
     try:
         buf = io.BytesIO()
-        figure.savefig(buf, format='png', facecolor=figure.get_facecolor(), edgecolor='none')
+        figure.savefig(
+            buf,
+            format='png',
+            facecolor=figure.get_facecolor(),
+            edgecolor='none')
         result["buffer"] = buf
         return result
     except Exception as e:
