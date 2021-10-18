@@ -129,7 +129,7 @@ def save_fig_file(figure, file_adr, depth):
         return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
     result = {"status": True, "message": FIG_SAVE_SUCCESS_MESSAGE}
     try:
-        figure.savefig(file_adr, dpi=depth * figure.dpi)
+        figure.savefig(file_adr, dpi=depth * figure.dpi, facecolor=figure.get_facecolor(), edgecolor='none')
         return result
     except Exception as e:
         result["status"] = False
