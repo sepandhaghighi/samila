@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - `depth` parameter added to `save_image` method
 - `depth` parameter added to `save_fig_file` function
+- `save_image` and `nft_storage` methods background bug fixed
+- `README.md` updated
 - Test system updated
 ## [0.2] - 2021-10-14
 ### Added
