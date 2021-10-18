@@ -153,7 +153,7 @@ def save_fig_buf(figure):
         "buffer": None}
     try:
         buf = io.BytesIO()
-        figure.savefig(buf, format='png')
+        figure.savefig(buf, format='png', facecolor=figure.get_facecolor(), edgecolor='none')
         result["buffer"] = buf
         return result
     except Exception as e:
