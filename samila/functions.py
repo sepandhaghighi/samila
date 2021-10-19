@@ -3,7 +3,8 @@
 
 import requests
 import io
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, OVERVIEW
+import pickle as pkl
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, CONFIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, OVERVIEW
 
 
 def float_range(start, stop, step):
@@ -139,6 +140,34 @@ def save_fig_file(figure, file_adr, depth):
         result["status"] = False
         result["message"] = str(e)
         return result
+
+
+def save_config_file(function1, function2, seed, file_adr):
+    """
+    Save config as file.
+
+    :param function1: function 1
+    :type function1: lambda or python function
+    :param function2: function 2
+    :type function2: lambda or python function
+    :param seed: random seed
+    :type seed: int
+    :param file_adr: file addresses
+    :type file_adr: str
+    :return: result as dict
+    """
+    data = {}
+    data['function1'] = function1
+    data['function2'] = function2
+    data['seed'] = seed
+    result = {"status": True, "message": CONFIG_SAVE_SUCCESS_MESSAGE}
+    try:
+        with open(file_adr, 'wb') as f:
+            pkl.dump(data, f)
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+    return result
 
 
 def save_fig_buf(figure):
