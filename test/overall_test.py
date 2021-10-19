@@ -44,9 +44,19 @@ True
 True
 >>> result["message"]
 'Everything seems good.'
+>>> result = g.save_config()
+>>> result["status"]
+True
+>>> result["message"]
+'Everything seems good.'
 >>> g.plot(color='red')
 >>> g.plot(color='red', bgcolor='black')
 >>> result = g.save_image("test2.png", depth=5)
+>>> result["status"]
+True
+>>> result["message"]
+'Everything seems good.'
+>>> result = g.save_config("config2.pkl")
 >>> result["status"]
 True
 >>> result["message"]
@@ -79,6 +89,10 @@ False
 >>> result = g.save_image(file_adr="")
 >>> result["status"]
 False
+>>> result = g.save_config(file_adr="")
+>>> result["status"]
+False
+
 >>> socket.socket = guard
 >>> g.generate()
 >>> g.plot(color=2,bgcolor=2)
@@ -89,4 +103,6 @@ False
 'No internet connection!'
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
+>>> os.remove("config.pkl")
+>>> os.remove("config2.pkl")
 """
