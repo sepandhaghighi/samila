@@ -234,5 +234,5 @@ def load_data(data):
         data = json.load(data)
         if 'data1' not in data or 'data2' not in data:
             raise samilaDataError(DATA_PARSING_ERROR)
-        return data['data1'], data['data']
+        return data['data1'], data['data2']
     raise samilaDataError(DATA_TYPE_ERROR)
