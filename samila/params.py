@@ -30,8 +30,11 @@ DATA_SAVE_SUCCESS_MESSAGE = "Everything seems good."
 NO_FIG_ERROR_MESSAGE = "No figure was found. First run `generate` and `plot` methods."
 DATA_TYPE_ERROR = "Provided data file is not supported. It should be either file or io.IOBase."
 DATA_PARSING_ERROR = "Provided data format is wrong. It should be in JSON format including data1 and data2 fields."
+NO_FUNCTION_ERROR = "At least one of the given functions are None."
 JUST_DATA_WARNING = "Just data is provided you can't use generate function."
 NOTHING_PROVIDED_WARNING = "Neither function nor data is provided."
+
+
 
 class Projection(Enum):
     """
