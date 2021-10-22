@@ -3,7 +3,7 @@
 import random
 import itertools
 import matplotlib.pyplot as plt
-from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_fig_file, save_fig_buf
+from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_data_file, save_fig_file, save_fig_buf
 from .params import *
 
 
@@ -133,3 +133,13 @@ class GenerativeImage:
         :return: result as dict
         """
         return save_fig_file(figure=self.fig, file_adr=file_adr, depth=depth)
+
+    def save_data(self, file_adr):
+        """
+        Save datas into a file.
+
+        :param file_adr: file addresses
+        :type file_adr: str
+        :return: result as dict
+        """
+        return save_data_file(self.data1, self.data2, file_adr)
