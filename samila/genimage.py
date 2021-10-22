@@ -4,6 +4,7 @@ import random
 import itertools
 import matplotlib.pyplot as plt
 from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_data_file, save_fig_file, save_fig_buf, load_data
+from .errors import samilaGenerateError
 from .params import *
 from warnings import warn
 
@@ -32,7 +33,7 @@ class GenerativeImage:
         """
         if function1 is None or function2 is None:
             if data is None:
-                warn(NOTHING_PROVIDED_WARNING, RuntimeWarning)                
+                warn(NOTHING_PROVIDED_WARNING, RuntimeWarning)
             else:
                 warn(JUST_DATA_WARNING, RuntimeWarning)
         if data is not None:
@@ -60,6 +61,8 @@ class GenerativeImage:
         :type stop: float
         :return: None
         """
+        if self.function1 is None or self.function2 is None:
+            raise samilaGenerateError(NO_FUNCTION_ERROR)
         self.data1 = []
         self.data2 = []
         self.seed = seed
