@@ -20,4 +20,5 @@ samila.errors.samilaDataError: Provided data format is wrong. It should be in JS
 ...     g = GenerativeImage(data=open('data.json', 'r'))
 >>> g.generate()
 samila.errors.samilaGenerateError: At least one of the given functions are None.
+>>> os.remove('data.json')
 """
