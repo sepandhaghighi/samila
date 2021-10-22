@@ -4,7 +4,8 @@
 import requests
 import io
 import json
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, OVERVIEW
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, DATA_PARSING_ERROR, DATA_TYPE_ERROR, OVERVIEW, CONFIG_SAVE_SUCCESS_MESSAGE
+from .errors import samilaDataError
 
 
 def float_range(start, stop, step):
@@ -219,3 +220,19 @@ def is_same_data(data1, data2, precision=10**-5):
     """
     is_same = map(lambda x, y: abs(x - y) < precision, data1, data2)
     return all(is_same)
+
+
+def load_data(data):
+    """
+    Load data.
+
+    :param data: prior generated data
+    :type data: (io.IOBase & file)
+    :return: (data1, data2)
+    """
+    if isinstance(data, (file, io.IOBase)):
+        data = json.load(data)
+        if 'data1' not in data or 'data2' not in data:
+            raise samilaDataError(DATA_PARSING_ERROR)
+        return data['data1'], data['data']
+    raise samilaDataError(DATA_TYPE_ERROR)
