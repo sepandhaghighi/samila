@@ -230,7 +230,7 @@ def load_data(data):
     :type data: (io.IOBase & file)
     :return: (data1, data2)
     """
-    if isinstance(data, (file, io.IOBase)):
+    if isinstance(data, io.IOBase):
         data = json.load(data)
         if 'data1' not in data or 'data2' not in data:
             raise samilaDataError(DATA_PARSING_ERROR)
