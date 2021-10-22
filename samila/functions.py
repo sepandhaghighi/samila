@@ -131,7 +131,7 @@ def save_data_file(data1, data2, file_adr):
     data['data2'] = data2
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
     try:
-        with open(file_adr, 'wb') as fp:
+        with open(file_adr, 'w') as fp:
             json.dump(data, fp)
     except Exception as e:
         result["status"] = False

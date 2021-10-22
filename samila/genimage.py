@@ -144,7 +144,7 @@ class GenerativeImage:
         """
         return save_fig_file(figure=self.fig, file_adr=file_adr, depth=depth)
 
-    def save_data(self, file_adr):
+    def save_data(self, file_adr='data.json'):
         """
         Save datas into a file.
 
