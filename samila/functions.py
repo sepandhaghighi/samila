@@ -118,6 +118,7 @@ def nft_storage_upload(api_key, data):
 def save_data_file(data1, data2, file_adr):
     """
     Save config as file.
+
     :param data1: data 1
     :type data1: list
     :param data2: data 2
@@ -224,7 +225,7 @@ def is_same_data(data1, data2, precision=10**-5):
 
 def load_data(data):
     """
-    Load data.
+    Load data file.
 
     :param data: prior generated data
     :type data: (io.IOBase & file)
