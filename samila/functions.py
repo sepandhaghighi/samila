@@ -4,7 +4,7 @@
 import requests
 import io
 import json
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, DATA_PARSING_ERROR, DATA_TYPE_ERROR, OVERVIEW, CONFIG_SAVE_SUCCESS_MESSAGE
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, DATA_PARSING_ERROR, DATA_TYPE_ERROR, OVERVIEW, DATA_SAVE_SUCCESS_MESSAGE
 from .errors import samilaDataError
 
 
@@ -129,7 +129,7 @@ def save_data_file(data1, data2, file_adr):
     data = {}
     data['data1'] = data1
     data['data2'] = data2
-    result = {"status": True, "message": CONFIG_SAVE_SUCCESS_MESSAGE}
+    result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
     try:
         with open(file_adr, 'wb') as fp:
             json.dump(data, fp)
