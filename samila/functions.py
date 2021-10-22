@@ -130,8 +130,8 @@ def save_data_file(data1, data2, file_adr):
     data['data2'] = data2
     result = {"status": True, "message": CONFIG_SAVE_SUCCESS_MESSAGE}
     try:
-        with open(file_adr, 'wb') as f:
-            json.dump(data, f)
+        with open(file_adr, 'wb') as fp:
+            json.dump(data, fp)
     except Exception as e:
         result["status"] = False
         result["message"] = str(e)
