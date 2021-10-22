@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `save_data_file` function
 ### Changed
 - `depth` parameter added to `save_image` method
 - `depth` parameter added to `save_fig_file` function

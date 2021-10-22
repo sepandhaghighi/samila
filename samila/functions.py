@@ -3,6 +3,7 @@
 
 import requests
 import io
+import json
 from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, OVERVIEW
 
 
@@ -111,6 +112,30 @@ def nft_storage_upload(api_key, data):
         result["status"] = False
         result["message"] = str(e)
         return result
+
+
+def save_data_file(data1, data2, file_adr):
+    """
+    Save config as file.
+    :param data1: data 1
+    :type data1: list
+    :param data2: data 2
+    :type data2: list
+    :param file_adr: file address
+    :type file_adr: str
+    :return: result as dict
+    """
+    data = {}
+    data['data1'] = data1
+    data['data2'] = data2
+    result = {"status": True, "message": CONFIG_SAVE_SUCCESS_MESSAGE}
+    try:
+        with open(file_adr, 'wb') as f:
+            json.dump(data, f)
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+    return result
 
 
 def save_fig_file(figure, file_adr, depth):
