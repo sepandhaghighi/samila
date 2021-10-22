@@ -235,6 +235,6 @@ def load_data(data):
         try:
             data = json.load(data)
             return data['data1'], data['data2']
-        except Exception as e:
+        except:
             raise samilaDataError(DATA_PARSING_ERROR)
     raise samilaDataError(DATA_TYPE_ERROR)
