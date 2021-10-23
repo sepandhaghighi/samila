@@ -16,7 +16,7 @@ samila.errors.samilaDataError: Provided data format is wrong. It should be in JS
 >>> g = GenerativeImage(lambda x,y: 0, lambda x,y: 0)
 >>> g.generate(step=0.1)
 >>> result = g.save_data('data.json')
->>> with warns(RuntimeWarning, match="Just data is provided you can't use generate function."):
+>>> with warns(RuntimeWarning, match="Just data is provided, generate method is not available in this mode."):
 ...     g = GenerativeImage(data=open('data.json', 'r'))
 >>> g.generate()
 Traceback (most recent call last):

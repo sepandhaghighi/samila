@@ -8,7 +8,7 @@
 >>> g = GenerativeImage(lambda x,y: 0, lambda x,y: 0)
 >>> g.generate(step=0.1)
 >>> result = g.save_data()
->>> with warns(RuntimeWarning, match="Just data is provided you can't use generate function."):
+>>> with warns(RuntimeWarning, match="Just data is provided, generate method is not available in this mode."):
 ...     g_ = GenerativeImage(data=open('data.json', 'r'))
 >>> g_.data1 == g.data1
 True
