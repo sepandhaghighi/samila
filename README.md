@@ -188,6 +188,18 @@ Save generated image in higher resolutions
 {'status': True, 'message': 'Everything seems good'}
 ```
 
+### Save data
+Save generated data into a file
+
+```pycon
+>>> g.save_data(file_adr="test.json")
+```
+So you can load it into a `GenerativeImage` instance later by
+
+```pycon
+>>> g = GenerativeImage(data=open('test.json', 'w'))
+```
+
 ## Mathematical details
 Samila is simply a transformation between a square-shaped space from the Cartesian coordinate system to any arbitrary coordination like [Polar coordinate system](https://en.wikipedia.org/wiki/Polar_coordinate_system).
 
