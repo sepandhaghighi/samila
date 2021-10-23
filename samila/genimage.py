@@ -149,7 +149,7 @@ class GenerativeImage:
 
     def save_data(self, file_adr='data.json'):
         """
-        Save datas into a file.
+        Save data into a file.
 
         :param file_adr: file addresses
         :type file_adr: str
