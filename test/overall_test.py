@@ -79,9 +79,6 @@ False
 >>> result = g.save_image(file_adr="")
 >>> result["status"]
 False
->>> result = g.save_data(file_adr="")
->>> result["status"]
-False
 >>> socket.socket = guard
 >>> g.generate()
 >>> g.plot(color=2,bgcolor=2)
@@ -90,6 +87,9 @@ False
 False
 >>> result["message"]
 'No internet connection!'
+>>> result = g.save_data(file_adr="")
+>>> result["status"]
+False
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 """
