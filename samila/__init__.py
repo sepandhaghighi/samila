@@ -2,4 +2,5 @@
 """Samila modules."""
 from .genimage import GenerativeImage
 from .params import Projection, VALID_COLORS, SAMILA_VERSION
+from .errors import samilaDataError, samilaGenerateError
 __version__ = SAMILA_VERSION
