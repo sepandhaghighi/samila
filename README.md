@@ -197,7 +197,7 @@ Save generated data into a file
 So you can load it into a `GenerativeImage` instance later by
 
 ```pycon
->>> g = GenerativeImage(data=open('test.json', 'w'))
+>>> g = GenerativeImage(data=open('test.json', 'r'))
 ```
 
 ## Mathematical details
