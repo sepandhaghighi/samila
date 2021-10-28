@@ -87,6 +87,9 @@ False
 False
 >>> result["message"]
 'No internet connection!'
+>>> result = g.save_data(file_adr="")
+>>> result["status"]
+False
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 """

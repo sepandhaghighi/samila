@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `load_data` function
+- `save_data_file` function
+- `save_data` method
 ### Changed
+- `data` parameter added to GenerativeImage `__init__`
 - `depth` parameter added to `save_image` method
 - `depth` parameter added to `save_fig_file` function
 - `save_image` and `nft_storage` methods background bug fixed

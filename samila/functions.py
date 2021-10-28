@@ -3,7 +3,9 @@
 
 import requests
 import io
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, OVERVIEW
+import json
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, DATA_PARSING_ERROR, DATA_TYPE_ERROR, OVERVIEW, DATA_SAVE_SUCCESS_MESSAGE
+from .errors import samilaDataError
 
 
 def float_range(start, stop, step):
@@ -113,6 +115,31 @@ def nft_storage_upload(api_key, data):
         return result
 
 
+def save_data_file(data1, data2, file_adr):
+    """
+    Save config as file.
+
+    :param data1: data 1
+    :type data1: list
+    :param data2: data 2
+    :type data2: list
+    :param file_adr: file address
+    :type file_adr: str
+    :return: result as dict
+    """
+    data = {}
+    data['data1'] = data1
+    data['data2'] = data2
+    result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
+    try:
+        with open(file_adr, 'w') as fp:
+            json.dump(data, fp)
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+    return result
+
+
 def save_fig_file(figure, file_adr, depth):
     """
     Save figure as file.
@@ -194,3 +221,20 @@ def is_same_data(data1, data2, precision=10**-5):
     """
     is_same = map(lambda x, y: abs(x - y) < precision, data1, data2)
     return all(is_same)
+
+
+def load_data(data):
+    """
+    Load data file.
+
+    :param data: prior generated data
+    :type data: (io.IOBase & file)
+    :return: (data1, data2)
+    """
+    if isinstance(data, io.IOBase):
+        try:
+            data = json.load(data)
+            return data['data1'], data['data2']
+        except:
+            raise samilaDataError(DATA_PARSING_ERROR)
+    raise samilaDataError(DATA_TYPE_ERROR)

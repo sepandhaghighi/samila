@@ -3,8 +3,10 @@
 import random
 import itertools
 import matplotlib.pyplot as plt
-from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_fig_file, save_fig_buf
+from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_data_file, save_fig_file, save_fig_buf, load_data
+from .errors import samilaGenerateError
 from .params import *
+from warnings import warn
 
 
 class GenerativeImage:
@@ -18,7 +20,7 @@ class GenerativeImage:
     >>> GI = GenerativeImage(f1, f2)
     """
 
-    def __init__(self, function1, function2):
+    def __init__(self, function1=None, function2=None, data=None):
         """
         Init method.
 
@@ -26,7 +28,16 @@ class GenerativeImage:
         :type function1: python or lambda function
         :param function2: Function 2
         :type function2: python or lambda function
+        :param data: prior generated data
+        :type data: (io.IOBase & file)
         """
+        if function1 is None or function2 is None:
+            if data is None:
+                warn(NOTHING_PROVIDED_WARNING, RuntimeWarning)
+            else:
+                warn(JUST_DATA_WARNING, RuntimeWarning)
+        if data is not None:
+            self.data1, self.data2 = load_data(data)
         self.function1 = function1
         self.function2 = function2
         self.fig = None
@@ -50,6 +61,8 @@ class GenerativeImage:
         :type stop: float
         :return: None
         """
+        if self.function1 is None or self.function2 is None:
+            raise samilaGenerateError(NO_FUNCTION_ERROR)
         self.data1 = []
         self.data2 = []
         self.seed = seed
@@ -133,3 +146,13 @@ class GenerativeImage:
         :return: result as dict
         """
         return save_fig_file(figure=self.fig, file_adr=file_adr, depth=depth)
+
+    def save_data(self, file_adr='data.json'):
+        """
+        Save data into a file.
+
+        :param file_adr: file addresses
+        :type file_adr: str
+        :return: result as dict
+        """
+        return save_data_file(self.data1, self.data2, file_adr)
