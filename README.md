@@ -8,6 +8,7 @@
   <img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg" />
 </a>
 <a href="https://badge.fury.io/py/samila"><img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18"></a>
+<a hreg="https://discord.com/invite/ZkQCzzTM"><img src="https://img.shields.io/discord/900055829225562162.svg?style=for-the-badge" alt="Discord Channel"></a>
 </div>
 
 ----------
