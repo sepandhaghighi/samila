@@ -75,6 +75,8 @@ class GenerativeImage:
             random.seed(self.seed)
             self.data1.append(self.function1(item[0], item[1]))
             self.data2.append(self.function2(item[0], item[1]))
+        self.data1 = list(map(lambda x: x.real, self.data1))
+        self.data2 = list(map(lambda x: x.real, self.data2))
 
     def plot(
             self,
