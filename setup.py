@@ -44,6 +44,7 @@ setup(
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/samila',
         'Tracker': 'https://github.com/sepandhaghighi/samila/issues',
+        'Discord': 'https://discord.com/invite/94bz5QGZWb',
     },
     install_requires=get_requires(),
     python_requires='>=3.5',
