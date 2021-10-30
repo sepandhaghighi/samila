@@ -73,10 +73,8 @@ class GenerativeImage:
         range_prod = list(itertools.product(range1, range2))
         for item in range_prod:
             random.seed(self.seed)
-            self.data1.append(self.function1(item[0], item[1]))
-            self.data2.append(self.function2(item[0], item[1]))
-        self.data1 = list(map(lambda x: x.real, self.data1))
-        self.data2 = list(map(lambda x: x.real, self.data2))
+            self.data1.append(self.function1(item[0], item[1]).real)
+            self.data2.append(self.function2(item[0], item[1]).real)
 
     def plot(
             self,
