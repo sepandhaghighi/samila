@@ -9,7 +9,7 @@
 </a>
 <a href="https://badge.fury.io/py/samila"><img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18"></a>
 <a href="https://discord.com/invite/94bz5QGZWb">
-	<img src="https://img.shields.io/discord/900055829225562162.svg?style=for-the-badge" alt="Discord Channel">
+	<img src="https://img.shields.io/discord/900055829225562162.svg" alt="Discord Channel">
 </a>
 </div>
 
