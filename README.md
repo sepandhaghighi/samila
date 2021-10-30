@@ -8,6 +8,9 @@
   <img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg" />
 </a>
 <a href="https://badge.fury.io/py/samila"><img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18"></a>
+<a href="https://discord.com/invite/94bz5QGZWb">
+  <img src="https://img.shields.io/discord/900055829225562162.svg" alt="Discord Channel">
+</a>
 </div>
 
 ----------
@@ -236,10 +239,17 @@ here we uses `Projection.POLAR` so later space will be the polar space and we ha
 
 ## Issues & bug reports			
 
-Just fill an issue and describe it. We'll check it ASAP!							
-or send an email to [info@4r7.ir](mailto:info@4r7.ir "info@4r7.ir"). 
+Just fill an issue and describe it. We'll check it ASAP!
 
-* Please complete the issue template
+- Please complete the issue template
+ 
+You can also join our discord server
+
+<div align="center">
+<a href="https://discord.com/invite/94bz5QGZWb">
+  <img src="https://img.shields.io/discord/900055829225562162.svg?style=for-the-badge" alt="Discord Channel">
+</a>
+</div>
 
 
 ## Dependencies
