@@ -97,6 +97,10 @@ False
 ...    return x - y**1.617 - math.ceil(y) ** 1.477 - abs(x**2 * y) ** 1.647 - math.cos(x*y)**1.668
 >>> g = GenerativeImage(f1, f2)
 >>> g.generate(seed=755398)
+>>> all(map(lambda x: x.real == x, g.data1))
+True
+>>> all(map(lambda x: x.real == x, g.data2))
+True
 >>> result = g.save_data()
 >>> result["status"]
 True
