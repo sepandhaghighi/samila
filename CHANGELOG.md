@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `save_image` and `nft_storage` methods background bug fixed
 - `README.md` updated
 - Test system updated
+- `Python 3.10` added to `test.yml`
 ## [0.2] - 2021-10-14
 ### Added
 - `dependabot.yml`
