@@ -2,6 +2,7 @@
 """Samila generative image."""
 import random
 import itertools
+import matplotlib
 import matplotlib.pyplot as plt
 from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_data_file, save_fig_file, save_fig_buf, load_data
 from .errors import samilaGenerateError
@@ -37,7 +38,9 @@ class GenerativeImage:
             else:
                 warn(JUST_DATA_WARNING, RuntimeWarning)
         if data is not None:
-            self.data1, self.data2 = load_data(data)
+            self.data1, self.data2, matplotlib_version = load_data(data)
+            if matplotlib_version != matplotlib.__version__:
+                warn(MATPLOTLIB_VERSION_WARNING, RuntimeWarning)
         self.function1 = function1
         self.function2 = function2
         self.fig = None
@@ -155,4 +158,8 @@ class GenerativeImage:
         :type file_adr: str
         :return: result as dict
         """
-        return save_data_file(self.data1, self.data2, file_adr)
+        return save_data_file(
+            self.data1,
+            self.data2,
+            matplotlib.__version__,
+            file_adr)
