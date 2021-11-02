@@ -234,7 +234,7 @@ def load_data(data):
     if isinstance(data, io.IOBase):
         try:
             data = json.load(data)
-            return data['data1'], data['data2']
+            return data['data1'], data['data2'], data['matplotlib_version']
         except:
             raise samilaDataError(DATA_PARSING_ERROR)
     raise samilaDataError(DATA_TYPE_ERROR)
