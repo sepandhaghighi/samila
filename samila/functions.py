@@ -127,7 +127,7 @@ def save_data_file(data1, data2, matplotlib_version, file_adr):
     :type data2: list
     :param matplotlib_version: matplotlib version
     :type matplotlib_version: str
-    :param file_adr: file addresses
+    :param file_adr: file address
     :type file_adr: str
     :return: result as dict
     """
@@ -151,7 +151,7 @@ def save_fig_file(figure, file_adr, depth):
 
     :param figure: matplotlib figure
     :type figure: matplotlib.figure.Figure
-    :param file_adr: file addresses
+    :param file_adr: file address
     :type file_adr: str
     :param depth: image depth
     :type depth: float

@@ -142,7 +142,7 @@ class GenerativeImage:
         """
         Save generated image.
 
-        :param file_adr: file addresses
+        :param file_adr: file address
         :type file_adr: str
         :param depth: image depth
         :type depth: float
@@ -154,7 +154,7 @@ class GenerativeImage:
         """
         Save data into a file.
 
-        :param file_adr: file addresses
+        :param file_adr: file address
         :type file_adr: str
         :return: result as dict
         """
