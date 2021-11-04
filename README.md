@@ -177,7 +177,7 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 {'status': True, 'message': 'Everything seems good'}
 ```
 
-### Save
+### Save image
 Save generated image
 
 ```pycon
@@ -192,7 +192,7 @@ Save generated image in higher resolutions
 ```
 
 ### Save data
-Save generated data into a file
+Save generated image data
 
 ```pycon
 >>> g.save_data(file_adr="test.json")
