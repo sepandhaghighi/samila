@@ -4,7 +4,9 @@
 import requests
 import io
 import json
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, DATA_PARSING_ERROR, DATA_TYPE_ERROR, OVERVIEW, DATA_SAVE_SUCCESS_MESSAGE
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
+from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, NO_FIG_ERROR_MESSAGE
+from .params import FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_SAVE_SUCCESS_MESSAGE
 from .errors import samilaDataError
 
 
@@ -117,7 +119,7 @@ def nft_storage_upload(api_key, data):
 
 def save_data_file(data1, data2, matplotlib_version, file_adr):
     """
-    Save config as file.
+    Save data as file.
 
     :param data1: data 1
     :type data1: list
@@ -149,7 +151,7 @@ def save_fig_file(figure, file_adr, depth):
 
     :param figure: matplotlib figure
     :type figure: matplotlib.figure.Figure
-    :param file_adr: file addresses
+    :param file_adr: file address
     :type file_adr: str
     :param depth: image depth
     :type depth: float

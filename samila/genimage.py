@@ -40,7 +40,7 @@ class GenerativeImage:
         if data is not None:
             self.data1, self.data2, matplotlib_version = load_data(data)
             if matplotlib_version != matplotlib.__version__:
-                warn(MATPLOTLIB_VERSION_WARNING, RuntimeWarning)
+                warn(MATPLOTLIB_VERSION_WARNING.format(matplotlib_version), RuntimeWarning)
         self.function1 = function1
         self.function2 = function2
         self.fig = None
@@ -142,7 +142,7 @@ class GenerativeImage:
         """
         Save generated image.
 
-        :param file_adr: file addresses
+        :param file_adr: file address
         :type file_adr: str
         :param depth: image depth
         :type depth: float
@@ -154,7 +154,7 @@ class GenerativeImage:
         """
         Save data into a file.
 
-        :param file_adr: file addresses
+        :param file_adr: file address
         :type file_adr: str
         :return: result as dict
         """

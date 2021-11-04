@@ -33,7 +33,7 @@ DATA_PARSING_ERROR = "Provided data format is wrong. It should be in JSON format
 NO_FUNCTION_ERROR = "At least one of the given functions are None."
 JUST_DATA_WARNING = "Just data is provided, generate method is not available in this mode."
 NOTHING_PROVIDED_WARNING = "Neither function nor data is provided."
-MATPLOTLIB_VERSION_WARNING = "Source matplotlib version is different from yours, plots may be different."
+MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
 
 
 class Projection(Enum):

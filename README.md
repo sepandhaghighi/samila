@@ -177,7 +177,7 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 {'status': True, 'message': 'Everything seems good'}
 ```
 
-### Save
+### Save image
 Save generated image
 
 ```pycon
@@ -192,7 +192,7 @@ Save generated image in higher resolutions
 ```
 
 ### Save data
-Save generated data into a file
+Save generated image data
 
 ```pycon
 >>> g.save_data(file_adr="test.json")
@@ -245,11 +245,9 @@ Just fill an issue and describe it. We'll check it ASAP!
  
 You can also join our discord server
 
-<div align="center">
 <a href="https://discord.com/invite/94bz5QGZWb">
   <img src="https://img.shields.io/discord/900055829225562162.svg?style=for-the-badge" alt="Discord Channel">
 </a>
-</div>
 
 
 ## Dependencies
