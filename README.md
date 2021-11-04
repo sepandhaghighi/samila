@@ -245,11 +245,9 @@ Just fill an issue and describe it. We'll check it ASAP!
  
 You can also join our discord server
 
-<div align="center">
 <a href="https://discord.com/invite/94bz5QGZWb">
   <img src="https://img.shields.io/discord/900055829225562162.svg?style=for-the-badge" alt="Discord Channel">
 </a>
-</div>
 
 
 ## Dependencies
