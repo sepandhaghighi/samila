@@ -117,7 +117,7 @@ def nft_storage_upload(api_key, data):
 
 def save_data_file(data1, data2, matplotlib_version, file_adr):
     """
-    Save config as file.
+    Save data as file.
 
     :param data1: data 1
     :type data1: list
@@ -125,7 +125,7 @@ def save_data_file(data1, data2, matplotlib_version, file_adr):
     :type data2: list
     :param matplotlib_version: matplotlib version
     :type matplotlib_version: str
-    :param file_adr: file address
+    :param file_adr: file addresses
     :type file_adr: str
     :return: result as dict
     """
