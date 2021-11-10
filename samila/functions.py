@@ -3,7 +3,11 @@
 
 import requests
 import io
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_SUCCESS_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NO_FIG_ERROR_MESSAGE, OVERVIEW
+import json
+from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
+from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, NO_FIG_ERROR_MESSAGE
+from .params import FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_SAVE_SUCCESS_MESSAGE
+from .errors import samilaDataError
 
 
 def float_range(start, stop, step):
@@ -113,21 +117,55 @@ def nft_storage_upload(api_key, data):
         return result
 
 
-def save_fig_file(figure, file_adr):
+def save_data_file(data1, data2, matplotlib_version, file_adr):
+    """
+    Save data as file.
+
+    :param data1: data 1
+    :type data1: list
+    :param data2: data 2
+    :type data2: list
+    :param matplotlib_version: matplotlib version
+    :type matplotlib_version: str
+    :param file_adr: file address
+    :type file_adr: str
+    :return: result as dict
+    """
+    data = {}
+    data['data1'] = data1
+    data['data2'] = data2
+    data['matplotlib_version'] = matplotlib_version
+    result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
+    try:
+        with open(file_adr, 'w') as fp:
+            json.dump(data, fp)
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+    return result
+
+
+def save_fig_file(figure, file_adr, depth):
     """
     Save figure as file.
 
     :param figure: matplotlib figure
     :type figure: matplotlib.figure.Figure
-    :param file_adr: file addresses
+    :param file_adr: file address
     :type file_adr: str
+    :param depth: image depth
+    :type depth: float
     :return: result as dict
     """
     if figure is None:
         return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
     result = {"status": True, "message": FIG_SAVE_SUCCESS_MESSAGE}
     try:
-        figure.savefig(file_adr)
+        figure.savefig(
+            file_adr,
+            dpi=depth * figure.dpi,
+            facecolor=figure.get_facecolor(),
+            edgecolor='none')
         return result
     except Exception as e:
         result["status"] = False
@@ -151,7 +189,11 @@ def save_fig_buf(figure):
         "buffer": None}
     try:
         buf = io.BytesIO()
-        figure.savefig(buf, format='png')
+        figure.savefig(
+            buf,
+            format='png',
+            facecolor=figure.get_facecolor(),
+            edgecolor='none')
         result["buffer"] = buf
         return result
     except Exception as e:
@@ -184,3 +226,20 @@ def is_same_data(data1, data2, precision=10**-5):
     """
     is_same = map(lambda x, y: abs(x - y) < precision, data1, data2)
     return all(is_same)
+
+
+def load_data(data):
+    """
+    Load data file.
+
+    :param data: prior generated data
+    :type data: (io.IOBase & file)
+    :return: (data1, data2)
+    """
+    if isinstance(data, io.IOBase):
+        try:
+            data = json.load(data)
+            return data['data1'], data['data2'], data['matplotlib_version']
+        except:
+            raise samilaDataError(DATA_PARSING_ERROR)
+    raise samilaDataError(DATA_TYPE_ERROR)

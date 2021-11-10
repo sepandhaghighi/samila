@@ -2,9 +2,12 @@
 """Samila generative image."""
 import random
 import itertools
+import matplotlib
 import matplotlib.pyplot as plt
-from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_fig_file, save_fig_buf
+from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_data_file, save_fig_file, save_fig_buf, load_data
+from .errors import samilaGenerateError
 from .params import *
+from warnings import warn
 
 
 class GenerativeImage:
@@ -18,7 +21,7 @@ class GenerativeImage:
     >>> GI = GenerativeImage(f1, f2)
     """
 
-    def __init__(self, function1, function2):
+    def __init__(self, function1=None, function2=None, data=None):
         """
         Init method.
 
@@ -26,7 +29,18 @@ class GenerativeImage:
         :type function1: python or lambda function
         :param function2: Function 2
         :type function2: python or lambda function
+        :param data: prior generated data
+        :type data: (io.IOBase & file)
         """
+        if function1 is None or function2 is None:
+            if data is None:
+                warn(NOTHING_PROVIDED_WARNING, RuntimeWarning)
+            else:
+                warn(JUST_DATA_WARNING, RuntimeWarning)
+        if data is not None:
+            self.data1, self.data2, matplotlib_version = load_data(data)
+            if matplotlib_version != matplotlib.__version__:
+                warn(MATPLOTLIB_VERSION_WARNING.format(matplotlib_version), RuntimeWarning)
         self.function1 = function1
         self.function2 = function2
         self.fig = None
@@ -50,6 +64,8 @@ class GenerativeImage:
         :type stop: float
         :return: None
         """
+        if self.function1 is None or self.function2 is None:
+            raise samilaGenerateError(NO_FUNCTION_ERROR)
         self.data1 = []
         self.data2 = []
         self.seed = seed
@@ -60,8 +76,8 @@ class GenerativeImage:
         range_prod = list(itertools.product(range1, range2))
         for item in range_prod:
             random.seed(self.seed)
-            self.data1.append(self.function1(item[0], item[1]))
-            self.data2.append(self.function2(item[0], item[1]))
+            self.data1.append(self.function1(item[0], item[1]).real)
+            self.data2.append(self.function2(item[0], item[1]).real)
 
     def plot(
             self,
@@ -122,12 +138,28 @@ class GenerativeImage:
         response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
         return response
 
-    def save_image(self, file_adr):
+    def save_image(self, file_adr, depth=1):
         """
         Save generated image.
 
-        :param file_adr: file addresses
+        :param file_adr: file address
+        :type file_adr: str
+        :param depth: image depth
+        :type depth: float
+        :return: result as dict
+        """
+        return save_fig_file(figure=self.fig, file_adr=file_adr, depth=depth)
+
+    def save_data(self, file_adr='data.json'):
+        """
+        Save data into a file.
+
+        :param file_adr: file address
         :type file_adr: str
         :return: result as dict
         """
-        return save_fig_file(figure=self.fig, file_adr=file_adr)
+        return save_data_file(
+            self.data1,
+            self.data2,
+            matplotlib.__version__,
+            file_adr)

@@ -8,6 +8,9 @@
   <img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg" />
 </a>
 <a href="https://badge.fury.io/py/samila"><img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18"></a>
+<a href="https://discord.com/invite/94bz5QGZWb">
+  <img src="https://img.shields.io/discord/900055829225562162.svg" alt="Discord Channel">
+</a>
 </div>
 
 ----------
@@ -79,7 +82,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 ### Source code
-- Download [Version 0.2](https://github.com/sepandhaghighi/samila/archive/v0.2.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
+- Download [Version 0.3](https://github.com/sepandhaghighi/samila/archive/v0.3.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
 - Run `pip install -r requirements.txt` or `pip3 install -r requirements.txt` (Need root access)
 - Run `python3 setup.py install` or `python setup.py install` (Need root access)				
 
@@ -87,7 +90,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install samila==0.2` or `pip3 install samila==0.2` (Need root access)
+- Run `pip install samila==0.3` or `pip3 install samila==0.3` (Need root access)
 
 ### Easy install
 
@@ -174,12 +177,30 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 {'status': True, 'message': 'Everything seems good'}
 ```
 
-### Save
+### Save image
 Save generated image
 
 ```pycon
 >>> g.save_image(file_adr="test.png")
 {'status': True, 'message': 'Everything seems good'}
+```
+Save generated image in higher resolutions
+
+```pycon
+>>> g.save_image(file_adr="test.png", depth=5)
+{'status': True, 'message': 'Everything seems good'}
+```
+
+### Save data
+Save generated image data
+
+```pycon
+>>> g.save_data(file_adr="test.json")
+```
+So you can load it into a `GenerativeImage` instance later by
+
+```pycon
+>>> g = GenerativeImage(data=open('test.json', 'r'))
 ```
 
 ## Mathematical details
@@ -218,10 +239,15 @@ here we uses `Projection.POLAR` so later space will be the polar space and we ha
 
 ## Issues & bug reports			
 
-Just fill an issue and describe it. We'll check it ASAP!							
-or send an email to [info@4r7.ir](mailto:info@4r7.ir "info@4r7.ir"). 
+Just fill an issue and describe it. We'll check it ASAP!
 
-* Please complete the issue template
+- Please complete the issue template
+ 
+You can also join our discord server
+
+<a href="https://discord.com/invite/94bz5QGZWb">
+  <img src="https://img.shields.io/discord/900055829225562162.svg?style=for-the-badge" alt="Discord Channel">
+</a>
 
 
 ## Dependencies
