@@ -4,7 +4,8 @@ import random
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
-from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_data_file, save_fig_file, save_fig_buf, load_data
+from .functions import float_range, filter_color, filter_projection, nft_storage_upload
+from .functions import save_data_file, save_fig_file, save_fig_buf, load_data, random_equation_gen
 from .errors import samilaGenerateError
 from .params import *
 from warnings import warn
@@ -34,7 +35,8 @@ class GenerativeImage:
         """
         if function1 is None or function2 is None:
             if data is None:
-                warn(NOTHING_PROVIDED_WARNING, RuntimeWarning)
+                self.function1 = eval("lambda x,y:" + random_equation_gen())
+                self.function2 = eval("lambda x,y:" + random_equation_gen())
             else:
                 warn(JUST_DATA_WARNING, RuntimeWarning)
         if data is not None:
