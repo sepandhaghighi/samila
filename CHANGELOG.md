@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Random equations mode
+### Changed
+- Test system updated
 ## [0.3] - 2021-11-10
 ### Added
 - Discord channel
