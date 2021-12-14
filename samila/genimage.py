@@ -33,6 +33,9 @@ class GenerativeImage:
         :param data: prior generated data
         :type data: (io.IOBase & file)
         """
+        self.function1 = function1
+        self.function2 = function2
+        self.fig = None
         if function1 is None or function2 is None:
             if data is None:
                 self.function1 = eval("lambda x,y:" + random_equation_gen())
@@ -44,9 +47,6 @@ class GenerativeImage:
             self.data1, self.data2, matplotlib_version = load_data(data)
             if matplotlib_version != matplotlib.__version__:
                 warn(MATPLOTLIB_VERSION_WARNING.format(matplotlib_version), RuntimeWarning)
-        self.function1 = function1
-        self.function2 = function2
-        self.fig = None
 
     def generate(
             self,
