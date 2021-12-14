@@ -37,6 +37,7 @@ class GenerativeImage:
             if data is None:
                 self.function1 = eval("lambda x,y:" + random_equation_gen())
                 self.function2 = eval("lambda x,y:" + random_equation_gen())
+                warn(NOTHING_PROVIDED_WARNING, RuntimeWarning)
             else:
                 warn(JUST_DATA_WARNING, RuntimeWarning)
         if data is not None:

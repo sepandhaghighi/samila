@@ -4,6 +4,7 @@
 import requests
 import io
 import json
+import random
 from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, NO_FIG_ERROR_MESSAGE
 from .params import FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_SAVE_SUCCESS_MESSAGE

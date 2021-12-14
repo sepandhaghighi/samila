@@ -4,7 +4,7 @@
 >>> import json
 >>> from samila import *
 >>> from pytest import warns
->>> with warns(RuntimeWarning, match="Neither function nor data is provided."):
+>>> with warns(RuntimeWarning, match="Neither function nor data is provided. Samila will switch to random equations mode."):
 ...     g = GenerativeImage()
 >>> g = GenerativeImage(lambda x,y: 0, lambda x,y: 0)
 >>> g.generate(step=0.1)
