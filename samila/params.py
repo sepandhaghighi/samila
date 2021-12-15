@@ -54,6 +54,6 @@ class Projection(Enum):
 
 ELEMENTS_LIST = ["{0}*math.cos({1})","{0}*math.sin({1})","{0}*{1}","{0}*abs({1})","{0}*math.ceil({1})","{0}*math.floor({1})"]
 
-ARGUMENT_LIST = ["x*y","x","y","y-x","x-y","x+y","x**2","y**2","(x**2)*y","(y**2)*x","(x**2)*(y**3)","(x**3)*(y**2)","x*(y**3)","y*(x**3)"]
+ARGUMENTS_LIST = ["x*y","x","y","y-x","x-y","x+y","x**2","y**2","(x**2)*y","(y**2)*x","(x**2)*(y**3)","(x**3)*(y**2)","x*(y**3)","y*(x**3)"]
 
 OPERATORS_LIST = ["+","-"]

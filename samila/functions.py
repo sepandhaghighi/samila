@@ -8,7 +8,7 @@ import random
 from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, NO_FIG_ERROR_MESSAGE
 from .params import FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_SAVE_SUCCESS_MESSAGE
-from .params import ELEMENTS_LIST, ARGUMENT_LIST, OPERATORS_LIST
+from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
 from .errors import samilaDataError
 
 def random_equation_gen():
@@ -22,8 +22,8 @@ def random_equation_gen():
     index = 1
     while(index<=num_elements):
         random_coef1 = "random.uniform(-1,1)"
-        argument = random.choice(ARGUMENT_LIST)
-        result = result + random.choice(ELEMENTS_LIST).format(str(random_coef1),argument)
+        argument = random.choice(ARGUMENTS_LIST)
+        result = result + random.choice(ELEMENTS_LIST).format(random_coef1,argument)
         if index<num_elements:
             result = result + random.choice(OPERATORS_LIST)
         index = index + 1
