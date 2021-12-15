@@ -20,10 +20,11 @@ def random_equation_gen():
     num_elements = random.randint(2,len(ELEMENTS_LIST) + 3)
     result = ""
     index = 1
+    random_coef = "random.uniform(-1,1)"
     while(index<=num_elements):
-        random_coef1 = "random.uniform(-1,1)"
+
         argument = random.choice(ARGUMENTS_LIST)
-        result = result + random.choice(ELEMENTS_LIST).format(random_coef1,argument)
+        result = result + random.choice(ELEMENTS_LIST).format(random_coef,argument)
         if index<num_elements:
             result = result + random.choice(OPERATORS_LIST)
         index = index + 1
