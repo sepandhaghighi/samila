@@ -22,7 +22,6 @@ def random_equation_gen():
     index = 1
     random_coef = "random.uniform(-1,1)"
     while(index<=num_elements):
-
         argument = random.choice(ARGUMENTS_LIST)
         result = result + random.choice(ELEMENTS_LIST).format(random_coef,argument)
         if index<num_elements:
