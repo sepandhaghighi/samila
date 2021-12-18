@@ -99,12 +99,28 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 ## Usage
 
+### Magic
+```pycon
+>>> import matplotlib.pyplot as plt
+>>> from samila import GenerativeImage
+>>> g = GenerativeImage()
+>>> g.generate()
+>>> g.plot()
+>>> g.seed
+70120
+>>> g.function1_str
+'random.uniform(-1,1)*abs((x**2)*y)-random.uniform(-1,1)*math.ceil(y-x)+random.uniform(-1,1)*math.ceil(x*(y**3))-random.uniform(-1,1)*math.cos(x-y)+random.uniform(-1,1)*math.floor((y**2)*x)+random.uniform(-1,1)*math.cos(x*(y**3))+random.uniform(-1,1)*math.floor(x)-random.uniform(-1,1)*math.sin(y*(x**3))'
+>>> g.function2_str
+'random.uniform(-1,1)*math.floor(x*(y**3))-random.uniform(-1,1)*math.cos(y-x)+random.uniform(-1,1)*math.floor(x)+random.uniform(-1,1)*abs(y*(x**3))-random.uniform(-1,1)*math.ceil(y**2)-random.uniform(-1,1)*math.ceil((x**2)*y)+random.uniform(-1,1)*abs((y**2)*x)-random.uniform(-1,1)*abs(x)'
+>>> plt.show()
+```
+* `function1_str` and `function2_str` are only available in this mode
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/7.png">	
+
 ### Basic
 ```pycon
 >>> import random
 >>> import math
->>> import matplotlib.pyplot as plt
->>> from samila import GenerativeImage
 >>> def f1(x,y):
     result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
     return result
