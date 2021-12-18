@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Random equations mode
+- `function1_str` attribute
+- `function2_str` attribute
 ### Changed
 - Test system updated
 ## [0.3] - 2021-11-10
