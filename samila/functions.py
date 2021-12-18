@@ -262,6 +262,6 @@ def load_data(data):
         try:
             data = json.load(data)
             return data['data1'], data['data2'], data['matplotlib_version']
-        except BaseException:
+        except Exception:
             raise samilaDataError(DATA_PARSING_ERROR)
     raise samilaDataError(DATA_TYPE_ERROR)
