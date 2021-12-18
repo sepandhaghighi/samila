@@ -45,7 +45,8 @@ class GenerativeImage:
         if data is not None:
             self.data1, self.data2, matplotlib_version = load_data(data)
             if matplotlib_version != matplotlib.__version__:
-                warn(MATPLOTLIB_VERSION_WARNING.format(matplotlib_version), RuntimeWarning)
+                warn(MATPLOTLIB_VERSION_WARNING.format(
+                    matplotlib_version), RuntimeWarning)
 
     def generate(
             self,
