@@ -35,11 +35,15 @@ class GenerativeImage:
         """
         self.function1 = function1
         self.function2 = function2
+        self.function1_str = None
+        self.function2_str = None
         self.fig = None
         if function1 is None or function2 is None:
             if data is None:
-                self.function1 = eval("lambda x,y:" + random_equation_gen())
-                self.function2 = eval("lambda x,y:" + random_equation_gen())
+                self.function1_str = random_equation_gen()
+                self.function2_str = random_equation_gen()
+                self.function1 = eval("lambda x,y:" + self.function1_str)
+                self.function2 = eval("lambda x,y:" + self.function2_str)
             else:
                 warn(JUST_DATA_WARNING, RuntimeWarning)
         if data is not None:
