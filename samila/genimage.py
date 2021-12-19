@@ -153,7 +153,7 @@ class GenerativeImage:
         :type file_adr: str
         :param depth: image depth
         :type depth: float
-        :return: result as dict
+        :return: result as a dict
         """
         return save_fig_file(figure=self.fig, file_adr=file_adr, depth=depth)
 
