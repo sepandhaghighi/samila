@@ -32,7 +32,6 @@ DATA_TYPE_ERROR = "Provided data file is not supported. It should be either file
 DATA_PARSING_ERROR = "Provided data format is wrong. It should be in JSON format including data1 and data2 fields."
 NO_FUNCTION_ERROR = "At least one of the given functions are None."
 JUST_DATA_WARNING = "Just data is provided, generate method is not available in this mode."
-NOTHING_PROVIDED_WARNING = "Neither function nor data is provided."
 MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
 
 
@@ -50,3 +49,30 @@ class Projection(Enum):
     LAMBERT = "lambert"
     MOLLWEIDE = "mollweide"
     RECTILINEAR = "rectilinear"
+
+
+ELEMENTS_LIST = [
+    "{0}*math.cos({1})",
+    "{0}*math.sin({1})",
+    "{0}*{1}",
+    "{0}*abs({1})",
+    "{0}*math.ceil({1})",
+    "{0}*math.floor({1})"]
+
+ARGUMENTS_LIST = [
+    "x*y",
+    "x",
+    "y",
+    "y-x",
+    "x-y",
+    "x+y",
+    "x**2",
+    "y**2",
+    "(x**2)*y",
+    "(y**2)*x",
+    "(x**2)*(y**3)",
+    "(x**3)*(y**2)",
+    "x*(y**3)",
+    "y*(x**3)"]
+
+OPERATORS_LIST = ["+", "-"]

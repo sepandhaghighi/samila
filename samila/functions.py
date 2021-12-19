@@ -4,10 +4,32 @@
 import requests
 import io
 import json
+import random
 from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, NO_FIG_ERROR_MESSAGE
 from .params import FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_SAVE_SUCCESS_MESSAGE
+from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
 from .errors import samilaDataError
+
+
+def random_equation_gen():
+    """
+    Generate random equation.
+
+    :return: equation as str
+    """
+    num_elements = random.randint(2, len(ELEMENTS_LIST) + 3)
+    result = ""
+    index = 1
+    random_coef = "random.uniform(-1,1)"
+    while(index <= num_elements):
+        argument = random.choice(ARGUMENTS_LIST)
+        result = result + \
+            random.choice(ELEMENTS_LIST).format(random_coef, argument)
+        if index < num_elements:
+            result = result + random.choice(OPERATORS_LIST)
+        index = index + 1
+    return result
 
 
 def float_range(start, stop, step):
@@ -240,6 +262,6 @@ def load_data(data):
         try:
             data = json.load(data)
             return data['data1'], data['data2'], data['matplotlib_version']
-        except:
+        except Exception:
             raise samilaDataError(DATA_PARSING_ERROR)
     raise samilaDataError(DATA_TYPE_ERROR)

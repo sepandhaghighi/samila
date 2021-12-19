@@ -4,8 +4,6 @@
 >>> import json
 >>> from samila import *
 >>> from pytest import warns
->>> with warns(RuntimeWarning, match="Neither function nor data is provided."):
-...     g = GenerativeImage()
 >>> g = GenerativeImage(lambda x,y: 0, lambda x,y: 0)
 >>> g.generate(step=0.1)
 >>> result = g.save_data()

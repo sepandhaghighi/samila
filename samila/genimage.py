@@ -4,7 +4,8 @@ import random
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
-from .functions import float_range, filter_color, filter_projection, nft_storage_upload, save_data_file, save_fig_file, save_fig_buf, load_data
+from .functions import float_range, filter_color, filter_projection, nft_storage_upload
+from .functions import save_data_file, save_fig_file, save_fig_buf, load_data, random_equation_gen
 from .errors import samilaGenerateError
 from .params import *
 from warnings import warn
@@ -32,18 +33,24 @@ class GenerativeImage:
         :param data: prior generated data
         :type data: (io.IOBase & file)
         """
+        self.function1 = function1
+        self.function2 = function2
+        self.function1_str = None
+        self.function2_str = None
+        self.fig = None
         if function1 is None or function2 is None:
             if data is None:
-                warn(NOTHING_PROVIDED_WARNING, RuntimeWarning)
+                self.function1_str = random_equation_gen()
+                self.function2_str = random_equation_gen()
+                self.function1 = eval("lambda x,y:" + self.function1_str)
+                self.function2 = eval("lambda x,y:" + self.function2_str)
             else:
                 warn(JUST_DATA_WARNING, RuntimeWarning)
         if data is not None:
             self.data1, self.data2, matplotlib_version = load_data(data)
             if matplotlib_version != matplotlib.__version__:
-                warn(MATPLOTLIB_VERSION_WARNING.format(matplotlib_version), RuntimeWarning)
-        self.function1 = function1
-        self.function2 = function2
-        self.fig = None
+                warn(MATPLOTLIB_VERSION_WARNING.format(
+                    matplotlib_version), RuntimeWarning)
 
     def generate(
             self,

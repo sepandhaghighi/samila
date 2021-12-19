@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Random equations mode
+- `function1_str` attribute
+- `function2_str` attribute
+### Changed
+- Test system updated
 ## [0.3] - 2021-11-10
 ### Added
 - Discord channel
