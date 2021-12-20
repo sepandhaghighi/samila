@@ -173,3 +173,13 @@ class GenerativeImage:
             self.data2,
             matplotlib.__version__,
             file_adr)
+
+    def save_config(self, file_adr='config.json'):
+        """
+        Save config into a file.
+
+        :param file_adr: file address
+        :type file_adr: str
+        :return: result as a dict
+        """
+        return save_config_file(self, file_adr)
