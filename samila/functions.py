@@ -107,7 +107,20 @@ def filter_projection(projection):
     """
     if isinstance(projection, Projection):
         return projection.value
-    return DEFAULT_PROJECTION
+    return None
+
+
+def filter_float(value):
+    """
+    Filter given float value.
+
+    :param value: given value
+    :type value: float
+    :return: filtered version of value
+    """
+    if isinstance(value, float):
+        return value
+    return None
 
 
 def nft_storage_upload(api_key, data):
