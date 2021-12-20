@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `function1_str` attribute
 - `function2_str` attribute
 ### Changed
+- `config` parameter added to GenerativeImage `__init__
 - `filter_projection` function edited
 - Test system updated
 ## [0.3] - 2021-11-10

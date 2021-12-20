@@ -23,7 +23,7 @@ class GenerativeImage:
     >>> GI = GenerativeImage(f1, f2)
     """
 
-    def __init__(self, function1=None, function2=None, data=None):
+    def __init__(self, function1=None, function2=None, data=None, config=None):
         """
         Init method.
 
@@ -33,6 +33,8 @@ class GenerativeImage:
         :type function2: python or lambda function
         :param data: prior generated data
         :type data: (io.IOBase & file)
+        :param config: generative image configs
+        :type config: JSON
         """
         self.function1 = function1
         self.function2 = function2
