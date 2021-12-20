@@ -180,6 +180,42 @@ def save_data_file(data1, data2, matplotlib_version, file_adr):
     return result
 
 
+def save_config_file(g, file_adr):
+    """
+    Save config as file.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :param file_adr: file address
+    :type file_adr: str
+    :return: result as dict
+    """
+    data = {}
+    if g.function1_str is not None:
+        data['f1'] = g.function1_str
+        data['f2'] = g.function2_str
+    data['generate'] = {
+        "seed": g.seed,
+        "start": g.start,
+        "step": g.step,
+        "stop": g.stop
+    }
+    data['plot'] = {
+        "color": g.color,
+        "bgcolor": g.bgcolor,
+        "spot_size": g.spot_size,
+        "projection": g.projection
+    }
+    result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
+    try:
+        with open(file_adr, 'w') as fp:
+            json.dump(data, fp, indent=4)
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+    return result
+
+
 def save_fig_file(figure, file_adr, depth):
     """
     Save figure as file.
