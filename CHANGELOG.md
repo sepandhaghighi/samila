@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `load_config` function
 - `save_config_file` function
 - `samilaConfigError`
 - `filter_float` function

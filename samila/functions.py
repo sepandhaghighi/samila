@@ -314,3 +314,31 @@ def load_data(data):
         except Exception:
             raise samilaDataError(DATA_PARSING_ERROR)
     raise samilaDataError(DATA_TYPE_ERROR)
+
+
+def load_config(g, config):
+    """
+    Load config file.
+    
+    :param config: config JSON file
+    :type config: (io.IOBase & file)
+    :return: None
+    """
+    if isinstance(config, io.IOBase):
+        data = json.load(config)
+        g.function1_str = data.get("f1")
+        g.function2_str = data.get("f2")
+        generate_config = data.get("generate")
+        if generate_config is not None:
+            g.seed = generate_config.get("seed")
+            g.start = generate_config.get("start", DEFAULT_START)
+            g.step = generate_config.get("step", DEFAULT_STEP)
+            g.stop = generate_config.get("stop", DEFAULT_STOP)
+        plot_config = data.get("plot")
+        if plot_config is not None:
+            g.color = plot_config.get("color", DEFAULT_COLOR)
+            g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
+            g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
+            g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+        return
+    raise samilaConfigError(CONFIG_TYPE_ERROR)
