@@ -36,19 +36,29 @@ class GenerativeImage:
         :param config: generative image configs
         :type config: JSON
         """
+        self.seed = None
+        self.start = DEFAULT_START
+        self.step = DEFAULT_STEP
+        self.stop = DEFAULT_STOP
+        self.color = DEFAULT_COLOR
+        self.bgcolor = DEFAULT_BACKGROUND_COLOR
+        self.spot_size = DEFAULT_SPOT_SIZE
+        self.projection = DEFAULT_PROJECTION
         self.function1 = function1
         self.function2 = function2
         self.function1_str = None
         self.function2_str = None
         self.fig = None
+        if config is not None:
+            load_config(self, config)
         if function1 is None or function2 is None:
-            if data is None:
+            if data is None and self.function1_str is None:
                 self.function1_str = random_equation_gen()
                 self.function2_str = random_equation_gen()
-                self.function1 = eval("lambda x,y:" + self.function1_str)
-                self.function2 = eval("lambda x,y:" + self.function2_str)
-            else:
+            elif self.function1_str is None:
                 warn(JUST_DATA_WARNING, RuntimeWarning)
+            self.function1 = eval("lambda x,y:" + self.function1_str)
+            self.function2 = eval("lambda x,y:" + self.function2_str)
         if data is not None:
             self.data1, self.data2, matplotlib_version = load_data(data)
             if matplotlib_version != matplotlib.__version__:
@@ -58,9 +68,9 @@ class GenerativeImage:
     def generate(
             self,
             seed=None,
-            start=DEFAULT_START,
-            step=DEFAULT_STEP,
-            stop=DEFAULT_STOP):
+            start=None,
+            step=None,
+            stop=None):
         """
         Generate a raw format of art.
 
@@ -78,9 +88,18 @@ class GenerativeImage:
             raise samilaGenerateError(NO_FUNCTION_ERROR)
         self.data1 = []
         self.data2 = []
-        self.seed = seed
+        start, step, stop = map(filter_float, [start, step, stop])
+        if start is None:
+            start = self.start
+        if step is None:
+            step = self.step
+        if stop is None:
+            stop = self.stop
         if seed is None:
-            self.seed = random.randint(0, 2 ** 20)
+            if self.seed is None:
+                self.seed = random.randint(0, 2 ** 20)
+        else:
+            self.seed = seed
         range1 = list(float_range(start, stop, step))
         range2 = list(float_range(start, stop, step))
         range_prod = list(itertools.product(range1, range2))
@@ -91,11 +110,11 @@ class GenerativeImage:
 
     def plot(
             self,
-            color=DEFAULT_COLOR,
-            bgcolor=DEFAULT_BACKGROUND_COLOR,
-            spot_size=DEFAULT_SPOT_SIZE,
+            color=None,
+            bgcolor=None,
+            spot_size=None,
             size=DEFAULT_IMAGE_SIZE,
-            projection=DEFAULT_PROJECTION):
+            projection=None):
         """
         Plot the generated art.
 
@@ -112,11 +131,16 @@ class GenerativeImage:
         :return: None
         """
         color, bgcolor = map(filter_color, [color, bgcolor])
-        if color is None:
-            color = DEFAULT_COLOR
-        if bgcolor is None:
-            bgcolor = DEFAULT_BACKGROUND_COLOR
         projection = filter_projection(projection)
+        spot_size = filter_float(spot_size)
+        if color is None:
+            color = self.color
+        if bgcolor is None:
+            bgcolor = self.bgcolor
+        if spot_size is None:
+            spot_size = self.spot_size
+        if projection is None:
+            projection = self.projection
         fig = plt.figure()
         fig.set_size_inches(size[0], size[1])
         fig.set_facecolor(bgcolor)
