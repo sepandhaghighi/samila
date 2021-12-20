@@ -321,7 +321,7 @@ def load_data(data):
 def load_config(g, config):
     """
     Load config file.
-    
+
     :param config: config JSON file
     :type config: (io.IOBase & file)
     :return: None
