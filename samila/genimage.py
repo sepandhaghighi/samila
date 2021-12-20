@@ -4,8 +4,9 @@ import random
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
-from .functions import float_range, filter_color, filter_projection, nft_storage_upload
-from .functions import save_data_file, save_fig_file, save_fig_buf, load_data, random_equation_gen
+from .functions import float_range, filter_color, filter_projection, filter_float
+from .functions import save_data_file, save_fig_file, save_fig_buf, save_config_file
+from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
 from .errors import samilaGenerateError
 from .params import *
 from warnings import warn
