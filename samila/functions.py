@@ -12,7 +12,7 @@ from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, CONFIG_TYPE_ERROR
 from .params import NO_FIG_ERROR_MESSAGE
 from .params import FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_SAVE_SUCCESS_MESSAGE
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
-from .errors import samilaGenerateError, samilaDataError, samilaConfigError
+from .errors import samilaDataError, samilaConfigError
 
 
 def random_equation_gen():
