@@ -134,7 +134,7 @@ def filter_size(size):
     :return: filtered version of size
     """
     if isinstance(size, tuple):
-        if not any(lambda x: x != filter_float(x), size):
+        if not any(map(lambda x: x != filter_float(x), size)):
             return size
     return None
 
