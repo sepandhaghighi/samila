@@ -139,6 +139,47 @@ def filter_size(size):
     return None
 
 
+def plot_params_filter(
+        g,
+        color=None,
+        bgcolor=None,
+        spot_size=None,
+        size=None,
+        projection=None):
+    """
+    Filter plot method parameters.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :param color: point colors
+    :type color: str
+    :param bgcolor: background color
+    :type bgcolor: str
+    :param spot_size: point spot size
+    :type spot_size: float
+    :param size: figure size
+    :type size: tuple
+    :param projection: projection type
+    :type projection: str
+    :return: filtered color, bgcolor, spot_size, size and projection
+    """
+    color, bgcolor = map(filter_color, [color, bgcolor])
+    projection = filter_projection(projection)
+    spot_size = filter_float(spot_size)
+    size = filter_size(size)
+    if color is None:
+        color = g.color
+    if bgcolor is None:
+        bgcolor = g.bgcolor
+    if spot_size is None:
+        spot_size = g.spot_size
+    if size is None:
+        size = g.size
+    if projection is None:
+        projection = g.projection
+    return color, bgcolor, spot_size, size, projection
+
+
 def nft_storage_upload(api_key, data):
     """
     Upload file to nft.storage.

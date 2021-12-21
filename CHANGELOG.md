@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `plot_params_filter` function
 - `filter_size` function
 - `save_config` method
 - `load_config` function

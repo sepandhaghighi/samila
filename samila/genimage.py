@@ -5,6 +5,7 @@ import itertools
 import matplotlib
 import matplotlib.pyplot as plt
 from .functions import float_range, filter_color, filter_projection, filter_float, filter_size
+from .functions import plot_params_filter
 from .functions import save_data_file, save_fig_file, save_fig_buf, save_config_file
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
 from .errors import samilaGenerateError
@@ -134,20 +135,8 @@ class GenerativeImage:
         :type projection: str
         :return: None
         """
-        color, bgcolor = map(filter_color, [color, bgcolor])
-        projection = filter_projection(projection)
-        spot_size = filter_float(spot_size)
-        size = filter_size(size)
-        if color is None:
-            color = self.color
-        if bgcolor is None:
-            bgcolor = self.bgcolor
-        if spot_size is None:
-            spot_size = self.spot_size
-        if size is None:
-            size = self.size
-        if projection is None:
-            projection = self.projection
+        color, bgcolor, spot_size, size, projection = plot_params_filter(
+            self, color, bgcolor, spot_size, size, projection)
         fig = plt.figure()
         fig.set_size_inches(size[0], size[1])
         fig.set_facecolor(bgcolor)
