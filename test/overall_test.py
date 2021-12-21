@@ -5,6 +5,7 @@
 >>> import os
 >>> import pickle
 >>> import socket
+>>> import json
 >>> def guard(*args, **kwargs):
 ...     raise Exception("No internet connection!")
 >>> from samila import GenerativeImage, Projection
@@ -104,7 +105,29 @@ True
 >>> result = g.save_data()
 >>> result["status"]
 True
+>>> g = GenerativeImage()
+>>> result = g.save_config()
+>>> result["status"]
+True
+>>> g_ = GenerativeImage(config=open("config.json", 'r'))
+>>> g_.seed == g.seed
+True
+>>> g_.function1_str == g.function1_str
+True
+>>> g_.function2_str == g.function2_str
+True
+>>> with open("config.json", 'w') as fp:
+...     json.dump({'f1': 'x'}, fp)
+>>> g = GenerativeImage(config=open("config.json", 'r'))
+>>> g.function1_str
+'x'
+>>> with open("config.json", 'w') as fp:
+...     json.dump({'f2': 'x'}, fp)
+>>> g = GenerativeImage(config=open("config.json", 'r'))
+>>> g.function2_str
+'x'
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 >>> os.remove("data.json")
+>>> os.remove("config.json")
 """
