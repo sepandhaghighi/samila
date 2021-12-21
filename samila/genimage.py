@@ -50,7 +50,10 @@ class GenerativeImage:
         self.function2_str = None
         self.fig = None
         if config is not None:
-            load_config(self, config)
+            matplotlib_version = load_config(self, config)
+            if matplotlib_version != matplotlib.__version__:
+                warn(MATPLOTLIB_VERSION_WARNING.format(
+                    matplotlib_version), RuntimeWarning)
         if function1 is None or function2 is None:
             if data is None and self.function1_str is None:
                 self.function1_str = random_equation_gen()
@@ -206,4 +209,4 @@ class GenerativeImage:
         :type file_adr: str
         :return: result as a dict
         """
-        return save_config_file(self, file_adr)
+        return save_config_file(self, matplotlib.__version__, file_adr)
