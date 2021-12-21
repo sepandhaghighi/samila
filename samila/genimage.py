@@ -4,9 +4,8 @@ import random
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
-from .functions import float_range, filter_color, filter_projection, filter_float, filter_size
-from .functions import plot_params_filter, generate_params_filter
-from .functions import save_data_file, save_fig_file, save_fig_buf, save_config_file
+from .functions import _GI_initializer, plot_params_filter, generate_params_filter
+from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
 from .params import *
 from warnings import warn
@@ -36,19 +35,9 @@ class GenerativeImage:
         :param config: generative image configs
         :type config: JSON
         """
-        self.seed = None
-        self.start = DEFAULT_START
-        self.step = DEFAULT_STEP
-        self.stop = DEFAULT_STOP
-        self.color = DEFAULT_COLOR
-        self.bgcolor = DEFAULT_BACKGROUND_COLOR
-        self.spot_size = DEFAULT_SPOT_SIZE
-        self.size = DEFAULT_IMAGE_SIZE
-        self.projection = DEFAULT_PROJECTION
+        _GI_initializer(self)
         self.function1 = function1
         self.function2 = function2
-        self.function1_str = None
-        self.function2_str = None
         self.fig = None
         if config is not None:
             matplotlib_version = load_config(self, config)

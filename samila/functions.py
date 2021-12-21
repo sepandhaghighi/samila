@@ -5,7 +5,7 @@ import requests
 import io
 import json
 import random
-from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR
+from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION
 from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, CONFIG_TYPE_ERROR
@@ -214,6 +214,27 @@ def generate_params_filter(
         if g.seed is None:
             seed = random.randint(0, 2 ** 20)
     return seed, start, step, stop
+
+
+def _GI_initializer(g):
+    """
+    Initialize the generative image.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :return: None
+    """
+    g.seed = None
+    g.start = DEFAULT_START
+    g.step = DEFAULT_STEP
+    g.stop = DEFAULT_STOP
+    g.color = DEFAULT_COLOR
+    g.bgcolor = DEFAULT_BACKGROUND_COLOR
+    g.spot_size = DEFAULT_SPOT_SIZE
+    g.size = DEFAULT_IMAGE_SIZE
+    g.projection = DEFAULT_PROJECTION
+    g.function1_str = None
+    g.function2_str = None
 
 
 def nft_storage_upload(api_key, data):

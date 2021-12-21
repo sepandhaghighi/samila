@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `_GI_initializer` function
 - `generate_params_filter` function
 - `plot_params_filter` function
 - `filter_size` function
