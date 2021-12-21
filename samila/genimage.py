@@ -55,19 +55,19 @@ class GenerativeImage:
             if matplotlib_version != matplotlib.__version__:
                 warn(MATPLOTLIB_VERSION_WARNING.format(
                     matplotlib_version), RuntimeWarning)
-        if function1 is None or function2 is None:
-            if data is None and self.function1_str is None:
-                self.function1_str = random_equation_gen()
-                self.function2_str = random_equation_gen()
-            elif self.function1_str is None:
-                warn(JUST_DATA_WARNING, RuntimeWarning)
-            self.function1 = eval("lambda x,y:" + self.function1_str)
-            self.function2 = eval("lambda x,y:" + self.function2_str)
         if data is not None:
             self.data1, self.data2, matplotlib_version = load_data(data)
             if matplotlib_version != matplotlib.__version__:
                 warn(MATPLOTLIB_VERSION_WARNING.format(
                     matplotlib_version), RuntimeWarning)
+        if self.function1 is None:
+            if self.function1_str is None:
+                self.function1_str = random_equation_gen()
+            self.function1 = eval("lambda x,y:" + self.function1_str)
+        if self.function2 is None:
+            if self.function2_str is None:
+                self.function2_str = random_equation_gen()
+            self.function2 = eval("lambda x,y:" + self.function1_str)
 
     def generate(
             self,
