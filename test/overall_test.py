@@ -91,6 +91,9 @@ False
 >>> result = g.save_data(file_adr="")
 >>> result["status"]
 False
+>>> result = g.save_config(file_adr="")
+>>> result["status"]
+False
 >>> def f1(x, y):
 ...    return math.cos(x**2*y) ** 1.926 - math.floor(x-y) ** 1.861 - math.floor(y**2*x)**1.688
 
@@ -103,6 +106,9 @@ True
 >>> all(map(lambda x: x.real == x, g.data2))
 True
 >>> result = g.save_data()
+>>> result["status"]
+True
+>>> result = g.save_config()
 >>> result["status"]
 True
 >>> g = GenerativeImage()
