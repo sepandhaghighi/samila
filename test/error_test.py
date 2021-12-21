@@ -7,7 +7,7 @@
 Traceback (most recent call last):
         ...
 samila.errors.samilaDataError: Provided data file is not supported. It should be either file or io.IOBase.
->>> g = GenerativeImage(data="config.json")
+>>> g = GenerativeImage(config="config.json")
 Traceback (most recent call last):
         ...
 samila.errors.samilaConfigError: Provided config file is not supported. It should be either file or io.IOBase.
