@@ -8,7 +8,7 @@ import random
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION
 from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
-from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, CONFIG_TYPE_ERROR, NO_FUNCTION_ERROR
+from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, CONFIG_TYPE_ERROR
 from .params import NO_FIG_ERROR_MESSAGE
 from .params import FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_SAVE_SUCCESS_MESSAGE
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
@@ -202,8 +202,6 @@ def generate_params_filter(
     :type stop: float
     :return: filtered seed, start, step and stop
     """
-    if g.function1 is None or g.function2 is None:
-        raise samilaGenerateError(NO_FUNCTION_ERROR)
     start, step, stop = map(filter_float, [start, step, stop])
     if start is None:
         start = g.start

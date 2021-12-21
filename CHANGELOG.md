@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `function1_str` attribute
 - `function2_str` attribute
 ### Changed
+- `NO_FUNCTION_ERROR` and `JUST_DATA_WARNING` removed
 - `config` parameter added to GenerativeImage `__init__
 - `filter_projection` function edited
 - Test system updated
