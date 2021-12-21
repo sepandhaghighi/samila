@@ -5,10 +5,9 @@ import itertools
 import matplotlib
 import matplotlib.pyplot as plt
 from .functions import float_range, filter_color, filter_projection, filter_float, filter_size
-from .functions import plot_params_filter
+from .functions import plot_params_filter, generate_params_filter
 from .functions import save_data_file, save_fig_file, save_fig_buf, save_config_file
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
-from .errors import samilaGenerateError
 from .params import *
 from warnings import warn
 
@@ -89,22 +88,11 @@ class GenerativeImage:
         :type stop: float
         :return: None
         """
-        if self.function1 is None or self.function2 is None:
-            raise samilaGenerateError(NO_FUNCTION_ERROR)
+        seed, start, step, stop = generate_params_filter(
+            self, seed, start, step, stop)
+        self.seed = seed
         self.data1 = []
         self.data2 = []
-        start, step, stop = map(filter_float, [start, step, stop])
-        if start is None:
-            start = self.start
-        if step is None:
-            step = self.step
-        if stop is None:
-            stop = self.stop
-        if seed is None:
-            if self.seed is None:
-                self.seed = random.randint(0, 2 ** 20)
-        else:
-            self.seed = seed
         range1 = list(float_range(start, stop, step))
         range2 = list(float_range(start, stop, step))
         range_prod = list(itertools.product(range1, range2))

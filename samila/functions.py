@@ -8,10 +8,11 @@ import random
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION
 from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
-from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, CONFIG_TYPE_ERROR, NO_FIG_ERROR_MESSAGE
+from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, CONFIG_TYPE_ERROR, NO_FUNCTION_ERROR
+from .params import NO_FIG_ERROR_MESSAGE
 from .params import FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_SAVE_SUCCESS_MESSAGE
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
-from .errors import samilaDataError, samilaConfigError
+from .errors import samilaGenerateError, samilaDataError, samilaConfigError
 
 
 def random_equation_gen():
@@ -178,6 +179,43 @@ def plot_params_filter(
     if projection is None:
         projection = g.projection
     return color, bgcolor, spot_size, size, projection
+
+
+def generate_params_filter(
+        g,
+        seed=None,
+        start=None,
+        step=None,
+        stop=None):
+    """
+    Filter generate method parameters.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :param seed: random seed
+    :type seed: int
+    :param start: range start point
+    :type start: float
+    :param step: range step size
+    :type step: float
+    :param stop: range stop point
+    :type stop: float
+    :return: filtered seed, start, step and stop
+    """
+    if g.function1 is None or g.function2 is None:
+        raise samilaGenerateError(NO_FUNCTION_ERROR)
+    start, step, stop = map(filter_float, [start, step, stop])
+    if start is None:
+        start = g.start
+    if step is None:
+        step = g.step
+    if stop is None:
+        stop = g.stop
+    if seed is None:
+        seed = g.seed
+        if g.seed is None:
+            seed = random.randint(0, 2 ** 20)
+    return seed, start, step, stop
 
 
 def nft_storage_upload(api_key, data):
