@@ -125,6 +125,20 @@ def filter_float(value):
     return None
 
 
+def filter_size(size):
+    """
+    Filter given image size.
+
+    :param value: given size
+    :type value: tuple of float
+    :return: filtered version of size
+    """
+    if isinstance(size, tuple):
+        if not any(lambda x: x != filter_float(x), size):
+            return size
+    return None
+
+
 def nft_storage_upload(api_key, data):
     """
     Upload file to nft.storage.
