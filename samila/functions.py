@@ -182,12 +182,14 @@ def save_data_file(data1, data2, matplotlib_version, file_adr):
     return result
 
 
-def save_config_file(g, file_adr):
+def save_config_file(g, matplotlib_version, file_adr):
     """
     Save config as file.
 
     :param g: generative image instance
     :type g: GenerativeImage
+    :param matplotlib_version: matplotlib version
+    :type matplotlib_version: str
     :param file_adr: file address
     :type file_adr: str
     :return: result as dict
@@ -208,6 +210,7 @@ def save_config_file(g, file_adr):
         "spot_size": g.spot_size,
         "projection": g.projection
     }
+    data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
     try:
         with open(file_adr, 'w') as fp:
@@ -342,5 +345,5 @@ def load_config(g, config):
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
-        return
+        return data.get("matplotlib_version")
     raise samilaConfigError(CONFIG_TYPE_ERROR)
