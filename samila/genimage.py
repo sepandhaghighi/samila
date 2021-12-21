@@ -37,7 +37,9 @@ class GenerativeImage:
         """
         _GI_initializer(self)
         self.function1 = function1
+        self.function1_str = None
         self.function2 = function2
+        self.function2_str = None
         self.fig = None
         if config is not None:
             matplotlib_version = load_config(self, config)

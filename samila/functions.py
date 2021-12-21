@@ -233,8 +233,6 @@ def _GI_initializer(g):
     g.spot_size = DEFAULT_SPOT_SIZE
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
-    g.function1_str = None
-    g.function2_str = None
 
 
 def nft_storage_upload(api_key, data):
