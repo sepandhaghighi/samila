@@ -416,18 +416,22 @@ def is_same_data(data1, data2, precision=10**-5):
     return all(is_same)
 
 
-def load_data(data):
+def load_data(g, data):
     """
     Load data file.
 
+    :param g: generative image instance
+    :type g: GenerativeImage
     :param data: prior generated data
     :type data: (io.IOBase & file)
-    :return: (data1, data2)
+    :return: matpotlib version
     """
     if isinstance(data, io.IOBase):
         try:
             data = json.load(data)
-            return data['data1'], data['data2'], data['matplotlib_version']
+            g.data1 = data.get('data1')
+            g.data2 = data.get('data2')
+            return data['matplotlib_version']
         except Exception:
             raise samilaDataError(DATA_PARSING_ERROR)
     raise samilaDataError(DATA_TYPE_ERROR)
@@ -437,9 +441,11 @@ def load_config(g, config):
     """
     Load config file.
 
+    :param g: generative image instance
+    :type g: GenerativeImage
     :param config: config JSON file
     :type config: (io.IOBase & file)
-    :return: None
+    :return: matplotlib version
     """
     if isinstance(config, io.IOBase):
         data = json.load(config)
