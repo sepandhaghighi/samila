@@ -212,6 +212,18 @@ So you can load it into a `GenerativeImage` instance later by
 >>> g = GenerativeImage(data=open('test.json', 'r'))
 ```
 
+### Save config
+Save generated image config. It contains string formats of functions which is also human readable.
+
+```pycon
+>>> g.save_data(file_adr="config.json")
+```
+So you can load it into a `GenerativeImage` instance later by
+
+```pycon
+>>> g = GenerativeImage(data=open('config.json', 'r'))
+```
+
 ## Mathematical details
 Samila is simply a transformation between a square-shaped space from the Cartesian coordinate system to any arbitrary coordination like [Polar coordinate system](https://en.wikipedia.org/wiki/Polar_coordinate_system).
 
