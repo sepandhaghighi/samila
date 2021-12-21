@@ -121,7 +121,7 @@ def filter_float(value):
     :type value: float
     :return: filtered version of value
     """
-    if isinstance(value, float):
+    if isinstance(value, (float, int)):
         return value
     return None
 
