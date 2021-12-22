@@ -216,12 +216,12 @@ So you can load it into a `GenerativeImage` instance later by
 Save generated image config. It contains string formats of functions which is also human readable.
 
 ```pycon
->>> g.save_data(file_adr="config.json")
+>>> g.save_config(file_adr="config.json")
 ```
 So you can load it into a `GenerativeImage` instance later by
 
 ```pycon
->>> g = GenerativeImage(data=open('config.json', 'r'))
+>>> g = GenerativeImage(config=open('config.json', 'r'))
 ```
 
 ## Mathematical details
