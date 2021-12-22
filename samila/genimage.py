@@ -36,21 +36,21 @@ class GenerativeImage:
         :type config: JSON
         """
         _GI_initializer(self)
+        self.matplotlib_version = matplotlib.__version__
         self.function1 = function1
         self.function1_str = None
         self.function2 = function2
         self.function2_str = None
         self.fig = None
         if config is not None:
-            matplotlib_version = load_config(self, config)
-            if matplotlib_version != matplotlib.__version__:
-                warn(MATPLOTLIB_VERSION_WARNING.format(
-                    matplotlib_version), RuntimeWarning)
+            load_config(self, config)
         if data is not None:
-            matplotlib_version = load_data(self, data)
-            if matplotlib_version != matplotlib.__version__:
-                warn(MATPLOTLIB_VERSION_WARNING.format(
-                    matplotlib_version), RuntimeWarning)
+            load_data(self, data)
+        if self.matplotlib_version != matplotlib.__version__:
+            warn(
+                MATPLOTLIB_VERSION_WARNING.format(
+                    self.matplotlib_version),
+                RuntimeWarning)
         if self.function1 is None:
             if self.function1_str is None:
                 self.function1_str = random_equation_gen()

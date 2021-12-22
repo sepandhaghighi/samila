@@ -422,14 +422,16 @@ def load_data(g, data):
     :type g: GenerativeImage
     :param data: prior generated data
     :type data: (io.IOBase & file)
-    :return: matpotlib version
+    :return: None
     """
     if isinstance(data, io.IOBase):
         try:
             data = json.load(data)
             g.data1 = data.get('data1')
             g.data2 = data.get('data2')
-            return data['matplotlib_version']
+            if 'matplotlib_version' in data:
+                g.matplotlib_version = data['matplotlib_version']
+            return
         except Exception:
             raise samilaDataError(DATA_PARSING_ERROR)
     raise samilaDataError(DATA_TYPE_ERROR)
@@ -443,12 +445,14 @@ def load_config(g, config):
     :type g: GenerativeImage
     :param config: config JSON file
     :type config: (io.IOBase & file)
-    :return: matplotlib version
+    :return: None
     """
     if isinstance(config, io.IOBase):
         data = json.load(config)
         g.function1_str = data.get("f1")
         g.function2_str = data.get("f2")
+        if 'matplotlib_version' in data:
+            g.matplotlib_version = data['matplotlib_version']
         generate_config = data.get("generate")
         if generate_config is not None:
             g.seed = generate_config.get("seed")
@@ -461,5 +465,5 @@ def load_config(g, config):
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
-        return data.get("matplotlib_version")
+        return
     raise samilaConfigError(CONFIG_TYPE_ERROR)
