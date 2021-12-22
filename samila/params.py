@@ -30,7 +30,7 @@ DATA_SAVE_SUCCESS_MESSAGE = "Everything seems good."
 NO_FIG_ERROR_MESSAGE = "No figure was found. First run `generate` and `plot` methods."
 DATA_TYPE_ERROR = "Provided data file is not supported. It should be either file or io.IOBase."
 CONFIG_TYPE_ERROR = "Provided config file is not supported. It should be either file or io.IOBase."
-PLOT_DATA_ERROR = "Data{0} is empty. Plotting process can't be Done."
+PLOT_DATA_ERROR = "Plotting process can't be Done because Data{0} is empty. Use generate function first."
 MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
 
 
