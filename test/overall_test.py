@@ -132,6 +132,9 @@ True
 >>> g = GenerativeImage(config=open("config.json", 'r'))
 >>> g.function2_str
 'x'
+>>> with open("data.json", 'w') as fp:
+...     json.dump({'data1': [0], 'data2': [0]}, fp)
+>>> g = GenerativeImage(data=open("data.json", 'r'))
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 >>> os.remove("data.json")
