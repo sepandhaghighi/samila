@@ -13,16 +13,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `save_config` method
 - `load_config` function
 - `save_config_file` function
-- `samilaConfigError`
+- `samilaConfigError` class
 - `filter_float` function
 - Random equations mode
 - `function1_str` attribute
 - `function2_str` attribute
 ### Changed
-- `NO_FUNCTION_ERROR` and `JUST_DATA_WARNING` removed
 - `config` parameter added to GenerativeImage `__init__
 - `filter_projection` function edited
 - Test system updated
+### Removed
+- `NO_FUNCTION_ERROR` error message
+- `JUST_DATA_WARNING` warning message
 ## [0.3] - 2021-11-10
 ### Added
 - Discord channel
