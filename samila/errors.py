@@ -15,6 +15,6 @@ class samilaGenerateError(Exception):
 
 
 class samilaConfigError(Exception):
-    """Data error class."""
+    """Config error class."""
 
     pass
