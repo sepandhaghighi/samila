@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `PLOT_DATA_ERROR` error message
 - `_GI_initializer` function
 - `generate_params_filter` function
 - `plot_params_filter` function
@@ -25,6 +26,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Test system updated
 ### Removed
 - `NO_FUNCTION_ERROR` error message
+- `DATA_PARSING_ERROR` error message
 - `JUST_DATA_WARNING` warning message
 ## [0.3] - 2021-11-10
 ### Added
