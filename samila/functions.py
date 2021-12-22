@@ -8,11 +8,11 @@ import random
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION
 from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
-from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, CONFIG_TYPE_ERROR
-from .params import NO_FIG_ERROR_MESSAGE
-from .params import FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_SAVE_SUCCESS_MESSAGE
+from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR
+from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE
+from .params import DATA_SAVE_SUCCESS_MESSAGE
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
-from .errors import samilaDataError, samilaConfigError
+from .errors import samilaDataError, samilaPlotError,  samilaConfigError
 
 
 def random_equation_gen():
@@ -178,6 +178,10 @@ def plot_params_filter(
         size = g.size
     if projection is None:
         projection = g.projection
+    if g.data1 is None:
+        raise samilaPlotError(PLOT_DATA_ERROR.format(1))
+    if g.data2 is None:
+        raise samilaPlotError(PLOT_DATA_ERROR.format(2))
     return color, bgcolor, spot_size, size, projection
 
 
@@ -228,6 +232,8 @@ def _GI_initializer(g):
     g.start = DEFAULT_START
     g.step = DEFAULT_STEP
     g.stop = DEFAULT_STOP
+    g.data1 = None
+    g.data2 = None
     g.color = DEFAULT_COLOR
     g.bgcolor = DEFAULT_BACKGROUND_COLOR
     g.spot_size = DEFAULT_SPOT_SIZE
@@ -425,15 +431,12 @@ def load_data(g, data):
     :return: None
     """
     if isinstance(data, io.IOBase):
-        try:
-            data = json.load(data)
-            g.data1 = data.get('data1')
-            g.data2 = data.get('data2')
-            if 'matplotlib_version' in data:
-                g.matplotlib_version = data['matplotlib_version']
-            return
-        except Exception:
-            raise samilaDataError(DATA_PARSING_ERROR)
+        data = json.load(data)
+        g.data1 = data.get('data1')
+        g.data2 = data.get('data2')
+        if 'matplotlib_version' in data:
+            g.matplotlib_version = data['matplotlib_version']
+        return
     raise samilaDataError(DATA_TYPE_ERROR)
 
 
