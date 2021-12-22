@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `load_config` function
 - `save_config_file` function
 - `samilaConfigError` class
+- `samilaPlotError` class
 - `filter_float` function
 - Random equations mode
 - `function1_str` attribute
