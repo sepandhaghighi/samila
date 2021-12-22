@@ -11,12 +11,6 @@ samila.errors.samilaDataError: Provided data file is not supported. It should be
 Traceback (most recent call last):
         ...
 samila.errors.samilaConfigError: Provided config file is not supported. It should be either file or io.IOBase.
->>> with open('data.json', 'w') as fp:
-...     result = fp.write('test')
->>> g = GenerativeImage(data=open("data.json", 'r'))
-Traceback (most recent call last):
-        ...
-samila.errors.samilaDataError: Provided data format is wrong. It should be in JSON format including data1 and data2 fields.
 >>> g = GenerativeImage(lambda x,y: 0, lambda x,y: 0)
 >>> g.generate(step=0.1)
 >>> result = g.save_data('data.json')
