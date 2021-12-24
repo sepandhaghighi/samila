@@ -9,7 +9,7 @@ from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION
 from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
-from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, CONFIG_NO_DATA_ERROR
+from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_NO_DATA_ERROR
 from .params import DATA_SAVE_SUCCESS_MESSAGE
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
 from .errors import samilaDataError, samilaPlotError,  samilaConfigError
@@ -286,7 +286,7 @@ def save_data_file(data1, data2, matplotlib_version, file_adr):
     """
     data = {}
     if data1 is None or data2 is None:
-        raise samilaDataError(CONFIG_NO_STR_FUNCTION_ERROR)
+        raise samilaDataError(DATA_NO_DATA_ERROR)
     data['data1'] = data1
     data['data2'] = data2
     data['matplotlib_version'] = matplotlib_version
