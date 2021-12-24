@@ -91,9 +91,6 @@ False
 >>> result = g.save_data(file_adr="")
 >>> result["status"]
 False
->>> result = g.save_config(file_adr="")
->>> result["status"]
-False
 >>> def f1(x, y):
 ...    return math.cos(x**2*y) ** 1.926 - math.floor(x-y) ** 1.861 - math.floor(y**2*x)**1.688
 
@@ -106,9 +103,6 @@ True
 >>> all(map(lambda x: x.real == x, g.data2))
 True
 >>> result = g.save_data()
->>> result["status"]
-True
->>> result = g.save_config()
 >>> result["status"]
 True
 >>> g = GenerativeImage()
@@ -132,6 +126,16 @@ True
 >>> g = GenerativeImage(config=open("config.json", 'r'))
 >>> g.function2_str
 'x'
+>>> with open("config.json", 'w') as fp:
+...     json.dump({'f1': 'y', 'f2': 'x'}, fp)
+>>> g = GenerativeImage(config=open("config.json", 'r'))
+>>> g.function1_str
+'y'
+>>> g.function2_str
+'x'
+>>> result = g.save_config(file_adr="")
+>>> result["status"]
+False
 >>> with open("data.json", 'w') as fp:
 ...     json.dump({'data1': [0], 'data2': [0]}, fp)
 >>> g = GenerativeImage(data=open("data.json", 'r'))

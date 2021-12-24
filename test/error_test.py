@@ -26,9 +26,18 @@ samila.errors.samilaPlotError: Plotting process can't be Done because Data1 is e
 >>> with open("data.json", 'w') as fp:
 ...     json.dump({'data1': [0]}, fp)
 >>> g = GenerativeImage(data=open('data.json', 'r'))
+>>> g.save_data()
+Traceback (most recent call last):
+        ...
+samila.errors.samilaDataError: Data file can't be saved. At least one of the data1 or data2 is None.
 >>> g.plot()
 Traceback (most recent call last):
         ...
 samila.errors.samilaPlotError: Plotting process can't be Done because Data2 is empty. Use generate function first.
+>>> g = GenerativeImage(lambda x,y: x, lambda x,y: y)
+>>> result = g.save_config()
+Traceback (most recent call last):
+        ...
+samila.errors.samilaConfigError: Config file can't be saved. At least one of the function1_str or function2_str is None.
 >>> os.remove('data.json')
 """
