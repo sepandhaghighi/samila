@@ -10,9 +10,9 @@ from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECT
 from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
-from .params import DATA_SAVE_SUCCESS_MESSAGE
+from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
-from .errors import samilaDataError, samilaPlotError,  samilaConfigError
+from .errors import samilaDataError, samilaPlotError, samilaConfigError
 
 
 def random_equation_gen():
@@ -216,7 +216,7 @@ def generate_params_filter(
     if seed is None:
         seed = g.seed
         if g.seed is None:
-            seed = random.randint(0, 2 ** 20)
+            seed = random.randint(SEED_LOWER_BOUND, SEED_UPPER_BOUND)
     return seed, start, step, stop
 
 
