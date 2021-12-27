@@ -164,6 +164,10 @@ def plot_params_filter(
     :type projection: str
     :return: filtered color, bgcolor, spot_size, size and projection
     """
+    if g.data1 is None:
+        raise samilaPlotError(PLOT_DATA_ERROR.format(1))
+    if g.data2 is None:
+        raise samilaPlotError(PLOT_DATA_ERROR.format(2))
     color, bgcolor = map(filter_color, [color, bgcolor])
     projection = filter_projection(projection)
     spot_size = filter_float(spot_size)
@@ -178,10 +182,6 @@ def plot_params_filter(
         size = g.size
     if projection is None:
         projection = g.projection
-    if g.data1 is None:
-        raise samilaPlotError(PLOT_DATA_ERROR.format(1))
-    if g.data2 is None:
-        raise samilaPlotError(PLOT_DATA_ERROR.format(2))
     return color, bgcolor, spot_size, size, projection
 
 
