@@ -137,8 +137,12 @@ True
 >>> result["status"]
 False
 >>> with open("data.json", 'w') as fp:
-...     json.dump({'data1': [0], 'data2': [0]}, fp)
+...     json.dump({'data1': [0], 'data2': [1]}, fp)
 >>> g = GenerativeImage(data=open("data.json", 'r'))
+>>> g.data1
+[0]
+>>> g.data2
+[1]
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 >>> os.remove("data.json")

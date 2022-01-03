@@ -22,7 +22,7 @@ samila.errors.samilaConfigError: Provided config file is not supported. It shoul
 >>> g.plot()
 Traceback (most recent call last):
         ...
-samila.errors.samilaPlotError: Plotting process can't be Done because Data1 is empty. Use generate function first.
+samila.errors.samilaPlotError: Plotting process can't be Done because data1 is empty. Use generate method first.
 >>> with open("data.json", 'w') as fp:
 ...     json.dump({'data1': [0]}, fp)
 >>> g = GenerativeImage(data=open('data.json', 'r'))
@@ -33,7 +33,7 @@ samila.errors.samilaDataError: Data file can't be saved. At least one of the dat
 >>> g.plot()
 Traceback (most recent call last):
         ...
-samila.errors.samilaPlotError: Plotting process can't be Done because Data2 is empty. Use generate function first.
+samila.errors.samilaPlotError: Plotting process can't be Done because data2 is empty. Use generate method first.
 >>> g = GenerativeImage(lambda x,y: x, lambda x,y: y)
 >>> result = g.save_config()
 Traceback (most recent call last):
