@@ -32,7 +32,7 @@ DATA_TYPE_ERROR = "Provided data file is not supported. It should be either file
 CONFIG_TYPE_ERROR = "Provided config file is not supported. It should be either file or io.IOBase."
 CONFIG_NO_STR_FUNCTION_ERROR = "Config file can't be saved. At least one of the function1_str or function2_str is None."
 DATA_NO_DATA_ERROR = "Data file can't be saved. At least one of the data1 or data2 is None."
-PLOT_DATA_ERROR = "Plotting process can't be Done because Data{0} is empty. Use generate function first."
+PLOT_DATA_ERROR = "Plotting process can't be Done because data{0} is empty. Use generate method first."
 MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
 
 
