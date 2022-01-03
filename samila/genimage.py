@@ -58,7 +58,7 @@ class GenerativeImage:
         if self.function2 is None:
             if self.function2_str is None:
                 self.function2_str = random_equation_gen()
-            self.function2 = eval("lambda x,y:" + self.function1_str)
+            self.function2 = eval("lambda x,y:" + self.function2_str)
 
     def generate(
             self,
