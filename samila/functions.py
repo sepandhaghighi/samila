@@ -9,10 +9,10 @@ from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION
 from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
-from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_NO_DATA_ERROR
-from .params import DATA_SAVE_SUCCESS_MESSAGE
+from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
+from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
-from .errors import samilaDataError, samilaPlotError,  samilaConfigError
+from .errors import samilaDataError, samilaPlotError, samilaConfigError
 
 
 def random_equation_gen():
@@ -164,6 +164,10 @@ def plot_params_filter(
     :type projection: str
     :return: filtered color, bgcolor, spot_size, size and projection
     """
+    if g.data1 is None:
+        raise samilaPlotError(PLOT_DATA_ERROR.format(1))
+    if g.data2 is None:
+        raise samilaPlotError(PLOT_DATA_ERROR.format(2))
     color, bgcolor = map(filter_color, [color, bgcolor])
     projection = filter_projection(projection)
     spot_size = filter_float(spot_size)
@@ -178,10 +182,6 @@ def plot_params_filter(
         size = g.size
     if projection is None:
         projection = g.projection
-    if g.data1 is None:
-        raise samilaPlotError(PLOT_DATA_ERROR.format(1))
-    if g.data2 is None:
-        raise samilaPlotError(PLOT_DATA_ERROR.format(2))
     return color, bgcolor, spot_size, size, projection
 
 
@@ -216,7 +216,7 @@ def generate_params_filter(
     if seed is None:
         seed = g.seed
         if g.seed is None:
-            seed = random.randint(0, 2 ** 20)
+            seed = random.randint(SEED_LOWER_BOUND, SEED_UPPER_BOUND)
     return seed, start, step, stop
 
 
@@ -286,7 +286,7 @@ def save_data_file(data1, data2, matplotlib_version, file_adr):
     """
     data = {}
     if data1 is None or data2 is None:
-        raise samilaDataError(DATA_NO_DATA_ERROR)
+        raise samilaDataError(SAVE_NO_DATA_ERROR)
     data['data1'] = data1
     data['data2'] = data2
     data['matplotlib_version'] = matplotlib_version

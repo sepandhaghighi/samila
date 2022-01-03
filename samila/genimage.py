@@ -32,8 +32,8 @@ class GenerativeImage:
         :type function2: python or lambda function
         :param data: prior generated data
         :type data: (io.IOBase & file)
-        :param config: generative image configs
-        :type config: JSON
+        :param config: generative image config
+        :type config: (io.IOBase & file)
         """
         _GI_initializer(self)
         self.matplotlib_version = matplotlib.__version__
