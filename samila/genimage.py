@@ -125,7 +125,7 @@ class GenerativeImage:
             self.data2,
             self.data1,
             alpha=DEFAULT_ALPHA,
-            edgecolors=color,
+            c=color,
             s=spot_size)
         ax.set_axis_off()
         ax.patch.set_zorder(-1)
