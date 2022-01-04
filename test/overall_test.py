@@ -111,6 +111,9 @@ True
 >>> result = g.save_config()
 >>> result["status"]
 True
+>>> result = g.save_data()
+>>> result["status"]
+True
 >>> g_ = GenerativeImage(config=open("config.json", 'r'))
 >>> g_.seed == g.seed
 True
@@ -118,6 +121,13 @@ True
 True
 >>> g_.function2_str == g.function2_str
 True
+>>> g.color == g_.color
+True
+>>> g.bgcolor == g_.bgcolor
+True
+>>> g.spot_size == g_.spot_size
+True
+>>> g_ = GenerativeImage(data=open("data.json", 'r'))
 >>> g.color == g_.color
 True
 >>> g.bgcolor == g_.bgcolor
