@@ -182,6 +182,7 @@ def plot_params_filter(
         size = g.size
     if projection is None:
         projection = g.projection
+    g.color, g.bgcolor, g.spot_size, g.size, g.projection = color, bgcolor, spot_size, size, projection
     return color, bgcolor, spot_size, size, projection
 
 
@@ -217,6 +218,7 @@ def generate_params_filter(
         seed = g.seed
         if g.seed is None:
             seed = random.randint(SEED_LOWER_BOUND, SEED_UPPER_BOUND)
+    g.seed, g.start, g.step, g.stop = seed, start, step, stop
     return seed, start, step, stop
 
 
