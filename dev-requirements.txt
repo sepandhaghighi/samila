@@ -1,5 +1,5 @@
 matplotlib==3.5.1
-art==5.3
+art==5.4
 vulture>=1.0
 bandit>=1.5.1
 pydocstyle>=3.0.0
