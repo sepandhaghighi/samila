@@ -272,14 +272,12 @@ def nft_storage_upload(api_key, data):
         return result
 
 
-def save_data_file(data1, data2, matplotlib_version, file_adr):
+def save_data_file(g, matplotlib_version, file_adr):
     """
     Save data as file.
 
-    :param data1: data 1
-    :type data1: list
-    :param data2: data 2
-    :type data2: list
+    :param g: generative image instance
+    :type g: GenerativeImage
     :param matplotlib_version: matplotlib version
     :type matplotlib_version: str
     :param file_adr: file address
@@ -287,10 +285,16 @@ def save_data_file(data1, data2, matplotlib_version, file_adr):
     :return: result as dict
     """
     data = {}
-    if data1 is None or data2 is None:
+    if g.data1 is None or g.data2 is None:
         raise samilaDataError(SAVE_NO_DATA_ERROR)
-    data['data1'] = data1
-    data['data2'] = data2
+    data['data1'] = g.data1
+    data['data2'] = g.data2
+    data['plot'] = {
+        "color": g.color,
+        "bgcolor": g.bgcolor,
+        "spot_size": g.spot_size,
+        "projection": g.projection
+    }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
     try:
@@ -441,6 +445,12 @@ def load_data(g, data):
         g.data2 = data.get('data2')
         if 'matplotlib_version' in data:
             g.matplotlib_version = data['matplotlib_version']
+        plot_config = data.get("plot")
+        if plot_config is not None:
+            g.color = plot_config.get("color", DEFAULT_COLOR)
+            g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
+            g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
+            g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
         return
     raise samilaDataError(DATA_TYPE_ERROR)
 

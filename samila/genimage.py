@@ -167,11 +167,7 @@ class GenerativeImage:
         :type file_adr: str
         :return: result as dict
         """
-        return save_data_file(
-            self.data1,
-            self.data2,
-            matplotlib.__version__,
-            file_adr)
+        return save_data_file(self, matplotlib.__version__, file_adr)
 
     def save_config(self, file_adr='config.json'):
         """
