@@ -6,11 +6,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `PLOT_DATA_ERROR` error message
+- `_GI_initializer` function
+- `generate_params_filter` function
+- `plot_params_filter` function
+- `filter_size` function
+- `save_config` method
+- `load_config` function
+- `save_config_file` function
+- `samilaConfigError` class
+- `samilaPlotError` class
+- `filter_float` function
 - Random equations mode
 - `function1_str` attribute
 - `function2_str` attribute
 ### Changed
+- `config` parameter added to GenerativeImage `__init__`
+- `filter_projection` function edited
 - Test system updated
+### Removed
+- `NO_FUNCTION_ERROR` error message
+- `DATA_PARSING_ERROR` error message
+- `JUST_DATA_WARNING` warning message
 ## [0.3] - 2021-11-10
 ### Added
 - Discord channel

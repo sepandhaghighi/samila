@@ -5,11 +5,14 @@ import requests
 import io
 import json
 import random
-from .params import Projection, DEFAULT_PROJECTION, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
-from .params import DATA_TYPE_ERROR, DATA_PARSING_ERROR, NO_FIG_ERROR_MESSAGE
-from .params import FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, DATA_SAVE_SUCCESS_MESSAGE
+from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE
+from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION
+from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
+from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
+from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
+from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
-from .errors import samilaDataError
+from .errors import samilaDataError, samilaPlotError, samilaConfigError
 
 
 def random_equation_gen():
@@ -107,7 +110,135 @@ def filter_projection(projection):
     """
     if isinstance(projection, Projection):
         return projection.value
-    return DEFAULT_PROJECTION
+    return None
+
+
+def filter_float(value):
+    """
+    Filter given float value.
+
+    :param value: given value
+    :type value: float
+    :return: filtered version of value
+    """
+    if isinstance(value, (float, int)):
+        return value
+    return None
+
+
+def filter_size(size):
+    """
+    Filter given image size.
+
+    :param value: given size
+    :type value: tuple of float
+    :return: filtered version of size
+    """
+    if isinstance(size, tuple):
+        if not any(map(lambda x: x != filter_float(x), size)):
+            return size
+    return None
+
+
+def plot_params_filter(
+        g,
+        color=None,
+        bgcolor=None,
+        spot_size=None,
+        size=None,
+        projection=None):
+    """
+    Filter plot method parameters.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :param color: point colors
+    :type color: str
+    :param bgcolor: background color
+    :type bgcolor: str
+    :param spot_size: point spot size
+    :type spot_size: float
+    :param size: figure size
+    :type size: tuple
+    :param projection: projection type
+    :type projection: str
+    :return: filtered color, bgcolor, spot_size, size and projection
+    """
+    if g.data1 is None:
+        raise samilaPlotError(PLOT_DATA_ERROR.format(1))
+    if g.data2 is None:
+        raise samilaPlotError(PLOT_DATA_ERROR.format(2))
+    color, bgcolor = map(filter_color, [color, bgcolor])
+    projection = filter_projection(projection)
+    spot_size = filter_float(spot_size)
+    size = filter_size(size)
+    if color is None:
+        color = g.color
+    if bgcolor is None:
+        bgcolor = g.bgcolor
+    if spot_size is None:
+        spot_size = g.spot_size
+    if size is None:
+        size = g.size
+    if projection is None:
+        projection = g.projection
+    return color, bgcolor, spot_size, size, projection
+
+
+def generate_params_filter(
+        g,
+        seed=None,
+        start=None,
+        step=None,
+        stop=None):
+    """
+    Filter generate method parameters.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :param seed: random seed
+    :type seed: int
+    :param start: range start point
+    :type start: float
+    :param step: range step size
+    :type step: float
+    :param stop: range stop point
+    :type stop: float
+    :return: filtered seed, start, step and stop
+    """
+    start, step, stop = map(filter_float, [start, step, stop])
+    if start is None:
+        start = g.start
+    if step is None:
+        step = g.step
+    if stop is None:
+        stop = g.stop
+    if seed is None:
+        seed = g.seed
+        if g.seed is None:
+            seed = random.randint(SEED_LOWER_BOUND, SEED_UPPER_BOUND)
+    return seed, start, step, stop
+
+
+def _GI_initializer(g):
+    """
+    Initialize the generative image.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :return: None
+    """
+    g.seed = None
+    g.start = DEFAULT_START
+    g.step = DEFAULT_STEP
+    g.stop = DEFAULT_STOP
+    g.data1 = None
+    g.data2 = None
+    g.color = DEFAULT_COLOR
+    g.bgcolor = DEFAULT_BACKGROUND_COLOR
+    g.spot_size = DEFAULT_SPOT_SIZE
+    g.size = DEFAULT_IMAGE_SIZE
+    g.projection = DEFAULT_PROJECTION
 
 
 def nft_storage_upload(api_key, data):
@@ -154,6 +285,8 @@ def save_data_file(data1, data2, matplotlib_version, file_adr):
     :return: result as dict
     """
     data = {}
+    if data1 is None or data2 is None:
+        raise samilaDataError(SAVE_NO_DATA_ERROR)
     data['data1'] = data1
     data['data2'] = data2
     data['matplotlib_version'] = matplotlib_version
@@ -161,6 +294,46 @@ def save_data_file(data1, data2, matplotlib_version, file_adr):
     try:
         with open(file_adr, 'w') as fp:
             json.dump(data, fp)
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+    return result
+
+
+def save_config_file(g, matplotlib_version, file_adr):
+    """
+    Save config as file.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :param matplotlib_version: matplotlib version
+    :type matplotlib_version: str
+    :param file_adr: file address
+    :type file_adr: str
+    :return: result as dict
+    """
+    data = {}
+    if g.function1_str is None or g.function2_str is None:
+        raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
+    data['f1'] = g.function1_str
+    data['f2'] = g.function2_str
+    data['generate'] = {
+        "seed": g.seed,
+        "start": g.start,
+        "step": g.step,
+        "stop": g.stop
+    }
+    data['plot'] = {
+        "color": g.color,
+        "bgcolor": g.bgcolor,
+        "spot_size": g.spot_size,
+        "projection": g.projection
+    }
+    data['matplotlib_version'] = matplotlib_version
+    result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
+    try:
+        with open(file_adr, 'w') as fp:
+            json.dump(data, fp, indent=4)
     except Exception as e:
         result["status"] = False
         result["message"] = str(e)
@@ -250,18 +423,53 @@ def is_same_data(data1, data2, precision=10**-5):
     return all(is_same)
 
 
-def load_data(data):
+def load_data(g, data):
     """
     Load data file.
 
+    :param g: generative image instance
+    :type g: GenerativeImage
     :param data: prior generated data
     :type data: (io.IOBase & file)
-    :return: (data1, data2)
+    :return: None
     """
     if isinstance(data, io.IOBase):
-        try:
-            data = json.load(data)
-            return data['data1'], data['data2'], data['matplotlib_version']
-        except Exception:
-            raise samilaDataError(DATA_PARSING_ERROR)
+        data = json.load(data)
+        g.data1 = data.get('data1')
+        g.data2 = data.get('data2')
+        if 'matplotlib_version' in data:
+            g.matplotlib_version = data['matplotlib_version']
+        return
     raise samilaDataError(DATA_TYPE_ERROR)
+
+
+def load_config(g, config):
+    """
+    Load config file.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :param config: config JSON file
+    :type config: (io.IOBase & file)
+    :return: None
+    """
+    if isinstance(config, io.IOBase):
+        data = json.load(config)
+        g.function1_str = data.get("f1")
+        g.function2_str = data.get("f2")
+        if 'matplotlib_version' in data:
+            g.matplotlib_version = data['matplotlib_version']
+        generate_config = data.get("generate")
+        if generate_config is not None:
+            g.seed = generate_config.get("seed")
+            g.start = generate_config.get("start", DEFAULT_START)
+            g.step = generate_config.get("step", DEFAULT_STEP)
+            g.stop = generate_config.get("stop", DEFAULT_STOP)
+        plot_config = data.get("plot")
+        if plot_config is not None:
+            g.color = plot_config.get("color", DEFAULT_COLOR)
+            g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
+            g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
+            g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+        return
+    raise samilaConfigError(CONFIG_TYPE_ERROR)

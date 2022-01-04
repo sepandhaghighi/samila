@@ -4,9 +4,9 @@ import random
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
-from .functions import float_range, filter_color, filter_projection, nft_storage_upload
-from .functions import save_data_file, save_fig_file, save_fig_buf, load_data, random_equation_gen
-from .errors import samilaGenerateError
+from .functions import _GI_initializer, plot_params_filter, generate_params_filter
+from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
+from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
 from .params import *
 from warnings import warn
 
@@ -22,7 +22,7 @@ class GenerativeImage:
     >>> GI = GenerativeImage(f1, f2)
     """
 
-    def __init__(self, function1=None, function2=None, data=None):
+    def __init__(self, function1=None, function2=None, data=None, config=None):
         """
         Init method.
 
@@ -32,32 +32,40 @@ class GenerativeImage:
         :type function2: python or lambda function
         :param data: prior generated data
         :type data: (io.IOBase & file)
+        :param config: generative image config
+        :type config: (io.IOBase & file)
         """
+        _GI_initializer(self)
+        self.matplotlib_version = matplotlib.__version__
         self.function1 = function1
-        self.function2 = function2
         self.function1_str = None
+        self.function2 = function2
         self.function2_str = None
         self.fig = None
-        if function1 is None or function2 is None:
-            if data is None:
-                self.function1_str = random_equation_gen()
-                self.function2_str = random_equation_gen()
-                self.function1 = eval("lambda x,y:" + self.function1_str)
-                self.function2 = eval("lambda x,y:" + self.function2_str)
-            else:
-                warn(JUST_DATA_WARNING, RuntimeWarning)
+        if config is not None:
+            load_config(self, config)
         if data is not None:
-            self.data1, self.data2, matplotlib_version = load_data(data)
-            if matplotlib_version != matplotlib.__version__:
-                warn(MATPLOTLIB_VERSION_WARNING.format(
-                    matplotlib_version), RuntimeWarning)
+            load_data(self, data)
+        if self.matplotlib_version != matplotlib.__version__:
+            warn(
+                MATPLOTLIB_VERSION_WARNING.format(
+                    self.matplotlib_version),
+                RuntimeWarning)
+        if self.function1 is None:
+            if self.function1_str is None:
+                self.function1_str = random_equation_gen()
+            self.function1 = eval("lambda x,y:" + self.function1_str)
+        if self.function2 is None:
+            if self.function2_str is None:
+                self.function2_str = random_equation_gen()
+            self.function2 = eval("lambda x,y:" + self.function2_str)
 
     def generate(
             self,
             seed=None,
-            start=DEFAULT_START,
-            step=DEFAULT_STEP,
-            stop=DEFAULT_STOP):
+            start=None,
+            step=None,
+            stop=None):
         """
         Generate a raw format of art.
 
@@ -71,13 +79,11 @@ class GenerativeImage:
         :type stop: float
         :return: None
         """
-        if self.function1 is None or self.function2 is None:
-            raise samilaGenerateError(NO_FUNCTION_ERROR)
+        seed, start, step, stop = generate_params_filter(
+            self, seed, start, step, stop)
+        self.seed = seed
         self.data1 = []
         self.data2 = []
-        self.seed = seed
-        if seed is None:
-            self.seed = random.randint(0, 2 ** 20)
         range1 = list(float_range(start, stop, step))
         range2 = list(float_range(start, stop, step))
         range_prod = list(itertools.product(range1, range2))
@@ -88,11 +94,11 @@ class GenerativeImage:
 
     def plot(
             self,
-            color=DEFAULT_COLOR,
-            bgcolor=DEFAULT_BACKGROUND_COLOR,
-            spot_size=DEFAULT_SPOT_SIZE,
-            size=DEFAULT_IMAGE_SIZE,
-            projection=DEFAULT_PROJECTION):
+            color=None,
+            bgcolor=None,
+            spot_size=None,
+            size=None,
+            projection=None):
         """
         Plot the generated art.
 
@@ -108,12 +114,8 @@ class GenerativeImage:
         :type projection: str
         :return: None
         """
-        color, bgcolor = map(filter_color, [color, bgcolor])
-        if color is None:
-            color = DEFAULT_COLOR
-        if bgcolor is None:
-            bgcolor = DEFAULT_BACKGROUND_COLOR
-        projection = filter_projection(projection)
+        color, bgcolor, spot_size, size, projection = plot_params_filter(
+            self, color, bgcolor, spot_size, size, projection)
         fig = plt.figure()
         fig.set_size_inches(size[0], size[1])
         fig.set_facecolor(bgcolor)
@@ -170,3 +172,13 @@ class GenerativeImage:
             self.data2,
             matplotlib.__version__,
             file_adr)
+
+    def save_config(self, file_adr='config.json'):
+        """
+        Save config into a file.
+
+        :param file_adr: file address
+        :type file_adr: str
+        :return: result as a dict
+        """
+        return save_config_file(self, matplotlib.__version__, file_adr)

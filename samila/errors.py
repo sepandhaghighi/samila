@@ -12,3 +12,15 @@ class samilaGenerateError(Exception):
     """Generate error class."""
 
     pass
+
+
+class samilaPlotError(Exception):
+    """Plot error class."""
+
+    pass
+
+
+class samilaConfigError(Exception):
+    """Config error class."""
+
+    pass
