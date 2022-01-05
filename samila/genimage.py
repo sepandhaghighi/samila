@@ -38,7 +38,7 @@ class GenerativeImage:
         _GI_initializer(self, function1, function2)
         if config is not None:
             load_config(self, config)
-        if data is not None:
+        elif data is not None:
             load_data(self, data)
         if self.matplotlib_version != matplotlib.__version__:
             warn(
