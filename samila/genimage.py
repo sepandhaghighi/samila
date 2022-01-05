@@ -26,22 +26,16 @@ class GenerativeImage:
         """
         Init method.
 
-        :param function1: Function 1
+        :param function1: function 1
         :type function1: python or lambda function
-        :param function2: Function 2
+        :param function2: function 2
         :type function2: python or lambda function
         :param data: prior generated data
         :type data: (io.IOBase & file)
         :param config: generative image config
         :type config: (io.IOBase & file)
         """
-        _GI_initializer(self)
-        self.matplotlib_version = matplotlib.__version__
-        self.function1 = function1
-        self.function1_str = None
-        self.function2 = function2
-        self.function2_str = None
-        self.fig = None
+        _GI_initializer(self, function1, function2)
         if config is not None:
             load_config(self, config)
         if data is not None:

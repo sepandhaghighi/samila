@@ -220,14 +220,24 @@ def generate_params_filter(
     g.seed, g.start, g.step, g.stop = seed, start, step, stop
 
 
-def _GI_initializer(g):
+def _GI_initializer(g, function1, function2):
     """
     Initialize the generative image.
 
     :param g: generative image instance
     :type g: GenerativeImage
+    :param function1: function 1
+    :type function1: python or lambda function
+    :param function2: function 2
+    :type function2: python or lambda function
     :return: None
     """
+    self.matplotlib_version = matplotlib.__version__
+    self.function1 = function1
+    self.function1_str = None
+    self.function2 = function2
+    self.function2_str = None
+    self.fig = None
     g.seed = None
     g.start = DEFAULT_START
     g.step = DEFAULT_STEP
