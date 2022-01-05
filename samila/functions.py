@@ -5,6 +5,7 @@ import requests
 import io
 import json
 import random
+import matplotlib
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION
 from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
@@ -280,18 +281,17 @@ def nft_storage_upload(api_key, data):
         return result
 
 
-def save_data_file(g, matplotlib_version, file_adr):
+def save_data_file(g, file_adr):
     """
     Save data as file.
 
     :param g: generative image instance
     :type g: GenerativeImage
-    :param matplotlib_version: matplotlib version
-    :type matplotlib_version: str
     :param file_adr: file address
     :type file_adr: str
     :return: result as dict
     """
+    matplotlib_version = matplotlib.__version__
     data = {}
     if g.data1 is None or g.data2 is None:
         raise samilaDataError(SAVE_NO_DATA_ERROR)
@@ -314,18 +314,17 @@ def save_data_file(g, matplotlib_version, file_adr):
     return result
 
 
-def save_config_file(g, matplotlib_version, file_adr):
+def save_config_file(g, file_adr):
     """
     Save config as file.
 
     :param g: generative image instance
     :type g: GenerativeImage
-    :param matplotlib_version: matplotlib version
-    :type matplotlib_version: str
     :param file_adr: file address
     :type file_adr: str
     :return: result as dict
     """
+    matplotlib_version = matplotlib.__version__
     data = {}
     if g.function1_str is None or g.function2_str is None:
         raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
