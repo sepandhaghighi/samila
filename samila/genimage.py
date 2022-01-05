@@ -79,13 +79,11 @@ class GenerativeImage:
         :type stop: float
         :return: None
         """
-        seed, start, step, stop = generate_params_filter(
-            self, seed, start, step, stop)
-        self.seed = seed
+        generate_params_filter(self, seed, start, step, stop)
         self.data1 = []
         self.data2 = []
-        range1 = list(float_range(start, stop, step))
-        range2 = list(float_range(start, stop, step))
+        range1 = list(float_range(self.start, self.stop, self.step))
+        range2 = list(float_range(self.start, self.stop, self.step))
         range_prod = list(itertools.product(range1, range2))
         for item in range_prod:
             random.seed(self.seed)
@@ -114,19 +112,18 @@ class GenerativeImage:
         :type projection: str
         :return: None
         """
-        color, bgcolor, spot_size, size, projection = plot_params_filter(
-            self, color, bgcolor, spot_size, size, projection)
+        plot_params_filter(self, color, bgcolor, spot_size, size, projection)
         fig = plt.figure()
-        fig.set_size_inches(size[0], size[1])
-        fig.set_facecolor(bgcolor)
-        ax = fig.add_subplot(111, projection=projection)
-        ax.set_facecolor(bgcolor)
+        fig.set_size_inches(self.size[0], self.size[1])
+        fig.set_facecolor(self.bgcolor)
+        ax = fig.add_subplot(111, projection=self.projection)
+        ax.set_facecolor(self.bgcolor)
         ax.scatter(
             self.data2,
             self.data1,
             alpha=DEFAULT_ALPHA,
-            c=color,
-            s=spot_size)
+            c=self.color,
+            s=self.spot_size)
         ax.set_axis_off()
         ax.patch.set_zorder(-1)
         ax.add_artist(ax.patch)

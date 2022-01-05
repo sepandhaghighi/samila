@@ -162,7 +162,7 @@ def plot_params_filter(
     :type size: tuple
     :param projection: projection type
     :type projection: str
-    :return: filtered color, bgcolor, spot_size, size and projection
+    :return: None
     """
     if g.data1 is None:
         raise samilaPlotError(PLOT_DATA_ERROR.format(1))
@@ -183,7 +183,6 @@ def plot_params_filter(
     if projection is None:
         projection = g.projection
     g.color, g.bgcolor, g.spot_size, g.size, g.projection = color, bgcolor, spot_size, size, projection
-    return color, bgcolor, spot_size, size, projection
 
 
 def generate_params_filter(
@@ -205,7 +204,7 @@ def generate_params_filter(
     :type step: float
     :param stop: range stop point
     :type stop: float
-    :return: filtered seed, start, step and stop
+    :return: None
     """
     start, step, stop = map(filter_float, [start, step, stop])
     if start is None:
@@ -219,7 +218,6 @@ def generate_params_filter(
         if g.seed is None:
             seed = random.randint(SEED_LOWER_BOUND, SEED_UPPER_BOUND)
     g.seed, g.start, g.step, g.stop = seed, start, step, stop
-    return seed, start, step, stop
 
 
 def _GI_initializer(g):
