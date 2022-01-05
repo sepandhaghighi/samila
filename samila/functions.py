@@ -162,7 +162,7 @@ def plot_params_filter(
     :type size: tuple
     :param projection: projection type
     :type projection: str
-    :return: filtered color, bgcolor, spot_size, size and projection
+    :return: None
     """
     if g.data1 is None:
         raise samilaPlotError(PLOT_DATA_ERROR.format(1))
@@ -182,7 +182,7 @@ def plot_params_filter(
         size = g.size
     if projection is None:
         projection = g.projection
-    return color, bgcolor, spot_size, size, projection
+    g.color, g.bgcolor, g.spot_size, g.size, g.projection = color, bgcolor, spot_size, size, projection
 
 
 def generate_params_filter(
@@ -204,7 +204,7 @@ def generate_params_filter(
     :type step: float
     :param stop: range stop point
     :type stop: float
-    :return: filtered seed, start, step and stop
+    :return: None
     """
     start, step, stop = map(filter_float, [start, step, stop])
     if start is None:
@@ -217,7 +217,7 @@ def generate_params_filter(
         seed = g.seed
         if g.seed is None:
             seed = random.randint(SEED_LOWER_BOUND, SEED_UPPER_BOUND)
-    return seed, start, step, stop
+    g.seed, g.start, g.step, g.stop = seed, start, step, stop
 
 
 def _GI_initializer(g):
@@ -270,14 +270,12 @@ def nft_storage_upload(api_key, data):
         return result
 
 
-def save_data_file(data1, data2, matplotlib_version, file_adr):
+def save_data_file(g, matplotlib_version, file_adr):
     """
     Save data as file.
 
-    :param data1: data 1
-    :type data1: list
-    :param data2: data 2
-    :type data2: list
+    :param g: generative image instance
+    :type g: GenerativeImage
     :param matplotlib_version: matplotlib version
     :type matplotlib_version: str
     :param file_adr: file address
@@ -285,10 +283,16 @@ def save_data_file(data1, data2, matplotlib_version, file_adr):
     :return: result as dict
     """
     data = {}
-    if data1 is None or data2 is None:
+    if g.data1 is None or g.data2 is None:
         raise samilaDataError(SAVE_NO_DATA_ERROR)
-    data['data1'] = data1
-    data['data2'] = data2
+    data['data1'] = g.data1
+    data['data2'] = g.data2
+    data['plot'] = {
+        "color": g.color,
+        "bgcolor": g.bgcolor,
+        "spot_size": g.spot_size,
+        "projection": g.projection
+    }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
     try:
@@ -439,6 +443,12 @@ def load_data(g, data):
         g.data2 = data.get('data2')
         if 'matplotlib_version' in data:
             g.matplotlib_version = data['matplotlib_version']
+        plot_config = data.get("plot")
+        if plot_config is not None:
+            g.color = plot_config.get("color", DEFAULT_COLOR)
+            g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
+            g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
+            g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
         return
     raise samilaDataError(DATA_TYPE_ERROR)
 

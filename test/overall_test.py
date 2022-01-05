@@ -106,7 +106,12 @@ True
 >>> result["status"]
 True
 >>> g = GenerativeImage()
+>>> g.generate()
+>>> g.plot(color="white", bgcolor="black", spot_size=0.1)
 >>> result = g.save_config()
+>>> result["status"]
+True
+>>> result = g.save_data()
 >>> result["status"]
 True
 >>> g_ = GenerativeImage(config=open("config.json", 'r'))
@@ -115,6 +120,19 @@ True
 >>> g_.function1_str == g.function1_str
 True
 >>> g_.function2_str == g.function2_str
+True
+>>> g.color == g_.color
+True
+>>> g.bgcolor == g_.bgcolor
+True
+>>> g.spot_size == g_.spot_size
+True
+>>> g_ = GenerativeImage(data=open("data.json", 'r'))
+>>> g.color == g_.color
+True
+>>> g.bgcolor == g_.bgcolor
+True
+>>> g.spot_size == g_.spot_size
 True
 >>> with open("config.json", 'w') as fp:
 ...     json.dump({'f1': 'x'}, fp)
