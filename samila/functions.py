@@ -5,6 +5,7 @@ import requests
 import io
 import json
 import random
+import matplotlib
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION
 from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
@@ -220,14 +221,24 @@ def generate_params_filter(
     g.seed, g.start, g.step, g.stop = seed, start, step, stop
 
 
-def _GI_initializer(g):
+def _GI_initializer(g, function1, function2):
     """
     Initialize the generative image.
 
     :param g: generative image instance
     :type g: GenerativeImage
+    :param function1: function 1
+    :type function1: python or lambda function
+    :param function2: function 2
+    :type function2: python or lambda function
     :return: None
     """
+    g.matplotlib_version = matplotlib.__version__
+    g.function1 = function1
+    g.function1_str = None
+    g.function2 = function2
+    g.function2_str = None
+    g.fig = None
     g.seed = None
     g.start = DEFAULT_START
     g.step = DEFAULT_STEP
@@ -270,18 +281,17 @@ def nft_storage_upload(api_key, data):
         return result
 
 
-def save_data_file(g, matplotlib_version, file_adr):
+def save_data_file(g, file_adr):
     """
     Save data as file.
 
     :param g: generative image instance
     :type g: GenerativeImage
-    :param matplotlib_version: matplotlib version
-    :type matplotlib_version: str
     :param file_adr: file address
     :type file_adr: str
     :return: result as dict
     """
+    matplotlib_version = matplotlib.__version__
     data = {}
     if g.data1 is None or g.data2 is None:
         raise samilaDataError(SAVE_NO_DATA_ERROR)
@@ -304,18 +314,17 @@ def save_data_file(g, matplotlib_version, file_adr):
     return result
 
 
-def save_config_file(g, matplotlib_version, file_adr):
+def save_config_file(g, file_adr):
     """
     Save config as file.
 
     :param g: generative image instance
     :type g: GenerativeImage
-    :param matplotlib_version: matplotlib version
-    :type matplotlib_version: str
     :param file_adr: file address
     :type file_adr: str
     :return: result as dict
     """
+    matplotlib_version = matplotlib.__version__
     data = {}
     if g.function1_str is None or g.function2_str is None:
         raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
