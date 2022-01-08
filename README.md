@@ -82,7 +82,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 ### Source code
-- Download [Version 0.3](https://github.com/sepandhaghighi/samila/archive/v0.3.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
+- Download [Version 0.4](https://github.com/sepandhaghighi/samila/archive/v0.4.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
 - Run `pip install -r requirements.txt` or `pip3 install -r requirements.txt` (Need root access)
 - Run `python3 setup.py install` or `python setup.py install` (Need root access)				
 
@@ -90,7 +90,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install samila==0.3` or `pip3 install samila==0.3` (Need root access)
+- Run `pip install samila==0.4` or `pip3 install samila==0.4` (Need root access)
 
 ### Easy install
 
