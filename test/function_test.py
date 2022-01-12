@@ -14,6 +14,10 @@ False
 (0.2, 0.3, 0.4)
 >>> filter_color(2)
 >>> filter_color(4)
+>>> filter_size(2)
+>>> filter_size((2, 'test'))
+>>> filter_size((2, 3.5))
+(2, 3.5)
 >>> distance_calc("test","test1")
 1
 >>> distance_calc("te1st","test")

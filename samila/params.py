@@ -4,7 +4,7 @@ import math
 from enum import Enum
 from matplotlib import colors as mcolors
 
-SAMILA_VERSION = "0.3"  # pragma: no cover
+SAMILA_VERSION = "0.4"  # pragma: no cover
 
 OVERVIEW = '''
 Samila is a generative art generator written in Python, Samila let's you
@@ -21,7 +21,9 @@ DEFAULT_BACKGROUND_COLOR = "white"
 DEFAULT_ALPHA = 0.1
 DEFAULT_IMAGE_SIZE = (10, 10)
 DEFAULT_SPOT_SIZE = 0.01
-DEFAULT_PROJECTION = None
+DEFAULT_PROJECTION = "rectilinear"
+SEED_LOWER_BOUND = 0
+SEED_UPPER_BOUND = 2**20
 VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
 NFT_STORAGE_API = "https://api.nft.storage/upload"
 NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good."
@@ -29,10 +31,10 @@ FIG_SAVE_SUCCESS_MESSAGE = "Everything seems good."
 DATA_SAVE_SUCCESS_MESSAGE = "Everything seems good."
 NO_FIG_ERROR_MESSAGE = "No figure was found. First run `generate` and `plot` methods."
 DATA_TYPE_ERROR = "Provided data file is not supported. It should be either file or io.IOBase."
-DATA_PARSING_ERROR = "Provided data format is wrong. It should be in JSON format including data1 and data2 fields."
-NO_FUNCTION_ERROR = "At least one of the given functions are None."
-JUST_DATA_WARNING = "Just data is provided, generate method is not available in this mode."
-NOTHING_PROVIDED_WARNING = "Neither function nor data is provided."
+CONFIG_TYPE_ERROR = "Provided config file is not supported. It should be either file or io.IOBase."
+CONFIG_NO_STR_FUNCTION_ERROR = "Config file can't be saved. At least one of the function1_str or function2_str is None."
+PLOT_DATA_ERROR = "Plotting process can't be Done because data{0} is empty. Use generate method first."
+SAVE_NO_DATA_ERROR = "Data file can't be saved. At least one of the data1 or data2 is None."
 MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
 
 
@@ -50,3 +52,30 @@ class Projection(Enum):
     LAMBERT = "lambert"
     MOLLWEIDE = "mollweide"
     RECTILINEAR = "rectilinear"
+
+
+ELEMENTS_LIST = [
+    "{0}*math.cos({1})",
+    "{0}*math.sin({1})",
+    "{0}*{1}",
+    "{0}*abs({1})",
+    "{0}*math.ceil({1})",
+    "{0}*math.floor({1})"]
+
+ARGUMENTS_LIST = [
+    "x*y",
+    "x",
+    "y",
+    "y-x",
+    "x-y",
+    "x+y",
+    "x**2",
+    "y**2",
+    "(x**2)*y",
+    "(y**2)*x",
+    "(x**2)*(y**3)",
+    "(x**3)*(y**2)",
+    "x*(y**3)",
+    "y*(x**3)"]
+
+OPERATORS_LIST = ["+", "-"]
