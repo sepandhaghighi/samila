@@ -114,13 +114,13 @@ Samila is a generative art generator written in Python, Samila let's you create 
 ```pycon
 >>> import random
 >>> import math
->>> def f1(x,y):
+>>> def f1(x, y):
     result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
     return result
->>> def f2(x,y):
+>>> def f2(x, y):
     result = random.uniform(-1,1) * y**3 - math.cos(x**2) + 2*x
     return result
->>> g = GenerativeImage(f1,f2)
+>>> g = GenerativeImage(f1, f2)
 >>> g.generate()
 >>> g.plot()
 >>> g.seed
@@ -132,7 +132,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 ### Projection
 ```pycon
 >>> from samila import Projection
->>> g = GenerativeImage(f1,f2)
+>>> g = GenerativeImage(f1, f2)
 >>> g.generate()
 >>> g.plot(projection=Projection.POLAR)
 >>> g.seed
@@ -157,9 +157,9 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 ### Color
 ```pycon
->>> g = GenerativeImage(f1,f2)
+>>> g = GenerativeImage(f1, f2)
 >>> g.generate()
->>> g.plot(color="yellow",bgcolor="black",projection=Projection.POLAR)
+>>> g.plot(color="yellow", bgcolor="black", projection=Projection.POLAR)
 >>> g.seed
 1018273
 >>> plt.show()
@@ -171,7 +171,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 ### Regeneration
 ```pycon
->>> g = GenerativeImage(f1,f2)
+>>> g = GenerativeImage(f1, f2)
 >>> g.generate(seed=1018273)
 >>> g.plot(projection=Projection.POLAR)
 >>> plt.show()
@@ -237,8 +237,8 @@ We have set of points in the first space (left square) which can be define as fo
 And bellow functions are used for transformation:
 
 ```pycon
->>> def f1(x,y):
-    result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
+>>> def f1(x, y):
+    result = random.uniform(-1,1) * x**2 - math.sin(y**2) + abs(y-x)
     return result
 >>> def f2(x,y):
     result = random.uniform(-1,1) * y**3 - math.cos(x**2) + 2*x
@@ -250,7 +250,7 @@ And bellow functions are used for transformation:
 here we uses `Projection.POLAR` so later space will be the polar space and we have:
 
 ```pycon
->>> g = GenerativeImage(f1,f2)
+>>> g = GenerativeImage(f1, f2)
 >>> g.generate(seed=10)
 >>> g.plot(projection=Projection.POLAR)
 ```
