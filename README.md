@@ -147,7 +147,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 ### Range
 ```pycon
 >>> g = GenerativeImage(f1,f2)
->>> g.generate(start = -2*math.pi,step=0.1,stop=0)
+>>> g.generate(start=-2*math.pi, step=0.01, stop=0)
 >>> g.plot()
 >>> g.seed
 234752
