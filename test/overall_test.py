@@ -5,7 +5,6 @@
 >>> import os
 >>> import pickle
 >>> import socket
->>> import json
 >>> def guard(*args, **kwargs):
 ...     raise Exception("No internet connection!")
 >>> from samila import GenerativeImage, Projection
@@ -105,64 +104,7 @@ True
 >>> result = g.save_data()
 >>> result["status"]
 True
->>> g = GenerativeImage()
->>> g.generate()
->>> g.plot(color="white", bgcolor="black", spot_size=0.1)
->>> result = g.save_config()
->>> result["status"]
-True
->>> result = g.save_data()
->>> result["status"]
-True
->>> g_ = GenerativeImage(config=open("config.json", 'r'))
->>> g_.seed == g.seed
-True
->>> g_.function1_str == g.function1_str
-True
->>> g_.function2_str == g.function2_str
-True
->>> g.color == g_.color
-True
->>> g.bgcolor == g_.bgcolor
-True
->>> g.spot_size == g_.spot_size
-True
->>> g_ = GenerativeImage(data=open("data.json", 'r'))
->>> g.color == g_.color
-True
->>> g.bgcolor == g_.bgcolor
-True
->>> g.spot_size == g_.spot_size
-True
->>> with open("config.json", 'w') as fp:
-...     json.dump({'f1': 'x'}, fp)
->>> g = GenerativeImage(config=open("config.json", 'r'))
->>> g.function1_str
-'x'
->>> with open("config.json", 'w') as fp:
-...     json.dump({'f2': 'x'}, fp)
->>> g = GenerativeImage(config=open("config.json", 'r'))
->>> g.function2_str
-'x'
->>> with open("config.json", 'w') as fp:
-...     json.dump({'f1': 'y', 'f2': 'x'}, fp)
->>> g = GenerativeImage(config=open("config.json", 'r'))
->>> g.function1_str
-'y'
->>> g.function2_str
-'x'
->>> result = g.save_config(file_adr="")
->>> result["status"]
-False
->>> with open("data.json", 'w') as fp:
-...     json.dump({'data1': [0], 'data2': [1]}, fp)
->>> g = GenerativeImage(data=open("data.json", 'r'))
->>> g.data1
-[0]
->>> g.data2
-[1]
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 >>> os.remove("data.json")
->>> os.remove("config.json")
 """

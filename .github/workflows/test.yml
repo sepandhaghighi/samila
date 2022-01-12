@@ -48,7 +48,7 @@ jobs:
     - name: Other tests
       run: |
         python -m vulture samila/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
-        python -m bandit -r samila -s B311,B307
+        python -m bandit -r samila -s B311
         python -m pydocstyle -v --match-dir=samila
       if: matrix.python-version == 3.7
     - name: Codecov

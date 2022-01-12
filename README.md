@@ -82,7 +82,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 ### Source code
-- Download [Version 0.4](https://github.com/sepandhaghighi/samila/archive/v0.4.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
+- Download [Version 0.3](https://github.com/sepandhaghighi/samila/archive/v0.3.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
 - Run `pip install -r requirements.txt` or `pip3 install -r requirements.txt` (Need root access)
 - Run `python3 setup.py install` or `python setup.py install` (Need root access)				
 
@@ -90,7 +90,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install samila==0.4` or `pip3 install samila==0.4` (Need root access)
+- Run `pip install samila==0.3` or `pip3 install samila==0.3` (Need root access)
 
 ### Easy install
 
@@ -99,21 +99,12 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 ## Usage
 
-### Magic
-```pycon
->>> import matplotlib.pyplot as plt
->>> from samila import GenerativeImage
->>> g = GenerativeImage()
->>> g.generate()
->>> g.plot()
->>> plt.show()
-```
-<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/7.png">	
-
 ### Basic
 ```pycon
 >>> import random
 >>> import math
+>>> import matplotlib.pyplot as plt
+>>> from samila import GenerativeImage
 >>> def f1(x,y):
     result = random.uniform(-1,1) * x**2  - math.sin(y**2) + abs(y-x)
     return result
@@ -210,18 +201,6 @@ So you can load it into a `GenerativeImage` instance later by
 
 ```pycon
 >>> g = GenerativeImage(data=open('test.json', 'r'))
-```
-
-### Save config
-Save generated image config. It contains string formats of functions which is also human readable.
-
-```pycon
->>> g.save_config(file_adr="config.json")
-```
-So you can load it into a `GenerativeImage` instance later by
-
-```pycon
->>> g = GenerativeImage(config=open('config.json', 'r'))
 ```
 
 ## Mathematical details

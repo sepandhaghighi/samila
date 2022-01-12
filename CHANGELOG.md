@@ -5,32 +5,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-## [0.4] - 2022-01-12
-### Added
-- `PLOT_DATA_ERROR` error message
-- `_GI_initializer` function
-- `generate_params_filter` function
-- `plot_params_filter` function
-- `filter_size` function
-- `save_config` method
-- `load_config` function
-- `save_config_file` function
-- `samilaConfigError` class
-- `samilaPlotError` class
-- `filter_float` function
-- Random equations mode
-- `function1_str` attribute
-- `function2_str` attribute
-### Changed
-- `plot` section added to data file
-- `edgecolor` changed to `c` in `plot` method
-- `config` parameter added to GenerativeImage `__init__`
-- `filter_projection` function edited
-- Test system updated
-### Removed
-- `NO_FUNCTION_ERROR` error message
-- `DATA_PARSING_ERROR` error message
-- `JUST_DATA_WARNING` warning message
 ## [0.3] - 2021-11-10
 ### Added
 - Discord channel
@@ -69,8 +43,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `generate` method
 - `nft_storage` method
 
-[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v0.4...dev
-[0.4]: https://github.com/sepandhaghighi/samila/compare/v0.3...v0.4
+[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v0.3...dev
 [0.3]: https://github.com/sepandhaghighi/samila/compare/v0.2...v0.3
 [0.2]: https://github.com/sepandhaghighi/samila/compare/v0.1...v0.2
 [0.1]: https://github.com/sepandhaghighi/samila/compare/1058677...v0.1
