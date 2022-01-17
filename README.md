@@ -212,6 +212,33 @@ So you can load it into a `GenerativeImage` instance later by
 >>> g = GenerativeImage(data=open('data.json', 'r'))
 ```
 
+Data structure:
+```
+{
+  "plot": {
+    "projection": "polar",
+    "bgcolor": "black",
+    "color": "snow",
+    "spot_size": 0.01
+  },
+  "matplotlib_version": "3.0.3",
+  "data1": [
+    0.3886741692042526,
+    22.57390286376703,
+    -0.1646310981668766,
+    66.23632344600155
+    ...
+  ],
+  "data2": [
+    -0.14588750183600108,
+    20.197945942677833,
+    0.5485453260942901,
+    -589.3284610518896
+	...
+  ]
+}
+```
+
 ### Save config
 Save generated image config. It contains string formats of functions which is also human readable.
 
@@ -222,6 +249,28 @@ So you can load it into a `GenerativeImage` instance later by
 
 ```pycon
 >>> g = GenerativeImage(config=open('config.json', 'r'))
+```
+
+Config structure:
+
+```
+{
+    "matplotlib_version": "3.0.3",
+    "generate": {
+        "seed": 379184,
+        "stop": 3.141592653589793,
+        "step": 0.01,
+        "start": -3.141592653589793
+    },
+    "f2": "random.uniform(-1,1)*math.cos(x*(y**3))+random.uniform(-1,1)*math.ceil(y-x)-random.uniform(-1,1)*math.cos((x**3)*(y**2))-random.uniform(-1,1)*math.floor(y-x)+random.uniform(-1,1)*abs(x*(y**3))-random.uniform(-1,1)*math.ceil(x)+random.uniform(-1,1)*math.sin(y**2)+random.uniform(-1,1)*math.ceil(y**2)",
+    "f1": "random.uniform(-1,1)*math.ceil(y)-random.uniform(-1,1)*y**2+random.uniform(-1,1)*abs(y-x)-random.uniform(-1,1)*math.cos((x**2)*y)+random.uniform(-1,1)*math.sin(x*y)-random.uniform(-1,1)*math.floor((x**2)*y)",
+    "plot": {
+        "color": "snow",
+        "bgcolor": "black",
+        "projection": "polar",
+        "spot_size": 0.01
+    }
+}
 ```
 
 ## Mathematical details
