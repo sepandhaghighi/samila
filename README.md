@@ -212,7 +212,7 @@ So you can load it into a `GenerativeImage` instance later by
 >>> g = GenerativeImage(data=open('data.json', 'r'))
 ```
 
-Config structure:
+Data structure:
 ```JSON
 {
   "plot": {
@@ -249,7 +249,7 @@ So you can load it into a `GenerativeImage` instance later by
 >>> g = GenerativeImage(config=open('config.json', 'r'))
 ```
 
-Data structure:
+Config structure:
 
 ```JSON
 {
