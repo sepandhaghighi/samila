@@ -212,8 +212,8 @@ So you can load it into a `GenerativeImage` instance later by
 >>> g = GenerativeImage(data=open('data.json', 'r'))
 ```
 
-Data structure:
-```
+Structure:
+```JSON
 {
   "plot": {
     "projection": "polar",
@@ -251,9 +251,9 @@ So you can load it into a `GenerativeImage` instance later by
 >>> g = GenerativeImage(config=open('config.json', 'r'))
 ```
 
-Config structure:
+Structure:
 
-```
+```JSON
 {
     "matplotlib_version": "3.0.3",
     "generate": {
