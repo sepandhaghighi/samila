@@ -204,12 +204,12 @@ Save generated image in higher resolutions
 Save generated image data
 
 ```pycon
->>> g.save_data(file_adr="test.json")
+>>> g.save_data(file_adr="data.json")
 ```
 So you can load it into a `GenerativeImage` instance later by
 
 ```pycon
->>> g = GenerativeImage(data=open('test.json', 'r'))
+>>> g = GenerativeImage(data=open('data.json', 'r'))
 ```
 
 ### Save config
