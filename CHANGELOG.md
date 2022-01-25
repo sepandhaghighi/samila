@@ -6,8 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `demo.ipynb` notebook
+- Demo notebook
 ### Changed
+- Random mode modified
 - `README.md` updated
 ## [0.4] - 2022-01-13
 ### Added
