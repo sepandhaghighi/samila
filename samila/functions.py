@@ -371,7 +371,7 @@ def save_fig_file(figure, file_adr, depth):
     try:
         figure.savefig(
             file_adr,
-            dpi=depth * figure.dpi,
+            dpi=depth*figure.dpi,
             facecolor=figure.get_facecolor(),
             edgecolor='none')
         return result
