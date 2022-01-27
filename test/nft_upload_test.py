@@ -19,13 +19,6 @@
 >>> try_limit = 10
 >>> status = False
 >>> while(status == False and counter<try_limit):
-...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY)
-...     counter = counter + 1
-...     status = result["status"]
-...     time.sleep(10)
->>> status
-True
->>> while(status == False and counter<try_limit):
 ...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, depth=3)
 ...     counter = counter + 1
 ...     status = result["status"]
