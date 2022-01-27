@@ -123,7 +123,7 @@ class GenerativeImage:
         ax.add_artist(ax.patch)
         self.fig = fig
 
-    def nft_storage(self, api_key, depth=1):
+    def nft_storage(self, api_key, depth=DEFAULT_DEPTH):
         """
         Upload image to nft.storage.
 
@@ -140,7 +140,7 @@ class GenerativeImage:
         response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
         return response
 
-    def save_image(self, file_adr, depth=1):
+    def save_image(self, file_adr, depth=DEFAULT_DEPTH):
         """
         Save generated image.
 
