@@ -21,6 +21,7 @@
    * [Mathematical Details](https://github.com/sepandhaghighi/samila#mathematical-details)
    * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
    * [Dependencies](https://github.com/sepandhaghighi/samila#dependencies)
+   * [Social Media](https://github.com/sepandhaghighi/samila#social-media)
    * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
    * [References](https://github.com/sepandhaghighi/samila#references)
    * [Authors](https://github.com/sepandhaghighi/samila/blob/master/AUTHORS.md)
@@ -330,6 +331,13 @@ You can also join our discord server
 		<td align="center"><a href="https://requires.io/github/sepandhaghighi/samila/requirements/?branch=dev"><img src="https://requires.io/github/sepandhaghighi/samila/requirements.svg?branch=dev" alt="Requirements Status" /></a></td>
 	</tr>
 </table>
+
+## Social media
+
+1. [Instagram](https://www.instagram.com/samila_arts)
+2. [Telegram](https://t.me/samila_arts)
+3. [Twitter](https://twitter.com/samila_arts)
+4. [Discord](https://discord.com/invite/94bz5QGZWb)
 
 
 ## References			
