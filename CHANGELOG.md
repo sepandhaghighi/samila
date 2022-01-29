@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Demo notebook
 ### Changed
+- `depth` parameter added to `nft_storage` method
+- `depth` parameter added to `save_fig_buf` function
 - Random mode modified
 - `README.md` updated
 ## [0.4] - 2022-01-13
