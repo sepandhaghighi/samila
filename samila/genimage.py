@@ -171,3 +171,13 @@ class GenerativeImage:
         :return: result as a dict
         """
         return save_config_file(self, file_adr)
+
+    def __del__(self):
+        """
+        Deconstructor.
+
+        :return:None
+        """
+        if self.fig!=None:
+            self.fig.clf()
+            plt.close(self.fig)
