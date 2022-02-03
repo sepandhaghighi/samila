@@ -90,7 +90,8 @@ class GenerativeImage:
             bgcolor=None,
             spot_size=None,
             size=None,
-            projection=None):
+            projection=None,
+            alpha=None):
         """
         Plot the generated art.
 
@@ -106,7 +107,7 @@ class GenerativeImage:
         :type projection: str
         :return: None
         """
-        plot_params_filter(self, color, bgcolor, spot_size, size, projection)
+        plot_params_filter(self, color, bgcolor, spot_size, size, projection, alpha)
         fig = plt.figure()
         fig.set_size_inches(self.size[0], self.size[1])
         fig.set_facecolor(self.bgcolor)
@@ -115,7 +116,7 @@ class GenerativeImage:
         ax.scatter(
             self.data2,
             self.data1,
-            alpha=DEFAULT_ALPHA,
+            alpha=self.alpha,
             c=self.color,
             s=self.spot_size)
         ax.set_axis_off()
