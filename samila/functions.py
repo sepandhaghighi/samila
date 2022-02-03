@@ -378,7 +378,7 @@ def save_fig_file(figure, file_adr, depth):
     try:
         figure.savefig(
             file_adr,
-            dpi=depth * figure.dpi,
+            dpi=depth*figure.dpi,
             facecolor=figure.get_facecolor(),
             edgecolor='none')
         return result
@@ -388,12 +388,14 @@ def save_fig_file(figure, file_adr, depth):
         return result
 
 
-def save_fig_buf(figure):
+def save_fig_buf(figure, depth):
     """
     Save figure as buffer.
 
     :param figure: matplotlib figure
     :type figure: matplotlib.figure.Figure
+    :param depth: image depth
+    :type depth: float
     :return: result as dict
     """
     if figure is None:
@@ -406,6 +408,7 @@ def save_fig_buf(figure):
         buf = io.BytesIO()
         figure.savefig(
             buf,
+            dpi=depth*figure.dpi,
             format='png',
             facecolor=figure.get_facecolor(),
             edgecolor='none')

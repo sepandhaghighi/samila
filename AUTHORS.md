@@ -6,4 +6,5 @@
 
 # Other Contributors #
 - Mohammad Hosein Moslemi - Sharif University Of Technology - [@mhmoslemi2338](https://github.com/mhmoslemi2338)
+- Evan Slack - [@evanofslack](https://github.com/evanofslack)
 ----------

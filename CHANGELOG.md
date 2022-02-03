@@ -5,8 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- `alpha` parameter added
+### Added
+- `alpha` attribute
+- Demo notebook
 ### Changed
+- `depth` parameter added to `nft_storage` method
+- `depth` parameter added to `save_fig_buf` function
+- Random mode modified
 - `README.md` updated
 ## [0.4] - 2022-01-13
 ### Added
