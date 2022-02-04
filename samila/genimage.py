@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Samila generative image."""
 import random
+import gc
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
@@ -172,3 +173,16 @@ class GenerativeImage:
         :return: result as a dict
         """
         return save_config_file(self, file_adr)
+
+    def __del__(self):
+        """
+        Deconstructor.
+
+        :return:None
+        """
+        if self.fig is not None:
+            self.fig.clf()
+            plt.close(self.fig)
+        del(self.data1)
+        del(self.data2)
+        gc.collect()
