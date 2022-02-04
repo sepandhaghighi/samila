@@ -164,7 +164,7 @@ def plot_params_filter(
     :type size: tuple
     :param projection: projection type
     :type projection: str
-    :param alpha: point alpha
+    :param alpha: point transparency
     :type alpha: float
     :return: None
     """
@@ -308,7 +308,8 @@ def save_data_file(g, file_adr):
         "color": g.color,
         "bgcolor": g.bgcolor,
         "spot_size": g.spot_size,
-        "projection": g.projection
+        "projection": g.projection,
+        "alpha": g.alpha
     }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
@@ -347,7 +348,8 @@ def save_config_file(g, file_adr):
         "color": g.color,
         "bgcolor": g.bgcolor,
         "spot_size": g.spot_size,
-        "projection": g.projection
+        "projection": g.projection,
+        "alpha": g.alpha
     }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
@@ -378,7 +380,7 @@ def save_fig_file(figure, file_adr, depth):
     try:
         figure.savefig(
             file_adr,
-            dpi=depth*figure.dpi,
+            dpi=depth * figure.dpi,
             facecolor=figure.get_facecolor(),
             edgecolor='none')
         return result
@@ -408,7 +410,7 @@ def save_fig_buf(figure, depth):
         buf = io.BytesIO()
         figure.savefig(
             buf,
-            dpi=depth*figure.dpi,
+            dpi=depth * figure.dpi,
             format='png',
             facecolor=figure.get_facecolor(),
             edgecolor='none')
@@ -468,6 +470,7 @@ def load_data(g, data):
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+            g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
         return
     raise samilaDataError(DATA_TYPE_ERROR)
 
@@ -500,5 +503,6 @@ def load_config(g, config):
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+            g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
         return
     raise samilaConfigError(CONFIG_TYPE_ERROR)

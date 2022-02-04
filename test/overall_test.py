@@ -161,6 +161,9 @@ False
 [0]
 >>> g.data2
 [1]
+>>> g_ = GenerativeImage()
+>>> del(g)
+>>> del(g_)
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 >>> os.remove("data.json")
