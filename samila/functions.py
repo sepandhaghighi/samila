@@ -308,7 +308,8 @@ def save_data_file(g, file_adr):
         "color": g.color,
         "bgcolor": g.bgcolor,
         "spot_size": g.spot_size,
-        "projection": g.projection
+        "projection": g.projection,
+        "alpha": g.alpha
     }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
@@ -347,7 +348,8 @@ def save_config_file(g, file_adr):
         "color": g.color,
         "bgcolor": g.bgcolor,
         "spot_size": g.spot_size,
-        "projection": g.projection
+        "projection": g.projection,
+        "alpha": g.alpha
     }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
