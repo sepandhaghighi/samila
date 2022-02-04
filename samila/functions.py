@@ -470,6 +470,7 @@ def load_data(g, data):
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+            g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
         return
     raise samilaDataError(DATA_TYPE_ERROR)
 
@@ -502,5 +503,6 @@ def load_config(g, config):
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+            g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
         return
     raise samilaConfigError(CONFIG_TYPE_ERROR)
