@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `alpha` attribute
 - Demo notebook
 ### Changed
 - `depth` parameter added to `nft_storage` method
