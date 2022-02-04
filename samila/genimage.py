@@ -106,6 +106,8 @@ class GenerativeImage:
         :type size: tuple
         :param projection: projection type
         :type projection: str
+        :param alpha: point transparency
+        :type alpha: float
         :return: None
         """
         plot_params_filter(self, color, bgcolor, spot_size, size, projection, alpha)

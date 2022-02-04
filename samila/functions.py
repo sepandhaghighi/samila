@@ -164,7 +164,7 @@ def plot_params_filter(
     :type size: tuple
     :param projection: projection type
     :type projection: str
-    :param alpha: point alpha
+    :param alpha: point transparency
     :type alpha: float
     :return: None
     """
