@@ -385,5 +385,9 @@ zil1knmz8zj88cf0exr2ry7nav9elehxfcgqu3c5e5
 <a href="http://www.coffeete.ir/opensource">
 <img src="http://www.coffeete.ir/images/buttons/lemonchiffon.png" style="width:260px;" />
 </a>
+<h4>Gitcoin</h4>
+<a href="https://gitcoin.co/grants/3915/samila-generative-art-generator">
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/gitcoin_btn.png" style="width:260px;" />
+</a>
 
 
