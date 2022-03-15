@@ -19,7 +19,7 @@
    * [Installation](https://github.com/sepandhaghighi/samila#installation)
    * [Usage](https://github.com/sepandhaghighi/samila#usage)
    * [Mathematical Details](https://github.com/sepandhaghighi/samila#mathematical-details)
-   * [Try Samila in Your Browser](https://github.com/sepandhaghighi/samila#try-pycm-in-your-browser)
+   * [Try Samila in Your Browser](https://github.com/sepandhaghighi/samila#try-samila-in-your-browser)
    * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
    * [Dependencies](https://github.com/sepandhaghighi/samila#dependencies)
    * [Social Media](https://github.com/sepandhaghighi/samila#social-media)
