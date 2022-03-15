@@ -19,6 +19,7 @@
    * [Installation](https://github.com/sepandhaghighi/samila#installation)
    * [Usage](https://github.com/sepandhaghighi/samila#usage)
    * [Mathematical Details](https://github.com/sepandhaghighi/samila#mathematical-details)
+   * [Try Samila in Your Browser](https://github.com/sepandhaghighi/samila#try-pycm-in-your-browser)
    * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
    * [Dependencies](https://github.com/sepandhaghighi/samila#dependencies)
    * [Social Media](https://github.com/sepandhaghighi/samila#social-media)
@@ -305,6 +306,15 @@ here we uses `Projection.POLAR` so later space will be the polar space and we ha
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S2_.jpg">
 
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/6.png">
+
+## Try Samila in your browser!
+Samila can be used online in interactive Jupyter Notebooks via the Binder or Colab services! Try it out now! :
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sepandhaghighi/samila/master)
+
+[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sepandhaghighi/samila/blob/master)
+
+* Check `examples` folder 
 
 ## Issues & bug reports			
 
