@@ -8,6 +8,9 @@
   <img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg" />
 </a>
 <a href="https://badge.fury.io/py/samila"><img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18"></a>
+<a href="https://colab.research.google.com/github/sepandhaghighi/samila/blob/master">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Samila-Colab"/>
+</a>
 <a href="https://discord.com/invite/94bz5QGZWb">
   <img src="https://img.shields.io/discord/900055829225562162.svg" alt="Discord Channel">
 </a>
@@ -184,7 +187,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 Upload generated image directly to [NFT.storage](https://NFT.storage)
 
 ```pycon
->>> g.nft_storage(api_key=YOUR_API_KEY)
+>>> g.nft_storage(api_key="YOUR_API_KEY")
 {'status': True, 'message': 'Everything seems good'}
 ```
 
