@@ -4,7 +4,7 @@ import math
 from enum import Enum
 from matplotlib import colors as mcolors
 
-SAMILA_VERSION = "0.4"  # pragma: no cover
+SAMILA_VERSION = "0.5"  # pragma: no cover
 
 OVERVIEW = '''
 Samila is a generative art generator written in Python, Samila let's you
@@ -21,6 +21,7 @@ DEFAULT_BACKGROUND_COLOR = "white"
 DEFAULT_ALPHA = 0.1
 DEFAULT_IMAGE_SIZE = (10, 10)
 DEFAULT_SPOT_SIZE = 0.01
+DEFAULT_DEPTH = 1
 DEFAULT_PROJECTION = "rectilinear"
 SEED_LOWER_BOUND = 0
 SEED_UPPER_BOUND = 2**20
@@ -55,6 +56,8 @@ class Projection(Enum):
 
 
 ELEMENTS_LIST = [
+    "{0}*math.sqrt(abs({1}))",
+    "{0}*math.log(abs({1})+1)",
     "{0}*math.cos({1})",
     "{0}*math.sin({1})",
     "{0}*{1}",

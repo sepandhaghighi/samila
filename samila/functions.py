@@ -7,7 +7,7 @@ import json
 import random
 import matplotlib
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE
-from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION
+from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA
 from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
@@ -147,7 +147,8 @@ def plot_params_filter(
         bgcolor=None,
         spot_size=None,
         size=None,
-        projection=None):
+        projection=None,
+        alpha=None):
     """
     Filter plot method parameters.
 
@@ -163,6 +164,8 @@ def plot_params_filter(
     :type size: tuple
     :param projection: projection type
     :type projection: str
+    :param alpha: point transparency
+    :type alpha: float
     :return: None
     """
     if g.data1 is None:
@@ -171,6 +174,7 @@ def plot_params_filter(
         raise samilaPlotError(PLOT_DATA_ERROR.format(2))
     color, bgcolor = map(filter_color, [color, bgcolor])
     projection = filter_projection(projection)
+    alpha = filter_float(alpha)
     spot_size = filter_float(spot_size)
     size = filter_size(size)
     if color is None:
@@ -183,7 +187,9 @@ def plot_params_filter(
         size = g.size
     if projection is None:
         projection = g.projection
-    g.color, g.bgcolor, g.spot_size, g.size, g.projection = color, bgcolor, spot_size, size, projection
+    if alpha is None:
+        alpha = g.alpha
+    g.color, g.bgcolor, g.spot_size, g.size, g.projection, g.alpha = color, bgcolor, spot_size, size, projection, alpha
 
 
 def generate_params_filter(
@@ -250,6 +256,7 @@ def _GI_initializer(g, function1, function2):
     g.spot_size = DEFAULT_SPOT_SIZE
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
+    g.alpha = DEFAULT_ALPHA
 
 
 def nft_storage_upload(api_key, data):
@@ -301,7 +308,8 @@ def save_data_file(g, file_adr):
         "color": g.color,
         "bgcolor": g.bgcolor,
         "spot_size": g.spot_size,
-        "projection": g.projection
+        "projection": g.projection,
+        "alpha": g.alpha
     }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
@@ -340,7 +348,8 @@ def save_config_file(g, file_adr):
         "color": g.color,
         "bgcolor": g.bgcolor,
         "spot_size": g.spot_size,
-        "projection": g.projection
+        "projection": g.projection,
+        "alpha": g.alpha
     }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
@@ -381,12 +390,14 @@ def save_fig_file(figure, file_adr, depth):
         return result
 
 
-def save_fig_buf(figure):
+def save_fig_buf(figure, depth):
     """
     Save figure as buffer.
 
     :param figure: matplotlib figure
     :type figure: matplotlib.figure.Figure
+    :param depth: image depth
+    :type depth: float
     :return: result as dict
     """
     if figure is None:
@@ -399,6 +410,7 @@ def save_fig_buf(figure):
         buf = io.BytesIO()
         figure.savefig(
             buf,
+            dpi=depth * figure.dpi,
             format='png',
             facecolor=figure.get_facecolor(),
             edgecolor='none')
@@ -458,6 +470,7 @@ def load_data(g, data):
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+            g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
         return
     raise samilaDataError(DATA_TYPE_ERROR)
 
@@ -490,5 +503,6 @@ def load_config(g, config):
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+            g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
         return
     raise samilaConfigError(CONFIG_TYPE_ERROR)

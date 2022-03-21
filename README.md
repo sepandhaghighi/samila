@@ -8,6 +8,9 @@
   <img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg" />
 </a>
 <a href="https://badge.fury.io/py/samila"><img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18"></a>
+<a href="https://colab.research.google.com/github/sepandhaghighi/samila/blob/master">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Samila-Colab"/>
+</a>
 <a href="https://discord.com/invite/94bz5QGZWb">
   <img src="https://img.shields.io/discord/900055829225562162.svg" alt="Discord Channel">
 </a>
@@ -19,8 +22,10 @@
    * [Installation](https://github.com/sepandhaghighi/samila#installation)
    * [Usage](https://github.com/sepandhaghighi/samila#usage)
    * [Mathematical Details](https://github.com/sepandhaghighi/samila#mathematical-details)
+   * [Try Samila in Your Browser](https://github.com/sepandhaghighi/samila#try-samila-in-your-browser)
    * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
    * [Dependencies](https://github.com/sepandhaghighi/samila#dependencies)
+   * [Social Media](https://github.com/sepandhaghighi/samila#social-media)
    * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
    * [References](https://github.com/sepandhaghighi/samila#references)
    * [Authors](https://github.com/sepandhaghighi/samila/blob/master/AUTHORS.md)
@@ -82,7 +87,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 ### Source code
-- Download [Version 0.4](https://github.com/sepandhaghighi/samila/archive/v0.4.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
+- Download [Version 0.5](https://github.com/sepandhaghighi/samila/archive/v0.5.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
 - Run `pip install -r requirements.txt` or `pip3 install -r requirements.txt` (Need root access)
 - Run `python3 setup.py install` or `python setup.py install` (Need root access)				
 
@@ -90,7 +95,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install samila==0.4` or `pip3 install samila==0.4` (Need root access)
+- Run `pip install samila==0.5` or `pip3 install samila==0.5` (Need root access)
 
 ### Easy install
 
@@ -182,7 +187,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 Upload generated image directly to [NFT.storage](https://NFT.storage)
 
 ```pycon
->>> g.nft_storage(api_key=YOUR_API_KEY)
+>>> g.nft_storage(api_key="YOUR_API_KEY")
 {'status': True, 'message': 'Everything seems good'}
 ```
 
@@ -204,12 +209,37 @@ Save generated image in higher resolutions
 Save generated image data
 
 ```pycon
->>> g.save_data(file_adr="test.json")
+>>> g.save_data(file_adr="data.json")
 ```
 So you can load it into a `GenerativeImage` instance later by
 
 ```pycon
->>> g = GenerativeImage(data=open('test.json', 'r'))
+>>> g = GenerativeImage(data=open('data.json', 'r'))
+```
+
+Data structure:
+```JSON
+{
+  "plot": {
+    "projection": "polar",
+    "bgcolor": "black",
+    "color": "snow",
+    "spot_size": 0.01
+  },
+  "matplotlib_version": "3.0.3",
+  "data1": [
+    0.3886741692042526,
+    22.57390286376703,
+    -0.1646310981668766,
+    66.23632344600155
+  ],
+  "data2": [
+    -0.14588750183600108,
+    20.197945942677833,
+    0.5485453260942901,
+    -589.3284610518896
+  ]
+}
 ```
 
 ### Save config
@@ -222,6 +252,28 @@ So you can load it into a `GenerativeImage` instance later by
 
 ```pycon
 >>> g = GenerativeImage(config=open('config.json', 'r'))
+```
+
+Config structure:
+
+```JSON
+{
+    "matplotlib_version": "3.0.3",
+    "generate": {
+        "seed": 379184,
+        "stop": 3.141592653589793,
+        "step": 0.01,
+        "start": -3.141592653589793
+    },
+    "f2": "random.uniform(-1,1)*math.cos(x*(y**3))+random.uniform(-1,1)*math.ceil(y-x)",
+    "f1": "random.uniform(-1,1)*math.ceil(y)-random.uniform(-1,1)*y**2+random.uniform(-1,1)*abs(y-x)",
+    "plot": {
+        "color": "snow",
+        "bgcolor": "black",
+        "projection": "polar",
+        "spot_size": 0.01
+    }
+}
 ```
 
 ## Mathematical details
@@ -258,6 +310,15 @@ here we uses `Projection.POLAR` so later space will be the polar space and we ha
 
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/6.png">
 
+## Try Samila in your browser!
+Samila can be used online in interactive Jupyter Notebooks via the Binder or Colab services! Try it out now! :
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sepandhaghighi/samila/master)
+
+[![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sepandhaghighi/samila/blob/master)
+
+* Check `examples` folder 
+
 ## Issues & bug reports			
 
 Just fill an issue and describe it. We'll check it ASAP!
@@ -283,6 +344,13 @@ You can also join our discord server
 		<td align="center"><a href="https://requires.io/github/sepandhaghighi/samila/requirements/?branch=dev"><img src="https://requires.io/github/sepandhaghighi/samila/requirements.svg?branch=dev" alt="Requirements Status" /></a></td>
 	</tr>
 </table>
+
+## Social media
+
+1. [Instagram](https://www.instagram.com/samila_arts)
+2. [Telegram](https://t.me/samila_arts)
+3. [Twitter](https://twitter.com/samila_arts)
+4. [Discord](https://discord.com/invite/94bz5QGZWb)
 
 
 ## References			
@@ -329,6 +397,10 @@ zil1knmz8zj88cf0exr2ry7nav9elehxfcgqu3c5e5
 <h4>Coffeete</h4>
 <a href="http://www.coffeete.ir/opensource">
 <img src="http://www.coffeete.ir/images/buttons/lemonchiffon.png" style="width:260px;" />
+</a>
+<h4>Gitcoin</h4>
+<a href="https://gitcoin.co/grants/3915/samila-generative-art-generator">
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/gitcoin_btn.png" style="width:260px;" />
 </a>
 
 

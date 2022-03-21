@@ -51,6 +51,11 @@ jobs:
         python -m bandit -r samila -s B311,B307
         python -m pydocstyle -v --match-dir=samila
       if: matrix.python-version == 3.7
+    - name: Notebook check
+      run: |
+        pip install notebook>=5.2.2
+        python otherfiles/notebook_check.py
+      if: matrix.python-version == 3.7 && matrix.os == 'ubuntu-latest'
     - name: Codecov
       run: |
         codecov

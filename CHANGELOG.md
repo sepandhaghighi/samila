@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.5] - 2022-03-21
+### Added
+- `__del__` method
+- Demo notebook
+### Changed
+- `depth` parameter added to `nft_storage` method
+- `depth` parameter added to `save_fig_buf` function
+- `alpha` parameter added to `plot` method
+- `alpha` parameter added to `plot_params_filter` function
+- Random mode modified
+- `README.md` updated
 ## [0.4] - 2022-01-13
 ### Added
 - `PLOT_DATA_ERROR` error message
@@ -70,7 +81,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `generate` method
 - `nft_storage` method
 
-[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v0.4...dev
+[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v0.5...dev
+[0.5]: https://github.com/sepandhaghighi/samila/compare/v0.4...v0.5
 [0.4]: https://github.com/sepandhaghighi/samila/compare/v0.3...v0.4
 [0.3]: https://github.com/sepandhaghighi/samila/compare/v0.2...v0.3
 [0.2]: https://github.com/sepandhaghighi/samila/compare/v0.1...v0.2

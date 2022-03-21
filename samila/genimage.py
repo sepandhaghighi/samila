@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Samila generative image."""
 import random
+import gc
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
@@ -90,7 +91,8 @@ class GenerativeImage:
             bgcolor=None,
             spot_size=None,
             size=None,
-            projection=None):
+            projection=None,
+            alpha=None):
         """
         Plot the generated art.
 
@@ -104,9 +106,18 @@ class GenerativeImage:
         :type size: tuple
         :param projection: projection type
         :type projection: str
+        :param alpha: point transparency
+        :type alpha: float
         :return: None
         """
-        plot_params_filter(self, color, bgcolor, spot_size, size, projection)
+        plot_params_filter(
+            self,
+            color,
+            bgcolor,
+            spot_size,
+            size,
+            projection,
+            alpha)
         fig = plt.figure()
         fig.set_size_inches(self.size[0], self.size[1])
         fig.set_facecolor(self.bgcolor)
@@ -115,7 +126,7 @@ class GenerativeImage:
         ax.scatter(
             self.data2,
             self.data1,
-            alpha=DEFAULT_ALPHA,
+            alpha=self.alpha,
             c=self.color,
             s=self.spot_size)
         ax.set_axis_off()
@@ -123,22 +134,24 @@ class GenerativeImage:
         ax.add_artist(ax.patch)
         self.fig = fig
 
-    def nft_storage(self, api_key):
+    def nft_storage(self, api_key, depth=DEFAULT_DEPTH):
         """
         Upload image to nft.storage.
 
         :param api_key: API key
         :type api_key: str
+        :param depth: image depth
+        :type depth: float
         :return: result as dict
         """
-        response = save_fig_buf(self.fig)
+        response = save_fig_buf(self.fig, depth)
         if not response["status"]:
             return {"status": False, "message": response["message"]}
         buf = response["buffer"]
         response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
         return response
 
-    def save_image(self, file_adr, depth=1):
+    def save_image(self, file_adr, depth=DEFAULT_DEPTH):
         """
         Save generated image.
 
@@ -169,3 +182,16 @@ class GenerativeImage:
         :return: result as a dict
         """
         return save_config_file(self, file_adr)
+
+    def __del__(self):
+        """
+        Deconstructor.
+
+        :return:None
+        """
+        if self.fig is not None:
+            self.fig.clf()
+            plt.close(self.fig)
+        del(self.data1)
+        del(self.data2)
+        gc.collect()
