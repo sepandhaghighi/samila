@@ -92,7 +92,8 @@ class GenerativeImage:
             spot_size=None,
             size=None,
             projection=None,
-            alpha=None):
+            alpha=None,
+            linewidth=None):
         """
         Plot the generated art.
 
@@ -108,6 +109,8 @@ class GenerativeImage:
         :type projection: str
         :param alpha: point transparency
         :type alpha: float
+        :param linewidth: width of line
+        :type linewidth: float
         :return: None
         """
         plot_params_filter(
@@ -117,7 +120,8 @@ class GenerativeImage:
             spot_size,
             size,
             projection,
-            alpha)
+            alpha,
+            linewidth)
         fig = plt.figure()
         fig.set_size_inches(self.size[0], self.size[1])
         fig.set_facecolor(self.bgcolor)
@@ -128,7 +132,8 @@ class GenerativeImage:
             self.data1,
             alpha=self.alpha,
             c=self.color,
-            s=self.spot_size)
+            s=self.spot_size,
+            lw=self.linewidth)
         ax.set_axis_off()
         ax.patch.set_zorder(-1)
         ax.add_artist(ax.patch)
