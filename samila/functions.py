@@ -331,7 +331,8 @@ def save_data_file(g, file_adr):
         "spot_size": g.spot_size,
         "projection": g.projection,
         "alpha": g.alpha,
-        "linewidth": g.linewidth
+        "linewidth": g.linewidth,
+        "depth": g.depth
     }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
@@ -496,6 +497,7 @@ def load_data(g, data):
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
             g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
+            g.depth = plot_config.get("depth", DEFAULT_DEPTH)
         return
     raise samilaDataError(DATA_TYPE_ERROR)
 
