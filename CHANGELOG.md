@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `save_image_filter` function
+- `save_params_filter` function
 ### Changed
 - `depth` parameter added to GenerativeImage `__init__`
 - `linewidth` parameter added to `plot` method

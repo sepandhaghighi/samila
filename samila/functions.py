@@ -233,7 +233,7 @@ def generate_params_filter(
     g.seed, g.start, g.step, g.stop = seed, start, step, stop
 
 
-def save_image_filter(g, depth=None):
+def save_params_filter(g, depth=None):
     """
     Filter save_image method parameters.
 
