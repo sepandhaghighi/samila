@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
+- `depth` parameter added to GenerativeImage `__init__`
 - `linewidth` parameter added to `plot` method
 - `linewidth` parameter added to `plot_params_filter` function
 ## [0.5] - 2022-03-21
