@@ -233,6 +233,19 @@ def generate_params_filter(
     g.seed, g.start, g.step, g.stop = seed, start, step, stop
 
 
+def save_image_filter(g, depth=None):
+    """
+    Filter save_image method parameters.
+
+    :param depth: depth of image
+    :type depth: float
+    :return: None
+    """
+    if depth is None:
+        depth = g.depth
+    g.depth = depth
+
+
 def _GI_initializer(g, function1, function2):
     """
     Initialize the generative image.

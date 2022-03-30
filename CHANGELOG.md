@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `save_image_filter` function
 ### Changed
 - `depth` parameter added to GenerativeImage `__init__`
 - `linewidth` parameter added to `plot` method
