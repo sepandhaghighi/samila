@@ -45,6 +45,8 @@ True
 True
 >>> result["message"]
 'Everything seems good.'
+>>> isinstance(result["path"], str)
+True
 >>> g.plot(color='red')
 >>> g.plot(color='red', bgcolor='black')
 >>> result = g.save_image("test2.png", depth=5)
@@ -52,6 +54,8 @@ True
 True
 >>> result["message"]
 'Everything seems good.'
+>>> isinstance(result["path"], str)
+True
 >>> from samila import GenerativeImage, Projection
 >>> g.plot(projection=Projection.POLAR, color='red', bgcolor='black')
 >>> g.plot(projection=Projection.POLAR, color=(.1, .2, .8))
@@ -62,23 +66,33 @@ True
 False
 >>> result['message']
 'API Key is missing, make sure the `Authorization` header has a value in the following format `Bearer {api key}`.'
+>>> "path" in result
+False
 >>> g = GenerativeImage(f1,f2)
 >>> result = g.nft_storage(api_key="")
 >>> result["status"]
 False
 >>> result["message"]
 'No figure was found. First run `generate` and `plot` methods.'
+>>> "path" in result
+False
 >>> result = g.save_image(file_adr="")
 >>> result["status"]
 False
 >>> result["message"]
 'No figure was found. First run `generate` and `plot` methods.'
+>>> "path" in result
+False
 >>> g.fig = 2
 >>> result = g.nft_storage(api_key="")
 >>> result['status']
 False
+>>> "path" in result
+False
 >>> result = g.save_image(file_adr="")
 >>> result["status"]
+False
+>>> "path" in result
 False
 >>> socket.socket = guard
 >>> g.generate()
@@ -88,8 +102,12 @@ False
 False
 >>> result["message"]
 'No internet connection!'
+>>> "path" in result
+False
 >>> result = g.save_data(file_adr="")
 >>> result["status"]
+False
+>>> "path" in result
 False
 >>> def f1(x, y):
 ...    return math.cos(x**2*y) ** 1.926 - math.floor(x-y) ** 1.861 - math.floor(y**2*x)**1.688
@@ -105,14 +123,20 @@ True
 >>> result = g.save_data()
 >>> result["status"]
 True
+>>> isinstance(result["path"], str)
+True
 >>> g = GenerativeImage()
 >>> g.generate()
 >>> g.plot(color="white", bgcolor="black", spot_size=0.1)
 >>> result = g.save_config()
 >>> result["status"]
 True
+>>> isinstance(result["path"], str)
+True
 >>> result = g.save_data()
 >>> result["status"]
+True
+>>> isinstance(result["path"], str)
 True
 >>> g_ = GenerativeImage(config=open("config.json", 'r'))
 >>> g_.seed == g.seed
@@ -153,6 +177,8 @@ True
 'x'
 >>> result = g.save_config(file_adr="")
 >>> result["status"]
+False
+>>> "path" in result
 False
 >>> with open("data.json", 'w') as fp:
 ...     json.dump({'data1': [0], 'data2': [1]}, fp)
