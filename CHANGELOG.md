@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `save_params_filter` function
 ### Changed
+- `path` field added to the `save_fig_file` result json
+- `path` field added to the `save_config_file` result json
+- `path` field added to the `save_data_file` result json
 - `link` field added to the `nft_storage_upload` result json
 - `depth` section added to config/data file
 - `linewidth` parameter added to `plot` method

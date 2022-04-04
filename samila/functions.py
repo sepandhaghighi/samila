@@ -3,12 +3,13 @@
 
 import requests
 import io
+import os
 import json
 import random
 import matplotlib
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
-from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
+from .params import Projection, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
@@ -341,6 +342,7 @@ def save_data_file(g, file_adr):
     try:
         with open(file_adr, 'w') as fp:
             json.dump(data, fp)
+        result["path"] = os.path.dirname(os.path.abspath(file_adr))
     except Exception as e:
         result["status"] = False
         result["message"] = str(e)
@@ -383,6 +385,7 @@ def save_config_file(g, file_adr):
     try:
         with open(file_adr, 'w') as fp:
             json.dump(data, fp, indent=4)
+        result["path"] = os.path.dirname(os.path.abspath(file_adr))
     except Exception as e:
         result["status"] = False
         result["message"] = str(e)
@@ -410,6 +413,7 @@ def save_fig_file(figure, file_adr, depth):
             dpi=depth * figure.dpi,
             facecolor=figure.get_facecolor(),
             edgecolor='none')
+        result["path"] = os.path.dirname(os.path.abspath(file_adr))
         return result
     except Exception as e:
         result["status"] = False
