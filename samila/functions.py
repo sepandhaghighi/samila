@@ -299,6 +299,8 @@ def nft_storage_upload(api_key, data):
             headers=headers)
         response_json = response.json()
         if response_json["ok"]:
+            result["link"] = NFT_STORAGE_LINK.format(
+                response_json['value']['cid'])
             return result
         result["status"] = False
         result["message"] = response_json["error"]["message"]
