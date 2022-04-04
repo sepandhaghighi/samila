@@ -25,4 +25,6 @@
 ...     time.sleep(10)
 >>> status
 True
+>>> isinstance(result["link"], str)
+True
 """
