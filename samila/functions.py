@@ -300,7 +300,7 @@ def nft_storage_upload(api_key, data):
             headers=headers)
         response_json = response.json()
         if response_json["ok"]:
-            result["link"] = NFT_STORAGE_LINK.format(
+            result["message"] = NFT_STORAGE_LINK.format(
                 response_json['value']['cid'])
             return result
         result["status"] = False
@@ -342,7 +342,7 @@ def save_data_file(g, file_adr):
     try:
         with open(file_adr, 'w') as fp:
             json.dump(data, fp)
-        result["path"] = os.path.dirname(os.path.abspath(file_adr))
+        result["message"] = os.path.dirname(os.path.abspath(file_adr))
     except Exception as e:
         result["status"] = False
         result["message"] = str(e)
@@ -385,7 +385,7 @@ def save_config_file(g, file_adr):
     try:
         with open(file_adr, 'w') as fp:
             json.dump(data, fp, indent=4)
-        result["path"] = os.path.dirname(os.path.abspath(file_adr))
+        result["message"] = os.path.dirname(os.path.abspath(file_adr))
     except Exception as e:
         result["status"] = False
         result["message"] = str(e)
@@ -413,7 +413,7 @@ def save_fig_file(figure, file_adr, depth):
             dpi=depth * figure.dpi,
             facecolor=figure.get_facecolor(),
             edgecolor='none')
-        result["path"] = os.path.dirname(os.path.abspath(file_adr))
+        result["message"] = os.path.dirname(os.path.abspath(file_adr))
         return result
     except Exception as e:
         result["status"] = False
