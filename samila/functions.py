@@ -342,7 +342,7 @@ def save_data_file(g, file_adr):
     try:
         with open(file_adr, 'w') as fp:
             json.dump(data, fp)
-        result["message"] = os.path.dirname(os.path.abspath(file_adr))
+        result["message"] = os.path.abspath(file_adr)
     except Exception as e:
         result["status"] = False
         result["message"] = str(e)
@@ -385,7 +385,7 @@ def save_config_file(g, file_adr):
     try:
         with open(file_adr, 'w') as fp:
             json.dump(data, fp, indent=4)
-        result["message"] = os.path.dirname(os.path.abspath(file_adr))
+        result["message"] = os.path.abspath(file_adr)
     except Exception as e:
         result["status"] = False
         result["message"] = str(e)
@@ -413,7 +413,7 @@ def save_fig_file(figure, file_adr, depth):
             dpi=depth * figure.dpi,
             facecolor=figure.get_facecolor(),
             edgecolor='none')
-        result["message"] = os.path.dirname(os.path.abspath(file_adr))
+        result["message"] = os.path.abspath(file_adr)
         return result
     except Exception as e:
         result["status"] = False
