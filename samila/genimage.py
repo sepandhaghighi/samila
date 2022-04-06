@@ -204,4 +204,4 @@ class GenerativeImage:
                 plt.close(self.fig)
             gc.collect()
         except Exception:
-            pass
+            gc.collect()
