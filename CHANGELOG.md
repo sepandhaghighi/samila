@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `linewidth` parameter added to `plot` method
 - `linewidth` parameter added to `plot_params_filter` function
 - Random mode modified
+- `README.md` updated
 ## [0.5] - 2022-03-21
 ### Added
 - `__del__` method
