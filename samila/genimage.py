@@ -192,13 +192,16 @@ class GenerativeImage:
 
     def __del__(self):
         """
-        Deconstructor.
+        Destructor.
 
         :return:None
         """
-        if self.fig is not None:
-            self.fig.clf()
-            plt.close(self.fig)
-        del(self.data1)
-        del(self.data2)
-        gc.collect()
+        try:
+            del self.data1
+            del self.data2
+            if self.fig is not None:
+                self.fig.clf()
+                plt.close(self.fig)
+            gc.collect()
+        except Exception:
+            gc.collect()

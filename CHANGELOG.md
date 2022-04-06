@@ -8,10 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `save_params_filter` function
 ### Changed
-- `message` field changed in `save_fig_file`
-- `message` field changed in `save_config_file`
-- `message` field changed in `save_data_file`
-- `message` field changed in `nft_storage_upload`
+- `__del__` method updated
+- `message` field changed in `save_fig_file` function
+- `message` field changed in `save_config_file` function
+- `message` field changed in `save_data_file` function
+- `message` field changed in `nft_storage_upload` function
 - `depth` section added to config/data file
 - `linewidth` parameter added to `plot` method
 - `linewidth` parameter added to `plot_params_filter` function
