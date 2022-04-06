@@ -60,6 +60,7 @@ class Projection(Enum):
 ELEMENTS_LIST = [
     "{0}*math.sqrt(abs({1}))",
     "{0}*math.log(abs({1})+1)",
+    "{0}*math.tanh({1})",
     "{0}*math.cos({1})",
     "{0}*math.sin({1})",
     "{0}*{1}",
@@ -83,4 +84,4 @@ ARGUMENTS_LIST = [
     "x*(y**3)",
     "y*(x**3)"]
 
-OPERATORS_LIST = ["+", "-"]
+OPERATORS_LIST = ["+", "-", "*"]
