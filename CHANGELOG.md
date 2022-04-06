@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `depth` section added to config/data file
 - `linewidth` parameter added to `plot` method
 - `linewidth` parameter added to `plot_params_filter` function
+- Random mode modified
 ## [0.5] - 2022-03-21
 ### Added
 - `__del__` method
