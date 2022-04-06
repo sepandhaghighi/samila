@@ -188,7 +188,7 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 
 ```pycon
 >>> g.nft_storage(api_key="YOUR_API_KEY")
-{'status': True, 'message': 'Everything seems good'}
+{'status': True, 'message': 'FILE_LINK'}
 ```
 
 ### Save image
@@ -196,13 +196,13 @@ Save generated image
 
 ```pycon
 >>> g.save_image(file_adr="test.png")
-{'status': True, 'message': 'Everything seems good'}
+{'status': True, 'message': 'FILE_PATH'}
 ```
 Save generated image in higher resolutions
 
 ```pycon
 >>> g.save_image(file_adr="test.png", depth=5)
-{'status': True, 'message': 'Everything seems good'}
+{'status': True, 'message': 'FILE_PATH'}
 ```
 
 ### Save data
@@ -210,6 +210,7 @@ Save generated image data
 
 ```pycon
 >>> g.save_data(file_adr="data.json")
+{'status': True, 'message': 'FILE_PATH'}
 ```
 So you can load it into a `GenerativeImage` instance later by
 
@@ -247,6 +248,7 @@ Save generated image config. It contains string formats of functions which is al
 
 ```pycon
 >>> g.save_config(file_adr="config.json")
+{'status': True, 'message': 'FILE_PATH'}
 ```
 So you can load it into a `GenerativeImage` instance later by
 
