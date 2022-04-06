@@ -248,6 +248,7 @@ Save generated image config. It contains string formats of functions which is al
 
 ```pycon
 >>> g.save_config(file_adr="config.json")
+{'status': True, 'message': 'FILE_PATH'}
 ```
 So you can load it into a `GenerativeImage` instance later by
 
