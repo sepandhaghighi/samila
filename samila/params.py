@@ -4,7 +4,7 @@ import math
 from enum import Enum
 from matplotlib import colors as mcolors
 
-SAMILA_VERSION = "0.5"  # pragma: no cover
+SAMILA_VERSION = "0.6"  # pragma: no cover
 
 OVERVIEW = '''
 Samila is a generative art generator written in Python, Samila let's you
@@ -19,6 +19,7 @@ DEFAULT_STEP = 0.01
 DEFAULT_COLOR = "black"
 DEFAULT_BACKGROUND_COLOR = "white"
 DEFAULT_ALPHA = 0.1
+DEFAULT_LINEWIDTH = 1.5
 DEFAULT_IMAGE_SIZE = (10, 10)
 DEFAULT_SPOT_SIZE = 0.01
 DEFAULT_DEPTH = 1
@@ -27,6 +28,7 @@ SEED_LOWER_BOUND = 0
 SEED_UPPER_BOUND = 2**20
 VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
 NFT_STORAGE_API = "https://api.nft.storage/upload"
+NFT_STORAGE_LINK = "https://ipfs.io/ipfs/{}"
 NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good."
 FIG_SAVE_SUCCESS_MESSAGE = "Everything seems good."
 DATA_SAVE_SUCCESS_MESSAGE = "Everything seems good."
@@ -58,6 +60,7 @@ class Projection(Enum):
 ELEMENTS_LIST = [
     "{0}*math.sqrt(abs({1}))",
     "{0}*math.log(abs({1})+1)",
+    "{0}*math.tanh({1})",
     "{0}*math.cos({1})",
     "{0}*math.sin({1})",
     "{0}*{1}",
@@ -81,4 +84,4 @@ ARGUMENTS_LIST = [
     "x*(y**3)",
     "y*(x**3)"]
 
-OPERATORS_LIST = ["+", "-"]
+OPERATORS_LIST = ["+", "-", "*"]

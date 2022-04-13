@@ -5,7 +5,7 @@ import gc
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
-from .functions import _GI_initializer, plot_params_filter, generate_params_filter
+from .functions import _GI_initializer, plot_params_filter, generate_params_filter, save_params_filter
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
 from .params import *
@@ -92,7 +92,8 @@ class GenerativeImage:
             spot_size=None,
             size=None,
             projection=None,
-            alpha=None):
+            alpha=None,
+            linewidth=None):
         """
         Plot the generated art.
 
@@ -108,6 +109,8 @@ class GenerativeImage:
         :type projection: str
         :param alpha: point transparency
         :type alpha: float
+        :param linewidth: width of line
+        :type linewidth: float
         :return: None
         """
         plot_params_filter(
@@ -117,7 +120,8 @@ class GenerativeImage:
             spot_size,
             size,
             projection,
-            alpha)
+            alpha,
+            linewidth)
         fig = plt.figure()
         fig.set_size_inches(self.size[0], self.size[1])
         fig.set_facecolor(self.bgcolor)
@@ -128,13 +132,14 @@ class GenerativeImage:
             self.data1,
             alpha=self.alpha,
             c=self.color,
-            s=self.spot_size)
+            s=self.spot_size,
+            lw=self.linewidth)
         ax.set_axis_off()
         ax.patch.set_zorder(-1)
         ax.add_artist(ax.patch)
         self.fig = fig
 
-    def nft_storage(self, api_key, depth=DEFAULT_DEPTH):
+    def nft_storage(self, api_key, depth=None):
         """
         Upload image to nft.storage.
 
@@ -144,14 +149,15 @@ class GenerativeImage:
         :type depth: float
         :return: result as dict
         """
-        response = save_fig_buf(self.fig, depth)
+        save_params_filter(self, depth)
+        response = save_fig_buf(self.fig, self.depth)
         if not response["status"]:
             return {"status": False, "message": response["message"]}
         buf = response["buffer"]
         response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
         return response
 
-    def save_image(self, file_adr, depth=DEFAULT_DEPTH):
+    def save_image(self, file_adr, depth=None):
         """
         Save generated image.
 
@@ -161,7 +167,8 @@ class GenerativeImage:
         :type depth: float
         :return: result as dict
         """
-        return save_fig_file(figure=self.fig, file_adr=file_adr, depth=depth)
+        save_params_filter(self, depth)
+        return save_fig_file(self.fig, file_adr, self.depth)
 
     def save_data(self, file_adr='data.json'):
         """
@@ -185,13 +192,16 @@ class GenerativeImage:
 
     def __del__(self):
         """
-        Deconstructor.
+        Destructor.
 
         :return:None
         """
-        if self.fig is not None:
-            self.fig.clf()
-            plt.close(self.fig)
-        del(self.data1)
-        del(self.data2)
-        gc.collect()
+        try:
+            del self.data1
+            del self.data2
+            if self.fig is not None:
+                self.fig.clf()
+                plt.close(self.fig)
+            gc.collect()
+        except Exception:
+            gc.collect()

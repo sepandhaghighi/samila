@@ -3,12 +3,13 @@
 
 import requests
 import io
+import os
 import json
 import random
 import matplotlib
-from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE
-from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA
-from .params import Projection, VALID_COLORS, NFT_STORAGE_API, OVERVIEW
+from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
+from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
+from .params import Projection, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
@@ -148,7 +149,8 @@ def plot_params_filter(
         spot_size=None,
         size=None,
         projection=None,
-        alpha=None):
+        alpha=None,
+        linewidth=None):
     """
     Filter plot method parameters.
 
@@ -166,6 +168,8 @@ def plot_params_filter(
     :type projection: str
     :param alpha: point transparency
     :type alpha: float
+    :param linewidth: width of line
+    :type linewidth: float
     :return: None
     """
     if g.data1 is None:
@@ -175,6 +179,7 @@ def plot_params_filter(
     color, bgcolor = map(filter_color, [color, bgcolor])
     projection = filter_projection(projection)
     alpha = filter_float(alpha)
+    linewidth = filter_float(linewidth)
     spot_size = filter_float(spot_size)
     size = filter_size(size)
     if color is None:
@@ -189,7 +194,9 @@ def plot_params_filter(
         projection = g.projection
     if alpha is None:
         alpha = g.alpha
-    g.color, g.bgcolor, g.spot_size, g.size, g.projection, g.alpha = color, bgcolor, spot_size, size, projection, alpha
+    if linewidth is None:
+        linewidth = g.linewidth
+    g.color, g.bgcolor, g.spot_size, g.size, g.projection, g.alpha, g.linewidth = color, bgcolor, spot_size, size, projection, alpha, linewidth
 
 
 def generate_params_filter(
@@ -227,6 +234,19 @@ def generate_params_filter(
     g.seed, g.start, g.step, g.stop = seed, start, step, stop
 
 
+def save_params_filter(g, depth=None):
+    """
+    Filter save_image method parameters.
+
+    :param depth: depth of image
+    :type depth: float
+    :return: None
+    """
+    if depth is None:
+        depth = g.depth
+    g.depth = depth
+
+
 def _GI_initializer(g, function1, function2):
     """
     Initialize the generative image.
@@ -257,6 +277,8 @@ def _GI_initializer(g, function1, function2):
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
     g.alpha = DEFAULT_ALPHA
+    g.linewidth = DEFAULT_LINEWIDTH
+    g.depth = DEFAULT_DEPTH
 
 
 def nft_storage_upload(api_key, data):
@@ -278,6 +300,8 @@ def nft_storage_upload(api_key, data):
             headers=headers)
         response_json = response.json()
         if response_json["ok"]:
+            result["message"] = NFT_STORAGE_LINK.format(
+                response_json['value']['cid'])
             return result
         result["status"] = False
         result["message"] = response_json["error"]["message"]
@@ -309,13 +333,16 @@ def save_data_file(g, file_adr):
         "bgcolor": g.bgcolor,
         "spot_size": g.spot_size,
         "projection": g.projection,
-        "alpha": g.alpha
+        "alpha": g.alpha,
+        "linewidth": g.linewidth,
+        "depth": g.depth
     }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
     try:
         with open(file_adr, 'w') as fp:
             json.dump(data, fp)
+        result["message"] = os.path.abspath(file_adr)
     except Exception as e:
         result["status"] = False
         result["message"] = str(e)
@@ -349,13 +376,16 @@ def save_config_file(g, file_adr):
         "bgcolor": g.bgcolor,
         "spot_size": g.spot_size,
         "projection": g.projection,
-        "alpha": g.alpha
+        "alpha": g.alpha,
+        "linewidth": g.linewidth,
+        "depth": g.depth
     }
     data['matplotlib_version'] = matplotlib_version
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
     try:
         with open(file_adr, 'w') as fp:
             json.dump(data, fp, indent=4)
+        result["message"] = os.path.abspath(file_adr)
     except Exception as e:
         result["status"] = False
         result["message"] = str(e)
@@ -383,6 +413,7 @@ def save_fig_file(figure, file_adr, depth):
             dpi=depth * figure.dpi,
             facecolor=figure.get_facecolor(),
             edgecolor='none')
+        result["message"] = os.path.abspath(file_adr)
         return result
     except Exception as e:
         result["status"] = False
@@ -471,6 +502,8 @@ def load_data(g, data):
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
+            g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
+            g.depth = plot_config.get("depth", DEFAULT_DEPTH)
         return
     raise samilaDataError(DATA_TYPE_ERROR)
 
@@ -504,5 +537,7 @@ def load_config(g, config):
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
+            g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
+            g.depth = plot_config.get("depth", DEFAULT_DEPTH)
         return
     raise samilaConfigError(CONFIG_TYPE_ERROR)

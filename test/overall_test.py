@@ -43,15 +43,15 @@ True
 >>> result = g.save_image("test.png")
 >>> result["status"]
 True
->>> result["message"]
-'Everything seems good.'
+>>> isinstance(result["message"], str)
+True
 >>> g.plot(color='red')
 >>> g.plot(color='red', bgcolor='black')
 >>> result = g.save_image("test2.png", depth=5)
 >>> result["status"]
 True
->>> result["message"]
-'Everything seems good.'
+>>> isinstance(result["message"], str)
+True
 >>> from samila import GenerativeImage, Projection
 >>> g.plot(projection=Projection.POLAR, color='red', bgcolor='black')
 >>> g.plot(projection=Projection.POLAR, color=(.1, .2, .8))
@@ -105,14 +105,20 @@ True
 >>> result = g.save_data()
 >>> result["status"]
 True
+>>> isinstance(result["message"], str)
+True
 >>> g = GenerativeImage()
 >>> g.generate()
 >>> g.plot(color="white", bgcolor="black", spot_size=0.1)
 >>> result = g.save_config()
 >>> result["status"]
 True
+>>> isinstance(result["message"], str)
+True
 >>> result = g.save_data()
 >>> result["status"]
+True
+>>> isinstance(result["message"], str)
 True
 >>> g_ = GenerativeImage(config=open("config.json", 'r'))
 >>> g_.seed == g.seed
