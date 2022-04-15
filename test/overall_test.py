@@ -57,6 +57,7 @@ True
 >>> g.plot(projection=Projection.POLAR, color=(.1, .2, .8))
 >>> g.plot(bgcolor=(.1, .2, .8), spot_size=0.1)
 >>> g.plot(size=(20, 20))
+>>> g.plot(alpha=0.5, linewidth=2.2)
 >>> result = g.nft_storage(api_key="")
 >>> result['status']
 False
@@ -169,6 +170,7 @@ False
 [1]
 >>> g_ = GenerativeImage()
 >>> del(g)
+>>> del g_.data1
 >>> del(g_)
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
