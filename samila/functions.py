@@ -13,7 +13,7 @@ from .params import Projection, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_LINK,
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
-from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
+from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
 from .errors import samilaDataError, samilaPlotError, samilaConfigError
 
 
@@ -26,7 +26,7 @@ def random_equation_gen():
     num_elements = random.randint(2, len(ELEMENTS_LIST) + 3)
     result = ""
     index = 1
-    random_coef = "random.uniform(-1,1)"
+    random_coef = random.choice(RANDOM_COEF_LIST)
     while(index <= num_elements):
         argument = random.choice(ARGUMENTS_LIST)
         result = result + \
