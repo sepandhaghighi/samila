@@ -65,6 +65,8 @@ RANDOM_COEF_LIST = [
     "random.lognormvariate(0,1)"]
 
 ELEMENTS_LIST = [
+    "{0}*math.asinh({1})",
+    "{0}*math.acosh(abs({1})+1)",
     "{0}*math.erf({1})",
     "{0}*math.sqrt(abs({1}))",
     "{0}*math.log(abs({1})+1)",
