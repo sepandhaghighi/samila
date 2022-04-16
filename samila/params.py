@@ -58,6 +58,7 @@ class Projection(Enum):
 
 
 ELEMENTS_LIST = [
+    "{0}*math.erf({1})",
     "{0}*math.sqrt(abs({1}))",
     "{0}*math.log(abs({1})+1)",
     "{0}*math.tanh({1})",
