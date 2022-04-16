@@ -57,7 +57,12 @@ class Projection(Enum):
     RECTILINEAR = "rectilinear"
 
 
-RANDOM_COEF_LIST = ["random.uniform(-1,1)", "random.gauss(0,1)", "random.betavariate(1,1)", "random.gammavariate(1,1)", "random.lognormvariate(0,1)"]
+RANDOM_COEF_LIST = [
+    "random.uniform(-1,1)",
+    "random.gauss(0,1)",
+    "random.betavariate(1,1)",
+    "random.gammavariate(1,1)",
+    "random.lognormvariate(0,1)"]
 
 ELEMENTS_LIST = [
     "{0}*math.erf({1})",
