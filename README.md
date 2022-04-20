@@ -172,7 +172,11 @@ Samila is a generative art generator written in Python, Samila let's you create 
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/4.png">	
 
 * Supported colors are available in `VALID_COLORS` list
-* `color` and `bgcolor` parameters support color name and RGB/RGBA formats
+* `color` and `bgcolor` parameters supported formats:
+
+    1. Color name (example: `yellow`)
+    2. RGB/RGBA (example: `(0.1,0.1,0.1)`, `(0.1,0.1,0.1,0.1)`)
+    3. Hex (example: `#eeefff`)
 
 ### Regeneration
 ```pycon
