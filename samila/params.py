@@ -27,6 +27,7 @@ DEFAULT_PROJECTION = "rectilinear"
 SEED_LOWER_BOUND = 0
 SEED_UPPER_BOUND = 2**20
 VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
+HEX_COLOR_PATTERN = r'^#(?:[0-9a-fA-F]{3}){1,2}$'
 NFT_STORAGE_API = "https://api.nft.storage/upload"
 NFT_STORAGE_LINK = "https://ipfs.io/ipfs/{}"
 NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good."
