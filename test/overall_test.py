@@ -54,11 +54,34 @@ True
 True
 >>> from samila import GenerativeImage, Projection
 >>> g.plot(projection=Projection.POLAR, color='red', bgcolor='black')
+>>> g.color
+'red'
+>>> g.bgcolor
+'black'
+>>> g.plot(projection=Projection.POLAR, color='rod', bgcolor='blacc')
+>>> g.color
+'red'
+>>> g.bgcolor
+'black'
 >>> g.plot(projection=Projection.POLAR, color="#EEE245", bgcolor="#000000")
+>>> g.projection
+'polar'
+>>> g.color
+'#EEE245'
+>>> g.bgcolor
+'#000000'
 >>> g.plot(projection=Projection.POLAR, color=(.1, .2, .8))
+>>> g.color
+(0.1, 0.2, 0.8)
 >>> g.plot(bgcolor=(.1, .2, .8), spot_size=0.1)
 >>> g.plot(size=(20, 20))
+>>> g.size
+(20, 20)
 >>> g.plot(alpha=0.5, linewidth=2.2)
+>>> g.alpha
+0.5
+>>> g.linewidth
+2.2
 >>> result = g.nft_storage(api_key="")
 >>> result['status']
 False
