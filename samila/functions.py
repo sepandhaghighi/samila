@@ -114,7 +114,12 @@ def filter_projection(projection):
     :return: filtered version of projection
     """
     if isinstance(projection, Projection):
-        return projection.value
+        projection_value = projection.value
+        if projection_value == "random":
+            projection_list = list(Projection)
+            projection_list.remove(Projection.RANDOM)
+            projection_value = random.choice(projection_list).value
+        return projection_value
     return None
 
 
