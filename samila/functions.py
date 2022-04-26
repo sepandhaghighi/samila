@@ -37,6 +37,7 @@ def random_equation_gen():
         index = index + 1
     return result
 
+
 def random_hex_color_gen():
     """
     Generate random hex color code.
@@ -45,6 +46,7 @@ def random_hex_color_gen():
     """
     random_color = "#%06x" % random.randint(0, 0xFFFFFF)
     return random_color
+
 
 def float_range(start, stop, step):
     """
