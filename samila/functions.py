@@ -37,6 +37,14 @@ def random_equation_gen():
         index = index + 1
     return result
 
+def random_hex_color_gen():
+    """
+    Generate random hex color code.
+
+    :return: color code as str
+    """
+    random_color = "#%06x" % random.randint(0, 0xFFFFFF)
+    return random_color
 
 def float_range(start, stop, step):
     """
@@ -96,6 +104,8 @@ def filter_color(color):
     if isinstance(color, tuple):
         return color
     if isinstance(color, str):
+        if color.upper() == "RANDOM":
+            return random_hex_color_gen()
         if re.match(HEX_COLOR_PATTERN, color):
             return color
         distance_list = list(map(lambda x: distance_calc(color, x),
