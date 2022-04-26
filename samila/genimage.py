@@ -80,10 +80,16 @@ class GenerativeImage:
         range1 = list(float_range(self.start, self.stop, self.step))
         range2 = list(float_range(self.start, self.stop, self.step))
         range_prod = list(itertools.product(range1, range2))
+        except_in_calc = False
         for item in range_prod:
             random.seed(self.seed)
-            self.data1.append(self.function1(item[0], item[1]).real)
-            self.data2.append(self.function2(item[0], item[1]).real)
+            try:
+                self.data1.append(self.function1(item[0], item[1]).real)
+                self.data2.append(self.function2(item[0], item[1]).real)
+            except Exception:
+                except_in_calc = True
+        if except_in_calc:
+            warn(CALCULATION_EXCEPTION_WARNING, RuntimeWarning)
 
     def plot(
             self,

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `random_hex_color_gen` function
 - `color`,`bgcolor` and `projection` parameters random mode
 ### Changed
+- calculation exception warning in `generate` method
 - Hex color support for `color` and `bgcolor` parameters
 - Test system modified
 - Random mode modified
