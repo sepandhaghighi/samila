@@ -38,6 +38,16 @@ def random_equation_gen():
     return result
 
 
+def random_hex_color_gen():
+    """
+    Generate random hex color code.
+
+    :return: color code as str
+    """
+    random_color = "#%06x" % random.randint(0, 0xFFFFFF)
+    return random_color
+
+
 def float_range(start, stop, step):
     """
     Generate float range.
@@ -96,6 +106,8 @@ def filter_color(color):
     if isinstance(color, tuple):
         return color
     if isinstance(color, str):
+        if color.upper() == "RANDOM":
+            return random_hex_color_gen()
         if re.match(HEX_COLOR_PATTERN, color):
             return color
         distance_list = list(map(lambda x: distance_calc(color, x),
@@ -114,7 +126,12 @@ def filter_projection(projection):
     :return: filtered version of projection
     """
     if isinstance(projection, Projection):
-        return projection.value
+        projection_value = projection.value
+        if projection_value == "random":
+            projection_list = list(Projection)
+            projection_list.remove(Projection.RANDOM)
+            projection_value = random.choice(projection_list).value
+        return projection_value
     return None
 
 

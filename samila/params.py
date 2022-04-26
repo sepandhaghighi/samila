@@ -56,6 +56,7 @@ class Projection(Enum):
     LAMBERT = "lambert"
     MOLLWEIDE = "mollweide"
     RECTILINEAR = "rectilinear"
+    RANDOM = "random"
 
 
 RANDOM_COEF_LIST = [

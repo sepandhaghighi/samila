@@ -82,6 +82,18 @@ True
 0.5
 >>> g.linewidth
 2.2
+>>> random.seed(2)
+>>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM)
+>>> color1, bgcolor1, projection1 = g.color, g.bgcolor, g.projection
+>>> random.seed(3)
+>>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM)
+>>> color2, bgcolor2, projection2 = g.color, g.bgcolor, g.projection
+>>> color1 == color2
+False
+>>> bgcolor1 == bgcolor2
+False
+>>> projection1 == projection2
+False
 >>> result = g.nft_storage(api_key="")
 >>> result['status']
 False
