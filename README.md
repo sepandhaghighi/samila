@@ -146,7 +146,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/2.png">	
 
-* Supported projections : `RECTILINEAR`, `POLAR`, `AITOFF`, `HAMMER`, `LAMBERT` and `MOLLWEIDE`
+* Supported projections : `RECTILINEAR`, `POLAR`, `AITOFF`, `HAMMER`, `LAMBERT`, `MOLLWEIDE` and `RANDOM`
 * Default projection is `RECTILINEAR`
 
 ### Range
@@ -177,6 +177,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
     1. Color name (example: `yellow`)
     2. RGB/RGBA (example: `(0.1,0.1,0.1)`, `(0.1,0.1,0.1,0.1)`)
     3. Hex (example: `#eeefff`)
+    4. Random (example: `random`)
 
 ### Regeneration
 ```pycon
