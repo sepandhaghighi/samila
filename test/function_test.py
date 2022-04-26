@@ -14,7 +14,7 @@ False
 >>> filter_color((0.2,0.3,0.4))
 (0.2, 0.3, 0.4)
 >>> filter_color("#FFFFFF")
-"#FFFFFF"
+'#FFFFFF'
 >>> random.seed(2)
 >>> color1 = filter_color("random")
 >>> random.seed(3)
