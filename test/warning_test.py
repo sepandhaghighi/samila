@@ -20,6 +20,9 @@ True
 ...     json.dump({'f1': 'x', 'f2': 'y', 'matplotlib_version': '0'}, fp)
 >>> with warns(RuntimeWarning, match=r"Source matplotlib version(.*) is different from yours, plots may be different."):
 ...     g = GenerativeImage(config=open('config.json', 'r'))
+>>> g = GenerativeImage(lambda x, y: 1 / x, lambda x, y: 1 / (y - 1))
+>>> with warns(RuntimeWarning, match=r"Some of the given functions are undifined in some points in the given range. Your plot will miss some points."):
+...     g.generate(start=0, stop=2, step=0.1)
 >>> os.remove('data.json')
 >>> os.remove('config.json')
 """
