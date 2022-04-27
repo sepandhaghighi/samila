@@ -254,6 +254,27 @@ def generate_params_filter(
     g.seed, g.start, g.step, g.stop = seed, start, step, stop
 
 
+def fill_data(g, point):
+    """
+    Fill data with functions in given points.
+
+    :param point: given point
+    :type point: tuple
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :return: false if some expection occured
+    """
+    random.seed(g.seed)
+    try:
+        data1_ = g.function1(point[0], point[1]).real
+        data2_ = g.function2(point[0], point[1]).real
+    except Exception:
+        return False
+    g.data1.append(data1_)
+    g.data2.append(data2_)
+    return True
+
+
 def save_params_filter(g, depth=None):
     """
     Filter save_image method parameters.
