@@ -84,8 +84,10 @@ class GenerativeImage:
         for item in range_prod:
             random.seed(self.seed)
             try:
-                self.data1.append(self.function1(item[0], item[1]).real)
-                self.data2.append(self.function2(item[0], item[1]).real)
+                data1_ = self.function1(item[0], item[1]).real
+                data2_ = self.function2(item[0], item[1]).real
+                self.data1.append(data1_)
+                self.data2.append(data2_)
             except Exception:
                 except_in_calc = True
         if except_in_calc:
