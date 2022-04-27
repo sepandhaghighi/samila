@@ -40,7 +40,7 @@ CONFIG_NO_STR_FUNCTION_ERROR = "Config file can't be saved. At least one of the 
 PLOT_DATA_ERROR = "Plotting process can't be Done because data{0} is empty. Use generate method first."
 SAVE_NO_DATA_ERROR = "Data file can't be saved. At least one of the data1 or data2 is None."
 MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
-CALCULATION_EXCEPTION_WARNING = "Some of the given functions are undifined in some points in the given range. Your plot will miss some points."
+CALCULATION_EXCEPTION_WARNING = "The given functions are undefined at some points. Your plot may not be complete."
 
 
 class Projection(Enum):
