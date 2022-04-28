@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Samila generative image."""
+import random
 import gc
 import itertools
 import matplotlib
