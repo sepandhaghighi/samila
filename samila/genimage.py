@@ -82,7 +82,7 @@ class GenerativeImage:
         range_prod = list(itertools.product(range1, range2))
         calc_exception = False
         for point in range_prod:
-            if fill_data(self, point):
+            if not fill_data(self, point):
                 calc_exception = True
         if calc_exception:
             warn(CALCULATION_EXCEPTION_WARNING, RuntimeWarning)
