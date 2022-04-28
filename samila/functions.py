@@ -258,11 +258,11 @@ def fill_data(g, point):
     """
     Fill data with functions in given points.
 
-    :param point: given point
-    :type point: tuple
     :param g: generative image instance
     :type g: GenerativeImage
-    :return: false if some expection occured
+    :param point: given point
+    :type point: tuple
+    :return: false if some exception occurred
     """
     random.seed(g.seed)
     try:
