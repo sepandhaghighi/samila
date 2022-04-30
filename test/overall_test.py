@@ -218,9 +218,9 @@ False
 True
 >>> is_same_data(g1.data2, g2.data2)
 True
->>> len(g1.data1)>=0
+>>> len(g1.data1)>0
 True
->>> len(g1.data2)>=0
+>>> len(g1.data2)>0
 True
 >>> del(g1)
 >>> del(g2)
