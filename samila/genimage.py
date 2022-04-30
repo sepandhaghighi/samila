@@ -7,7 +7,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 from .functions import _GI_initializer, plot_params_filter, generate_params_filter, save_params_filter
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
-from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
+from .functions import load_data, load_config, random_equation_gen, nft_storage_upload, fill_data
 from .params import *
 from warnings import warn
 
@@ -80,10 +80,12 @@ class GenerativeImage:
         range1 = list(float_range(self.start, self.stop, self.step))
         range2 = list(float_range(self.start, self.stop, self.step))
         range_prod = list(itertools.product(range1, range2))
-        for item in range_prod:
-            random.seed(self.seed)
-            self.data1.append(self.function1(item[0], item[1]).real)
-            self.data2.append(self.function2(item[0], item[1]).real)
+        calc_exception = False
+        for point in range_prod:
+            if not fill_data(self, point):
+                calc_exception = True
+        if calc_exception:
+            warn(CALCULATION_EXCEPTION_WARNING, RuntimeWarning)
 
     def plot(
             self,
