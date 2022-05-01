@@ -516,6 +516,8 @@ def is_same_data(data1, data2, precision=10**-5):
     :type precision: float
     :return: True if they are the same
     """
+    if len(data1) != len(data2):
+        return False
     is_same = map(lambda x, y: abs(x - y) < precision, data1, data2)
     return all(is_same)
 

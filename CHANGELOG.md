@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Random mode modified
 - `filter_color` function modified
 - `filter_projection` function modified
+- `is_same_data` function modified
 - `README.md` updated
 ## [0.6] - 2022-04-13
 ### Added

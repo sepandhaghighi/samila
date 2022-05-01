@@ -208,6 +208,22 @@ False
 >>> del(g)
 >>> del g_.data1
 >>> del(g_)
+>>> g1 = GenerativeImage()
+>>> function1 = eval("lambda x, y:" + g1.function1_str)
+>>> function2 = eval("lambda x, y:" + g1.function2_str)
+>>> g2 = GenerativeImage(function1=function1, function2=function2)
+>>> g1.generate(seed=22)
+>>> g2.generate(seed=22)
+>>> is_same_data(g1.data1, g2.data1)
+True
+>>> is_same_data(g1.data2, g2.data2)
+True
+>>> len(g1.data1) > 0
+True
+>>> len(g1.data2) > 0
+True
+>>> del(g1)
+>>> del(g2)
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 >>> os.remove("data.json")

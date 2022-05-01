@@ -9,6 +9,10 @@
 True
 >>> is_same_data([1,1.1,1.2,1.3,1.4],[1,1.11,1.3,1.4,1.5])
 False
+>>> is_same_data(s,[1,1.1,1.2,1.3,1.4,1.5,1.6])
+False
+>>> is_same_data(s,[])
+False
 >>> filter_color("yellow")
 'yellow'
 >>> filter_color((0.2,0.3,0.4))
