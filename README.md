@@ -28,6 +28,7 @@
    * [Social Media](https://github.com/sepandhaghighi/samila#social-media)
    * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
    * [References](https://github.com/sepandhaghighi/samila#references)
+   * [Acknowledgments](https://github.com/sepandhaghighi/samila#acknowledgments)
    * [Authors](https://github.com/sepandhaghighi/samila/blob/master/AUTHORS.md)
    * [License](https://github.com/sepandhaghighi/samila/blob/master/LICENSE)
    * [Show Your Support](https://github.com/sepandhaghighi/samila#show-your-support)
@@ -367,7 +368,10 @@ You can also join our discord server
 <blockquote>2- <a href="https://github.com/cutterkom/generativeart">Create Generative Art with R</a></blockquote>
 
 <blockquote>3- <a href="https://nft.storage/">NFT.storage : Free decentralized storage and bandwidth for NFTs</a></blockquote>
-	
+
+## Acknowledgments
+
+This project was funded through the **Next Step Microgrant**, a program established by [Protocol Labs](https://protocol.ai/).
 
 ## Show your support
 								
