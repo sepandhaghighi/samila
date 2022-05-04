@@ -4,16 +4,17 @@
 import requests
 import io
 import os
+import re
 import json
 import random
 import matplotlib
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
-from .params import Projection, VALID_COLORS, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
+from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
-from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST
+from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
 from .errors import samilaDataError, samilaPlotError, samilaConfigError
 
 
@@ -26,7 +27,7 @@ def random_equation_gen():
     num_elements = random.randint(2, len(ELEMENTS_LIST) + 3)
     result = ""
     index = 1
-    random_coef = "random.uniform(-1,1)"
+    random_coef = random.choice(RANDOM_COEF_LIST)
     while(index <= num_elements):
         argument = random.choice(ARGUMENTS_LIST)
         result = result + \
@@ -35,6 +36,16 @@ def random_equation_gen():
             result = result + random.choice(OPERATORS_LIST)
         index = index + 1
     return result
+
+
+def random_hex_color_gen():
+    """
+    Generate random hex color code.
+
+    :return: color code as str
+    """
+    random_color = "#%06x" % random.randint(0, 0xFFFFFF)
+    return random_color
 
 
 def float_range(start, stop, step):
@@ -95,6 +106,10 @@ def filter_color(color):
     if isinstance(color, tuple):
         return color
     if isinstance(color, str):
+        if color.upper() == "RANDOM":
+            return random_hex_color_gen()
+        if re.match(HEX_COLOR_PATTERN, color):
+            return color
         distance_list = list(map(lambda x: distance_calc(color, x),
                                  VALID_COLORS))
         min_distance = min(distance_list)
@@ -111,7 +126,12 @@ def filter_projection(projection):
     :return: filtered version of projection
     """
     if isinstance(projection, Projection):
-        return projection.value
+        projection_value = projection.value
+        if projection_value == "random":
+            projection_list = list(Projection)
+            projection_list.remove(Projection.RANDOM)
+            projection_value = random.choice(projection_list).value
+        return projection_value
     return None
 
 
@@ -232,6 +252,27 @@ def generate_params_filter(
         if g.seed is None:
             seed = random.randint(SEED_LOWER_BOUND, SEED_UPPER_BOUND)
     g.seed, g.start, g.step, g.stop = seed, start, step, stop
+
+
+def fill_data(g, point):
+    """
+    Fill data with functions in given points.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :param point: given point
+    :type point: tuple
+    :return: false if some exception occurred
+    """
+    random.seed(g.seed)
+    try:
+        data1_ = g.function1(point[0], point[1]).real
+        data2_ = g.function2(point[0], point[1]).real
+    except Exception:
+        return False
+    g.data1.append(data1_)
+    g.data2.append(data2_)
+    return True
 
 
 def save_params_filter(g, depth=None):
@@ -475,6 +516,8 @@ def is_same_data(data1, data2, precision=10**-5):
     :type precision: float
     :return: True if they are the same
     """
+    if len(data1) != len(data2):
+        return False
     is_same = map(lambda x, y: abs(x - y) < precision, data1, data2)
     return all(is_same)
 

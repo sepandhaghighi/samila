@@ -4,7 +4,7 @@ import math
 from enum import Enum
 from matplotlib import colors as mcolors
 
-SAMILA_VERSION = "0.6"  # pragma: no cover
+SAMILA_VERSION = "0.7"  # pragma: no cover
 
 OVERVIEW = '''
 Samila is a generative art generator written in Python, Samila let's you
@@ -27,6 +27,7 @@ DEFAULT_PROJECTION = "rectilinear"
 SEED_LOWER_BOUND = 0
 SEED_UPPER_BOUND = 2**20
 VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
+HEX_COLOR_PATTERN = r'^#(?:[0-9a-fA-F]{3}){1,2}$'
 NFT_STORAGE_API = "https://api.nft.storage/upload"
 NFT_STORAGE_LINK = "https://ipfs.io/ipfs/{}"
 NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good."
@@ -39,6 +40,7 @@ CONFIG_NO_STR_FUNCTION_ERROR = "Config file can't be saved. At least one of the 
 PLOT_DATA_ERROR = "Plotting process can't be Done because data{0} is empty. Use generate method first."
 SAVE_NO_DATA_ERROR = "Data file can't be saved. At least one of the data1 or data2 is None."
 MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
+CALCULATION_EXCEPTION_WARNING = "The given functions are undefined at some points. Your plot may not be complete."
 
 
 class Projection(Enum):
@@ -55,9 +57,20 @@ class Projection(Enum):
     LAMBERT = "lambert"
     MOLLWEIDE = "mollweide"
     RECTILINEAR = "rectilinear"
+    RANDOM = "random"
 
+
+RANDOM_COEF_LIST = [
+    "random.uniform(-1,1)",
+    "random.gauss(0,1)",
+    "random.betavariate(1,1)",
+    "random.gammavariate(1,1)",
+    "random.lognormvariate(0,1)"]
 
 ELEMENTS_LIST = [
+    "{0}*math.asinh({1})",
+    "{0}*math.acosh(abs({1})+1)",
+    "{0}*math.erf({1})",
     "{0}*math.sqrt(abs({1}))",
     "{0}*math.log(abs({1})+1)",
     "{0}*math.tanh({1})",

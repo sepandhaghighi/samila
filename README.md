@@ -28,6 +28,7 @@
    * [Social Media](https://github.com/sepandhaghighi/samila#social-media)
    * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
    * [References](https://github.com/sepandhaghighi/samila#references)
+   * [Acknowledgments](https://github.com/sepandhaghighi/samila#acknowledgments)
    * [Authors](https://github.com/sepandhaghighi/samila/blob/master/AUTHORS.md)
    * [License](https://github.com/sepandhaghighi/samila/blob/master/LICENSE)
    * [Show Your Support](https://github.com/sepandhaghighi/samila#show-your-support)
@@ -87,7 +88,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 ### Source code
-- Download [Version 0.6](https://github.com/sepandhaghighi/samila/archive/v0.6.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
+- Download [Version 0.7](https://github.com/sepandhaghighi/samila/archive/v0.7.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
 - Run `pip install -r requirements.txt` or `pip3 install -r requirements.txt` (Need root access)
 - Run `python3 setup.py install` or `python setup.py install` (Need root access)				
 
@@ -95,7 +96,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install samila==0.6` or `pip3 install samila==0.6` (Need root access)
+- Run `pip install samila==0.7` or `pip3 install samila==0.7` (Need root access)
 
 ### Easy install
 
@@ -146,7 +147,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/2.png">	
 
-* Supported projections : `RECTILINEAR`, `POLAR`, `AITOFF`, `HAMMER`, `LAMBERT` and `MOLLWEIDE`
+* Supported projections : `RECTILINEAR`, `POLAR`, `AITOFF`, `HAMMER`, `LAMBERT`, `MOLLWEIDE` and `RANDOM`
 * Default projection is `RECTILINEAR`
 
 ### Range
@@ -172,7 +173,12 @@ Samila is a generative art generator written in Python, Samila let's you create 
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/4.png">	
 
 * Supported colors are available in `VALID_COLORS` list
-* `color` and `bgcolor` parameters support color name and RGB/RGBA formats
+* `color` and `bgcolor` parameters supported formats:
+
+    1. Color name (example: `yellow`)
+    2. RGB/RGBA (example: `(0.1,0.1,0.1)`, `(0.1,0.1,0.1,0.1)`)
+    3. Hex (example: `#eeefff`)
+    4. Random (example: `random`)
 
 ### Regeneration
 ```pycon
@@ -362,7 +368,10 @@ You can also join our discord server
 <blockquote>2- <a href="https://github.com/cutterkom/generativeart">Create Generative Art with R</a></blockquote>
 
 <blockquote>3- <a href="https://nft.storage/">NFT.storage : Free decentralized storage and bandwidth for NFTs</a></blockquote>
-	
+
+## Acknowledgments
+
+This project was funded through the **Next Step Microgrant**, a program established by [Protocol Labs](https://protocol.ai/).
 
 ## Show your support
 								

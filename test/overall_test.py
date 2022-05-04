@@ -54,9 +54,46 @@ True
 True
 >>> from samila import GenerativeImage, Projection
 >>> g.plot(projection=Projection.POLAR, color='red', bgcolor='black')
+>>> g.color
+'red'
+>>> g.bgcolor
+'black'
+>>> g.plot(projection=Projection.POLAR, color='rod', bgcolor='blacc')
+>>> g.color
+'red'
+>>> g.bgcolor
+'black'
+>>> g.plot(projection=Projection.POLAR, color="#EEE245", bgcolor="#000000")
+>>> g.projection
+'polar'
+>>> g.color
+'#EEE245'
+>>> g.bgcolor
+'#000000'
 >>> g.plot(projection=Projection.POLAR, color=(.1, .2, .8))
+>>> g.color
+(0.1, 0.2, 0.8)
 >>> g.plot(bgcolor=(.1, .2, .8), spot_size=0.1)
 >>> g.plot(size=(20, 20))
+>>> g.size
+(20, 20)
+>>> g.plot(alpha=0.5, linewidth=2.2)
+>>> g.alpha
+0.5
+>>> g.linewidth
+2.2
+>>> random.seed(2)
+>>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM)
+>>> color1, bgcolor1, projection1 = g.color, g.bgcolor, g.projection
+>>> random.seed(3)
+>>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM)
+>>> color2, bgcolor2, projection2 = g.color, g.bgcolor, g.projection
+>>> color1 == color2
+False
+>>> bgcolor1 == bgcolor2
+False
+>>> projection1 == projection2
+False
 >>> result = g.nft_storage(api_key="")
 >>> result['status']
 False
@@ -169,7 +206,24 @@ False
 [1]
 >>> g_ = GenerativeImage()
 >>> del(g)
+>>> del g_.data1
 >>> del(g_)
+>>> g1 = GenerativeImage()
+>>> function1 = eval("lambda x, y:" + g1.function1_str)
+>>> function2 = eval("lambda x, y:" + g1.function2_str)
+>>> g2 = GenerativeImage(function1=function1, function2=function2)
+>>> g1.generate(seed=22)
+>>> g2.generate(seed=22)
+>>> is_same_data(g1.data1, g2.data1)
+True
+>>> is_same_data(g1.data2, g2.data2)
+True
+>>> len(g1.data1) > 0
+True
+>>> len(g1.data2) > 0
+True
+>>> del(g1)
+>>> del(g2)
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 >>> os.remove("data.json")
