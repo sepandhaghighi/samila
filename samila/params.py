@@ -68,6 +68,7 @@ RANDOM_COEF_LIST = [
     "random.lognormvariate(0,1)"]
 
 ELEMENTS_LIST = [
+    "{0}*math.atan({1})",
     "{0}*math.asinh({1})",
     "{0}*math.acosh(abs({1})+1)",
     "{0}*math.erf({1})",
@@ -88,6 +89,8 @@ ARGUMENTS_LIST = [
     "y-x",
     "x-y",
     "x+y",
+    "x**3",
+    "y**3",
     "x**2",
     "y**2",
     "(x**2)*y",
@@ -97,4 +100,4 @@ ARGUMENTS_LIST = [
     "x*(y**3)",
     "y*(x**3)"]
 
-OPERATORS_LIST = ["+", "-", "*"]
+OPERATORS_LIST = ["+", "-", "*", "/"]
