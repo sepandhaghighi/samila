@@ -109,15 +109,50 @@ def is_valid_color(color):
     except ValueError:
         return False
 
-def filter_color(color):
+def color_complement(color):
+    """
+    Calculate complement color.
+
+    :param color: given color
+    :type color: any format
+    :return: complement color
+    """
+    hex_color = matplotlib.colors.to_hex(color)
+    hex_color = hex_color[1:]
+    hex_color = int(hex_color, 16)
+    comp_color = 0xFFFFFF ^ hex_color
+    comp_color = "#%06X" % comp_color
+    return comp_color
+
+def filter_color(color, bgcolor):
     """
     Filter given color and return it.
 
     :param color: given color
-    :type color: str or tuple
-    :return: filtered version of color
+    :type color: any format
+    :param bgcolor: giver background color
+    :type bgcolor: any format
+    :return: filtered version of color and bgcolor
+    """
+    if color == "COMPLEMENT" and bgcolor == "COMPLEMENT":
+        return None, None
+    if color == "COMPLEMENT":
+        color = color_complement(bgcolor)
+    if bgcolor == "COMPLEMENT":
+        bgcolor = color_complement(color)
+    return color, bgcolor
+
+def select_color(color):
+    """
+    Select color and return it.
+
+    :param color: given color
+    :type color: any format
+    :return: color
     """
     if isinstance(color, str):
+        if color.upper() == "COMPLEMENT":
+            return "COMPLEMENT"
         if color.upper() == "RANDOM":
             return random_hex_color_gen()
         if re.match(HEX_COLOR_PATTERN, color):
@@ -210,7 +245,7 @@ def plot_params_filter(
         raise samilaPlotError(PLOT_DATA_ERROR.format(1))
     if g.data2 is None:
         raise samilaPlotError(PLOT_DATA_ERROR.format(2))
-    color, bgcolor = map(filter_color, [color, bgcolor])
+    color, bgcolor = filter_color(color, bgcolor)
     projection = filter_projection(projection)
     alpha = filter_float(alpha)
     linewidth = filter_float(linewidth)
