@@ -13,16 +13,16 @@ False
 False
 >>> is_same_data(s,[])
 False
->>> filter_color("yellow")
-'yellow'
->>> filter_color((0.2,0.3,0.4))
-(0.2, 0.3, 0.4)
->>> filter_color("#FFFFFF")
-'#FFFFFF'
+>>> filter_color("yellow", "blue")
+('yellow', 'blue')
+>>> filter_color((0.2,0.3,0.4),(0.2,0.3,0.4,1))
+((0.2, 0.3, 0.4), (0.2, 0.3, 0.4, 1))
+>>> filter_color("#FFFFFF","#ffffe1")
+('#FFFFFF', '#ffffe1')
 >>> random.seed(2)
->>> color1 = filter_color("random")
+>>> color1, bgcolor1 = filter_color("random","random")
 >>> random.seed(3)
->>> color2 = filter_color("RANDOM")
+>>> color2,bgcolor2 = filter_color("RANDOM","RANDOM")
 >>> color1 == color2
 False
 >>> random.seed(2)
@@ -35,8 +35,8 @@ False
 7
 >>> len(color2)
 7
->>> filter_color(2)
->>> filter_color(4)
+>>> filter_color(2,2)
+>>> filter_color(4,3)
 >>> filter_size(2)
 >>> filter_size((2, 'test'))
 >>> filter_size((2, 3.5))
