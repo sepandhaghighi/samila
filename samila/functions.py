@@ -117,8 +117,6 @@ def filter_color(color):
     :type color: str or tuple
     :return: filtered version of color
     """
-    if isinstance(color, tuple):
-        return color
     if isinstance(color, str):
         if color.upper() == "RANDOM":
             return random_hex_color_gen()
@@ -128,6 +126,8 @@ def filter_color(color):
                                  VALID_COLORS))
         min_distance = min(distance_list)
         return VALID_COLORS[distance_list.index(min_distance)]
+    if is_valid_color(color):
+        return color
     return None
 
 
