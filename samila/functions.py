@@ -109,6 +109,7 @@ def is_valid_color(color):
     except ValueError:
         return False
 
+
 def color_complement(color):
     """
     Calculate complement color.
@@ -122,6 +123,7 @@ def color_complement(color):
     comp_color = 0xFFFFFF ^ color
     comp_color = "#%06X" % comp_color
     return comp_color
+
 
 def filter_color(color, bgcolor):
     """
@@ -144,6 +146,7 @@ def filter_color(color, bgcolor):
         color = matplotlib.colors.to_hex(color)
         bgcolor = color_complement(color)
     return color, bgcolor
+
 
 def select_color(color):
     """
