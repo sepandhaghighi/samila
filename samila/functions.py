@@ -117,10 +117,9 @@ def color_complement(color):
     :type color: any format
     :return: complement color
     """
-    hex_color = matplotlib.colors.to_hex(color)
-    hex_color = hex_color[1:]
-    hex_color = int(hex_color, 16)
-    comp_color = 0xFFFFFF ^ hex_color
+    color = color[1:]
+    color = int(color, 16)
+    comp_color = 0xFFFFFF ^ color
     comp_color = "#%06X" % comp_color
     return comp_color
 
@@ -134,11 +133,15 @@ def filter_color(color, bgcolor):
     :type bgcolor: any format
     :return: filtered version of color and bgcolor
     """
+    color = select_color(color)
+    bgcolor = select_color(bgcolor)
     if color == "COMPLEMENT" and bgcolor == "COMPLEMENT":
         return None, None
     if color == "COMPLEMENT":
+        bgcolor = matplotlib.colors.to_hex(bgcolor)
         color = color_complement(bgcolor)
     if bgcolor == "COMPLEMENT":
+        color = matplotlib.colors.to_hex(color)
         bgcolor = color_complement(color)
     return color, bgcolor
 
