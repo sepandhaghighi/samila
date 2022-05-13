@@ -95,6 +95,20 @@ def distance_calc(s1, s2):
     return distances[-1]
 
 
+def is_valid_color(color):
+    """
+    Check that input color format is valid or not.
+
+    :param color: given color
+    :type color: any format
+    :return: result as bool
+    """
+    try:
+        _ = matplotlib.colors.to_hex(color)
+        return True
+    except ValueError:
+        return False
+
 def filter_color(color):
     """
     Filter given color and return it.
