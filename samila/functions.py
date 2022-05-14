@@ -114,9 +114,9 @@ def color_complement(color):
     """
     Calculate complement color.
 
-    :param color: given color
-    :type color: any format
-    :return: complement color
+    :param color: given color (hex format)
+    :type color: str
+    :return: complement color (hex format) as str
     """
     color = color[1:]
     color = int(color, 16)
@@ -131,7 +131,7 @@ def filter_color(color, bgcolor):
 
     :param color: given color
     :type color: any format
-    :param bgcolor: giver background color
+    :param bgcolor: given background color
     :type bgcolor: any format
     :return: filtered version of color and bgcolor
     """
