@@ -22,7 +22,7 @@ False
 >>> random.seed(2)
 >>> color1, bgcolor1 = filter_color("random","random")
 >>> random.seed(3)
->>> color2,bgcolor2 = filter_color("RANDOM","RANDOM")
+>>> color2, bgcolor2 = filter_color("RANDOM","RANDOM")
 >>> color1 == color2
 False
 >>> random.seed(2)
@@ -36,7 +36,9 @@ False
 >>> len(color2)
 7
 >>> filter_color(2,2)
+(None, None)
 >>> filter_color(4,3)
+(None, None)
 >>> filter_size(2)
 >>> filter_size((2, 'test'))
 >>> filter_size((2, 3.5))
