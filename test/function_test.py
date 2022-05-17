@@ -32,6 +32,8 @@ True
 >>> select_color(None)
 >>> select_color("complement")
 'COMPLEMENT'
+>>> select_color("transparent")
+'TRANSPARENT'
 >>> s = list(float_range(1,1.5,0.1))
 >>> s
 [1.0, 1.1, 1.2000000000000002, 1.3000000000000003, 1.4000000000000004]
