@@ -82,7 +82,7 @@ True
 >>> g.color
 '#555555'
 >>> g.bgcolor
-'#AAAAAA'
+'#aaaaaa'
 >>> g.plot(projection=Projection.POLAR, color="complement", bgcolor="complement")
 >>> g.color
 '#555555'
