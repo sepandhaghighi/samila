@@ -21,11 +21,11 @@ True
 >>> color_complement("#FFAFBF")
 '#005040'
 >>> color_complement("#000000")
-'#FFFFFF'
+'#ffffff'
 >>> select_color("blue")
 'blue'
 >>> select_color("#FFFFFA")
-'#FFFFFA'
+'#fffffa'
 >>> select_color((0.1,0.1,0.1))
 (0.1, 0.1, 0.1)
 >>> select_color(2)
@@ -48,7 +48,7 @@ False
 >>> filter_color((0.2,0.3,0.4), (0.2,0.3,0.4,1))
 ((0.2, 0.3, 0.4), (0.2, 0.3, 0.4, 1))
 >>> filter_color("#FFFFFF", "#ffffe1")
-('#FFFFFF', '#ffffe1')
+('#ffffff', '#ffffe1')
 >>> random.seed(2)
 >>> color1, bgcolor1 = filter_color("random", "random")
 >>> random.seed(3)

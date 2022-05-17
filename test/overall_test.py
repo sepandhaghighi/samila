@@ -67,7 +67,7 @@ True
 >>> g.projection
 'polar'
 >>> g.color
-'#EEE245'
+'#eee245'
 >>> g.bgcolor
 '#000000'
 >>> g.plot(projection=Projection.POLAR, color=(.1, .2, .8))
@@ -77,7 +77,7 @@ True
 >>> g.color
 '#fffff1'
 >>> g.bgcolor
-'#00000E'
+'#00000e'
 >>> g.plot(projection=Projection.POLAR, color="complement", bgcolor="#AAAAAA")
 >>> g.color
 '#555555'
