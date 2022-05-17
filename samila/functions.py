@@ -121,7 +121,7 @@ def color_complement(color):
     color = color[1:]
     color = int(color, 16)
     comp_color = 0xFFFFFF ^ color
-    comp_color = "#%06X" % comp_color
+    comp_color = "#%06x" % comp_color
     return comp_color
 
 
@@ -164,7 +164,7 @@ def select_color(color):
         if color.upper() == "RANDOM":
             return random_hex_color_gen()
         if re.match(HEX_COLOR_PATTERN, color):
-            return color
+            return color.lower()
         distance_list = list(map(lambda x: distance_calc(color, x),
                                  VALID_COLORS))
         min_distance = min(distance_list)
