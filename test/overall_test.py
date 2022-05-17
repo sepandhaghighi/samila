@@ -87,7 +87,7 @@ True
 >>> g.color
 '#555555'
 >>> g.bgcolor
-'#AAAAAA'
+'#aaaaaa'
 >>> g.plot(bgcolor=(.1, .2, .8), spot_size=0.1)
 >>> g.plot(size=(20, 20))
 >>> g.size
