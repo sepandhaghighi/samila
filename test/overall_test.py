@@ -162,7 +162,7 @@ True
 >>> g = GenerativeImage()
 >>> g.generate()
 >>> g.plot(color="white", bgcolor="transparent")
->>> g.bgcolor == "transparent"
+>>> g.bgcolor == "TRANSPARENT"
 True
 >>> g.plot(color="white", bgcolor="black", spot_size=0.1)
 >>> result = g.save_config()
