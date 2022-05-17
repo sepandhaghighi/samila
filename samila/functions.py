@@ -127,7 +127,7 @@ def color_complement(color):
 
 def filter_color(color, bgcolor):
     """
-    Filter given color and return it.
+    Filter given color and bgcolor.
 
     :param color: given color
     :type color: any format
