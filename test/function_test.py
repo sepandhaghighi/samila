@@ -2,6 +2,36 @@
 """
 >>> import random
 >>> from samila.functions import *
+>>> is_valid_color("blue")
+True
+>>> is_valid_color((0,0,0))
+True
+>>> is_valid_color((0.1,0.1,0,1))
+True
+>>> is_valid_color([1,1,1,1])
+True
+>>> is_valid_color([1,1,1,1,1,1])
+False
+>>> is_valid_color("nothing")
+False
+>>> is_valid_color("#FFFAAF")
+True
+>>> color_complement("#FFFFFF")
+'#000000'
+>>> color_complement("#FFAFBF")
+'#005040'
+>>> color_complement("#000000")
+'#FFFFFF'
+>>> select_color("blue")
+'blue'
+>>> select_color("#FFFFFA")
+'#FFFFFA'
+>>> select_color((0.1,0.1,0.1))
+(0.1, 0.1, 0.1)
+>>> select_color(2)
+>>> select_color(None)
+>>> select_color("complement")
+'COMPLEMENT'
 >>> s = list(float_range(1,1.5,0.1))
 >>> s
 [1.0, 1.1, 1.2000000000000002, 1.3000000000000003, 1.4000000000000004]

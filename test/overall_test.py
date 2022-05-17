@@ -73,6 +73,21 @@ True
 >>> g.plot(projection=Projection.POLAR, color=(.1, .2, .8))
 >>> g.color
 (0.1, 0.2, 0.8)
+>>> g.plot(projection=Projection.POLAR, color="#FFFFF1", bgcolor="complement")
+>>> g.color
+'#FFFFF1'
+>>> g.bgcolor
+'#00000E'
+>>> g.plot(projection=Projection.POLAR, color="complement", bgcolor="#AAAAAA")
+>>> g.color
+'#555555'
+>>> g.bgcolor
+'#AAAAAA'
+>>> g.plot(projection=Projection.POLAR, color="complement", bgcolor="complement")
+>>> g.color
+'#555555'
+>>> g.bgcolor
+'#AAAAAA'
 >>> g.plot(bgcolor=(.1, .2, .8), spot_size=0.1)
 >>> g.plot(size=(20, 20))
 >>> g.size
