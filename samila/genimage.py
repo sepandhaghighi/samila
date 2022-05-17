@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from .functions import _GI_initializer, plot_params_filter, generate_params_filter, save_params_filter
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload, fill_data
+from .functions import set_background
 from .params import *
 from warnings import warn
 
@@ -126,9 +127,8 @@ class GenerativeImage:
             linewidth)
         fig = plt.figure()
         fig.set_size_inches(self.size[0], self.size[1])
-        fig.set_facecolor(self.bgcolor)
         ax = fig.add_subplot(111, projection=self.projection)
-        ax.set_facecolor(self.bgcolor)
+        set_background(self.bgcolor, fig, ax)
         ax.scatter(
             self.data2,
             self.data1,
