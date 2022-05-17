@@ -5,8 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- `is_valid_color` function
+- `color_complement` function
+- `select_color` function
 ### Changed
 - Random mode modified
+- Complementary color support for `color` and `bgcolor` parameters
+- `filter_color` function modified
 ## [0.7] - 2022-05-04
 ### Added
 - `fill_data` function

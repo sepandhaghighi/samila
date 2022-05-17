@@ -95,17 +95,70 @@ def distance_calc(s1, s2):
     return distances[-1]
 
 
-def filter_color(color):
+def is_valid_color(color):
     """
-    Filter given color and return it.
+    Check that input color format is valid or not.
 
     :param color: given color
-    :type color: str or tuple
-    :return: filtered version of color
+    :type color: any format
+    :return: result as bool
     """
-    if isinstance(color, tuple):
-        return color
+    try:
+        _ = matplotlib.colors.to_hex(color)
+        return True
+    except ValueError:
+        return False
+
+
+def color_complement(color):
+    """
+    Calculate complement color.
+
+    :param color: given color (hex format)
+    :type color: str
+    :return: complement color (hex format) as str
+    """
+    color = color[1:]
+    color = int(color, 16)
+    comp_color = 0xFFFFFF ^ color
+    comp_color = "#%06X" % comp_color
+    return comp_color
+
+
+def filter_color(color, bgcolor):
+    """
+    Filter given color and bgcolor.
+
+    :param color: given color
+    :type color: any format
+    :param bgcolor: given background color
+    :type bgcolor: any format
+    :return: filtered version of color and bgcolor
+    """
+    color = select_color(color)
+    bgcolor = select_color(bgcolor)
+    if color == "COMPLEMENT" and bgcolor == "COMPLEMENT":
+        return None, None
+    if color == "COMPLEMENT":
+        bgcolor = matplotlib.colors.to_hex(bgcolor)
+        color = color_complement(bgcolor)
+    if bgcolor == "COMPLEMENT":
+        color = matplotlib.colors.to_hex(color)
+        bgcolor = color_complement(color)
+    return color, bgcolor
+
+
+def select_color(color):
+    """
+    Select color and return it.
+
+    :param color: given color
+    :type color: any format
+    :return: color
+    """
     if isinstance(color, str):
+        if color.upper() == "COMPLEMENT":
+            return "COMPLEMENT"
         if color.upper() == "RANDOM":
             return random_hex_color_gen()
         if re.match(HEX_COLOR_PATTERN, color):
@@ -114,6 +167,8 @@ def filter_color(color):
                                  VALID_COLORS))
         min_distance = min(distance_list)
         return VALID_COLORS[distance_list.index(min_distance)]
+    if is_valid_color(color):
+        return color
     return None
 
 
@@ -196,7 +251,7 @@ def plot_params_filter(
         raise samilaPlotError(PLOT_DATA_ERROR.format(1))
     if g.data2 is None:
         raise samilaPlotError(PLOT_DATA_ERROR.format(2))
-    color, bgcolor = map(filter_color, [color, bgcolor])
+    color, bgcolor = filter_color(color, bgcolor)
     projection = filter_projection(projection)
     alpha = filter_float(alpha)
     linewidth = filter_float(linewidth)
