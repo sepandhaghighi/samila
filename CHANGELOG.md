@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `transparent` bgcolor
+- `set_background` function
 - `is_valid_color` function
 - `color_complement` function
 - `select_color` function
