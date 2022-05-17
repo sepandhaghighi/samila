@@ -15,14 +15,14 @@ False
 False
 >>> filter_color("yellow", "blue")
 ('yellow', 'blue')
->>> filter_color((0.2,0.3,0.4),(0.2,0.3,0.4,1))
+>>> filter_color((0.2,0.3,0.4), (0.2,0.3,0.4,1))
 ((0.2, 0.3, 0.4), (0.2, 0.3, 0.4, 1))
->>> filter_color("#FFFFFF","#ffffe1")
+>>> filter_color("#FFFFFF", "#ffffe1")
 ('#FFFFFF', '#ffffe1')
 >>> random.seed(2)
->>> color1, bgcolor1 = filter_color("random","random")
+>>> color1, bgcolor1 = filter_color("random", "random")
 >>> random.seed(3)
->>> color2, bgcolor2 = filter_color("RANDOM","RANDOM")
+>>> color2, bgcolor2 = filter_color("RANDOM", "RANDOM")
 >>> color1 == color2
 False
 >>> random.seed(2)
