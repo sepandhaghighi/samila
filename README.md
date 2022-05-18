@@ -180,6 +180,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
     3. Hex (example: `color="#eeefff"`)
     4. Random (example: `color="random"`)
     5. Complement (example: `color="complement", bgcolor="blue"`)
+    6. Transparent (example: `bgcolor="transparent"`)
 
 ### Regeneration
 ```pycon
