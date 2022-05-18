@@ -181,9 +181,9 @@ def set_background(bgcolor, fig, ax):
     :param bgcolor: given background color
     :type bgcolor: any format
     :param fig: figure
-    :type fig: matplotlib.pyplot.figure
+    :type fig: matplotlib.figure.Figure
     :param ax: axis
-    :type ax: matplotlib.pyplot.figure
+    :type ax: matplotlib.axes._subplots.AxesSubplot
     :return: None
     """
     if bgcolor == "TRANSPARENT":
