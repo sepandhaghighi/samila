@@ -157,6 +157,8 @@ def select_color(color):
     :return: color
     """
     if isinstance(color, str):
+        if color.upper() == "TRANSPARENT":
+            return "TRANSPARENT"
         if color.upper() == "COMPLEMENT":
             return "COMPLEMENT"
         if color.upper() == "RANDOM":
@@ -170,6 +172,27 @@ def select_color(color):
     if is_valid_color(color):
         return color
     return None
+
+
+def set_background(bgcolor, fig, ax):
+    """
+    Set background for figure and axis.
+
+    :param bgcolor: given background color
+    :type bgcolor: any format
+    :param fig: figure
+    :type fig: matplotlib.figure.Figure
+    :param ax: axis
+    :type ax: matplotlib.axes._subplots.AxesSubplot
+    :return: None
+    """
+    if bgcolor == "TRANSPARENT":
+        ax.patch.set_visible(False)
+        fig.patch.set_visible(False)
+        return
+    fig.set_facecolor(bgcolor)
+    ax.set_facecolor(bgcolor)
+    return
 
 
 def filter_projection(projection):
