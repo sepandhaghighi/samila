@@ -24,7 +24,6 @@ True
 '#fffffa'
 >>> select_color((0.1,0.1,0.1))
 (0.1, 0.1, 0.1)
->>> select_color(2)
 >>> select_color(None)
 >>> select_color("complement")
 'COMPLEMENT'
@@ -63,10 +62,6 @@ False
 7
 >>> len(color2)
 7
->>> filter_color(2,2)
-(None, None)
->>> filter_color(4,3)
-(None, None)
 >>> filter_size(2)
 >>> filter_size((2, 'test'))
 >>> filter_size((2, 3.5))
