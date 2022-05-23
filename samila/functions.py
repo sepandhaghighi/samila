@@ -13,9 +13,11 @@ from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECT
 from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
+from .params import BOTH_COLOR_COMPLEMENT_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
 from .errors import samilaDataError, samilaPlotError, samilaConfigError
+from warnings import warn
 
 
 def random_equation_gen():
@@ -138,6 +140,7 @@ def filter_color(color, bgcolor):
     color = select_color(color)
     bgcolor = select_color(bgcolor)
     if color == "COMPLEMENT" and bgcolor == "COMPLEMENT":
+        warn(BOTH_COLOR_COMPLEMENT_WARNING, RuntimeWarning)
         return None, None
     if color == "COMPLEMENT":
         bgcolor = matplotlib.colors.to_hex(bgcolor)

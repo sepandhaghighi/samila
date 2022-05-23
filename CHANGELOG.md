@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `BOTH_COLOR_COMPLEMENT_WARNING` warning
 - `set_background` function
 - `is_valid_color` function
 - `color_complement` function

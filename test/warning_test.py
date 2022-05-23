@@ -23,6 +23,8 @@ True
 >>> g = GenerativeImage(lambda x, y: 1 / x, lambda x, y: 1 / (y - 1))
 >>> with warns(RuntimeWarning, match=r"The given functions are undefined at some points. Your plot may not be complete."):
 ...     g.generate(start=0, stop=2, step=0.1)
+>>> with warns(RuntimeWarning, match=r"Both color and bgcolor are 'complement'. Both are set to default."):
+...     g.plot(color='complement', bgcolor='complement')
 >>> os.remove('data.json')
 >>> os.remove('config.json')
 """
