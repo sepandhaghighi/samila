@@ -10,10 +10,6 @@ True
 True
 >>> is_valid_color([1,1,1,1])
 True
->>> is_valid_color([1,1,1,1,1,1])
-False
->>> is_valid_color("nothing")
-False
 >>> is_valid_color("#FFFAAF")
 True
 >>> color_complement("#FFFFFF")
