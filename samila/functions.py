@@ -14,7 +14,7 @@ from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import INVALID_COLOR_TYPE_ERROR
-from .params import BOTH_COLOR_COMPLEMENT_WARNING
+from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
 from .errors import samilaDataError, samilaPlotError, samilaConfigError
@@ -172,7 +172,14 @@ def select_color(color):
         distance_list = list(map(lambda x: distance_calc(color, x),
                                  VALID_COLORS))
         min_distance = min(distance_list)
-        return VALID_COLORS[distance_list.index(min_distance)]
+        most_similar_color = VALID_COLORS[distance_list.index(min_distance)]
+        if min_distance != 0:
+            warn(
+                COLOR_NOT_FOUND_WARNING.format(
+                    color,
+                    most_similar_color),
+                RuntimeWarning)
+        return most_similar_color
     if is_valid_color(color):
         return color
     return None

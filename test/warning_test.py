@@ -25,6 +25,8 @@ True
 ...     g.generate(start=0, stop=2, step=0.1)
 >>> with warns(RuntimeWarning, match=r"Both color and bgcolor are 'complement'. Both are set to default."):
 ...     g.plot(color='complement', bgcolor='complement')
+>>> with warns(RuntimeWarning, match=r"color 'rad' not found. Replacing it with 'red'"):
+...     g.plot(color='rad')
 >>> os.remove('data.json')
 >>> os.remove('config.json')
 """

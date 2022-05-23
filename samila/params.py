@@ -43,6 +43,7 @@ INVALID_COLOR_TYPE_ERROR = "Given color type is not supported."
 MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
 CALCULATION_EXCEPTION_WARNING = "The given functions are undefined at some points. Your plot may not be complete."
 BOTH_COLOR_COMPLEMENT_WARNING = "Both color and bgcolor are 'complement'. Both are set to default."
+COLOR_NOT_FOUND_WARNING = "color '{}' not found. Replacing it with '{}'"
 
 
 class Projection(Enum):
