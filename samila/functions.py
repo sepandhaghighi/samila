@@ -13,7 +13,8 @@ from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECT
 from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
-from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING, INVALID_COLOR_TYPE_WARNING
+from .params import INVALID_COLOR_TYPE_ERROR
+from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
 from .errors import samilaDataError, samilaPlotError, samilaConfigError
@@ -105,6 +106,8 @@ def is_valid_color(color):
     :type color: any format
     :return: result as bool
     """
+    if color == None:
+        return True
     try:
         _ = matplotlib.colors.to_hex(color)
         return True
@@ -181,8 +184,7 @@ def select_color(color):
         return most_similar_color
     if is_valid_color(color):
         return color
-    warn(INVALID_COLOR_TYPE_WARNING, RuntimeWarning)
-    return None
+    raise samilaPlotError(INVALID_COLOR_TYPE_ERROR)
 
 
 def set_background(bgcolor, fig, ax):
