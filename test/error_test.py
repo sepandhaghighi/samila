@@ -48,14 +48,14 @@ samila.errors.samilaConfigError: Config file can't be saved. At least one of the
 >>> select_color(2)
 Traceback (most recent call last):
         ...
-samila.errors.samilaPlotError: Given color type is not supported. Replacing it with the default color.
+samila.errors.samilaPlotError: Given color type is not supported.
 >>> filter_color(2,2)
 Traceback (most recent call last):
         ...
-samila.errors.samilaPlotError: Given color type is not supported. Replacing it with the default color.
+samila.errors.samilaPlotError: Given color type is not supported.
 >>> g.plot(color=2, bgcolor=2)
 Traceback (most recent call last):
         ...
-samila.errors.samilaPlotError: Given color type is not supported. Replacing it with the default color.
+samila.errors.samilaPlotError: Given color type is not supported.
 >>> os.remove('data.json')
 """
