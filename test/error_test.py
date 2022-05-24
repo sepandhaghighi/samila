@@ -38,7 +38,7 @@ samila.errors.samilaPlotError: Plotting process can't be Done because data2 is e
 >>> g.plot(color=(1, 2, 3, 4, 5))
 Traceback (most recent call last):
         ...
-samila.errors.samilaPlotError: Given color type is not supported.
+samila.errors.samilaPlotError: Given color/bgcolor type is not supported.
 >>> g = GenerativeImage(lambda x,y: x, lambda x,y: y)
 >>> result = g.save_config()
 Traceback (most recent call last):
@@ -48,14 +48,14 @@ samila.errors.samilaConfigError: Config file can't be saved. At least one of the
 >>> select_color(2)
 Traceback (most recent call last):
         ...
-samila.errors.samilaPlotError: Given color type is not supported.
+samila.errors.samilaPlotError: Given color/bgcolor type is not supported.
 >>> filter_color(2,2)
 Traceback (most recent call last):
         ...
-samila.errors.samilaPlotError: Given color type is not supported.
+samila.errors.samilaPlotError: Given color/bgcolor type is not supported.
 >>> g.plot(color=2, bgcolor=2)
 Traceback (most recent call last):
         ...
-samila.errors.samilaPlotError: Given color type is not supported.
+samila.errors.samilaPlotError: Given color/bgcolor type is not supported.
 >>> os.remove('data.json')
 """
