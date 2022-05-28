@@ -23,6 +23,10 @@ True
 >>> g = GenerativeImage(lambda x, y: 1 / x, lambda x, y: 1 / (y - 1))
 >>> with warns(RuntimeWarning, match=r"The given functions are undefined at some points. Your plot may not be complete."):
 ...     g.generate(start=0, stop=2, step=0.1)
+>>> with warns(RuntimeWarning, match=r"It is not possible to set color and bgcolor to 'complement' at the same time! Both are automatically set to the previous or default selection."):
+...     g.plot(color='complement', bgcolor='complement')
+>>> with warns(RuntimeWarning, match=r"color 'rad' not found. Replacing it with 'red'"):
+...     g.plot(color='rad')
 >>> os.remove('data.json')
 >>> os.remove('config.json')
 """

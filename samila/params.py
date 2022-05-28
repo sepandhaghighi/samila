@@ -39,8 +39,11 @@ CONFIG_TYPE_ERROR = "Provided config file is not supported. It should be either 
 CONFIG_NO_STR_FUNCTION_ERROR = "Config file can't be saved. At least one of the function1_str or function2_str is None."
 PLOT_DATA_ERROR = "Plotting process can't be Done because data{0} is empty. Use generate method first."
 SAVE_NO_DATA_ERROR = "Data file can't be saved. At least one of the data1 or data2 is None."
+INVALID_COLOR_TYPE_ERROR = "Given color/bgcolor type is not supported."
 MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
 CALCULATION_EXCEPTION_WARNING = "The given functions are undefined at some points. Your plot may not be complete."
+BOTH_COLOR_COMPLEMENT_WARNING = "It is not possible to set color and bgcolor to 'complement' at the same time! Both are automatically set to the previous or default selection."
+COLOR_NOT_FOUND_WARNING = "color '{0}' not found. Replacing it with '{1}'"
 
 
 class Projection(Enum):
