@@ -88,7 +88,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 ### Source code
-- Download [Version 0.7](https://github.com/sepandhaghighi/samila/archive/v0.7.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
+- Download [Version 0.8](https://github.com/sepandhaghighi/samila/archive/v0.8.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
 - Run `pip install -r requirements.txt` or `pip3 install -r requirements.txt` (Need root access)
 - Run `python3 setup.py install` or `python setup.py install` (Need root access)				
 
@@ -96,7 +96,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install samila==0.7` or `pip3 install samila==0.7` (Need root access)
+- Run `pip install samila==0.8` or `pip3 install samila==0.8` (Need root access)
 
 ### Easy install
 
@@ -175,10 +175,14 @@ Samila is a generative art generator written in Python, Samila let's you create 
 * Supported colors are available in `VALID_COLORS` list
 * `color` and `bgcolor` parameters supported formats:
 
-    1. Color name (example: `yellow`)
-    2. RGB/RGBA (example: `(0.1,0.1,0.1)`, `(0.1,0.1,0.1,0.1)`)
-    3. Hex (example: `#eeefff`)
-    4. Random (example: `random`)
+    1. Color name (example: `color="yellow"`)
+    2. RGB/RGBA (example: `color=(0.1,0.1,0.1)`, `color=(0.1,0.1,0.1,0.1)`)
+    3. Hex (example: `color="#eeefff"`)
+    4. Random (example: `color="random"`)
+    5. Complement (example: `color="complement", bgcolor="blue"`)
+    6. Transparent (example: `bgcolor="transparent"`)
+
+⚠️ **Transparent** mode is only available for background
 
 ### Regeneration
 ```pycon

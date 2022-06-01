@@ -5,6 +5,20 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.8] - 2022-06-01
+### Added
+- `INVALID_COLOR_TYPE_ERROR` error
+- `COLOR_NOT_FOUND_WARNING` warning
+- `BOTH_COLOR_COMPLEMENT_WARNING` warning
+- `set_background` function
+- `is_valid_color` function
+- `color_complement` function
+- `select_color` function
+### Changed
+- Transparent mode support for `bgcolor` parameter
+- Random mode modified
+- Complementary color support for `color` and `bgcolor` parameters
+- `filter_color` function modified
 ## [0.7] - 2022-05-04
 ### Added
 - `fill_data` function
@@ -109,7 +123,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `generate` method
 - `nft_storage` method
 
-[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v0.7...dev
+[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v0.8...dev
+[0.8]: https://github.com/sepandhaghighi/samila/compare/v0.7...v0.8
 [0.7]: https://github.com/sepandhaghighi/samila/compare/v0.6...v0.7
 [0.6]: https://github.com/sepandhaghighi/samila/compare/v0.5...v0.6
 [0.5]: https://github.com/sepandhaghighi/samila/compare/v0.4...v0.5

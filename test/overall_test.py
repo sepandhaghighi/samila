@@ -67,12 +67,27 @@ True
 >>> g.projection
 'polar'
 >>> g.color
-'#EEE245'
+'#eee245'
 >>> g.bgcolor
 '#000000'
 >>> g.plot(projection=Projection.POLAR, color=(.1, .2, .8))
 >>> g.color
 (0.1, 0.2, 0.8)
+>>> g.plot(projection=Projection.POLAR, color="#FFFFF1", bgcolor="complement")
+>>> g.color
+'#fffff1'
+>>> g.bgcolor
+'#00000e'
+>>> g.plot(projection=Projection.POLAR, color="complement", bgcolor="#AAAAAA")
+>>> g.color
+'#555555'
+>>> g.bgcolor
+'#aaaaaa'
+>>> g.plot(projection=Projection.POLAR, color="complement", bgcolor="complement")
+>>> g.color
+'#555555'
+>>> g.bgcolor
+'#aaaaaa'
 >>> g.plot(bgcolor=(.1, .2, .8), spot_size=0.1)
 >>> g.plot(size=(20, 20))
 >>> g.size
@@ -119,7 +134,7 @@ False
 False
 >>> socket.socket = guard
 >>> g.generate()
->>> g.plot(color=2,bgcolor=2)
+>>> g.plot()
 >>> result = g.nft_storage("")
 >>> result["status"]
 False
@@ -146,6 +161,9 @@ True
 True
 >>> g = GenerativeImage()
 >>> g.generate()
+>>> g.plot(color="white", bgcolor="transparent")
+>>> g.bgcolor == "TRANSPARENT"
+True
 >>> g.plot(color="white", bgcolor="black", spot_size=0.1)
 >>> result = g.save_config()
 >>> result["status"]
