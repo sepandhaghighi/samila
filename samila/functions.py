@@ -27,7 +27,7 @@ def random_equation_gen():
 
     :return: equation as str
     """
-    num_elements = random.randint(2, len(ELEMENTS_LIST) + 3)
+    num_elements = random.randint(1, len(ELEMENTS_LIST))
     result = ""
     index = 1
     random_coef = random.choice(RANDOM_COEF_LIST)
