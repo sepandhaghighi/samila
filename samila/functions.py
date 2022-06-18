@@ -40,6 +40,8 @@ def random_equation_gen():
         if index < num_elements:
             result = result + random.choice(OPERATORS_LIST)
         index = index + 1
+    if random.randint(0, 1) == 1:
+        result = random.choice(ELEMENTS_LIST).format(random_coef, result)
     return result
 
 
