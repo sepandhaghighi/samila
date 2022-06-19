@@ -27,17 +27,22 @@ def random_equation_gen():
 
     :return: equation as str
     """
-    num_elements = random.randint(2, len(ELEMENTS_LIST) + 3)
+    num_elements = random.randint(1, len(ELEMENTS_LIST))
     result = ""
     index = 1
     random_coef = random.choice(RANDOM_COEF_LIST)
     while(index <= num_elements):
         argument = random.choice(ARGUMENTS_LIST)
+        if random.randint(0, 1) == 1:
+            argument = random.choice(ELEMENTS_LIST).format(
+                random_coef, argument)
         result = result + \
             random.choice(ELEMENTS_LIST).format(random_coef, argument)
         if index < num_elements:
             result = result + random.choice(OPERATORS_LIST)
         index = index + 1
+    if random.randint(0, 1) == 1:
+        result = random.choice(ELEMENTS_LIST).format(random_coef, result)
     return result
 
 
@@ -106,7 +111,7 @@ def is_valid_color(color):
     :type color: any format
     :return: result as bool
     """
-    if color == None:
+    if color is None:
         return True
     try:
         _ = matplotlib.colors.to_hex(color)
