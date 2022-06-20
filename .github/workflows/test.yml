@@ -62,4 +62,4 @@ jobs:
       if: matrix.python-version == 3.7 && matrix.os == 'ubuntu-latest'
     - name: cProfile
       run: |
-          python -m cProfile -s cumtime otherfiles/profile.py
+          python -m cProfile -s cumtime otherfiles/samila_profile.py
