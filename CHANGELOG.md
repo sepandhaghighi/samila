@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Random mode modified
+- Test system modified
 ## [0.8] - 2022-06-01
 ### Added
 - `INVALID_COLOR_TYPE_ERROR` error
