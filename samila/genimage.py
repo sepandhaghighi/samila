@@ -79,8 +79,7 @@ class GenerativeImage:
         self.data1 = []
         self.data2 = []
         range1 = list(float_range(self.start, self.stop, self.step))
-        range2 = list(float_range(self.start, self.stop, self.step))
-        range_prod = list(itertools.product(range1, range2))
+        range_prod = list(itertools.product(range1, range1))
         calc_exception = False
         for point in range_prod:
             if not fill_data(self, point):
