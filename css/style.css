@@ -92,10 +92,10 @@ body{
     
 }
 li { list-style-position: inside }
+
 .samila_image{
-    width: 270px;
-    height: 387px;
-    opacity: 0.9;
+    width: 300px;
+    opacity: 1;
 }
 
 .moduland{
