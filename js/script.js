@@ -3,6 +3,14 @@ function range(size) {
     return [...Array(size).keys()].map(i => (i+1) + '.jpg');
 }
 
+function ready(callback){
+    if (document.readyState!='loading') callback();
+    else if (document.addEventListener) document.addEventListener('DOMContentLoaded', callback);
+    else document.attachEvent('onreadystatechange', function(){
+        if (document.readyState=='complete') callback();
+    });
+}
+
 var backgrounds = range(15);
 
 function redirect(flag){
@@ -31,7 +39,7 @@ function change_bg(){
     s[0].style.background = `url('images/backgrounds/${random_image}') repeat center center`
 }
 
-window.onload = function() {
-  change_bg();
-};
+ready(function(){
+    change_bg();
+});
 
