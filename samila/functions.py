@@ -159,6 +159,22 @@ def filter_color(color, bgcolor):
     return color, bgcolor
 
 
+def filter_cmap(cmap):
+    """
+    Filter given cmap.
+
+    :param cmap: color map
+    :type cmap: matplotlib.colors.Colormap or list of colors
+    :return: filtered version of cmap
+    """
+    if isinstance(cmap, colors.Colormap):
+        return cmap
+    if isinstance(cmap, (list)):
+        cmap = list(map(select_color, cmap))
+        return ListedColormap(cmap)
+    return None
+
+
 def select_color(color):
     """
     Select color and return it.
