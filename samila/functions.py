@@ -16,7 +16,7 @@ from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECT
 from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
-from .params import INVALID_COLOR_TYPE_ERROR
+from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
 from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
@@ -280,6 +280,7 @@ def filter_size(size):
 def plot_params_filter(
         g,
         color=None,
+        c=None,
         bgcolor=None,
         cmap=None,
         spot_size=None,
@@ -294,6 +295,8 @@ def plot_params_filter(
     :type g: GenerativeImage
     :param color: point colors
     :type color: str
+    :param c: point colors (similar to color)
+    :type c: str
     :param bgcolor: background color
     :type bgcolor: str
     :param cmap: color map
@@ -314,7 +317,14 @@ def plot_params_filter(
         raise samilaPlotError(PLOT_DATA_ERROR.format(1))
     if g.data2 is None:
         raise samilaPlotError(PLOT_DATA_ERROR.format(2))
-    color, bgcolor = filter_color(color, bgcolor)
+    if color is None:
+        color = c
+    if isinstance(color, list):
+        if len(color) != len(g.data1):
+            raise samilaPlotError(COLOR_SIZE_ERROR)
+        bgcolor = select_color(bgcolor)
+    else:
+        color, bgcolor = filter_color(color, bgcolor)
     cmap = filter_cmap(cmap)
     projection = filter_projection(projection)
     alpha = filter_float(alpha)
