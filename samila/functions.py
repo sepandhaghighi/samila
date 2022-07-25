@@ -8,7 +8,10 @@ import re
 import json
 import random
 import matplotlib
+from matplotlib.colors import ListedColormap
+from matplotlib import colors
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
+from .params import DEFAULT_CMAP
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
 from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
@@ -278,6 +281,7 @@ def plot_params_filter(
         g,
         color=None,
         bgcolor=None,
+        cmap=None,
         spot_size=None,
         size=None,
         projection=None,
@@ -292,6 +296,8 @@ def plot_params_filter(
     :type color: str
     :param bgcolor: background color
     :type bgcolor: str
+    :param cmap: color map
+    :type cmap: matplotlib.colors.Colormap or list of colors
     :param spot_size: point spot size
     :type spot_size: float
     :param size: figure size
@@ -309,6 +315,7 @@ def plot_params_filter(
     if g.data2 is None:
         raise samilaPlotError(PLOT_DATA_ERROR.format(2))
     color, bgcolor = filter_color(color, bgcolor)
+    cmap = filter_cmap(cmap)
     projection = filter_projection(projection)
     alpha = filter_float(alpha)
     linewidth = filter_float(linewidth)
@@ -318,6 +325,8 @@ def plot_params_filter(
         color = g.color
     if bgcolor is None:
         bgcolor = g.bgcolor
+    if cmap is None:
+        cmap = g.cmap
     if spot_size is None:
         spot_size = g.spot_size
     if size is None:
@@ -426,6 +435,7 @@ def _GI_initializer(g, function1, function2):
     g.data2 = None
     g.color = DEFAULT_COLOR
     g.bgcolor = DEFAULT_BACKGROUND_COLOR
+    g.cmap = DEFAULT_CMAP
     g.spot_size = DEFAULT_SPOT_SIZE
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
