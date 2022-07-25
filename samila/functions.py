@@ -504,6 +504,7 @@ def save_data_file(g, file_adr):
     data['plot'] = {
         "color": g.color,
         "bgcolor": g.bgcolor,
+        "cmap": g.cmap,
         "spot_size": g.spot_size,
         "projection": g.projection,
         "alpha": g.alpha,
@@ -547,6 +548,7 @@ def save_config_file(g, file_adr):
     data['plot'] = {
         "color": g.color,
         "bgcolor": g.bgcolor,
+        "cmap": g.cmap,
         "spot_size": g.spot_size,
         "projection": g.projection,
         "alpha": g.alpha,
@@ -674,6 +676,7 @@ def load_data(g, data):
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
+            g.cmap = plot_config.get("cmap", DEFAULT_CMAP)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
@@ -709,6 +712,7 @@ def load_config(g, config):
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
+            g.cmap = plot_config.get("cmap", DEFAULT_CMAP)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
