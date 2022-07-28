@@ -1,0 +1,59 @@
+@font-face {
+     font-family: "jost";
+     src: url("../fonts/jost.ttf");
+}
+ body{
+     font-family: "jost";
+}
+ .title{
+     text-align: center;
+}
+ .title a{
+     font-size: 2em;
+}
+ .title a:hover{
+     opacity: 0.5;
+}
+ div.gallery {
+     border: 3px solid #ccc;
+}
+ div.gallery:hover {
+     border: 3px solid #000000;
+}
+ div.gallery img {
+     width: 100%;
+     height: auto;
+}
+ div.gallery img:hover {
+     opacity: 0.5;
+}
+ div.desc {
+     padding: 15px;
+     text-align: center;
+     font-weight: bold;
+}
+ * {
+     box-sizing: border-box;
+}
+ .responsive {
+     margin-bottom: 3px;
+     padding: 0 6px;
+     float: left;
+     width: 24.99999%;
+}
+ @media only screen and (max-width: 700px) {
+     .responsive {
+         width: 49.99999%;
+         margin: 6px 0;
+    }
+}
+ @media only screen and (max-width: 500px) {
+     .responsive {
+         width: 100%;
+    }
+}
+ .clearfix:after {
+     content: "";
+     display: table;
+     clear: both;
+}
