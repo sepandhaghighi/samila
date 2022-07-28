@@ -16,7 +16,7 @@ var template = `
 <div class="responsive">
   <div class="gallery">
     <a target="_blank" href="{{link}}">
-      <img src="{{link}}" alt="{{number1}}" width="300" height="300">
+      <img src="{{link}}" alt="{{number1}}" width="300" height="300" loading="lazy">
     </a>
     <div class="desc">{{number1}}</div>
   </div>
