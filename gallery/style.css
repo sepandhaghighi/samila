@@ -5,11 +5,15 @@
  body{
      font-family: "jost";
 }
+.version{
+    color: firebrick;
+}
  .title{
      text-align: center;
 }
  .title a{
      font-size: 2em;
+     margin-right: 10px;
 }
  .title a:hover{
      opacity: 0.5;
