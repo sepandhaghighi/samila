@@ -42,8 +42,7 @@
      box-sizing: border-box;
 }
  .responsive {
-     margin-bottom: 3px;
-     padding: 0 6px;
+     padding: 6px 6px;
      float: left;
      width: 24.99999%;
 }
