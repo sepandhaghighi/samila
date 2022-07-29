@@ -20,6 +20,7 @@
 }
  div.gallery {
      border: 3px solid #ccc;
+     border-radius: 10px;
 }
  div.gallery:hover {
      border: 3px solid #000000;
@@ -27,6 +28,7 @@
  div.gallery img {
      width: 100%;
      height: auto;
+     padding: 6px;
 }
  div.gallery img:hover {
      opacity: 0.5;
