@@ -8,6 +8,7 @@ import re
 import json
 import random
 import matplotlib
+from matplotlib import cm
 from matplotlib.colors import ListedColormap
 from matplotlib import colors
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
@@ -170,6 +171,8 @@ def filter_cmap(cmap):
     :type cmap: matplotlib.colors.Colormap or list of colors
     :return: filtered version of cmap
     """
+    if isinstance(cmap, str):
+        cmap = cm.get_cmap(cmap)
     if isinstance(cmap, colors.Colormap):
         return cmap
     if isinstance(cmap, list):
