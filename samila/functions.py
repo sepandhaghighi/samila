@@ -10,9 +10,8 @@ import random
 import matplotlib
 from matplotlib import cm
 from matplotlib.colors import ListedColormap
-from matplotlib import colors
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
-from .params import DEFAULT_CMAP
+from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
 from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
@@ -172,8 +171,11 @@ def filter_cmap(cmap):
     :return: filtered version of cmap
     """
     if isinstance(cmap, str):
-        cmap = cm.get_cmap(cmap)
-    if isinstance(cmap, colors.Colormap):
+        cmap = cm.get_cmap(cmap, 256)
+    if isinstance(cmap, matplotlib.colors.LinearSegmentedColormap):
+        cmap = cmap(range(DEFAULT_CMAP_RANGE))
+        return ListedColormap(cmap)
+    if isinstance(cmap, matplotlib.colors.ListedColormap):
         return cmap
     if isinstance(cmap, list):
         cmap = list(map(select_color, cmap))
@@ -508,7 +510,7 @@ def save_data_file(g, file_adr):
     data['plot'] = {
         "color": g.color,
         "bgcolor": g.bgcolor,
-        "cmap": g.cmap,
+        "cmap": list(map(list, g.cmap.colors)),
         "spot_size": g.spot_size,
         "projection": g.projection,
         "alpha": g.alpha,
@@ -552,7 +554,7 @@ def save_config_file(g, file_adr):
     data['plot'] = {
         "color": g.color,
         "bgcolor": g.bgcolor,
-        "cmap": g.cmap,
+        "cmap": list(map(list, g.cmap.colors)),
         "spot_size": g.spot_size,
         "projection": g.projection,
         "alpha": g.alpha,
@@ -660,6 +662,13 @@ def is_same_data(data1, data2, precision=10**-5):
     return all(is_same)
 
 
+def _load_cmap(config):
+    if "cmap" not in config:
+        return DEFAULT_CMAP
+    cmap = config["cmap"]
+    return ListedColormap(cmap)
+
+
 def load_data(g, data):
     """
     Load data file.
@@ -680,7 +689,7 @@ def load_data(g, data):
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
-            g.cmap = plot_config.get("cmap", DEFAULT_CMAP)
+            g.cmap = _load_cmap(plot_config)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
@@ -716,7 +725,7 @@ def load_config(g, config):
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
-            g.cmap = plot_config.get("cmap", DEFAULT_CMAP)
+            g.cmap = _load_cmap(plot_config)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
