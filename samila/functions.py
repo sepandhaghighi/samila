@@ -172,7 +172,7 @@ def filter_cmap(cmap):
     """
     if isinstance(cmap, colors.Colormap):
         return cmap
-    if isinstance(cmap, (list)):
+    if isinstance(cmap, list):
         cmap = list(map(select_color, cmap))
         return ListedColormap(cmap)
     return None
