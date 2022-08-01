@@ -347,7 +347,8 @@ def plot_params_filter(
         alpha = g.alpha
     if linewidth is None:
         linewidth = g.linewidth
-    g.color, g.bgcolor, g.spot_size, g.size, g.projection, g.alpha, g.linewidth = color, bgcolor, spot_size, size, projection, alpha, linewidth
+    g.color, g.bgcolor, g.cmap, g.spot_size, g.size, g.projection, g.alpha, g.linewidth = \
+        color, bgcolor, cmap, spot_size, size, projection, alpha, linewidth
 
 
 def generate_params_filter(
