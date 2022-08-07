@@ -172,11 +172,13 @@ def filter_cmap(cmap):
     """
     if isinstance(cmap, str):
         cmap = cm.get_cmap(cmap, 256)
-    if isinstance(cmap, matplotlib.colors.LinearSegmentedColormap):
-        cmap = cmap(range(DEFAULT_CMAP_RANGE))
-        return ListedColormap(cmap)
+    if isinstance(cmap, matplotlib.colors.Colormap):
+        cmap = cm.get_cmap(cmap.__getattribute__("name"))
     if isinstance(cmap, matplotlib.colors.ListedColormap):
         return cmap
+    if isinstance(cmap, (matplotlib.colors.LinearSegmentedColormap)):
+        cmap = cmap(range(DEFAULT_CMAP_RANGE))
+        return ListedColormap(cmap)
     if isinstance(cmap, list):
         cmap = list(map(select_color, cmap))
         return ListedColormap(cmap)
