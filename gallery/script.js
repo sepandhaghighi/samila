@@ -1,8 +1,19 @@
 const image_error_url = '../images/image_error.png';
 const arrow_down = `<i class="fa fa-arrow-down fa-2x" aria-hidden="true" onclick="load_image();"></i>`;
+const last_update = "8/8/2022";
+const image_scope = 20;
 var mydata = JSON.parse(data);
 var remaining_images = mydata.length;
-const image_scope = 20;
+var template = `
+<div class="responsive">
+  <div class="gallery">
+    <a target="_blank" href="{{link}}">
+      <img id="img{{number1}}" src="{{link}}" alt="{{number1}}" width="300" height="300" loading="lazy" onerror="image_error(this, {{number1}});">
+    </a>
+    <div class="desc" id="desc{{number1}}">{{number1}}</div>
+  </div>
+</div>
+`
 
 function ready(callback) {
     if (document.readyState != 'loading') callback();
@@ -29,17 +40,10 @@ function refresh(id_number) {
     desc.innerHTML = id_number;
 }
 
-
-var template = `
-<div class="responsive">
-  <div class="gallery">
-    <a target="_blank" href="{{link}}">
-      <img id="img{{number1}}" src="{{link}}" alt="{{number1}}" width="300" height="300" loading="lazy" onerror="image_error(this, {{number1}});">
-    </a>
-    <div class="desc" id="desc{{number1}}">{{number1}}</div>
-  </div>
-</div>
-`
+function show_last_update(){
+    let last_update_obj = document.getElementById("last_update");
+    last_update_obj.innerHTML += last_update;
+}
 
 function fill_template(img_number, img_link) {
     var temp = template;
@@ -71,5 +75,6 @@ function load_image() {
 }
 
 ready(function() {
+    show_last_update();
     load_image();
 });

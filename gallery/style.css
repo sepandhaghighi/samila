@@ -5,6 +5,9 @@
  body{
      font-family: "jost";
 }
+#last_update{
+    text-align: center;
+}
 #footer{
     text-align: center;
 }
