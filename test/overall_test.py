@@ -248,6 +248,20 @@ True
 >>> g_.cmap.colors == g.cmap.colors
 True
 >>> g.plot(cmap="Purples")
+>>> cm = Colormap(name="viridis")
+>>> g.plot(cmap=cm)
+>>> cmap = [[0.7, 0.2, 0.2, 1], [0.6, 0.2, 0.2, 1], [0.3, 0.2, 0.2, 1], [0.2, 0.2, 0.2, 1]]
+>>> g.plot(cmap=cmap)
+>>> g = GenerativeImage()
+>>> g.generate()
+>>> g.plot(cmap=cmap, color=g.data1)
+>>> result = g.save_data("config.json")
+>>> result["status"]
+True
+>>> g_ = GenerativeImage(data=open("config.json", "r"))
+>>> g_.plot()
+>>> g_.cmap.colors == g.cmap.colors
+True
 >>> g.plot(color=g.data1)
 >>> g_ = GenerativeImage()
 >>> del(g)
