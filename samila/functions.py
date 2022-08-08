@@ -674,7 +674,7 @@ def _serialize_color(color):
 
     :param color: given color
     :type color: str or nd.array
-    :return: the serializable version of the color 
+    :return: the serializable version of the color
     """
     if isinstance(color, str):
         return color
