@@ -668,6 +668,19 @@ def is_same_data(data1, data2, precision=10**-5):
     return all(is_same)
 
 
+def _serialize_color(color):
+    """
+    Serialize the given color to a json serializable object.
+
+    :param color: given color
+    :type color: str or nd.array
+    :return: the serializable version of the color 
+    """
+    if isinstance(color, str):
+        return color
+    return list(color)
+
+
 def _serialize_cmap(cmap):
     """
     Serialize the cmap for saving.
@@ -676,8 +689,7 @@ def _serialize_cmap(cmap):
     :type cmap: matplotlib.colors.Colormap
     :return: list of colors
     """
-    def unify_color(x): return list(x) if not isinstance(x, str) else x
-    return list(map(unify_color, cmap.colors))
+    return list(map(_serialize_color, cmap.colors))
 
 
 def _load_cmap(config):
