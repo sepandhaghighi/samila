@@ -237,7 +237,7 @@ False
 >>> result["status"]
 True
 >>> g_ = GenerativeImage(data=open("config.json", 'r'))
->>> g_.cmap == g.cmap
+>>> (g_.cmap.colors == g.cmap.colors).all()
 True
 >>> cm = ["black", [0.6, 0.2, 0.2, 1], [0.5, 0.2, 0.2, 1], [0.4, 0.2, 0.2, 1], "yellow", [0.2, 0.2, 0.2, 1],]
 >>> g.plot(cmap=cm)
@@ -245,9 +245,9 @@ True
 >>> result["status"]
 True
 >>> g_ = GenerativeImage(data=open("config.json", 'r'))
->>> g_.cmap == g.cmap
+>>> g_.cmap.colors == g.cmap.colors
 True
->>> g.plot(cm="Purples")
+>>> g.plot(cmap="Purples")
 >>> g.plot(color=g.data1)
 >>> g_ = GenerativeImage()
 >>> del(g)
