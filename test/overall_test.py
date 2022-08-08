@@ -6,7 +6,7 @@
 >>> import pickle
 >>> import socket
 >>> import json
->>> from matplotlib.colors import Colormap
+>>> from matplotlib.colors import Colormap, ListedColormap
 >>> def guard(*args, **kwargs):
 ...     raise Exception("No internet connection!")
 >>> from samila import GenerativeImage, Projection
@@ -251,7 +251,7 @@ True
 >>> cm = Colormap(name="viridis")
 >>> g.plot(cmap=cm)
 >>> cmap = [[0.7, 0.2, 0.2, 1], [0.6, 0.2, 0.2, 1], [0.3, 0.2, 0.2, 1], [0.2, 0.2, 0.2, 1]]
->>> g.plot(cmap=cmap)
+>>> g.plot(cmap=ListedColormap(cmap))
 >>> g = GenerativeImage()
 >>> g.generate()
 >>> g.plot(cmap=cmap, color=g.data1)
