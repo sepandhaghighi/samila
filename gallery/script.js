@@ -1,5 +1,8 @@
 const image_error_url = '../images/image_error.png';
+const arrow_down = `<i class="fa fa-arrow-down fa-2x" aria-hidden="true" onclick="load_image();"></i>`;
 var mydata = JSON.parse(data);
+var remaining_images = mydata.length;
+const image_scope = 20;
 
 function ready(callback) {
     if (document.readyState != 'loading') callback();
@@ -46,13 +49,27 @@ function fill_template(img_number, img_link) {
     return temp
 }
 
-function run() {
-    for (let i = 0; i < mydata.length; i++) {
-        document.body.innerHTML += fill_template(parseInt(mydata[i]["number"]), ipfs_link(mydata[i]["link"]))
-
+function load_image() {
+    let image_number = Math.min(remaining_images, image_scope);
+    let image_start = mydata.length - remaining_images;
+    let image_stop = image_start + image_number;
+    
+    for (let i = image_start; i < image_stop; i++) {
+        document.getElementById("content").innerHTML += fill_template(parseInt(mydata[i]["number"]), ipfs_link(mydata[i]["link"]))
+    }
+    
+    if (remaining_images == mydata.length){
+        document.getElementById("footer").innerHTML = arrow_down;
+    }
+    
+    remaining_images -= image_number;
+    
+    if (remaining_images == 0){
+        document.getElementById("footer").innerHTML = "";
     }
 
 }
+
 ready(function() {
-    run();
+    load_image();
 });

@@ -5,6 +5,13 @@
  body{
      font-family: "jost";
 }
+#footer{
+    text-align: center;
+}
+#footer i:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
 .refresh:hover{
     opacity: 0.5;
     cursor: pointer;
