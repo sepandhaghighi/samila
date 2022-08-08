@@ -39,6 +39,10 @@ samila.errors.samilaPlotError: Plotting process can't be Done because data2 is e
 Traceback (most recent call last):
         ...
 samila.errors.samilaPlotError: Given color/bgcolor type is not supported.
+>>> g.plot(color=[0])
+Traceback (most recent call last):
+        ...
+samila.errors.samilaPlotError: Color list size is not the equal to the data size.
 >>> g = GenerativeImage(lambda x,y: x, lambda x,y: y)
 >>> result = g.save_config()
 Traceback (most recent call last):
