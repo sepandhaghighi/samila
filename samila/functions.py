@@ -676,10 +676,8 @@ def _serialize_cmap(cmap):
     :type cmap: matplotlib.colors.Colormap
     :return: list of colors
     """
-    colors = cmap.colors
-    if isinstance(colors[0], str):
-        return colors
-    return list(map(list, cmap.colors))
+    def unify_color(x): return list(x) if not isinstance(x, str) else x
+    return list(map(unify_color, cmap.colors))
 
 
 def _load_cmap(config):
