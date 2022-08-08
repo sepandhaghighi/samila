@@ -3,6 +3,7 @@
 import math
 from enum import Enum
 from matplotlib import colors as mcolors
+from matplotlib import cm
 
 SAMILA_VERSION = "0.8"  # pragma: no cover
 
@@ -18,7 +19,7 @@ DEFAULT_STOP = math.pi
 DEFAULT_STEP = 0.01
 DEFAULT_COLOR = "black"
 DEFAULT_BACKGROUND_COLOR = "white"
-DEFAULT_CMAP = "viridis"
+DEFAULT_CMAP = cm.get_cmap("viridis", 256)
 DEFAULT_CMAP_RANGE = 256
 DEFAULT_ALPHA = 0.1
 DEFAULT_LINEWIDTH = 1.5
