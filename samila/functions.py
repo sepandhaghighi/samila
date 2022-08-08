@@ -172,6 +172,10 @@ def filter_cmap(cmap):
     """
     if isinstance(cmap, str):
         cmap = cm.get_cmap(cmap, 256)
+    if isinstance(cmap, matplotlib.colors.ListedColormap):
+        return cmap
+    if isinstance(cmap, (matplotlib.colors.LinearSegmentedColormap)):
+        cmap = cmap(range(DEFAULT_CMAP_RANGE))
     if isinstance(cmap, matplotlib.colors.Colormap):
         cmap = cm.get_cmap(cmap.__getattribute__("name"))
     if isinstance(cmap, matplotlib.colors.ListedColormap):
@@ -512,7 +516,7 @@ def save_data_file(g, file_adr):
     data['plot'] = {
         "color": g.color,
         "bgcolor": g.bgcolor,
-        "cmap": list(map(list, g.cmap.colors)),
+        "cmap": _serialize_cmap(g.cmap),
         "spot_size": g.spot_size,
         "projection": g.projection,
         "alpha": g.alpha,
@@ -556,7 +560,7 @@ def save_config_file(g, file_adr):
     data['plot'] = {
         "color": g.color,
         "bgcolor": g.bgcolor,
-        "cmap": list(map(list, g.cmap.colors)),
+        "cmap": _serialize_cmap(g.cmap),
         "spot_size": g.spot_size,
         "projection": g.projection,
         "alpha": g.alpha,
@@ -664,7 +668,28 @@ def is_same_data(data1, data2, precision=10**-5):
     return all(is_same)
 
 
+def _serialize_cmap(cmap):
+    """
+    Serialize the cmap for saving.
+
+    :param cmap: color map
+    :type cmap: matplotlib.colors.Colormap
+    :return: list of colors
+    """
+    colors = cmap.colors
+    if isinstance(colors[0], str):
+        return colors
+    return list(map(list, cmap.colors))
+
+
 def _load_cmap(config):
+    """
+    Load the cmap from config.
+
+    :param config: plot part configuration
+    :type config: dict or json
+    :return: ListedColormap from cmap
+    """
     if "cmap" not in config:
         return DEFAULT_CMAP
     cmap = config["cmap"]
