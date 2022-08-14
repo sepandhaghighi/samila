@@ -287,7 +287,6 @@ def filter_size(size):
 def plot_params_filter(
         g,
         color=None,
-        c=None,
         bgcolor=None,
         cmap=None,
         spot_size=None,
@@ -302,8 +301,6 @@ def plot_params_filter(
     :type g: GenerativeImage
     :param color: point colors
     :type color: str
-    :param c: point colors (similar to color)
-    :type c: str
     :param bgcolor: background color
     :type bgcolor: str
     :param cmap: color map
@@ -324,8 +321,6 @@ def plot_params_filter(
         raise samilaPlotError(PLOT_DATA_ERROR.format(1))
     if g.data2 is None:
         raise samilaPlotError(PLOT_DATA_ERROR.format(2))
-    if color is None:
-        color = c
     if isinstance(color, list):
         if len(color) != len(g.data1):
             raise samilaPlotError(COLOR_SIZE_ERROR)

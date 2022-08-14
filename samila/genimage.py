@@ -90,7 +90,6 @@ class GenerativeImage:
     def plot(
             self,
             color=None,
-            c=None,
             bgcolor=None,
             cmap=None,
             spot_size=None,
@@ -103,8 +102,6 @@ class GenerativeImage:
 
         :param color: point colors
         :type color: str
-        :param c: point colors (similar to color)
-        :type c: str
         :param bgcolor: background color
         :type bgcolor: str
         :param cmap: color map
@@ -124,7 +121,6 @@ class GenerativeImage:
         plot_params_filter(
             self,
             color,
-            c,
             bgcolor,
             cmap,
             spot_size,
