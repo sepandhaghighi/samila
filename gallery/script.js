@@ -1,6 +1,6 @@
 const image_error_url = '../images/image_error.png';
 const arrow_down = `<i class="fa fa-arrow-down fa-2x" aria-hidden="true" onclick="load_image();"></i>`;
-const last_update = "8/8/2022";
+const last_update = "8/16/2022";
 const image_scope = 20;
 var mydata = JSON.parse(data);
 var remaining_images = mydata.length;
