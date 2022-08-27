@@ -6,6 +6,7 @@
 >>> import pickle
 >>> import socket
 >>> import json
+>>> from matplotlib.colors import Colormap, ListedColormap
 >>> def guard(*args, **kwargs):
 ...     raise Exception("No internet connection!")
 >>> from samila import GenerativeImage, Projection
@@ -222,6 +223,46 @@ False
 [0]
 >>> g.data2
 [1]
+>>> with open("data.json", 'w') as fp:
+...     json.dump({'data1': [0], 'data2': [1], 'plot':{}}, fp)
+>>> g = GenerativeImage(data=open("data.json", 'r'))
+>>> with open("config.json", 'w') as fp:
+...     json.dump({'f1': "x", 'f2': "y", 'plot':{}}, fp)
+>>> g = GenerativeImage(data=open("config.json", 'r'))
+>>> g = GenerativeImage()
+>>> g.generate()
+>>> cm = Colormap(name="Purples")
+>>> g.plot(cmap=cm)
+>>> result = g.save_config("config.json")
+>>> result["status"]
+True
+>>> g_ = GenerativeImage(data=open("config.json", 'r'))
+>>> (g_.cmap.colors == g.cmap.colors).all()
+True
+>>> cm = ["black", [0.6, 0.2, 0.2, 1], [0.5, 0.2, 0.2, 1], [0.4, 0.2, 0.2, 1], "yellow", [0.2, 0.2, 0.2, 1],]
+>>> g.plot(cmap=cm)
+>>> result = g.save_config("config.json")
+>>> result["status"]
+True
+>>> g_ = GenerativeImage(data=open("config.json", 'r'))
+>>> g_.cmap.colors == g.cmap.colors
+True
+>>> g.plot(cmap="Purples")
+>>> cm = Colormap(name="viridis")
+>>> g.plot(cmap=cm)
+>>> cmap = [[0.7, 0.2, 0.2, 1], [0.6, 0.2, 0.2, 1], [0.3, 0.2, 0.2, 1], [0.2, 0.2, 0.2, 1]]
+>>> g.plot(cmap=ListedColormap(cmap))
+>>> g = GenerativeImage()
+>>> g.generate()
+>>> g.plot(cmap=cmap, color=g.data1)
+>>> result = g.save_data("config.json")
+>>> result["status"]
+True
+>>> g_ = GenerativeImage(data=open("config.json", "r"))
+>>> g_.plot()
+>>> g_.cmap.colors == g.cmap.colors
+True
+>>> g.plot(color=g.data1)
 >>> g_ = GenerativeImage()
 >>> del(g)
 >>> del g_.data1

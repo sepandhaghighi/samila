@@ -91,6 +91,7 @@ class GenerativeImage:
             self,
             color=None,
             bgcolor=None,
+            cmap=None,
             spot_size=None,
             size=None,
             projection=None,
@@ -103,6 +104,8 @@ class GenerativeImage:
         :type color: str
         :param bgcolor: background color
         :type bgcolor: str
+        :param cmap: color map
+        :type cmap: matplotlib.colors.Colormap or list of colors
         :param spot_size: point spot size
         :type spot_size: float
         :param size: figure size
@@ -119,6 +122,7 @@ class GenerativeImage:
             self,
             color,
             bgcolor,
+            cmap,
             spot_size,
             size,
             projection,
@@ -133,6 +137,7 @@ class GenerativeImage:
             self.data1,
             alpha=self.alpha,
             c=self.color,
+            cmap=self.cmap,
             s=self.spot_size,
             lw=self.linewidth)
         ax.set_axis_off()

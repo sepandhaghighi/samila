@@ -3,6 +3,7 @@
 import math
 from enum import Enum
 from matplotlib import colors as mcolors
+from matplotlib import cm
 
 SAMILA_VERSION = "0.8"  # pragma: no cover
 
@@ -18,6 +19,8 @@ DEFAULT_STOP = math.pi
 DEFAULT_STEP = 0.01
 DEFAULT_COLOR = "black"
 DEFAULT_BACKGROUND_COLOR = "white"
+DEFAULT_CMAP = cm.get_cmap("viridis", 256)
+DEFAULT_CMAP_RANGE = 256
 DEFAULT_ALPHA = 0.1
 DEFAULT_LINEWIDTH = 1.5
 DEFAULT_IMAGE_SIZE = (10, 10)
@@ -38,6 +41,7 @@ DATA_TYPE_ERROR = "Provided data file is not supported. It should be either file
 CONFIG_TYPE_ERROR = "Provided config file is not supported. It should be either file or io.IOBase."
 CONFIG_NO_STR_FUNCTION_ERROR = "Config file can't be saved. At least one of the function1_str or function2_str is None."
 PLOT_DATA_ERROR = "Plotting process can't be Done because data{0} is empty. Use generate method first."
+COLOR_SIZE_ERROR = "Color list size is not equal to the data size."
 SAVE_NO_DATA_ERROR = "Data file can't be saved. At least one of the data1 or data2 is None."
 INVALID_COLOR_TYPE_ERROR = "Given color/bgcolor type is not supported."
 MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
