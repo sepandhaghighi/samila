@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Addded
+- `Point Color` section to `demo.ipynb`
 - `Point Color` section to `README.md`
 ### Changed
 - `cmap` parameter added to `plot` method
