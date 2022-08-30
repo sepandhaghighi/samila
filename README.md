@@ -201,7 +201,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/8.png">	
 
-You can make your costume color map and use it in Samila.
+You can make your custom color map and use it in Samila.
 
 ### Regeneration
 ```pycon
