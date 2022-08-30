@@ -184,6 +184,25 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 ⚠️ **Transparent** mode is only available for background
 
+#### Point Color
+```pycon
+>>> colorarray = [
+...  [0.7, 0.2, 0.2, 1],
+...  [0.6, 0.3, 0.2, 1],
+...  "black",
+...  [0.4, 0.4, 0.3, 1],
+...  [0.3, 0.4, 0.4, 1],
+...  "#ff2561"]
+>>> g.generate()
+>>> g.seed
+454893
+>>> g.plot(cmap=colorarray, color=g.data2, projection=Projection.POLAR)
+>>> plt.show()
+```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/8.png">	
+
+You can make your costume color map and use it in Samila.
+
 ### Regeneration
 ```pycon
 >>> g = GenerativeImage(f1, f2)
