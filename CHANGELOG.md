@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `Point Color` section to `README.md`
 ### Changed
 - `README.md` updated
+- `demo.ipynb` updated
 - `cmap` parameter added to `plot` method
 - Random mode modified
 - Test system modified
