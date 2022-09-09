@@ -181,8 +181,30 @@ Samila is a generative art generator written in Python, Samila let's you create 
     4. Random (example: `color="random"`)
     5. Complement (example: `color="complement", bgcolor="blue"`)
     6. Transparent (example: `bgcolor="transparent"`)
+    7. List (example: `color=["black", "#fffeef",...]`)
 
 ⚠️ **Transparent** mode is only available for background
+⚠️ **List** mode is only available for color
+⚠️ In **List** mode, the length of this list must be equal to the lengths of data1 and data2.
+
+#### Point Color
+```pycon
+>>> colorarray = [
+...  [0.7, 0.2, 0.2, 1],
+...  [0.6, 0.3, 0.2, 1],
+...  "black",
+...  [0.4, 0.4, 0.3, 1],
+...  [0.3, 0.4, 0.4, 1],
+...  "#ff2561"]
+>>> g.generate()
+>>> g.seed
+454893
+>>> g.plot(cmap=colorarray, color=g.data2, projection=Projection.POLAR)
+>>> plt.show()
+```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/8.png">	
+
+You can make your custom color map and use it in Samila.
 
 ### Regeneration
 ```pycon
