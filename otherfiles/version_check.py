@@ -19,9 +19,12 @@ CHANGELOG_ITEMS = [
     "https://github.com/sepandhaghighi/samila/compare/v{0}...dev",
     "[{0}]:"]
 PARAMS_ITEMS = ['SAMILA_VERSION = "{0}"']
+
+META_ITEMS = ['% set version = "{0}" %']
+
 FILES = {
     "setup.py": SETUP_ITEMS, "README.md": README_ITEMS, "CHANGELOG.md": CHANGELOG_ITEMS, os.path.join(
-        "samila", "params.py"): PARAMS_ITEMS}
+        "samila", "params.py"): PARAMS_ITEMS, os.path.join("otherfiles", "meta.yaml"): META_ITEMS}
 
 TEST_NUMBER = len(FILES.keys())
 
