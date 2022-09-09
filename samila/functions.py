@@ -172,7 +172,7 @@ def filter_cmap(cmap):
     """
     if isinstance(cmap, str):
         cmap = cm.get_cmap(cmap, 256)
-    if type(cmap) == matplotlib.colors.Colormap:
+    if isinstance(cmap, matplotlib.colors.Colormap):
         cmap = cm.get_cmap(cmap.__getattribute__("name"))
     if isinstance(cmap, matplotlib.colors.ListedColormap):
         return cmap
