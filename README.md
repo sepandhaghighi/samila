@@ -193,7 +193,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 ⚠️ **List** mode is only available for color
 
-⚠️ In **List** mode, the length of this list must be equal to the lengths of data1 and data2.
+⚠️ In **List** mode, the length of this list must be equal to the lengths of data1 and data2
 
 #### Point Color
 You can make your custom color map and use it in Samila.
