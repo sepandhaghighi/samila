@@ -364,7 +364,7 @@ Samila can be used online in interactive Jupyter Notebooks via the Binder or Col
 
 ## Issues & bug reports			
 
-Just fill an issue and describe it. We'll check it ASAP!
+Just fill an issue and describe it. We'll check it ASAP! or send an email to [info@samila.site](mailto:info@samila.site "info@samila.site"). 
 
 - Please complete the issue template
  
