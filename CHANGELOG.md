@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Random mode modified
 - Test system modified
 - `generate` method optimized
+- `samila_help` function updated
 ## [0.8] - 2022-06-01
 ### Added
 - `INVALID_COLOR_TYPE_ERROR` error
