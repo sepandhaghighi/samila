@@ -37,8 +37,8 @@ setup(
     long_description=read_description(),
     long_description_content_type='text/markdown',
     author='Samila Development Team',
-    author_email='info@4r7.ir',
-    url='https://github.com/sepandhaghighi/samila',
+    author_email='info@samila.site',
+    url='https://www.samila.site',
     download_url='https://github.com/sepandhaghighi/samila/tarball/v0.8',
     keywords="generative-art art nft file nft-storage",
     project_urls={
