@@ -197,16 +197,6 @@ True
 >>> g.spot_size == g_.spot_size
 True
 >>> with open("config.json", 'w') as fp:
-...     json.dump({'f1': 'x'}, fp)
->>> g = GenerativeImage(config=open("config.json", 'r'))
->>> g.function1_str
-'x'
->>> with open("config.json", 'w') as fp:
-...     json.dump({'f2': 'x'}, fp)
->>> g = GenerativeImage(config=open("config.json", 'r'))
->>> g.function2_str
-'x'
->>> with open("config.json", 'w') as fp:
 ...     json.dump({'f1': 'y', 'f2': 'x'}, fp)
 >>> g = GenerativeImage(config=open("config.json", 'r'))
 >>> g.function1_str
@@ -228,7 +218,7 @@ False
 >>> g = GenerativeImage(data=open("data.json", 'r'))
 >>> with open("config.json", 'w') as fp:
 ...     json.dump({'f1': "x", 'f2': "y", 'plot':{}}, fp)
->>> g = GenerativeImage(data=open("config.json", 'r'))
+>>> g = GenerativeImage(config=open("config.json", 'r'))
 >>> g = GenerativeImage()
 >>> g.generate()
 >>> cm = Colormap(name="Purples")
@@ -236,7 +226,7 @@ False
 >>> result = g.save_config("config.json")
 >>> result["status"]
 True
->>> g_ = GenerativeImage(data=open("config.json", 'r'))
+>>> g_ = GenerativeImage(config=open("config.json", 'r'))
 >>> (g_.cmap.colors == g.cmap.colors).all()
 True
 >>> cm = ["black", [0.6, 0.2, 0.2, 1], [0.5, 0.2, 0.2, 1], [0.4, 0.2, 0.2, 1], "yellow", [0.2, 0.2, 0.2, 1],]
@@ -244,7 +234,7 @@ True
 >>> result = g.save_config("config.json")
 >>> result["status"]
 True
->>> g_ = GenerativeImage(data=open("config.json", 'r'))
+>>> g_ = GenerativeImage(config=open("config.json", 'r'))
 >>> g_.cmap.colors == g.cmap.colors
 True
 >>> g.plot(cmap="Purples")
@@ -255,10 +245,10 @@ True
 >>> g = GenerativeImage()
 >>> g.generate()
 >>> g.plot(cmap=cmap, color=g.data1)
->>> result = g.save_data("config.json")
+>>> result = g.save_data("data.json")
 >>> result["status"]
 True
->>> g_ = GenerativeImage(data=open("config.json", "r"))
+>>> g_ = GenerativeImage(data=open("data.json", "r"))
 >>> g_.plot()
 >>> g_.cmap.colors == g.cmap.colors
 True
