@@ -24,8 +24,9 @@ Traceback (most recent call last):
         ...
 samila.errors.samilaPlotError: Plotting process can't be Done because data1 is empty. Use generate method first.
 >>> with open("data.json", 'w') as fp:
-...     json.dump({'data1': [0]}, fp)
+...     json.dump({'data1': [0], 'data2': [0]}, fp)
 >>> g = GenerativeImage(data=open('data.json', 'r'))
+>>> g.data2 = None
 >>> g.save_data()
 Traceback (most recent call last):
         ...

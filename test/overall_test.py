@@ -197,16 +197,6 @@ True
 >>> g.spot_size == g_.spot_size
 True
 >>> with open("config.json", 'w') as fp:
-...     json.dump({'f1': 'x'}, fp)
->>> g = GenerativeImage(config=open("config.json", 'r'))
->>> g.function1_str
-'x'
->>> with open("config.json", 'w') as fp:
-...     json.dump({'f2': 'x'}, fp)
->>> g = GenerativeImage(config=open("config.json", 'r'))
->>> g.function2_str
-'x'
->>> with open("config.json", 'w') as fp:
 ...     json.dump({'f1': 'y', 'f2': 'x'}, fp)
 >>> g = GenerativeImage(config=open("config.json", 'r'))
 >>> g.function1_str
