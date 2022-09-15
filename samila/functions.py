@@ -14,7 +14,7 @@ from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DE
 from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
 from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
-from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
+from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
 from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING
@@ -742,6 +742,8 @@ def load_config(g, config):
         data = json.load(config)
         g.function1_str = data.get("f1")
         g.function2_str = data.get("f2")
+        if g.function1_str is None or g.function2_str is None:
+            raise samilaConfigError(CONFIG_FORMAT_ERROR)
         if 'matplotlib_version' in data:
             g.matplotlib_version = data['matplotlib_version']
         generate_config = data.get("generate")
