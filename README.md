@@ -8,6 +8,7 @@
   <img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg" />
 </a>
 <a href="https://badge.fury.io/py/samila"><img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18"></a>
+<a href="https://anaconda.org/sepandhaghighi/samila"><img src="https://anaconda.org/sepandhaghighi/samila/badges/version.svg"></a>
 <a href="https://colab.research.google.com/github/sepandhaghighi/samila/blob/master">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Samila-Colab"/>
 </a>
@@ -88,7 +89,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 ### Source code
-- Download [Version 0.8](https://github.com/sepandhaghighi/samila/archive/v0.8.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
+- Download [Version 0.9](https://github.com/sepandhaghighi/samila/archive/v0.9.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
 - Run `pip install -r requirements.txt` or `pip3 install -r requirements.txt` (Need root access)
 - Run `python3 setup.py install` or `python setup.py install` (Need root access)				
 
@@ -96,11 +97,16 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install samila==0.8` or `pip3 install samila==0.8` (Need root access)
+- Run `pip install samila==0.9` or `pip3 install samila==0.9` (Need root access)
 
 ### Easy install
 
 - Run `easy_install --upgrade samila` (Need root access)
+
+### Conda
+
+- Check [Conda Managing Package](https://conda.io)
+- `conda install -c sepandhaghighi samila` (Need root access)	
 
 
 ## Usage
@@ -181,8 +187,33 @@ Samila is a generative art generator written in Python, Samila let's you create 
     4. Random (example: `color="random"`)
     5. Complement (example: `color="complement", bgcolor="blue"`)
     6. Transparent (example: `bgcolor="transparent"`)
+    7. List (example: `color=["black", "#fffeef",...]`)
 
 ⚠️ **Transparent** mode is only available for background
+
+⚠️ **List** mode is only available for color
+
+⚠️ In **List** mode, the length of this list must be equal to the lengths of data1 and data2
+
+#### Point Color
+You can make your custom color map and use it in Samila
+
+```pycon
+>>> colorarray = [
+...  [0.7, 0.2, 0.2, 1],
+...  [0.6, 0.3, 0.2, 1],
+...  "black",
+...  [0.4, 0.4, 0.3, 1],
+...  [0.3, 0.4, 0.4, 1],
+...  "#ff2561"]
+>>> g.generate()
+>>> g.seed
+454893
+>>> g.plot(cmap=colorarray, color=g.data2, projection=Projection.POLAR)
+>>> plt.show()
+```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/8.png">	
+
 
 ### Regeneration
 ```pycon
@@ -333,7 +364,7 @@ Samila can be used online in interactive Jupyter Notebooks via the Binder or Col
 
 ## Issues & bug reports			
 
-Just fill an issue and describe it. We'll check it ASAP!
+Just fill an issue and describe it. We'll check it ASAP! or send an email to [info@samila.site](mailto:info@samila.site "info@samila.site"). 
 
 - Please complete the issue template
  

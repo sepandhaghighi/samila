@@ -24,8 +24,9 @@ Traceback (most recent call last):
         ...
 samila.errors.samilaPlotError: Plotting process can't be Done because data1 is empty. Use generate method first.
 >>> with open("data.json", 'w') as fp:
-...     json.dump({'data1': [0]}, fp)
+...     json.dump({'data1': [0], 'data2': [0]}, fp)
 >>> g = GenerativeImage(data=open('data.json', 'r'))
+>>> g.data2 = None
 >>> g.save_data()
 Traceback (most recent call last):
         ...
@@ -39,6 +40,10 @@ samila.errors.samilaPlotError: Plotting process can't be Done because data2 is e
 Traceback (most recent call last):
         ...
 samila.errors.samilaPlotError: Given color/bgcolor type is not supported.
+>>> g.plot(color=[0])
+Traceback (most recent call last):
+        ...
+samila.errors.samilaPlotError: Color list size is not the equal to the data size.
 >>> g = GenerativeImage(lambda x,y: x, lambda x,y: y)
 >>> result = g.save_config()
 Traceback (most recent call last):
@@ -57,5 +62,30 @@ samila.errors.samilaPlotError: Given color/bgcolor type is not supported.
 Traceback (most recent call last):
         ...
 samila.errors.samilaPlotError: Given color/bgcolor type is not supported.
+>>> with open("data.json", 'w') as fp:
+...     json.dump({'data1': [0]}, fp)
+>>> g = GenerativeImage(data=open('data.json', 'r'))
+Traceback (most recent call last):
+        ...
+samila.errors.samilaDataError: Provided data file is not supported. It should include data1 and data2.
+>>> with open("data.json", 'w') as fp:
+...     json.dump({'data2': [0]}, fp)
+>>> g = GenerativeImage(data=open('data.json', 'r'))
+Traceback (most recent call last):
+        ...
+samila.errors.samilaDataError: Provided data file is not supported. It should include data1 and data2.
+>>> with open("config.json", 'w') as fp:
+...     json.dump({'f1': "x"}, fp)
+>>> g = GenerativeImage(config=open('config.json', 'r'))
+Traceback (most recent call last):
+        ...
+samila.errors.samilaConfigError: Provided config file is not supported. It should include f1 and f2.
+>>> with open("config.json", 'w') as fp:
+...     json.dump({'f2': "x"}, fp)
+>>> g = GenerativeImage(config=open('config.json', 'r'))
+Traceback (most recent call last):
+        ...
+samila.errors.samilaConfigError: Provided config file is not supported. It should include f1 and f2.
 >>> os.remove('data.json')
+>>> os.remove('config.json')
 """

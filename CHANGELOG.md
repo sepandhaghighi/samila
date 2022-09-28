@@ -5,6 +5,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [0.9] - 2022-09-28
+### Added
+- Anaconda workflow
+### Changed
+- `README.md` updated
+- `CODE_OF_CONDUCT.md` updated
+- `demo.ipynb` updated
+- `cmap` parameter added to `plot` method
+- Random mode modified
+- Test system modified
+- `generate` method optimized
+- `samila_help` function updated
+- `load_data` and `load_config` functions error handling updated
 ## [0.8] - 2022-06-01
 ### Added
 - `INVALID_COLOR_TYPE_ERROR` error
@@ -123,7 +136,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `generate` method
 - `nft_storage` method
 
-[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v0.8...dev
+[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v0.9...dev
+[0.9]: https://github.com/sepandhaghighi/samila/compare/v0.8...v0.9
 [0.8]: https://github.com/sepandhaghighi/samila/compare/v0.7...v0.8
 [0.7]: https://github.com/sepandhaghighi/samila/compare/v0.6...v0.7
 [0.6]: https://github.com/sepandhaghighi/samila/compare/v0.5...v0.6

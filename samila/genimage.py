@@ -79,8 +79,7 @@ class GenerativeImage:
         self.data1 = []
         self.data2 = []
         range1 = list(float_range(self.start, self.stop, self.step))
-        range2 = list(float_range(self.start, self.stop, self.step))
-        range_prod = list(itertools.product(range1, range2))
+        range_prod = list(itertools.product(range1, range1))
         calc_exception = False
         for point in range_prod:
             if not fill_data(self, point):
@@ -92,6 +91,7 @@ class GenerativeImage:
             self,
             color=None,
             bgcolor=None,
+            cmap=None,
             spot_size=None,
             size=None,
             projection=None,
@@ -104,6 +104,8 @@ class GenerativeImage:
         :type color: str
         :param bgcolor: background color
         :type bgcolor: str
+        :param cmap: color map
+        :type cmap: matplotlib.colors.Colormap or list of colors
         :param spot_size: point spot size
         :type spot_size: float
         :param size: figure size
@@ -120,6 +122,7 @@ class GenerativeImage:
             self,
             color,
             bgcolor,
+            cmap,
             spot_size,
             size,
             projection,
@@ -134,6 +137,7 @@ class GenerativeImage:
             self.data1,
             alpha=self.alpha,
             c=self.color,
+            cmap=self.cmap,
             s=self.spot_size,
             lw=self.linewidth)
         ax.set_axis_off()

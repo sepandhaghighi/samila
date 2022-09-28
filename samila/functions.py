@@ -8,12 +8,15 @@ import re
 import json
 import random
 import matplotlib
+from matplotlib import cm
+from matplotlib.colors import ListedColormap
 from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
+from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
 from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
-from .params import DATA_TYPE_ERROR, CONFIG_TYPE_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
+from .params import DATA_TYPE_ERROR, DATA_FORMAT_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
-from .params import INVALID_COLOR_TYPE_ERROR
+from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
 from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
@@ -27,17 +30,22 @@ def random_equation_gen():
 
     :return: equation as str
     """
-    num_elements = random.randint(2, len(ELEMENTS_LIST) + 3)
+    num_elements = random.randint(1, len(ELEMENTS_LIST))
     result = ""
     index = 1
     random_coef = random.choice(RANDOM_COEF_LIST)
     while(index <= num_elements):
         argument = random.choice(ARGUMENTS_LIST)
+        if random.randint(0, 1) == 1:
+            argument = random.choice(ELEMENTS_LIST).format(
+                random_coef, argument)
         result = result + \
             random.choice(ELEMENTS_LIST).format(random_coef, argument)
         if index < num_elements:
             result = result + random.choice(OPERATORS_LIST)
         index = index + 1
+    if random.randint(0, 1) == 1:
+        result = random.choice(ELEMENTS_LIST).format(random_coef, result)
     return result
 
 
@@ -106,7 +114,7 @@ def is_valid_color(color):
     :type color: any format
     :return: result as bool
     """
-    if color == None:
+    if color is None:
         return True
     try:
         _ = matplotlib.colors.to_hex(color)
@@ -152,6 +160,29 @@ def filter_color(color, bgcolor):
         color = matplotlib.colors.to_hex(color)
         bgcolor = color_complement(color)
     return color, bgcolor
+
+
+def filter_cmap(cmap):
+    """
+    Filter given cmap.
+
+    :param cmap: color map
+    :type cmap: matplotlib.colors.Colormap or list of colors
+    :return: filtered version of cmap
+    """
+    if isinstance(cmap, str):
+        cmap = cm.get_cmap(cmap, 256)
+    if type(cmap) == matplotlib.colors.Colormap:
+        cmap = cm.get_cmap(cmap.__getattribute__("name"))
+    if isinstance(cmap, matplotlib.colors.ListedColormap):
+        return cmap
+    if isinstance(cmap, (matplotlib.colors.LinearSegmentedColormap)):
+        cmap = cmap(range(DEFAULT_CMAP_RANGE))
+        return ListedColormap(cmap)
+    if isinstance(cmap, list):
+        cmap = list(map(select_color, cmap))
+        return ListedColormap(cmap)
+    return None
 
 
 def select_color(color):
@@ -257,6 +288,7 @@ def plot_params_filter(
         g,
         color=None,
         bgcolor=None,
+        cmap=None,
         spot_size=None,
         size=None,
         projection=None,
@@ -271,6 +303,8 @@ def plot_params_filter(
     :type color: str
     :param bgcolor: background color
     :type bgcolor: str
+    :param cmap: color map
+    :type cmap: matplotlib.colors.Colormap or list of colors
     :param spot_size: point spot size
     :type spot_size: float
     :param size: figure size
@@ -287,7 +321,13 @@ def plot_params_filter(
         raise samilaPlotError(PLOT_DATA_ERROR.format(1))
     if g.data2 is None:
         raise samilaPlotError(PLOT_DATA_ERROR.format(2))
-    color, bgcolor = filter_color(color, bgcolor)
+    if isinstance(color, list):
+        if len(color) != len(g.data1):
+            raise samilaPlotError(COLOR_SIZE_ERROR)
+        bgcolor = select_color(bgcolor)
+    else:
+        color, bgcolor = filter_color(color, bgcolor)
+    cmap = filter_cmap(cmap)
     projection = filter_projection(projection)
     alpha = filter_float(alpha)
     linewidth = filter_float(linewidth)
@@ -297,6 +337,8 @@ def plot_params_filter(
         color = g.color
     if bgcolor is None:
         bgcolor = g.bgcolor
+    if cmap is None:
+        cmap = g.cmap
     if spot_size is None:
         spot_size = g.spot_size
     if size is None:
@@ -307,7 +349,8 @@ def plot_params_filter(
         alpha = g.alpha
     if linewidth is None:
         linewidth = g.linewidth
-    g.color, g.bgcolor, g.spot_size, g.size, g.projection, g.alpha, g.linewidth = color, bgcolor, spot_size, size, projection, alpha, linewidth
+    g.color, g.bgcolor, g.cmap, g.spot_size, g.size, g.projection, g.alpha, g.linewidth = \
+        color, bgcolor, cmap, spot_size, size, projection, alpha, linewidth
 
 
 def generate_params_filter(
@@ -405,6 +448,7 @@ def _GI_initializer(g, function1, function2):
     g.data2 = None
     g.color = DEFAULT_COLOR
     g.bgcolor = DEFAULT_BACKGROUND_COLOR
+    g.cmap = DEFAULT_CMAP
     g.spot_size = DEFAULT_SPOT_SIZE
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
@@ -463,6 +507,7 @@ def save_data_file(g, file_adr):
     data['plot'] = {
         "color": g.color,
         "bgcolor": g.bgcolor,
+        "cmap": _serialize_cmap(g.cmap),
         "spot_size": g.spot_size,
         "projection": g.projection,
         "alpha": g.alpha,
@@ -506,6 +551,7 @@ def save_config_file(g, file_adr):
     data['plot'] = {
         "color": g.color,
         "bgcolor": g.bgcolor,
+        "cmap": _serialize_cmap(g.cmap),
         "spot_size": g.spot_size,
         "projection": g.projection,
         "alpha": g.alpha,
@@ -592,6 +638,7 @@ def samila_help():
     :return: None
     """
     print(OVERVIEW)
+    print("Website : https://www.samila.site")
     print("Repo : https://github.com/sepandhaghighi/samila")
 
 
@@ -613,6 +660,44 @@ def is_same_data(data1, data2, precision=10**-5):
     return all(is_same)
 
 
+def _serialize_color(color):
+    """
+    Serialize the given color to a json serializable object.
+
+    :param color: given color
+    :type color: str or nd.array
+    :return: the serializable version of the color
+    """
+    if isinstance(color, str):
+        return color
+    return list(color)
+
+
+def _serialize_cmap(cmap):
+    """
+    Serialize the cmap for saving.
+
+    :param cmap: color map
+    :type cmap: matplotlib.colors.Colormap
+    :return: list of colors
+    """
+    return list(map(_serialize_color, cmap.colors))
+
+
+def _load_cmap(config):
+    """
+    Load the cmap from config.
+
+    :param config: plot part configuration
+    :type config: dict or json
+    :return: ListedColormap from cmap
+    """
+    if "cmap" not in config:
+        return DEFAULT_CMAP
+    cmap = config["cmap"]
+    return ListedColormap(cmap)
+
+
 def load_data(g, data):
     """
     Load data file.
@@ -627,12 +712,15 @@ def load_data(g, data):
         data = json.load(data)
         g.data1 = data.get('data1')
         g.data2 = data.get('data2')
+        if g.data1 is None or g.data2 is None:
+            raise samilaDataError(DATA_FORMAT_ERROR)
         if 'matplotlib_version' in data:
             g.matplotlib_version = data['matplotlib_version']
         plot_config = data.get("plot")
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
+            g.cmap = _load_cmap(plot_config)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
@@ -656,6 +744,8 @@ def load_config(g, config):
         data = json.load(config)
         g.function1_str = data.get("f1")
         g.function2_str = data.get("f2")
+        if g.function1_str is None or g.function2_str is None:
+            raise samilaConfigError(CONFIG_FORMAT_ERROR)
         if 'matplotlib_version' in data:
             g.matplotlib_version = data['matplotlib_version']
         generate_config = data.get("generate")
@@ -668,6 +758,7 @@ def load_config(g, config):
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
+            g.cmap = _load_cmap(plot_config)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)

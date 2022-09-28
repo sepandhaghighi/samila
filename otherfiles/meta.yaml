@@ -1,0 +1,37 @@
+{% set name = "samila" %}
+{% set version = "0.9" %}
+
+package:
+    name: {{ name|lower }}
+    version: {{ version }}
+source:
+    git_url: https://github.com/sepandhaghighi/samila
+    git_rev: v{{ version }}
+build:
+    noarch: python
+    number: 0
+    script: {{ PYTHON }} -m pip install . -vv
+requirements:
+    host:
+        - pip
+        - setuptools
+        - python >=3.5
+    run:
+        - art >=1.8
+        - matplotlib >=3.0.0
+        - requests >=2.20.0
+        - python >=3.5
+about:
+    home: https://github.com/sepandhaghighi/samila
+    license: MIT
+    license_family: MIT
+    summary: Generative Art Generator
+    description: |
+        Samila is a generative art generator written in Python, Samila let's you create arts based on many thousand points. The position of every single point is calculated by a formula, which has random parameters. Because of the random numbers, every image looks different.
+
+        Website: https://www.samila.site
+
+        Repo: https://github.com/sepandhaghighi/samila
+extra:
+    recipe-maintainers:
+        - sepandhaghighi
