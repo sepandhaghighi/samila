@@ -4,7 +4,7 @@ import os
 import sys
 import codecs
 Failed = 0
-SAMILA_VERSION = "0.8"
+SAMILA_VERSION = "0.9"
 
 
 SETUP_ITEMS = [
