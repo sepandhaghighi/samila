@@ -40,26 +40,26 @@ jobs:
         python -m pytest test --cov=samila --cov-report=term
       env:
         NFT_STORAGE_API_KEY: ${{ secrets.NFT_STORAGE_API_KEY }}
-      if: matrix.python-version == 3.7 && matrix.os == 'ubuntu-latest'
+      if: matrix.python-version == 3.8 && matrix.os == 'ubuntu-latest'
     - name: Version check
       run: |
         python otherfiles/version_check.py
-      if: matrix.python-version == 3.7
+      if: matrix.python-version == 3.8
     - name: Other tests
       run: |
         python -m vulture samila/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
         python -m bandit -r samila -s B311,B307
         python -m pydocstyle -v --match-dir=samila
-      if: matrix.python-version == 3.7
+      if: matrix.python-version == 3.8
     - name: Notebook check
       run: |
         pip install notebook>=5.2.2
         python otherfiles/notebook_check.py
-      if: matrix.python-version == 3.7 && matrix.os == 'ubuntu-latest'
+      if: matrix.python-version == 3.8 && matrix.os == 'ubuntu-latest'
     - name: Codecov
       run: |
         codecov
-      if: matrix.python-version == 3.7 && matrix.os == 'ubuntu-latest'
+      if: matrix.python-version == 3.8 && matrix.os == 'ubuntu-latest'
     - name: cProfile
       run: |
           python -m cProfile -s cumtime otherfiles/samila_profile.py
