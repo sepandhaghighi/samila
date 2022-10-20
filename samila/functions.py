@@ -10,10 +10,10 @@ import random
 import matplotlib
 from matplotlib import cm
 from matplotlib.colors import ListedColormap
-from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
+from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
 from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
-from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
+from .params import Projection, Marker, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_FORMAT_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
@@ -257,6 +257,24 @@ def filter_projection(projection):
     return None
 
 
+def filter_marker(marker):
+    """
+    Filter given marker.
+
+    :param marker: given marker
+    :type marker: Marker enum
+    :return: filtered version of marker
+    """
+    if isinstance(marker, Marker):
+        marker_value = marker.value
+        if marker_value == "random":
+            marker_list = list(Marker)
+            marker_list.remove(Marker.RANDOM)
+            marker_value = random.choice(marker_list).value
+        return marker_value
+    return None
+
+
 def filter_float(value):
     """
     Filter given float value.
@@ -292,6 +310,7 @@ def plot_params_filter(
         spot_size=None,
         size=None,
         projection=None,
+        marker=None,
         alpha=None,
         linewidth=None):
     """
@@ -311,6 +330,8 @@ def plot_params_filter(
     :type size: tuple
     :param projection: projection type
     :type projection: str
+    :param marker: scatter marker
+    :type marker: str
     :param alpha: point transparency
     :type alpha: float
     :param linewidth: width of line
@@ -329,6 +350,7 @@ def plot_params_filter(
         color, bgcolor = filter_color(color, bgcolor)
     cmap = filter_cmap(cmap)
     projection = filter_projection(projection)
+    marker = filter_marker(marker)
     alpha = filter_float(alpha)
     linewidth = filter_float(linewidth)
     spot_size = filter_float(spot_size)
@@ -345,12 +367,14 @@ def plot_params_filter(
         size = g.size
     if projection is None:
         projection = g.projection
+    if marker is None:
+        marker = g.marker
     if alpha is None:
         alpha = g.alpha
     if linewidth is None:
         linewidth = g.linewidth
-    g.color, g.bgcolor, g.cmap, g.spot_size, g.size, g.projection, g.alpha, g.linewidth = \
-        color, bgcolor, cmap, spot_size, size, projection, alpha, linewidth
+    g.color, g.bgcolor, g.cmap, g.spot_size, g.size, g.projection, g.marker, g.alpha, g.linewidth = \
+        color, bgcolor, cmap, spot_size, size, projection, marker, alpha, linewidth
 
 
 def generate_params_filter(
@@ -452,6 +476,7 @@ def _GI_initializer(g, function1, function2):
     g.spot_size = DEFAULT_SPOT_SIZE
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
+    g.marker = DEFAULT_MARKER
     g.alpha = DEFAULT_ALPHA
     g.linewidth = DEFAULT_LINEWIDTH
     g.depth = DEFAULT_DEPTH
@@ -510,6 +535,7 @@ def save_data_file(g, file_adr):
         "cmap": _serialize_cmap(g.cmap),
         "spot_size": g.spot_size,
         "projection": g.projection,
+        "marker": g.marker,
         "alpha": g.alpha,
         "linewidth": g.linewidth,
         "depth": g.depth
@@ -554,6 +580,7 @@ def save_config_file(g, file_adr):
         "cmap": _serialize_cmap(g.cmap),
         "spot_size": g.spot_size,
         "projection": g.projection,
+        "marker": g.marker,
         "alpha": g.alpha,
         "linewidth": g.linewidth,
         "depth": g.depth
@@ -723,6 +750,7 @@ def load_data(g, data):
             g.cmap = _load_cmap(plot_config)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+            g.marker = plot_config.get("marker", DEFAULT_MARKER)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
             g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
             g.depth = plot_config.get("depth", DEFAULT_DEPTH)
@@ -761,6 +789,7 @@ def load_config(g, config):
             g.cmap = _load_cmap(plot_config)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+            g.marker = plot_config.get("marker", DEFAULT_MARKER)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
             g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
             g.depth = plot_config.get("depth", DEFAULT_DEPTH)
