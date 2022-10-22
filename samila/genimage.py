@@ -113,7 +113,7 @@ class GenerativeImage:
         :type size: tuple
         :param projection: projection type
         :type projection: str
-        :param marker: scatter marker
+        :param marker: marker type
         :type marker: str
         :param alpha: point transparency
         :type alpha: float
