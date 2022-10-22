@@ -83,6 +83,7 @@ False
 >>> random.seed(3)
 >>> marker2 = filter_marker(Marker.RANDOM)
 >>> marker1 == marker2
+False
 >>> distance_calc("test","test1")
 1
 >>> distance_calc("te1st","test")

@@ -99,10 +99,10 @@ True
 2.2
 >>> random.seed(2)
 >>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM, marker=Marker.RANDOM)
->>> color1, bgcolor1, projection1 = g.color, g.bgcolor, g.projection
+>>> color1, bgcolor1, projection1, marker1 = g.color, g.bgcolor, g.projection, g.marker
 >>> random.seed(3)
 >>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM, marker=Marker.RANDOM)
->>> color2, bgcolor2, projection2 = g.color, g.bgcolor, g.projection
+>>> color2, bgcolor2, projection2, marker2 = g.color, g.bgcolor, g.projection, g.marker
 >>> color1 == color2
 False
 >>> bgcolor1 == bgcolor2
