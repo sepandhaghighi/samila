@@ -102,7 +102,8 @@ class Marker(Enum):
     DIAMOND = "D"
     DIAMON_THIN = "d"
     VLINE = "|"
-    HLINE = "_" 
+    HLINE = "_"
+    RANDOM = "random"
 
 
 RANDOM_COEF_LIST = [
