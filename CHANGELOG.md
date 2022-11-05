@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Anaconda workflow
+### Changed
+- `README.md` updated
+- `CODE_OF_CONDUCT.md` updated
+- `demo.ipynb` updated
+- `cmap` parameter added to `plot` method
+- Random mode modified
+- Test system modified
+- `generate` method optimized
+- `samila_help` function updated
+- `load_data` and `load_config` functions error handling updated
 ## [0.8] - 2022-06-01
 ### Added
 - `INVALID_COLOR_TYPE_ERROR` error
