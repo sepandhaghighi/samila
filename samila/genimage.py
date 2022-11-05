@@ -95,6 +95,7 @@ class GenerativeImage:
             spot_size=None,
             size=None,
             projection=None,
+            marker=None,
             alpha=None,
             linewidth=None):
         """
@@ -112,6 +113,8 @@ class GenerativeImage:
         :type size: tuple
         :param projection: projection type
         :type projection: str
+        :param marker: marker type
+        :type marker: str
         :param alpha: point transparency
         :type alpha: float
         :param linewidth: width of line
@@ -126,6 +129,7 @@ class GenerativeImage:
             spot_size,
             size,
             projection,
+            marker,
             alpha,
             linewidth)
         fig = plt.figure()
@@ -139,7 +143,8 @@ class GenerativeImage:
             c=self.color,
             cmap=self.cmap,
             s=self.spot_size,
-            lw=self.linewidth)
+            lw=self.linewidth,
+            marker=self.marker)
         ax.set_axis_off()
         ax.patch.set_zorder(-1)
         ax.add_artist(ax.patch)

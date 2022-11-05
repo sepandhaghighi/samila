@@ -27,6 +27,7 @@ DEFAULT_IMAGE_SIZE = (10, 10)
 DEFAULT_SPOT_SIZE = 0.01
 DEFAULT_DEPTH = 1
 DEFAULT_PROJECTION = "rectilinear"
+DEFAULT_MARKER = "."
 SEED_LOWER_BOUND = 0
 SEED_UPPER_BOUND = 2**20
 VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
@@ -66,6 +67,42 @@ class Projection(Enum):
     LAMBERT = "lambert"
     MOLLWEIDE = "mollweide"
     RECTILINEAR = "rectilinear"
+    RANDOM = "random"
+
+
+class Marker(Enum):
+    """
+    Samila Marker type class.
+
+    >>> marker = samila.Marker.POINT
+    """
+
+    DEFAULT = DEFAULT_MARKER
+    POINT = "."
+    PIXEL = ","
+    CIRCLE = "o"
+    TRIANGLE_DOWN = "v"
+    TRIANGLE_UP = "^"
+    TRIANGLE_LEFT = "<"
+    TRIANGLE_RIGHT = ">"
+    TRI_DOWN = "1"
+    TRI_UP = "2"
+    TRI_LEFT = "3"
+    TRI_RIGHT = "4"
+    OCTAGON = "8"
+    SQUARE = "s"
+    PENTAGON = "p"
+    PLUS = "+"
+    PLUS_FILLED = "P"
+    STAR = "*"
+    HEXAGON_VERTICAL = "h"
+    HEXAGON_HORIZONTAL = "H"
+    X = "x"
+    X_FILLED = "X"
+    DIAMOND = "D"
+    DIAMON_THIN = "d"
+    VLINE = "|"
+    HLINE = "_"
     RANDOM = "random"
 
 

@@ -75,6 +75,15 @@ False
 >>> projection2 = filter_projection(Projection.RANDOM)
 >>> projection1 == projection2
 False
+>>> filter_marker(3)
+>>> filter_marker(Marker.POINT)
+'.'
+>>> random.seed(2)
+>>> marker1 = filter_marker(Marker.RANDOM)
+>>> random.seed(3)
+>>> marker2 = filter_marker(Marker.RANDOM)
+>>> marker1 == marker2
+False
 >>> distance_calc("test","test1")
 1
 >>> distance_calc("te1st","test")

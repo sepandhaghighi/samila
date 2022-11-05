@@ -156,6 +156,21 @@ Samila is a generative art generator written in Python, Samila let's you create 
 * Supported projections : `RECTILINEAR`, `POLAR`, `AITOFF`, `HAMMER`, `LAMBERT`, `MOLLWEIDE` and `RANDOM`
 * Default projection is `RECTILINEAR`
 
+### Marker
+```pycon
+>>> from samila import Marker
+>>> g = GenerativeImage(f1, f2)
+>>> g.generate()
+>>> g.plot(marker=Marker.CIRCLE, spot_size=10)
+>>> g.seed
+448742
+>>> plt.show()
+```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/9.png">	
+
+* Supported markers : `POINT`, `PIXEL`, `CIRCLE`, `TRIANGLE_DOWN`, `TRIANGLE_UP`, `TRIANGLE_LEFT`, `TRIANGLE_RIGHT`, `TRI_DOWN`, `TRI_UP`, `TRI_LEFT`, `TRI_RIGHT`, `OCTAGON`, `SQUARE`, `PENTAGON`, `PLUS`, `PLUS_FILLED`, `STAR`, `HEXAGON_VERTICAL`, `HEXAGON_HORIZONTAL`, `X`, `X_FILLED`, `DIAMOND`, `DIAMON_THIN`, `VLINE`, `HLINE` and `RANDOM`
+* Default marker is `POINT`
+
 ### Range
 ```pycon
 >>> g = GenerativeImage(f1, f2)

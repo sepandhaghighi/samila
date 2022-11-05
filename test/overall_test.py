@@ -9,7 +9,7 @@
 >>> from matplotlib.colors import Colormap, ListedColormap
 >>> def guard(*args, **kwargs):
 ...     raise Exception("No internet connection!")
->>> from samila import GenerativeImage, Projection
+>>> from samila import GenerativeImage, Projection, Marker
 >>> from samila.functions import is_same_data
 >>> import pickle
 >>> def f1(x,y):
@@ -53,7 +53,6 @@ True
 True
 >>> isinstance(result["message"], str)
 True
->>> from samila import GenerativeImage, Projection
 >>> g.plot(projection=Projection.POLAR, color='red', bgcolor='black')
 >>> g.color
 'red'
@@ -84,7 +83,7 @@ True
 '#555555'
 >>> g.bgcolor
 '#aaaaaa'
->>> g.plot(projection=Projection.POLAR, color="complement", bgcolor="complement")
+>>> g.plot(projection=Projection.POLAR, color="complement", bgcolor="complement", marker=Marker.X, spot_size=100)
 >>> g.color
 '#555555'
 >>> g.bgcolor
@@ -99,16 +98,18 @@ True
 >>> g.linewidth
 2.2
 >>> random.seed(2)
->>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM)
->>> color1, bgcolor1, projection1 = g.color, g.bgcolor, g.projection
+>>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM, marker=Marker.RANDOM)
+>>> color1, bgcolor1, projection1, marker1 = g.color, g.bgcolor, g.projection, g.marker
 >>> random.seed(3)
->>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM)
->>> color2, bgcolor2, projection2 = g.color, g.bgcolor, g.projection
+>>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM, marker=Marker.RANDOM)
+>>> color2, bgcolor2, projection2, marker2 = g.color, g.bgcolor, g.projection, g.marker
 >>> color1 == color2
 False
 >>> bgcolor1 == bgcolor2
 False
 >>> projection1 == projection2
+False
+>>> marker1 == marker2
 False
 >>> result = g.nft_storage(api_key="")
 >>> result['status']
