@@ -204,7 +204,24 @@ True
 True
 >>> g.depth == g_.depth
 True
->>> g.plot(color="white", bgcolor="black", spot_size=2, projection=Projection.POLAR, marker=Marker.X, alpha=0.2, linewidth=1, depth=4)
+>>> g_ = GenerativeImage(data=open("data.json", 'r'))
+>>> g.color == g_.color
+True
+>>> g.bgcolor == g_.bgcolor
+True
+>>> g.spot_size == g_.spot_size
+True
+>>> g.projection == g_.projection
+True
+>>> g.marker == g_.marker
+True
+>>> g.alpha == g_.alpha
+True
+>>> g.linewidth == g_.linewidth
+True
+>>> g.depth == g_.depth
+True
+>>> g.plot(color="white", bgcolor="black", spot_size=2, projection=Projection.POLAR, marker=Marker.X, alpha=0.2, linewidth=1)
 >>> result = g.save_config()
 >>> result["status"]
 True
