@@ -88,6 +88,10 @@ True
 '#555555'
 >>> g.bgcolor
 '#aaaaaa'
+>>> g.marker
+"x"
+>>> g.spot_size
+100
 >>> g.plot(bgcolor=(.1, .2, .8), spot_size=0.1)
 >>> g.plot(size=(20, 20))
 >>> g.size
@@ -190,12 +194,32 @@ True
 True
 >>> g.spot_size == g_.spot_size
 True
+>>> g.projection == g_.projection
+True
+>>> g.marker == g_.marker
+True
+>>> g.alpha == g_.alpha
+True
+>>> g.linewidth == g_.linewidth
+True
+>>> g.depth == g_.depth
+True
 >>> g_ = GenerativeImage(data=open("data.json", 'r'))
 >>> g.color == g_.color
 True
 >>> g.bgcolor == g_.bgcolor
 True
 >>> g.spot_size == g_.spot_size
+True
+>>> g.projection == g_.projection
+True
+>>> g.marker == g_.marker
+True
+>>> g.alpha == g_.alpha
+True
+>>> g.linewidth == g_.linewidth
+True
+>>> g.depth == g_.depth
 True
 >>> with open("config.json", 'w') as fp:
 ...     json.dump({'f1': 'y', 'f2': 'x'}, fp)
