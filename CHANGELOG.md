@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - `marker` parameter added to `plot` method
 - Test system modified
+- `Python 3.11` added to `test.yml`
 ## [0.9] - 2022-09-28
 ### Added
 - Anaconda workflow
