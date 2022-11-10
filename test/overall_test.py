@@ -29,6 +29,8 @@ True
 True
 >>> isinstance(g.data2, list)
 True
+>>> g.missed_points_number == 0
+True
 >>> g.generate(seed=10, start=-2*math.pi, step=0.1, stop=math.pi/2)
 >>> g.seed
 10
