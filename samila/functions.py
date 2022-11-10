@@ -459,6 +459,7 @@ def _GI_initializer(g, function1, function2):
     g.alpha = DEFAULT_ALPHA
     g.linewidth = DEFAULT_LINEWIDTH
     g.depth = DEFAULT_DEPTH
+    g.missed_points_number = 0
 
 
 def nft_storage_upload(api_key, data):

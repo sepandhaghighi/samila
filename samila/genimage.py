@@ -78,6 +78,7 @@ class GenerativeImage:
         generate_params_filter(self, seed, start, step, stop)
         self.data1 = []
         self.data2 = []
+        self.missed_points_number = 0
         range1 = list(float_range(self.start, self.stop, self.step))
         range_prod = itertools.product(range1, range1)
         for point in range_prod:
@@ -88,7 +89,7 @@ class GenerativeImage:
                 self.data1.append(data1_)
                 self.data2.append(data2_)
             except Exception:
-                continue
+                self.missed_points_number += 1
         if len(self.data1) < (len(range1) ** 2):
             warn(CALCULATION_EXCEPTION_WARNING, RuntimeWarning)
 
