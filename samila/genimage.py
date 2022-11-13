@@ -6,6 +6,7 @@ import itertools
 import matplotlib
 import matplotlib.pyplot as plt
 from .functions import _GI_initializer, plot_params_filter, generate_params_filter, save_params_filter
+from .functions import get_config, get_data
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
 from .functions import set_background
@@ -156,12 +157,21 @@ class GenerativeImage:
         ax.add_artist(ax.patch)
         self.fig = fig
 
-    def nft_storage(self, api_key, depth=None):
+    def nft_storage(
+            self,
+            api_key,
+            upload_data=False,
+            upload_config=False,
+            depth=None):
         """
         Upload image to nft.storage.
 
         :param api_key: API key
         :type api_key: str
+        :param upload_data: upload data flag
+        :type upload_data: bool
+        :param upload_config: upload config flag
+        :type upload_config: bool
         :param depth: image depth
         :type depth: float
         :return: result as dict
@@ -172,7 +182,19 @@ class GenerativeImage:
             return {"status": False, "message": response["message"]}
         buf = response["buffer"]
         response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
-        return response
+        if upload_config == False and upload_data == False:
+            return response
+        result = {key: {'image': value} for key, value in response.items()}
+        if upload_config == True:
+            response = nft_storage_upload(api_key=api_key, data=get_config(self))
+            for key, value in response.items():
+                result[key]['config'] = value
+        if upload_data == True:
+            response = nft_storage_upload(api_key=api_key, data=get_data(self))
+            for key, value in response.items():
+                result[key]['data'] = value
+        return result
+        
 
     def save_image(self, file_adr, depth=None):
         """
