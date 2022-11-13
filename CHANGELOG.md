@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `Marker` enum
+- `get_data` function
+- `get_config` function
 ### Changed
 - `marker` parameter added to `plot` method
+- `upload_data` parameter added to `nft_storage` method
+- `upload_config` parameter added to `nft_storage` method
 - `generate` method optimized
 - Test system modified
 - `Python 3.11` added to `test.yml`
