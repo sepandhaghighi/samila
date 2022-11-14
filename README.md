@@ -247,6 +247,12 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 {'status': True, 'message': 'FILE_LINK'}
 ```
 
+You can also upload your config/data to nft storage as follows:
+```pycon
+>>> g.nft_storage(api_key="API_KEY", upload_config=True)
+{'status': {'image': True, 'config':True}, 'message': {'image':'IMAGE_FILE_LINK', 'config':'CONFIG_FILE_LINK'}
+```
+
 ### Save image
 Save generated image
 
