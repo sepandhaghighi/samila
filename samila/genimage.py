@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Samila generative image."""
+import json
 import random
 import gc
 import itertools
@@ -185,16 +186,19 @@ class GenerativeImage:
         if upload_config == False and upload_data == False:
             return response
         result = {key: {'image': value} for key, value in response.items()}
-        if upload_config == True:
-            response = nft_storage_upload(api_key=api_key, data=get_config(self))
+        if upload_config:
+            response = nft_storage_upload(
+                api_key=api_key,
+                data=json.dumps(get_config(self)))
             for key, value in response.items():
                 result[key]['config'] = value
-        if upload_data == True:
-            response = nft_storage_upload(api_key=api_key, data=get_data(self))
+        if upload_data:
+            response = nft_storage_upload(
+                api_key=api_key,
+                data=json.dumps(get_data(self)))
             for key, value in response.items():
                 result[key]['data'] = value
         return result
-        
 
     def save_image(self, file_adr, depth=None):
         """
