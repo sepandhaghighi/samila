@@ -23,13 +23,22 @@ True
 >>> status = False
 >>> counter = 0
 >>> while(status == False and counter<try_limit):
-...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_data=True, upload_config=True)
+...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_config=True)
 ...     counter = counter + 1
 ...     status = result["status"]
 ...     time.sleep(10)
 >>> status["image"]
 True
 >>> status["config"]
+True
+>>> status = False
+>>> counter = 0
+>>> while(status == False and counter<try_limit):
+...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_data=True)
+...     counter = counter + 1
+...     status = result["status"]
+...     time.sleep(10)
+>>> status["image"]
 True
 >>> status["data"]
 True
