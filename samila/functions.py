@@ -503,6 +503,26 @@ def save_data_file(g, file_adr):
     :type file_adr: str
     :return: result as dict
     """
+    data = get_data(g)
+    result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
+    try:
+        with open(file_adr, 'w') as fp:
+            json.dump(data, fp)
+        result["message"] = os.path.abspath(file_adr)
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+    return result
+
+
+def get_data(g):
+    """
+    Return data.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :return: data as a dict
+    """
     matplotlib_version = matplotlib.__version__
     data = {}
     if g.data1 is None or g.data2 is None:
@@ -521,15 +541,42 @@ def save_data_file(g, file_adr):
         "depth": g.depth
     }
     data['matplotlib_version'] = matplotlib_version
-    result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
-    try:
-        with open(file_adr, 'w') as fp:
-            json.dump(data, fp)
-        result["message"] = os.path.abspath(file_adr)
-    except Exception as e:
-        result["status"] = False
-        result["message"] = str(e)
-    return result
+    return data
+
+
+def get_config(g):
+    """
+    Return config.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :return: config as a dict
+    """
+    matplotlib_version = matplotlib.__version__
+    config = {}
+    if g.function1_str is None or g.function2_str is None:
+        raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
+    config['f1'] = g.function1_str
+    config['f2'] = g.function2_str
+    config['generate'] = {
+        "seed": g.seed,
+        "start": g.start,
+        "step": g.step,
+        "stop": g.stop
+    }
+    config['plot'] = {
+        "color": g.color,
+        "bgcolor": g.bgcolor,
+        "cmap": _serialize_cmap(g.cmap),
+        "spot_size": g.spot_size,
+        "projection": g.projection,
+        "marker": g.marker,
+        "alpha": g.alpha,
+        "linewidth": g.linewidth,
+        "depth": g.depth
+    }
+    config['matplotlib_version'] = matplotlib_version
+    return config
 
 
 def save_config_file(g, file_adr):
@@ -542,34 +589,11 @@ def save_config_file(g, file_adr):
     :type file_adr: str
     :return: result as dict
     """
-    matplotlib_version = matplotlib.__version__
-    data = {}
-    if g.function1_str is None or g.function2_str is None:
-        raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
-    data['f1'] = g.function1_str
-    data['f2'] = g.function2_str
-    data['generate'] = {
-        "seed": g.seed,
-        "start": g.start,
-        "step": g.step,
-        "stop": g.stop
-    }
-    data['plot'] = {
-        "color": g.color,
-        "bgcolor": g.bgcolor,
-        "cmap": _serialize_cmap(g.cmap),
-        "spot_size": g.spot_size,
-        "projection": g.projection,
-        "marker": g.marker,
-        "alpha": g.alpha,
-        "linewidth": g.linewidth,
-        "depth": g.depth
-    }
-    data['matplotlib_version'] = matplotlib_version
+    config = get_config(g)
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
     try:
         with open(file_adr, 'w') as fp:
-            json.dump(data, fp, indent=4)
+            json.dump(config, fp, indent=4)
         result["message"] = os.path.abspath(file_adr)
     except Exception as e:
         result["status"] = False
