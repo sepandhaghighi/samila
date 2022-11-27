@@ -12,7 +12,7 @@ from .functions import float_range, save_data_file, save_fig_file, save_fig_buf,
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
 from .functions import set_background
 from .params import *
-from warnings import warn
+from warnings import warn, catch_warnings, simplefilter
 
 
 class GenerativeImage:
@@ -144,15 +144,17 @@ class GenerativeImage:
         fig.set_size_inches(self.size[0], self.size[1])
         ax = fig.add_subplot(111, projection=self.projection)
         set_background(self.bgcolor, fig, ax)
-        ax.scatter(
-            self.data2,
-            self.data1,
-            alpha=self.alpha,
-            c=self.color,
-            cmap=self.cmap,
-            s=self.spot_size,
-            lw=self.linewidth,
-            marker=self.marker)
+        with catch_warnings():
+            simplefilter("ignore")
+            ax.scatter(
+                self.data2,
+                self.data1,
+                alpha=self.alpha,
+                c=self.color,
+                cmap=self.cmap,
+                s=self.spot_size,
+                lw=self.linewidth,
+                marker=self.marker)
         ax.set_axis_off()
         ax.patch.set_zorder(-1)
         ax.add_artist(ax.patch)
