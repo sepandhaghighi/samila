@@ -27,9 +27,9 @@ True
 ...     counter = counter + 1
 ...     status = all(result["status"].values())
 ...     time.sleep(10)
->>> status["image"]
+>>> result['status']["image"]
 True
->>> status["config"]
+>>> result['status']["config"]
 True
 >>> status = False
 >>> counter = 0
@@ -38,8 +38,8 @@ True
 ...     counter = counter + 1
 ...     status = all(result["status"].values())
 ...     time.sleep(10)
->>> status["image"]
+>>> result['status']["image"]
 True
->>> status["data"]
+>>> result['status']["data"]
 True
 """
