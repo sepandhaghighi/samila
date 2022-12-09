@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `upload_config` parameter added to `nft_storage` method
 - `generate` method optimized
 - Test system modified
+- `README.md` updated
 - `Python 3.11` added to `test.yml`
 - `plot` method warning bug fixed
 - Random mode modified
