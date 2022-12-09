@@ -123,6 +123,7 @@ ELEMENTS_LIST = [
     "{0}*math.tanh({1})",
     "{0}*math.cos({1})",
     "{0}*math.sin({1})",
+    "{0}*math.tan({1})",
     "{0}*{1}",
     "{0}*abs({1})",
     "{0}*math.ceil({1})",
