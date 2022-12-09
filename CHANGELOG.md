@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [1.0] - 2022-12-14
 ### Added
 - `Marker` enum
 - `get_data` function
@@ -152,7 +153,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `generate` method
 - `nft_storage` method
 
-[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v0.9...dev
+[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v1.0...dev
+[1.0]: https://github.com/sepandhaghighi/samila/compare/v0.9...v1.0
 [0.9]: https://github.com/sepandhaghighi/samila/compare/v0.8...v0.9
 [0.8]: https://github.com/sepandhaghighi/samila/compare/v0.7...v0.8
 [0.7]: https://github.com/sepandhaghighi/samila/compare/v0.6...v0.7
