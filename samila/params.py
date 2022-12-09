@@ -123,6 +123,7 @@ ELEMENTS_LIST = [
     "{0}*math.tanh({1})",
     "{0}*math.cos({1})",
     "{0}*math.sin({1})",
+    "{0}*math.tan({1})",
     "{0}*{1}",
     "{0}*abs({1})",
     "{0}*math.ceil({1})",
@@ -149,3 +150,5 @@ ARGUMENTS_LIST = [
     "y*(x**3)"]
 
 OPERATORS_LIST = ["+", "-", "*", "/"]
+
+RANDOM_EQUATION_GEN_COMPLEXITY = len(ELEMENTS_LIST) + 1

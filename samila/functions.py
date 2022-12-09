@@ -19,7 +19,7 @@ from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_
 from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
 from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
-from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
+from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST, RANDOM_EQUATION_GEN_COMPLEXITY
 from .errors import samilaDataError, samilaPlotError, samilaConfigError
 from warnings import warn
 
@@ -30,7 +30,7 @@ def random_equation_gen():
 
     :return: equation as str
     """
-    num_elements = random.randint(1, len(ELEMENTS_LIST))
+    num_elements = random.randint(1, RANDOM_EQUATION_GEN_COMPLEXITY)
     result = ""
     index = 1
     random_coef = random.choice(RANDOM_COEF_LIST)

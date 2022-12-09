@@ -25,7 +25,6 @@
    * [Mathematical Details](https://github.com/sepandhaghighi/samila#mathematical-details)
    * [Try Samila in Your Browser](https://github.com/sepandhaghighi/samila#try-samila-in-your-browser)
    * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
-   * [Dependencies](https://github.com/sepandhaghighi/samila#dependencies)
    * [Social Media](https://github.com/sepandhaghighi/samila#social-media)
    * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
    * [References](https://github.com/sepandhaghighi/samila#references)
@@ -400,19 +399,6 @@ You can also join our discord server
   <img src="https://img.shields.io/discord/900055829225562162.svg?style=for-the-badge" alt="Discord Channel">
 </a>
 
-
-## Dependencies
-
-<table>
-	<tr> 
-		<td align="center">master</td>	
-		<td align="center">dev</td>	
-	</tr>
-	<tr>
-		<td align="center"><a href="https://requires.io/github/sepandhaghighi/samila/requirements/?branch=master"><img src="https://requires.io/github/sepandhaghighi/samila/requirements.svg?branch=master" alt="Requirements Status" /></a></td>
-		<td align="center"><a href="https://requires.io/github/sepandhaghighi/samila/requirements/?branch=dev"><img src="https://requires.io/github/sepandhaghighi/samila/requirements.svg?branch=dev" alt="Requirements Status" /></a></td>
-	</tr>
-</table>
 
 ## Social media
 
