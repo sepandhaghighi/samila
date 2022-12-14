@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 """Samila generative image."""
+import json
 import random
 import gc
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
 from .functions import _GI_initializer, plot_params_filter, generate_params_filter, save_params_filter
+from .functions import get_config, get_data
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
-from .functions import load_data, load_config, random_equation_gen, nft_storage_upload, fill_data
+from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
 from .functions import set_background
 from .params import *
-from warnings import warn
+from warnings import warn, catch_warnings, simplefilter
 
 
 class GenerativeImage:
@@ -78,13 +80,19 @@ class GenerativeImage:
         generate_params_filter(self, seed, start, step, stop)
         self.data1 = []
         self.data2 = []
+        self.missed_points_number = 0
         range1 = list(float_range(self.start, self.stop, self.step))
-        range_prod = list(itertools.product(range1, range1))
-        calc_exception = False
+        range_prod = itertools.product(range1, range1)
         for point in range_prod:
-            if not fill_data(self, point):
-                calc_exception = True
-        if calc_exception:
+            random.seed(self.seed)
+            try:
+                data1_ = self.function1(point[0], point[1]).real
+                data2_ = self.function2(point[0], point[1]).real
+                self.data1.append(data1_)
+                self.data2.append(data2_)
+            except Exception:
+                self.missed_points_number += 1
+        if len(self.data1) < (len(range1) ** 2):
             warn(CALCULATION_EXCEPTION_WARNING, RuntimeWarning)
 
     def plot(
@@ -95,6 +103,7 @@ class GenerativeImage:
             spot_size=None,
             size=None,
             projection=None,
+            marker=None,
             alpha=None,
             linewidth=None):
         """
@@ -112,6 +121,8 @@ class GenerativeImage:
         :type size: tuple
         :param projection: projection type
         :type projection: str
+        :param marker: marker type
+        :type marker: str
         :param alpha: point transparency
         :type alpha: float
         :param linewidth: width of line
@@ -126,31 +137,44 @@ class GenerativeImage:
             spot_size,
             size,
             projection,
+            marker,
             alpha,
             linewidth)
         fig = plt.figure()
         fig.set_size_inches(self.size[0], self.size[1])
         ax = fig.add_subplot(111, projection=self.projection)
         set_background(self.bgcolor, fig, ax)
-        ax.scatter(
-            self.data2,
-            self.data1,
-            alpha=self.alpha,
-            c=self.color,
-            cmap=self.cmap,
-            s=self.spot_size,
-            lw=self.linewidth)
+        with catch_warnings():
+            simplefilter("ignore")
+            ax.scatter(
+                self.data2,
+                self.data1,
+                alpha=self.alpha,
+                c=self.color,
+                cmap=self.cmap,
+                s=self.spot_size,
+                lw=self.linewidth,
+                marker=self.marker)
         ax.set_axis_off()
         ax.patch.set_zorder(-1)
         ax.add_artist(ax.patch)
         self.fig = fig
 
-    def nft_storage(self, api_key, depth=None):
+    def nft_storage(
+            self,
+            api_key,
+            upload_data=False,
+            upload_config=False,
+            depth=None):
         """
         Upload image to nft.storage.
 
         :param api_key: API key
         :type api_key: str
+        :param upload_data: upload data flag
+        :type upload_data: bool
+        :param upload_config: upload config flag
+        :type upload_config: bool
         :param depth: image depth
         :type depth: float
         :return: result as dict
@@ -161,7 +185,22 @@ class GenerativeImage:
             return {"status": False, "message": response["message"]}
         buf = response["buffer"]
         response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
-        return response
+        if upload_config == False and upload_data == False:
+            return response
+        result = {key: {'image': value} for key, value in response.items()}
+        if upload_config:
+            response = nft_storage_upload(
+                api_key=api_key,
+                data=json.dumps(get_config(self)))
+            for key, value in response.items():
+                result[key]['config'] = value
+        if upload_data:
+            response = nft_storage_upload(
+                api_key=api_key,
+                data=json.dumps(get_data(self)))
+            for key, value in response.items():
+                result[key]['data'] = value
+        return result
 
     def save_image(self, file_adr, depth=None):
         """

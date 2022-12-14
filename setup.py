@@ -6,7 +6,8 @@ except ImportError:
     from distutils.core import setup
 
 
-MINIMAL_DESCRIPTION = '''Samila is a generative art generator written in Python, Samila let's you create arts based on many thousand points. The position of every single point is calculated by a formula, which has random parameters. Because of the random numbers, every image looks different.'''
+MINIMAL_DESCRIPTION = '''Samila is a generative art generator written in Python, Samila lets you create images based on many thousand points. The position of every single point is calculated by a
+formula, which has random parameters. Because of the random numbers, every image looks different.'''
 
 
 def get_requires():
@@ -32,14 +33,14 @@ def read_description():
 setup(
     name='samila',
     packages=['samila'],
-    version='0.9',
+    version='1.0',
     description='Generative ART',
     long_description=read_description(),
     long_description_content_type='text/markdown',
     author='Samila Development Team',
     author_email='info@samila.site',
     url='https://www.samila.site',
-    download_url='https://github.com/sepandhaghighi/samila/tarball/v0.9',
+    download_url='https://github.com/sepandhaghighi/samila/tarball/v1.0',
     keywords="generative-art art nft file nft-storage",
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/samila',
@@ -49,7 +50,7 @@ setup(
     install_requires=get_requires(),
     python_requires='>=3.5',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Natural Language :: English',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
@@ -67,6 +68,7 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
     ],
     license='MIT',
     include_package_data=True

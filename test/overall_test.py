@@ -9,7 +9,7 @@
 >>> from matplotlib.colors import Colormap, ListedColormap
 >>> def guard(*args, **kwargs):
 ...     raise Exception("No internet connection!")
->>> from samila import GenerativeImage, Projection
+>>> from samila import GenerativeImage, Projection, Marker
 >>> from samila.functions import is_same_data
 >>> import pickle
 >>> def f1(x,y):
@@ -28,6 +28,8 @@ True
 >>> isinstance(g.data1, list)
 True
 >>> isinstance(g.data2, list)
+True
+>>> g.missed_points_number == 0
 True
 >>> g.generate(seed=10, start=-2*math.pi, step=0.1, stop=math.pi/2)
 >>> g.seed
@@ -53,7 +55,6 @@ True
 True
 >>> isinstance(result["message"], str)
 True
->>> from samila import GenerativeImage, Projection
 >>> g.plot(projection=Projection.POLAR, color='red', bgcolor='black')
 >>> g.color
 'red'
@@ -84,11 +85,15 @@ True
 '#555555'
 >>> g.bgcolor
 '#aaaaaa'
->>> g.plot(projection=Projection.POLAR, color="complement", bgcolor="complement")
+>>> g.plot(projection=Projection.POLAR, color="complement", bgcolor="complement", marker=Marker.X, spot_size=100)
 >>> g.color
 '#555555'
 >>> g.bgcolor
 '#aaaaaa'
+>>> g.marker
+'x'
+>>> g.spot_size
+100
 >>> g.plot(bgcolor=(.1, .2, .8), spot_size=0.1)
 >>> g.plot(size=(20, 20))
 >>> g.size
@@ -99,16 +104,18 @@ True
 >>> g.linewidth
 2.2
 >>> random.seed(2)
->>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM)
->>> color1, bgcolor1, projection1 = g.color, g.bgcolor, g.projection
+>>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM, marker=Marker.RANDOM)
+>>> color1, bgcolor1, projection1, marker1 = g.color, g.bgcolor, g.projection, g.marker
 >>> random.seed(3)
->>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM)
->>> color2, bgcolor2, projection2 = g.color, g.bgcolor, g.projection
+>>> g.plot(color="random", bgcolor="random", projection=Projection.RANDOM, marker=Marker.RANDOM)
+>>> color2, bgcolor2, projection2, marker2 = g.color, g.bgcolor, g.projection, g.marker
 >>> color1 == color2
 False
 >>> bgcolor1 == bgcolor2
 False
 >>> projection1 == projection2
+False
+>>> marker1 == marker2
 False
 >>> result = g.nft_storage(api_key="")
 >>> result['status']
@@ -165,7 +172,7 @@ True
 >>> g.plot(color="white", bgcolor="transparent")
 >>> g.bgcolor == "TRANSPARENT"
 True
->>> g.plot(color="white", bgcolor="black", spot_size=0.1)
+>>> g.plot()
 >>> result = g.save_config()
 >>> result["status"]
 True
@@ -189,12 +196,83 @@ True
 True
 >>> g.spot_size == g_.spot_size
 True
+>>> g.projection == g_.projection
+True
+>>> g.marker == g_.marker
+True
+>>> g.alpha == g_.alpha
+True
+>>> g.linewidth == g_.linewidth
+True
+>>> g.depth == g_.depth
+True
 >>> g_ = GenerativeImage(data=open("data.json", 'r'))
 >>> g.color == g_.color
 True
 >>> g.bgcolor == g_.bgcolor
 True
 >>> g.spot_size == g_.spot_size
+True
+>>> g.projection == g_.projection
+True
+>>> g.marker == g_.marker
+True
+>>> g.alpha == g_.alpha
+True
+>>> g.linewidth == g_.linewidth
+True
+>>> g.depth == g_.depth
+True
+>>> g.plot(color="white", bgcolor="black", spot_size=2, projection=Projection.POLAR, marker=Marker.X, alpha=0.2, linewidth=1)
+>>> result = g.save_config()
+>>> result["status"]
+True
+>>> isinstance(result["message"], str)
+True
+>>> result = g.save_data()
+>>> result["status"]
+True
+>>> isinstance(result["message"], str)
+True
+>>> g_ = GenerativeImage(config=open("config.json", 'r'))
+>>> g_.seed == g.seed
+True
+>>> g_.function1_str == g.function1_str
+True
+>>> g_.function2_str == g.function2_str
+True
+>>> g.color == g_.color
+True
+>>> g.bgcolor == g_.bgcolor
+True
+>>> g.spot_size == g_.spot_size
+True
+>>> g.projection == g_.projection
+True
+>>> g.marker == g_.marker
+True
+>>> g.alpha == g_.alpha
+True
+>>> g.linewidth == g_.linewidth
+True
+>>> g.depth == g_.depth
+True
+>>> g_ = GenerativeImage(data=open("data.json", 'r'))
+>>> g.color == g_.color
+True
+>>> g.bgcolor == g_.bgcolor
+True
+>>> g.spot_size == g_.spot_size
+True
+>>> g.projection == g_.projection
+True
+>>> g.marker == g_.marker
+True
+>>> g.alpha == g_.alpha
+True
+>>> g.linewidth == g_.linewidth
+True
+>>> g.depth == g_.depth
 True
 >>> with open("config.json", 'w') as fp:
 ...     json.dump({'f1': 'y', 'f2': 'x'}, fp)

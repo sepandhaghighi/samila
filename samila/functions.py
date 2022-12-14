@@ -10,16 +10,16 @@ import random
 import matplotlib
 from matplotlib import cm
 from matplotlib.colors import ListedColormap
-from .params import DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
+from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
 from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
-from .params import Projection, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
+from .params import Projection, Marker, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_FORMAT_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
 from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
-from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
+from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST, RANDOM_EQUATION_GEN_COMPLEXITY
 from .errors import samilaDataError, samilaPlotError, samilaConfigError
 from warnings import warn
 
@@ -30,7 +30,7 @@ def random_equation_gen():
 
     :return: equation as str
     """
-    num_elements = random.randint(1, len(ELEMENTS_LIST))
+    num_elements = random.randint(1, RANDOM_EQUATION_GEN_COMPLEXITY)
     result = ""
     index = 1
     random_coef = random.choice(RANDOM_COEF_LIST)
@@ -257,6 +257,24 @@ def filter_projection(projection):
     return None
 
 
+def filter_marker(marker):
+    """
+    Filter given marker.
+
+    :param marker: given marker
+    :type marker: Marker enum
+    :return: filtered version of marker
+    """
+    if isinstance(marker, Marker):
+        marker_value = marker.value
+        if marker_value == "random":
+            marker_list = list(Marker)
+            marker_list.remove(Marker.RANDOM)
+            marker_value = random.choice(marker_list).value
+        return marker_value
+    return None
+
+
 def filter_float(value):
     """
     Filter given float value.
@@ -292,6 +310,7 @@ def plot_params_filter(
         spot_size=None,
         size=None,
         projection=None,
+        marker=None,
         alpha=None,
         linewidth=None):
     """
@@ -311,6 +330,8 @@ def plot_params_filter(
     :type size: tuple
     :param projection: projection type
     :type projection: str
+    :param marker: marker type
+    :type marker: str
     :param alpha: point transparency
     :type alpha: float
     :param linewidth: width of line
@@ -329,6 +350,7 @@ def plot_params_filter(
         color, bgcolor = filter_color(color, bgcolor)
     cmap = filter_cmap(cmap)
     projection = filter_projection(projection)
+    marker = filter_marker(marker)
     alpha = filter_float(alpha)
     linewidth = filter_float(linewidth)
     spot_size = filter_float(spot_size)
@@ -345,12 +367,14 @@ def plot_params_filter(
         size = g.size
     if projection is None:
         projection = g.projection
+    if marker is None:
+        marker = g.marker
     if alpha is None:
         alpha = g.alpha
     if linewidth is None:
         linewidth = g.linewidth
-    g.color, g.bgcolor, g.cmap, g.spot_size, g.size, g.projection, g.alpha, g.linewidth = \
-        color, bgcolor, cmap, spot_size, size, projection, alpha, linewidth
+    g.color, g.bgcolor, g.cmap, g.spot_size, g.size, g.projection, g.marker, g.alpha, g.linewidth = \
+        color, bgcolor, cmap, spot_size, size, projection, marker, alpha, linewidth
 
 
 def generate_params_filter(
@@ -386,27 +410,6 @@ def generate_params_filter(
         if g.seed is None:
             seed = random.randint(SEED_LOWER_BOUND, SEED_UPPER_BOUND)
     g.seed, g.start, g.step, g.stop = seed, start, step, stop
-
-
-def fill_data(g, point):
-    """
-    Fill data with functions in given points.
-
-    :param g: generative image instance
-    :type g: GenerativeImage
-    :param point: given point
-    :type point: tuple
-    :return: false if some exception occurred
-    """
-    random.seed(g.seed)
-    try:
-        data1_ = g.function1(point[0], point[1]).real
-        data2_ = g.function2(point[0], point[1]).real
-    except Exception:
-        return False
-    g.data1.append(data1_)
-    g.data2.append(data2_)
-    return True
 
 
 def save_params_filter(g, depth=None):
@@ -452,9 +455,11 @@ def _GI_initializer(g, function1, function2):
     g.spot_size = DEFAULT_SPOT_SIZE
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
+    g.marker = DEFAULT_MARKER
     g.alpha = DEFAULT_ALPHA
     g.linewidth = DEFAULT_LINEWIDTH
     g.depth = DEFAULT_DEPTH
+    g.missed_points_number = 0
 
 
 def nft_storage_upload(api_key, data):
@@ -498,6 +503,26 @@ def save_data_file(g, file_adr):
     :type file_adr: str
     :return: result as dict
     """
+    data = get_data(g)
+    result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
+    try:
+        with open(file_adr, 'w') as fp:
+            json.dump(data, fp)
+        result["message"] = os.path.abspath(file_adr)
+    except Exception as e:
+        result["status"] = False
+        result["message"] = str(e)
+    return result
+
+
+def get_data(g):
+    """
+    Return data.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :return: data as a dict
+    """
     matplotlib_version = matplotlib.__version__
     data = {}
     if g.data1 is None or g.data2 is None:
@@ -510,20 +535,48 @@ def save_data_file(g, file_adr):
         "cmap": _serialize_cmap(g.cmap),
         "spot_size": g.spot_size,
         "projection": g.projection,
+        "marker": g.marker,
         "alpha": g.alpha,
         "linewidth": g.linewidth,
         "depth": g.depth
     }
     data['matplotlib_version'] = matplotlib_version
-    result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
-    try:
-        with open(file_adr, 'w') as fp:
-            json.dump(data, fp)
-        result["message"] = os.path.abspath(file_adr)
-    except Exception as e:
-        result["status"] = False
-        result["message"] = str(e)
-    return result
+    return data
+
+
+def get_config(g):
+    """
+    Return config.
+
+    :param g: generative image instance
+    :type g: GenerativeImage
+    :return: config as a dict
+    """
+    matplotlib_version = matplotlib.__version__
+    config = {}
+    if g.function1_str is None or g.function2_str is None:
+        raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
+    config['f1'] = g.function1_str
+    config['f2'] = g.function2_str
+    config['generate'] = {
+        "seed": g.seed,
+        "start": g.start,
+        "step": g.step,
+        "stop": g.stop
+    }
+    config['plot'] = {
+        "color": g.color,
+        "bgcolor": g.bgcolor,
+        "cmap": _serialize_cmap(g.cmap),
+        "spot_size": g.spot_size,
+        "projection": g.projection,
+        "marker": g.marker,
+        "alpha": g.alpha,
+        "linewidth": g.linewidth,
+        "depth": g.depth
+    }
+    config['matplotlib_version'] = matplotlib_version
+    return config
 
 
 def save_config_file(g, file_adr):
@@ -536,33 +589,11 @@ def save_config_file(g, file_adr):
     :type file_adr: str
     :return: result as dict
     """
-    matplotlib_version = matplotlib.__version__
-    data = {}
-    if g.function1_str is None or g.function2_str is None:
-        raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
-    data['f1'] = g.function1_str
-    data['f2'] = g.function2_str
-    data['generate'] = {
-        "seed": g.seed,
-        "start": g.start,
-        "step": g.step,
-        "stop": g.stop
-    }
-    data['plot'] = {
-        "color": g.color,
-        "bgcolor": g.bgcolor,
-        "cmap": _serialize_cmap(g.cmap),
-        "spot_size": g.spot_size,
-        "projection": g.projection,
-        "alpha": g.alpha,
-        "linewidth": g.linewidth,
-        "depth": g.depth
-    }
-    data['matplotlib_version'] = matplotlib_version
+    config = get_config(g)
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
     try:
         with open(file_adr, 'w') as fp:
-            json.dump(data, fp, indent=4)
+            json.dump(config, fp, indent=4)
         result["message"] = os.path.abspath(file_adr)
     except Exception as e:
         result["status"] = False
@@ -723,6 +754,7 @@ def load_data(g, data):
             g.cmap = _load_cmap(plot_config)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+            g.marker = plot_config.get("marker", DEFAULT_MARKER)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
             g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
             g.depth = plot_config.get("depth", DEFAULT_DEPTH)
@@ -761,6 +793,7 @@ def load_config(g, config):
             g.cmap = _load_cmap(plot_config)
             g.spot_size = plot_config.get("spot_size", DEFAULT_SPOT_SIZE)
             g.projection = plot_config.get("projection", DEFAULT_PROJECTION)
+            g.marker = plot_config.get("marker", DEFAULT_MARKER)
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
             g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
             g.depth = plot_config.get("depth", DEFAULT_DEPTH)

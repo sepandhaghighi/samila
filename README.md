@@ -25,7 +25,6 @@
    * [Mathematical Details](https://github.com/sepandhaghighi/samila#mathematical-details)
    * [Try Samila in Your Browser](https://github.com/sepandhaghighi/samila#try-samila-in-your-browser)
    * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
-   * [Dependencies](https://github.com/sepandhaghighi/samila#dependencies)
    * [Social Media](https://github.com/sepandhaghighi/samila#social-media)
    * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
    * [References](https://github.com/sepandhaghighi/samila#references)
@@ -39,7 +38,7 @@
 ## Overview
 
 <p align="justify">	
-Samila is a generative art generator written in Python, Samila let's you create arts based on many thousand points. The position of every single point is calculated by a formula, which has random parameters. Because of the random numbers, every image looks different.
+Samila is a generative art generator written in Python, Samila lets you create images based on many thousand points. The position of every single point is calculated by a formula, which has random parameters. Because of the random numbers, every image looks different.
 </p>
 
 
@@ -89,7 +88,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 ### Source code
-- Download [Version 0.9](https://github.com/sepandhaghighi/samila/archive/v0.9.zip) or [Latest Source ](https://github.com/sepandhaghighi/samila/archive/dev.zip)
+- Download [Version 1.0](https://github.com/sepandhaghighi/samila/archive/v1.0.zip) or [Latest Source](https://github.com/sepandhaghighi/samila/archive/dev.zip)
 - Run `pip install -r requirements.txt` or `pip3 install -r requirements.txt` (Need root access)
 - Run `python3 setup.py install` or `python setup.py install` (Need root access)				
 
@@ -97,7 +96,7 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install samila==0.9` or `pip3 install samila==0.9` (Need root access)
+- Run `pip install samila==1.0` or `pip3 install samila==1.0` (Need root access)
 
 ### Easy install
 
@@ -155,6 +154,21 @@ Samila is a generative art generator written in Python, Samila let's you create 
 
 * Supported projections : `RECTILINEAR`, `POLAR`, `AITOFF`, `HAMMER`, `LAMBERT`, `MOLLWEIDE` and `RANDOM`
 * Default projection is `RECTILINEAR`
+
+### Marker
+```pycon
+>>> from samila import Marker
+>>> g = GenerativeImage(f1, f2)
+>>> g.generate()
+>>> g.plot(marker=Marker.CIRCLE, spot_size=10)
+>>> g.seed
+448742
+>>> plt.show()
+```
+<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/9.png">	
+
+* Supported markers : `POINT`, `PIXEL`, `CIRCLE`, `TRIANGLE_DOWN`, `TRIANGLE_UP`, `TRIANGLE_LEFT`, `TRIANGLE_RIGHT`, `TRI_DOWN`, `TRI_UP`, `TRI_LEFT`, `TRI_RIGHT`, `OCTAGON`, `SQUARE`, `PENTAGON`, `PLUS`, `PLUS_FILLED`, `STAR`, `HEXAGON_VERTICAL`, `HEXAGON_HORIZONTAL`, `X`, `X_FILLED`, `DIAMOND`, `DIAMON_THIN`, `VLINE`, `HLINE` and `RANDOM`
+* Default marker is `POINT`
 
 ### Range
 ```pycon
@@ -230,6 +244,17 @@ Upload generated image directly to [NFT.storage](https://NFT.storage)
 ```pycon
 >>> g.nft_storage(api_key="YOUR_API_KEY")
 {'status': True, 'message': 'FILE_LINK'}
+```
+
+You can also upload your config/data to nft storage as follows:
+```pycon
+>>> g.nft_storage(api_key="API_KEY", upload_config=True)
+{'status': {'image': True, 'config':True}, 'message': {'image':'IMAGE_FILE_LINK', 'config':'CONFIG_FILE_LINK'}
+```
+or
+```pycon
+>>> g.nft_storage(api_key="API_KEY", upload_data=True)
+{'status': {'image': True, 'data':True}, 'message': {'image':'IMAGE_FILE_LINK', 'data':'DATA_FILE_LINK'}
 ```
 
 ### Save image
@@ -374,19 +399,6 @@ You can also join our discord server
   <img src="https://img.shields.io/discord/900055829225562162.svg?style=for-the-badge" alt="Discord Channel">
 </a>
 
-
-## Dependencies
-
-<table>
-	<tr> 
-		<td align="center">master</td>	
-		<td align="center">dev</td>	
-	</tr>
-	<tr>
-		<td align="center"><a href="https://requires.io/github/sepandhaghighi/samila/requirements/?branch=master"><img src="https://requires.io/github/sepandhaghighi/samila/requirements.svg?branch=master" alt="Requirements Status" /></a></td>
-		<td align="center"><a href="https://requires.io/github/sepandhaghighi/samila/requirements/?branch=dev"><img src="https://requires.io/github/sepandhaghighi/samila/requirements.svg?branch=dev" alt="Requirements Status" /></a></td>
-	</tr>
-</table>
 
 ## Social media
 

@@ -5,7 +5,7 @@ from enum import Enum
 from matplotlib import colors as mcolors
 from matplotlib import cm
 
-SAMILA_VERSION = "0.9"  # pragma: no cover
+SAMILA_VERSION = "1.0"  # pragma: no cover
 
 OVERVIEW = '''
 Samila is a generative art generator written in Python, Samila let's you
@@ -27,6 +27,7 @@ DEFAULT_IMAGE_SIZE = (10, 10)
 DEFAULT_SPOT_SIZE = 0.01
 DEFAULT_DEPTH = 1
 DEFAULT_PROJECTION = "rectilinear"
+DEFAULT_MARKER = "."
 SEED_LOWER_BOUND = 0
 SEED_UPPER_BOUND = 2**20
 VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
@@ -69,6 +70,42 @@ class Projection(Enum):
     RANDOM = "random"
 
 
+class Marker(Enum):
+    """
+    Samila Marker type class.
+
+    >>> marker = samila.Marker.POINT
+    """
+
+    DEFAULT = DEFAULT_MARKER
+    POINT = "."
+    PIXEL = ","
+    CIRCLE = "o"
+    TRIANGLE_DOWN = "v"
+    TRIANGLE_UP = "^"
+    TRIANGLE_LEFT = "<"
+    TRIANGLE_RIGHT = ">"
+    TRI_DOWN = "1"
+    TRI_UP = "2"
+    TRI_LEFT = "3"
+    TRI_RIGHT = "4"
+    OCTAGON = "8"
+    SQUARE = "s"
+    PENTAGON = "p"
+    PLUS = "+"
+    PLUS_FILLED = "P"
+    STAR = "*"
+    HEXAGON_VERTICAL = "h"
+    HEXAGON_HORIZONTAL = "H"
+    X = "x"
+    X_FILLED = "X"
+    DIAMOND = "D"
+    DIAMON_THIN = "d"
+    VLINE = "|"
+    HLINE = "_"
+    RANDOM = "random"
+
+
 RANDOM_COEF_LIST = [
     "random.uniform(-1,1)",
     "random.gauss(0,1)",
@@ -86,6 +123,7 @@ ELEMENTS_LIST = [
     "{0}*math.tanh({1})",
     "{0}*math.cos({1})",
     "{0}*math.sin({1})",
+    "{0}*math.tan({1})",
     "{0}*{1}",
     "{0}*abs({1})",
     "{0}*math.ceil({1})",
@@ -112,3 +150,5 @@ ARGUMENTS_LIST = [
     "y*(x**3)"]
 
 OPERATORS_LIST = ["+", "-", "*", "/"]
+
+RANDOM_EQUATION_GEN_COMPLEXITY = len(ELEMENTS_LIST) + 1
