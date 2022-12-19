@@ -439,7 +439,7 @@ def _GI_initializer(g, function1, function2):
     :return: None
     """
     g.matplotlib_version = matplotlib.__version__
-    g.python_version = sys.version
+    g.python_version = get_python_version()
     g.function1 = function1
     g.function1_str = None
     g.function2 = function2
@@ -517,6 +517,19 @@ def save_data_file(g, file_adr):
     return result
 
 
+def get_python_version():
+    """
+    Get Python's version.
+
+    :return: python's version as 'major.minor.micro'
+    """
+    return "{}.{}.{}".format(
+        sys.version_info.major,
+        sys.version_info.minor,
+        sys.version_info.micro
+    )
+
+
 def get_data(g):
     """
     Return data.
@@ -526,7 +539,7 @@ def get_data(g):
     :return: data as a dict
     """
     matplotlib_version = matplotlib.__version__
-    python_version = sys.version
+    python_version = get_python_version()
     data = {}
     if g.data1 is None or g.data2 is None:
         raise samilaDataError(SAVE_NO_DATA_ERROR)
@@ -557,7 +570,7 @@ def get_config(g):
     :return: config as a dict
     """
     matplotlib_version = matplotlib.__version__
-    python_version = sys.version
+    python_version = get_python_version()
     config = {}
     if g.function1_str is None or g.function2_str is None:
         raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
