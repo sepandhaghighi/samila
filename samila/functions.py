@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Samila functions."""
 
+import sys
 import requests
 import io
 import os
@@ -438,6 +439,7 @@ def _GI_initializer(g, function1, function2):
     :return: None
     """
     g.matplotlib_version = matplotlib.__version__
+    g.python_version = sys.version
     g.function1 = function1
     g.function1_str = None
     g.function2 = function2
@@ -524,6 +526,7 @@ def get_data(g):
     :return: data as a dict
     """
     matplotlib_version = matplotlib.__version__
+    python_version = sys.version
     data = {}
     if g.data1 is None or g.data2 is None:
         raise samilaDataError(SAVE_NO_DATA_ERROR)
@@ -541,6 +544,7 @@ def get_data(g):
         "depth": g.depth
     }
     data['matplotlib_version'] = matplotlib_version
+    data['python_version'] = python_version
     return data
 
 
@@ -553,6 +557,7 @@ def get_config(g):
     :return: config as a dict
     """
     matplotlib_version = matplotlib.__version__
+    python_version = sys.version
     config = {}
     if g.function1_str is None or g.function2_str is None:
         raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
@@ -576,6 +581,7 @@ def get_config(g):
         "depth": g.depth
     }
     config['matplotlib_version'] = matplotlib_version
+    config['python_version'] = python_version
     return config
 
 
@@ -747,6 +753,8 @@ def load_data(g, data):
             raise samilaDataError(DATA_FORMAT_ERROR)
         if 'matplotlib_version' in data:
             g.matplotlib_version = data['matplotlib_version']
+        if 'python_version' in data:
+            g.python_version = data['python_version']
         plot_config = data.get("plot")
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
@@ -780,6 +788,8 @@ def load_config(g, config):
             raise samilaConfigError(CONFIG_FORMAT_ERROR)
         if 'matplotlib_version' in data:
             g.matplotlib_version = data['matplotlib_version']
+        if 'python_version' in data:
+            g.python_version = data['python_version']
         generate_config = data.get("generate")
         if generate_config is not None:
             g.seed = generate_config.get("seed")

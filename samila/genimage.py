@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Samila generative image."""
+import sys
 import json
 import random
 import gc
@@ -44,10 +45,12 @@ class GenerativeImage:
             load_config(self, config)
         elif data is not None:
             load_data(self, data)
-        if self.matplotlib_version != matplotlib.__version__:
+        if self.matplotlib_version != matplotlib.__version__ or \
+           self.python_version != sys.version:
             warn(
-                MATPLOTLIB_VERSION_WARNING.format(
-                    self.matplotlib_version),
+                VERSION_WARNING.format(
+                    self.matplotlib_version,
+                    sys.version),
                 RuntimeWarning)
         if self.function1 is None:
             if self.function1_str is None:
