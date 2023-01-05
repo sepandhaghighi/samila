@@ -49,7 +49,7 @@ class GenerativeImage:
             warn(
                 VERSION_WARNING.format(
                     self.matplotlib_version,
-                    get_python_version()),
+                    self.python_version),
                 RuntimeWarning)
         if self.function1 is None:
             if self.function1_str is None:
