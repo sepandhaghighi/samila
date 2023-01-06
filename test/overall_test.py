@@ -6,6 +6,7 @@
 >>> import pickle
 >>> import socket
 >>> import json
+>>> import sys
 >>> from matplotlib.colors import Colormap, ListedColormap
 >>> def guard(*args, **kwargs):
 ...     raise Exception("No internet connection!")
@@ -22,6 +23,8 @@
 >>> g.function1 == f1
 True
 >>> g.function2 == f2
+True
+>>> g.python_version == sys.version.split()[0]
 True
 >>> g.fig
 >>> g.generate()
