@@ -794,22 +794,22 @@ def load_config(g, config):
     :return: None
     """
     if isinstance(config, io.IOBase):
-        data = json.load(config)
-        g.function1_str = data.get("f1")
-        g.function2_str = data.get("f2")
+        config = json.load(config)
+        g.function1_str = config.get("f1")
+        g.function2_str = config.get("f2")
         if g.function1_str is None or g.function2_str is None:
             raise samilaConfigError(CONFIG_FORMAT_ERROR)
-        if 'matplotlib_version' in data:
-            g.matplotlib_version = data['matplotlib_version']
-        if 'python_version' in data:
-            g.python_version = data['python_version']
-        generate_config = data.get("generate")
+        if 'matplotlib_version' in config:
+            g.matplotlib_version = config['matplotlib_version']
+        if 'python_version' in config:
+            g.python_version = config['python_version']
+        generate_config = config.get("generate")
         if generate_config is not None:
             g.seed = generate_config.get("seed")
             g.start = generate_config.get("start", DEFAULT_START)
             g.step = generate_config.get("step", DEFAULT_STEP)
             g.stop = generate_config.get("stop", DEFAULT_STOP)
-        plot_config = data.get("plot")
+        plot_config = config.get("plot")
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)
