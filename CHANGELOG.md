@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `python_version` attribute
+### Changed
+- `load_config` function modified
 ## [1.0] - 2022-12-14
 ### Added
 - `Marker` enum
