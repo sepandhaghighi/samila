@@ -32,16 +32,17 @@ def random_equation_gen():
     :return: equation as str
     """
     num_elements = random.randint(1, RANDOM_EQUATION_GEN_COMPLEXITY)
+    fof_max_depth = random.randint(1, RANDOM_EQUATION_GEN_COMPLEXITY)
     result = ""
     index = 1
     random_coef = random.choice(RANDOM_COEF_LIST)
     while(index <= num_elements):
         argument = random.choice(ARGUMENTS_LIST)
-        if random.randint(0, 1) == 1:
-            argument = random.choice(ELEMENTS_LIST).format(
-                random_coef, argument)
-        result = result + \
-            random.choice(ELEMENTS_LIST).format(random_coef, argument)
+        element = random.choice(ELEMENTS_LIST).format(random_coef, argument)
+        for _ in range(fof_max_depth):
+            if random.randint(0, 1) == 1:
+                element = random.choice(ELEMENTS_LIST).format(random_coef, element)
+        result = result + element
         if index < num_elements:
             result = result + random.choice(OPERATORS_LIST)
         index = index + 1
