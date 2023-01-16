@@ -149,6 +149,6 @@ ARGUMENTS_LIST = [
     "x*(y**3)",
     "y*(x**3)"]
 
-OPERATORS_LIST = ["+", "-", "*", "/"]
+OPERATORS_LIST = ["+", "-", "*", "/", "%"]
 
 RANDOM_EQUATION_GEN_COMPLEXITY = len(ELEMENTS_LIST) + 1
