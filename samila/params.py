@@ -137,6 +137,7 @@ ARGUMENTS_LIST = [
     "y",
     "1/x",
     "1/y",
+    "x/y",
     "y-x",
     "x-y",
     "x+y",
