@@ -114,6 +114,7 @@ RANDOM_COEF_LIST = [
     "random.lognormvariate(0,1)"]
 
 ELEMENTS_LIST = [
+    "{0}*math.exp({1})",
     "{0}*math.atan({1})",
     "{0}*math.asinh({1})",
     "{0}*math.acosh(abs({1})+1)",
@@ -125,6 +126,7 @@ ELEMENTS_LIST = [
     "{0}*math.sin({1})",
     "{0}*math.tan({1})",
     "{0}*{1}",
+    "{0}/{1}",
     "{0}*abs({1})",
     "{0}*math.ceil({1})",
     "{0}*math.floor({1})"]
@@ -133,6 +135,9 @@ ARGUMENTS_LIST = [
     "x*y",
     "x",
     "y",
+    "1/x",
+    "1/y",
+    "x/y",
     "y-x",
     "x-y",
     "x+y",
@@ -151,4 +156,10 @@ ARGUMENTS_LIST = [
 
 OPERATORS_LIST = ["+", "-", "*", "/"]
 
-RANDOM_EQUATION_GEN_COMPLEXITY = len(ELEMENTS_LIST) + 1
+RANDOM_EQUATION_MAX_COMPLEXITY = len(ELEMENTS_LIST) + 1
+
+RANDOM_EQUATION_MIN_COMPLEXITY = 1
+
+RANDOM_EQUATION_FOF_MAX_DEPTH = 3
+
+RANDOM_EQUATION_FOF_MIN_DEPTH = 1

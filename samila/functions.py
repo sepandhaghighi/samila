@@ -20,7 +20,8 @@ from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_
 from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
 from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
-from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST, RANDOM_EQUATION_GEN_COMPLEXITY
+from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
+from .params import RANDOM_EQUATION_MIN_COMPLEXITY, RANDOM_EQUATION_MAX_COMPLEXITY, RANDOM_EQUATION_FOF_MIN_DEPTH, RANDOM_EQUATION_FOF_MAX_DEPTH
 from .errors import samilaDataError, samilaPlotError, samilaConfigError
 from warnings import warn
 
@@ -31,17 +32,20 @@ def random_equation_gen():
 
     :return: equation as str
     """
-    num_elements = random.randint(1, RANDOM_EQUATION_GEN_COMPLEXITY)
+    num_elements = random.randint(
+        RANDOM_EQUATION_MIN_COMPLEXITY,
+        RANDOM_EQUATION_MAX_COMPLEXITY)
     result = ""
     index = 1
     random_coef = random.choice(RANDOM_COEF_LIST)
     while(index <= num_elements):
-        argument = random.choice(ARGUMENTS_LIST)
-        if random.randint(0, 1) == 1:
-            argument = random.choice(ELEMENTS_LIST).format(
-                random_coef, argument)
-        result = result + \
-            random.choice(ELEMENTS_LIST).format(random_coef, argument)
+        element = random.choice(ARGUMENTS_LIST)
+        fof_depth = random.randint(
+            RANDOM_EQUATION_FOF_MIN_DEPTH,
+            RANDOM_EQUATION_FOF_MAX_DEPTH)
+        for _ in range(fof_depth):
+            element = random.choice(ELEMENTS_LIST).format(random_coef, element)
+        result = result + element
         if index < num_elements:
             result = result + random.choice(OPERATORS_LIST)
         index = index + 1
