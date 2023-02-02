@@ -3,9 +3,11 @@
 import json
 import random
 import gc
+import io
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
+from PIL import Image
 from .functions import _GI_initializer, plot_params_filter, generate_params_filter, save_params_filter
 from .functions import get_config, get_data, get_python_version
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
@@ -107,7 +109,8 @@ class GenerativeImage:
             projection=None,
             marker=None,
             alpha=None,
-            linewidth=None):
+            linewidth=None,
+            rotation=None):
         """
         Plot the generated art.
 
@@ -129,6 +132,8 @@ class GenerativeImage:
         :type alpha: float
         :param linewidth: width of line
         :type linewidth: float
+        :param rotation: desired rotation
+        :type rotation: float
         :return: None
         """
         plot_params_filter(
@@ -141,7 +146,8 @@ class GenerativeImage:
             projection,
             marker,
             alpha,
-            linewidth)
+            linewidth,
+            rotation)
         fig = plt.figure()
         fig.set_size_inches(self.size[0], self.size[1])
         ax = fig.add_subplot(111, projection=self.projection)
@@ -157,6 +163,13 @@ class GenerativeImage:
                 s=self.spot_size,
                 lw=self.linewidth,
                 marker=self.marker)
+        # if self.rotation != DEFAULT_ROTATION:
+        #     buf = io.BytesIO()
+        #     fig.savefig(buf)
+        #     buf.seek(0)
+        #     # ax.cla()
+        #     with Image.open("hopper.jpg") as im:
+        #         plt.imshow(np.asarray(im.rotate(45).))
         ax.set_axis_off()
         ax.patch.set_zorder(-1)
         ax.add_artist(ax.patch)
