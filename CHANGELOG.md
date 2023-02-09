@@ -10,7 +10,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `RANDOM_EQUATION_MIN_COMPLEXITY` parameter
 - `RANDOM_EQUATION_FOF_MAX_DEPTH` parameter
 - `RANDOM_EQUATION_FOF_MIN_DEPTH` parameter
+- `rotate` function
 ### Changed
+- `rotation` parameter added to `plot` method
 - `load_config` function modified
 - Random mode modified
 - `RANDOM_EQUATION_GEN_COMPLEXITY` parameter renamed to `RANDOM_EQUATION_MAX_COMPLEXITY`
