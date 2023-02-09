@@ -97,6 +97,9 @@ True
 'x'
 >>> g.spot_size
 100
+>>> g.plot(rotation=45)
+>>> int(g.rotation)
+45
 >>> g.plot(bgcolor=(.1, .2, .8), spot_size=0.1)
 >>> g.plot(size=(20, 20))
 >>> g.size
@@ -220,6 +223,8 @@ True
 True
 >>> g.marker == g_.marker
 True
+>>> g.rotation == g_.rotation
+True
 >>> g.alpha == g_.alpha
 True
 >>> g.linewidth == g_.linewidth
@@ -253,6 +258,8 @@ True
 >>> g.projection == g_.projection
 True
 >>> g.marker == g_.marker
+True
+>>> g.rotation == g_.rotation
 True
 >>> g.alpha == g_.alpha
 True
