@@ -132,7 +132,7 @@ class GenerativeImage:
         :type alpha: float
         :param linewidth: width of line
         :type linewidth: float
-        :param rotation: desired rotation
+        :param rotation: desired rotation (in degrees)
         :type rotation: float
         :return: None
         """
