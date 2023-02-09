@@ -1,3 +1,4 @@
 matplotlib>=3.0.0
 requests>=2.20.0
 art>=1.8
+PIL
