@@ -589,7 +589,8 @@ def get_data(g):
         "marker": g.marker,
         "alpha": g.alpha,
         "linewidth": g.linewidth,
-        "depth": g.depth
+        "depth": g.depth,
+        "rotation": g.rotation,
     }
     data['matplotlib_version'] = matplotlib_version
     data['python_version'] = python_version
@@ -626,7 +627,8 @@ def get_config(g):
         "marker": g.marker,
         "alpha": g.alpha,
         "linewidth": g.linewidth,
-        "depth": g.depth
+        "depth": g.depth,
+        "rotation": g.rotation,
     }
     config['matplotlib_version'] = matplotlib_version
     config['python_version'] = python_version
@@ -814,6 +816,7 @@ def load_data(g, data):
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
             g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
             g.depth = plot_config.get("depth", DEFAULT_DEPTH)
+            g.rotation = plot_config.get("rotation", DEFAULT_ROTATION)
         return
     raise samilaDataError(DATA_TYPE_ERROR)
 
@@ -855,5 +858,6 @@ def load_config(g, config):
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
             g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
             g.depth = plot_config.get("depth", DEFAULT_DEPTH)
+            g.rotation = plot_config.get("rotation", DEFAULT_ROTATION)
         return
     raise samilaConfigError(CONFIG_TYPE_ERROR)
