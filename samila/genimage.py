@@ -7,12 +7,11 @@ import io
 import itertools
 import matplotlib
 import matplotlib.pyplot as plt
-from PIL import Image
 from .functions import _GI_initializer, plot_params_filter, generate_params_filter, save_params_filter
 from .functions import get_config, get_data, get_python_version
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
-from .functions import set_background
+from .functions import set_background, rotate
 from .params import *
 from warnings import warn, catch_warnings, simplefilter
 
@@ -163,16 +162,10 @@ class GenerativeImage:
                 s=self.spot_size,
                 lw=self.linewidth,
                 marker=self.marker)
-        # if self.rotation != DEFAULT_ROTATION:
-        #     buf = io.BytesIO()
-        #     fig.savefig(buf)
-        #     buf.seek(0)
-        #     # ax.cla()
-        #     with Image.open("hopper.jpg") as im:
-        #         plt.imshow(np.asarray(im.rotate(45).))
         ax.set_axis_off()
         ax.patch.set_zorder(-1)
         ax.add_artist(ax.patch)
+        ax = rotate(fig, ax, self.rotation)
         self.fig = fig
 
     def nft_storage(

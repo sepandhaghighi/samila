@@ -11,6 +11,7 @@ import random
 import matplotlib
 from matplotlib import cm
 from matplotlib.colors import ListedColormap
+from PIL import Image
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
 from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
@@ -305,6 +306,30 @@ def filter_size(size):
         if not any(map(lambda x: x != filter_float(x), size)):
             return size
     return None
+
+
+def rotate(fig, ax, rotation):
+    """
+    Rotate the given figure and return axis.
+
+    :param fig: figure containing the image
+    :type fig: Figure
+    :param ax: axis on which rotated image is ploted
+    :type ax: Axis
+    :param rotation: desired rotation (in degrees)
+    :type rotation: float
+    :return: axis containing rotated image
+    """
+    if rotation != DEFAULT_ROTATION:
+        buf = io.BytesIO()
+        fig.savefig(buf, format='png')
+        ax.cla()
+        with Image.open(buf) as im:
+            ax.imshow(im.rotate(rotation))
+        ax.set_axis_off()
+        ax.patch.set_zorder(-1)
+        ax.add_artist(ax.patch)
+    return ax
 
 
 def plot_params_filter(
