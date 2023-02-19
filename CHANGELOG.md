@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+- `README.md` updated
 ## [1.0] - 2022-12-14
 ### Added
 - `Marker` enum
@@ -17,7 +19,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `generate` method optimized
 - Test system modified
 - `README.md` updated
-- `README.md` typos fixed
 - `Python 3.11` added to `test.yml`
 - `plot` method warning bug fixed
 - Random mode modified
