@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `generate` method optimized
 - Test system modified
 - `README.md` updated
+- `README.md` typos fixed
 - `Python 3.11` added to `test.yml`
 - `plot` method warning bug fixed
 - Random mode modified
