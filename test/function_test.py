@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 >>> import random
+>>> import sys
 >>> from samila.functions import *
 >>> is_valid_color("blue")
 True
@@ -90,6 +91,8 @@ False
 1
 >>> distance_calc("test12","test234")
 3
+>>> get_python_version() == sys.version.split()[0]
+True
 >>> samila_help()
 <BLANKLINE>
 Samila is a generative art generator written in Python, Samila let's you

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Samila functions."""
 
+import sys
 import requests
 import io
 import os
@@ -19,7 +20,8 @@ from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_
 from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
 from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
-from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST, RANDOM_EQUATION_GEN_COMPLEXITY
+from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
+from .params import RANDOM_EQUATION_MIN_COMPLEXITY, RANDOM_EQUATION_MAX_COMPLEXITY, RANDOM_EQUATION_FOF_MIN_DEPTH, RANDOM_EQUATION_FOF_MAX_DEPTH
 from .errors import samilaDataError, samilaPlotError, samilaConfigError
 from warnings import warn
 
@@ -30,17 +32,20 @@ def random_equation_gen():
 
     :return: equation as str
     """
-    num_elements = random.randint(1, RANDOM_EQUATION_GEN_COMPLEXITY)
+    num_elements = random.randint(
+        RANDOM_EQUATION_MIN_COMPLEXITY,
+        RANDOM_EQUATION_MAX_COMPLEXITY)
     result = ""
     index = 1
     random_coef = random.choice(RANDOM_COEF_LIST)
     while(index <= num_elements):
-        argument = random.choice(ARGUMENTS_LIST)
-        if random.randint(0, 1) == 1:
-            argument = random.choice(ELEMENTS_LIST).format(
-                random_coef, argument)
-        result = result + \
-            random.choice(ELEMENTS_LIST).format(random_coef, argument)
+        element = random.choice(ARGUMENTS_LIST)
+        fof_depth = random.randint(
+            RANDOM_EQUATION_FOF_MIN_DEPTH,
+            RANDOM_EQUATION_FOF_MAX_DEPTH)
+        for _ in range(fof_depth):
+            element = random.choice(ELEMENTS_LIST).format(random_coef, element)
+        result = result + element
         if index < num_elements:
             result = result + random.choice(OPERATORS_LIST)
         index = index + 1
@@ -438,6 +443,7 @@ def _GI_initializer(g, function1, function2):
     :return: None
     """
     g.matplotlib_version = matplotlib.__version__
+    g.python_version = get_python_version()
     g.function1 = function1
     g.function1_str = None
     g.function2 = function2
@@ -515,6 +521,19 @@ def save_data_file(g, file_adr):
     return result
 
 
+def get_python_version():
+    """
+    Get Python's version.
+
+    :return: python's version as 'major.minor.micro'
+    """
+    return "{}.{}.{}".format(
+        sys.version_info.major,
+        sys.version_info.minor,
+        sys.version_info.micro
+    )
+
+
 def get_data(g):
     """
     Return data.
@@ -524,6 +543,7 @@ def get_data(g):
     :return: data as a dict
     """
     matplotlib_version = matplotlib.__version__
+    python_version = get_python_version()
     data = {}
     if g.data1 is None or g.data2 is None:
         raise samilaDataError(SAVE_NO_DATA_ERROR)
@@ -541,6 +561,7 @@ def get_data(g):
         "depth": g.depth
     }
     data['matplotlib_version'] = matplotlib_version
+    data['python_version'] = python_version
     return data
 
 
@@ -553,6 +574,7 @@ def get_config(g):
     :return: config as a dict
     """
     matplotlib_version = matplotlib.__version__
+    python_version = get_python_version()
     config = {}
     if g.function1_str is None or g.function2_str is None:
         raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
@@ -576,6 +598,7 @@ def get_config(g):
         "depth": g.depth
     }
     config['matplotlib_version'] = matplotlib_version
+    config['python_version'] = python_version
     return config
 
 
@@ -747,6 +770,8 @@ def load_data(g, data):
             raise samilaDataError(DATA_FORMAT_ERROR)
         if 'matplotlib_version' in data:
             g.matplotlib_version = data['matplotlib_version']
+        if 'python_version' in data:
+            g.python_version = data['python_version']
         plot_config = data.get("plot")
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
@@ -773,20 +798,22 @@ def load_config(g, config):
     :return: None
     """
     if isinstance(config, io.IOBase):
-        data = json.load(config)
-        g.function1_str = data.get("f1")
-        g.function2_str = data.get("f2")
+        config = json.load(config)
+        g.function1_str = config.get("f1")
+        g.function2_str = config.get("f2")
         if g.function1_str is None or g.function2_str is None:
             raise samilaConfigError(CONFIG_FORMAT_ERROR)
-        if 'matplotlib_version' in data:
-            g.matplotlib_version = data['matplotlib_version']
-        generate_config = data.get("generate")
+        if 'matplotlib_version' in config:
+            g.matplotlib_version = config['matplotlib_version']
+        if 'python_version' in config:
+            g.python_version = config['python_version']
+        generate_config = config.get("generate")
         if generate_config is not None:
             g.seed = generate_config.get("seed")
             g.start = generate_config.get("start", DEFAULT_START)
             g.step = generate_config.get("step", DEFAULT_STEP)
             g.stop = generate_config.get("stop", DEFAULT_STOP)
-        plot_config = data.get("plot")
+        plot_config = config.get("plot")
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
             g.bgcolor = plot_config.get("bgcolor", DEFAULT_BACKGROUND_COLOR)

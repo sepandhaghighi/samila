@@ -7,7 +7,7 @@ import itertools
 import matplotlib
 import matplotlib.pyplot as plt
 from .functions import _GI_initializer, plot_params_filter, generate_params_filter, save_params_filter
-from .functions import get_config, get_data
+from .functions import get_config, get_data, get_python_version
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
 from .functions import set_background
@@ -44,10 +44,12 @@ class GenerativeImage:
             load_config(self, config)
         elif data is not None:
             load_data(self, data)
-        if self.matplotlib_version != matplotlib.__version__:
+        if self.matplotlib_version != matplotlib.__version__ or \
+           self.python_version != get_python_version():
             warn(
-                MATPLOTLIB_VERSION_WARNING.format(
-                    self.matplotlib_version),
+                VERSION_WARNING.format(
+                    self.matplotlib_version,
+                    self.python_version),
                 RuntimeWarning)
         if self.function1 is None:
             if self.function1_str is None:

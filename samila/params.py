@@ -47,7 +47,7 @@ PLOT_DATA_ERROR = "Plotting process can't be Done because data{0} is empty. Use 
 COLOR_SIZE_ERROR = "Color list size is not equal to the data size."
 SAVE_NO_DATA_ERROR = "Data file can't be saved. At least one of the data1 or data2 is None."
 INVALID_COLOR_TYPE_ERROR = "Given color/bgcolor type is not supported."
-MATPLOTLIB_VERSION_WARNING = "Source matplotlib version({0}) is different from yours, plots may be different."
+VERSION_WARNING = "Source matplotlib version({0}) or Python version({1}) is different from yours, plots may be different."
 CALCULATION_EXCEPTION_WARNING = "The given functions are undefined at some points. Your plot may not be complete."
 BOTH_COLOR_COMPLEMENT_WARNING = "It is not possible to set color and bgcolor to 'complement' at the same time! Both are automatically set to the previous or default selection."
 COLOR_NOT_FOUND_WARNING = "color '{0}' not found. Replacing it with '{1}'"
@@ -114,6 +114,7 @@ RANDOM_COEF_LIST = [
     "random.lognormvariate(0,1)"]
 
 ELEMENTS_LIST = [
+    "{0}*math.exp({1})",
     "{0}*math.atan({1})",
     "{0}*math.asinh({1})",
     "{0}*math.acosh(abs({1})+1)",
@@ -125,6 +126,7 @@ ELEMENTS_LIST = [
     "{0}*math.sin({1})",
     "{0}*math.tan({1})",
     "{0}*{1}",
+    "{0}/{1}",
     "{0}*abs({1})",
     "{0}*math.ceil({1})",
     "{0}*math.floor({1})"]
@@ -133,6 +135,9 @@ ARGUMENTS_LIST = [
     "x*y",
     "x",
     "y",
+    "1/x",
+    "1/y",
+    "x/y",
     "y-x",
     "x-y",
     "x+y",
@@ -151,4 +156,10 @@ ARGUMENTS_LIST = [
 
 OPERATORS_LIST = ["+", "-", "*", "/"]
 
-RANDOM_EQUATION_GEN_COMPLEXITY = len(ELEMENTS_LIST) + 1
+RANDOM_EQUATION_MAX_COMPLEXITY = len(ELEMENTS_LIST) + 1
+
+RANDOM_EQUATION_MIN_COMPLEXITY = 1
+
+RANDOM_EQUATION_FOF_MAX_DEPTH = 3
+
+RANDOM_EQUATION_FOF_MIN_DEPTH = 1
