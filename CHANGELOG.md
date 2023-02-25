@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `load_config` function modified
 - Random mode modified
 - `RANDOM_EQUATION_GEN_COMPLEXITY` parameter renamed to `RANDOM_EQUATION_MAX_COMPLEXITY`
+- `README.md` updated
 ## [1.0] - 2022-12-14
 ### Added
 - `Marker` enum

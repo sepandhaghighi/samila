@@ -361,11 +361,11 @@ Samila is simply a transformation between a square-shaped space from the Cartesi
 ### Example
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/transformation.png">
 
-We have set of points in the first space (left square) which can be define as follow:
+We have set of points in the first space (left square) which can be defined as follow:
 
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S1.jpg">
 
-And bellow functions are used for transformation:
+And below functions are used for transformation:
 
 ```pycon
 >>> def f1(x, y):
@@ -378,7 +378,7 @@ And bellow functions are used for transformation:
 
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/mathematical_details/S2.jpg">
 
-here we uses `Projection.POLAR` so later space will be the polar space and we have:
+here we use `Projection.POLAR` so later space will be the polar space and we have:
 
 ```pycon
 >>> g = GenerativeImage(f1, f2)
