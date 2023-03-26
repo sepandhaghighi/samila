@@ -179,7 +179,7 @@ You can even rotate your art by using `rotation` parameter. Enter your desired r
 >>> g.plot(rotation=45)
 ```
 
-* Default rotation is 0.
+* Default rotation is 0
 
 ### Range
 ```pycon
@@ -253,7 +253,7 @@ You can make your custom color map and use it in Samila
 Upload generated image directly to [NFT.storage](https://NFT.storage)
 
 ```pycon
->>> g.nft_storage(api_key="YOUR_API_KEY")
+>>> g.nft_storage(api_key="YOUR_API_KEY", timeout=5000)
 {'status': True, 'message': 'FILE_LINK'}
 ```
 
@@ -267,6 +267,8 @@ or
 >>> g.nft_storage(api_key="API_KEY", upload_data=True)
 {'status': {'image': True, 'data':True}, 'message': {'image':'IMAGE_FILE_LINK', 'data':'DATA_FILE_LINK'}
 ```
+
+* Default timeout is **3000** seconds
 
 ### Save image
 Save generated image

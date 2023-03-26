@@ -172,7 +172,8 @@ class GenerativeImage:
             api_key,
             upload_data=False,
             upload_config=False,
-            depth=None):
+            depth=None,
+            timeout=3000):
         """
         Upload image to nft.storage.
 
@@ -184,6 +185,8 @@ class GenerativeImage:
         :type upload_config: bool
         :param depth: image depth
         :type depth: float
+        :param timeout: upload timeout (in seconds)
+        :type timeout: int
         :return: result as dict
         """
         save_params_filter(self, depth)
@@ -191,20 +194,25 @@ class GenerativeImage:
         if not response["status"]:
             return {"status": False, "message": response["message"]}
         buf = response["buffer"]
-        response = nft_storage_upload(api_key=api_key, data=buf.getvalue())
+        response = nft_storage_upload(
+            api_key=api_key,
+            data=buf.getvalue(),
+            timeout=timeout)
         if upload_config == False and upload_data == False:
             return response
         result = {key: {'image': value} for key, value in response.items()}
         if upload_config:
             response = nft_storage_upload(
                 api_key=api_key,
-                data=json.dumps(get_config(self)))
+                data=json.dumps(get_config(self)),
+                timeout=timeout)
             for key, value in response.items():
                 result[key]['config'] = value
         if upload_data:
             response = nft_storage_upload(
                 api_key=api_key,
-                data=json.dumps(get_data(self)))
+                data=json.dumps(get_data(self)),
+                timeout=timeout)
             for key, value in response.items():
                 result[key]['data'] = value
         return result
