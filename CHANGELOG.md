@@ -13,7 +13,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `rotate` function
 ### Changed
 - `rotation` parameter added to `plot` method
+- `timeout` parameter added to `nft_storage` method
 - `load_config` function modified
+- `nft_storage_upload` function modified
 - Random mode modified
 - `RANDOM_EQUATION_GEN_COMPLEXITY` parameter renamed to `RANDOM_EQUATION_MAX_COMPLEXITY`
 - `README.md` updated
