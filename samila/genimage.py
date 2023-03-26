@@ -204,13 +204,15 @@ class GenerativeImage:
         if upload_config:
             response = nft_storage_upload(
                 api_key=api_key,
-                data=json.dumps(get_config(self)), timeout=timeout)
+                data=json.dumps(get_config(self)),
+                timeout=timeout)
             for key, value in response.items():
                 result[key]['config'] = value
         if upload_data:
             response = nft_storage_upload(
                 api_key=api_key,
-                data=json.dumps(get_data(self)), timeout=timeout)
+                data=json.dumps(get_data(self)),
+                timeout=timeout)
             for key, value in response.items():
                 result[key]['data'] = value
         return result
