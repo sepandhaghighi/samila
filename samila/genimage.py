@@ -194,7 +194,10 @@ class GenerativeImage:
         if not response["status"]:
             return {"status": False, "message": response["message"]}
         buf = response["buffer"]
-        response = nft_storage_upload(api_key=api_key, data=buf.getvalue(), timeout=timeout)
+        response = nft_storage_upload(
+            api_key=api_key,
+            data=buf.getvalue(),
+            timeout=timeout)
         if upload_config == False and upload_data == False:
             return response
         result = {key: {'image': value} for key, value in response.items()}
