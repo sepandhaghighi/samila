@@ -499,7 +499,7 @@ def _GI_initializer(g, function1, function2):
     g.missed_points_number = 0
 
 
-def nft_storage_upload(api_key, data):
+def nft_storage_upload(api_key, data, timeout):
     """
     Upload file to nft.storage.
 
@@ -507,6 +507,8 @@ def nft_storage_upload(api_key, data):
     :type api_key: str
     :param data: image data
     :type data: binary
+    :param timeout: upload timeout (in seconds)
+    :type timeout: int
     :return: result as dict
     """
     result = {"status": True, "message": NFT_STORAGE_SUCCESS_MESSAGE}
@@ -515,7 +517,8 @@ def nft_storage_upload(api_key, data):
         response = requests.post(
             url=NFT_STORAGE_API,
             data=data,
-            headers=headers)
+            headers=headers,
+            timeout=timeout)
         response_json = response.json()
         if response_json["ok"]:
             result["message"] = NFT_STORAGE_LINK.format(
