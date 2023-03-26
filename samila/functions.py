@@ -11,8 +11,9 @@ import random
 import matplotlib
 from matplotlib import cm
 from matplotlib.colors import ListedColormap
+from PIL import Image
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
-from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE
+from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
 from .params import Projection, Marker, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_FORMAT_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
@@ -307,6 +308,30 @@ def filter_size(size):
     return None
 
 
+def rotate(fig, ax, rotation):
+    """
+    Rotate the given figure and return axis.
+
+    :param fig: figure containing the image
+    :type fig: Figure
+    :param ax: axis on which rotated image is ploted
+    :type ax: Axis
+    :param rotation: desired rotation (in degrees)
+    :type rotation: float
+    :return: axis containing rotated image
+    """
+    if rotation != DEFAULT_ROTATION:
+        buf = io.BytesIO()
+        fig.savefig(buf, format='png')
+        ax.cla()
+        with Image.open(buf) as im:
+            ax.imshow(im.rotate(rotation))
+        ax.set_axis_off()
+        ax.patch.set_zorder(-1)
+        ax.add_artist(ax.patch)
+    return ax
+
+
 def plot_params_filter(
         g,
         color=None,
@@ -317,7 +342,8 @@ def plot_params_filter(
         projection=None,
         marker=None,
         alpha=None,
-        linewidth=None):
+        linewidth=None,
+        rotation=None):
     """
     Filter plot method parameters.
 
@@ -341,6 +367,8 @@ def plot_params_filter(
     :type alpha: float
     :param linewidth: width of line
     :type linewidth: float
+    :param rotation: desired rotation (in degrees)
+    :type rotation: float
     :return: None
     """
     if g.data1 is None:
@@ -378,8 +406,10 @@ def plot_params_filter(
         alpha = g.alpha
     if linewidth is None:
         linewidth = g.linewidth
-    g.color, g.bgcolor, g.cmap, g.spot_size, g.size, g.projection, g.marker, g.alpha, g.linewidth = \
-        color, bgcolor, cmap, spot_size, size, projection, marker, alpha, linewidth
+    if rotation is None:
+        rotation = g.rotation
+    g.color, g.bgcolor, g.cmap, g.spot_size, g.size, g.projection, g.marker, g.alpha, g.linewidth, g.rotation = \
+        color, bgcolor, cmap, spot_size, size, projection, marker, alpha, linewidth, rotation
 
 
 def generate_params_filter(
@@ -464,6 +494,7 @@ def _GI_initializer(g, function1, function2):
     g.marker = DEFAULT_MARKER
     g.alpha = DEFAULT_ALPHA
     g.linewidth = DEFAULT_LINEWIDTH
+    g.rotation = DEFAULT_ROTATION
     g.depth = DEFAULT_DEPTH
     g.missed_points_number = 0
 
@@ -558,7 +589,8 @@ def get_data(g):
         "marker": g.marker,
         "alpha": g.alpha,
         "linewidth": g.linewidth,
-        "depth": g.depth
+        "depth": g.depth,
+        "rotation": g.rotation,
     }
     data['matplotlib_version'] = matplotlib_version
     data['python_version'] = python_version
@@ -595,7 +627,8 @@ def get_config(g):
         "marker": g.marker,
         "alpha": g.alpha,
         "linewidth": g.linewidth,
-        "depth": g.depth
+        "depth": g.depth,
+        "rotation": g.rotation,
     }
     config['matplotlib_version'] = matplotlib_version
     config['python_version'] = python_version
@@ -783,6 +816,7 @@ def load_data(g, data):
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
             g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
             g.depth = plot_config.get("depth", DEFAULT_DEPTH)
+            g.rotation = plot_config.get("rotation", DEFAULT_ROTATION)
         return
     raise samilaDataError(DATA_TYPE_ERROR)
 
@@ -824,5 +858,6 @@ def load_config(g, config):
             g.alpha = plot_config.get("alpha", DEFAULT_ALPHA)
             g.linewidth = plot_config.get("linewidth", DEFAULT_LINEWIDTH)
             g.depth = plot_config.get("depth", DEFAULT_DEPTH)
+            g.rotation = plot_config.get("rotation", DEFAULT_ROTATION)
         return
     raise samilaConfigError(CONFIG_TYPE_ERROR)

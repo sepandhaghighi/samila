@@ -170,6 +170,17 @@ Samila is a generative art generator written in Python, Samila lets you create i
 * Supported markers : `POINT`, `PIXEL`, `CIRCLE`, `TRIANGLE_DOWN`, `TRIANGLE_UP`, `TRIANGLE_LEFT`, `TRIANGLE_RIGHT`, `TRI_DOWN`, `TRI_UP`, `TRI_LEFT`, `TRI_RIGHT`, `OCTAGON`, `SQUARE`, `PENTAGON`, `PLUS`, `PLUS_FILLED`, `STAR`, `HEXAGON_VERTICAL`, `HEXAGON_HORIZONTAL`, `X`, `X_FILLED`, `DIAMOND`, `DIAMON_THIN`, `VLINE`, `HLINE` and `RANDOM`
 * Default marker is `POINT`
 
+### Rotation
+You can even rotate your art by using `rotation` parameter. Enter your desired rotation for the image in degrees and you will have it.
+
+```pycon
+>>> g = GenerativeImage(f1, f2)
+>>> g.generate()
+>>> g.plot(rotation=45)
+```
+
+* Default rotation is 0.
+
 ### Range
 ```pycon
 >>> g = GenerativeImage(f1, f2)

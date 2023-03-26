@@ -10,7 +10,7 @@ from .functions import _GI_initializer, plot_params_filter, generate_params_filt
 from .functions import get_config, get_data, get_python_version
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
-from .functions import set_background
+from .functions import set_background, rotate
 from .params import *
 from warnings import warn, catch_warnings, simplefilter
 
@@ -107,7 +107,8 @@ class GenerativeImage:
             projection=None,
             marker=None,
             alpha=None,
-            linewidth=None):
+            linewidth=None,
+            rotation=None):
         """
         Plot the generated art.
 
@@ -129,6 +130,8 @@ class GenerativeImage:
         :type alpha: float
         :param linewidth: width of line
         :type linewidth: float
+        :param rotation: desired rotation (in degrees)
+        :type rotation: float
         :return: None
         """
         plot_params_filter(
@@ -141,7 +144,8 @@ class GenerativeImage:
             projection,
             marker,
             alpha,
-            linewidth)
+            linewidth,
+            rotation)
         fig = plt.figure()
         fig.set_size_inches(self.size[0], self.size[1])
         ax = fig.add_subplot(111, projection=self.projection)
@@ -160,6 +164,7 @@ class GenerativeImage:
         ax.set_axis_off()
         ax.patch.set_zorder(-1)
         ax.add_artist(ax.patch)
+        ax = rotate(fig, ax, self.rotation)
         self.fig = fig
 
     def nft_storage(
