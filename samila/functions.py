@@ -559,12 +559,11 @@ def get_python_version():
     """
     Get Python's version.
 
-    :return: python's version as 'major.minor.micro'
+    :return: python's version as 'major.minor'
     """
-    return "{}.{}.{}".format(
+    return "{}.{}".format(
         sys.version_info.major,
-        sys.version_info.minor,
-        sys.version_info.micro
+        sys.version_info.minor
     )
 
 

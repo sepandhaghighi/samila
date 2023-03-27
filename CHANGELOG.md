@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `RANDOM_EQUATION_FOF_MIN_DEPTH` parameter
 - `rotate` function
 ### Changed
+- `get_python_version` function modified
 - `rotation` parameter added to `plot` method
 - `timeout` parameter added to `nft_storage` method
 - `load_config` function modified

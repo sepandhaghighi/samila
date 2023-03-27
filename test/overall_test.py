@@ -24,7 +24,7 @@
 True
 >>> g.function2 == f2
 True
->>> g.python_version == sys.version.split()[0]
+>>> g.python_version == '.'.join(sys.version.split()[0].split('.')[:2])
 True
 >>> g.fig
 >>> g.generate()
