@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `__version__` attribute
 - `python_version` attribute
 - `RANDOM_EQUATION_MIN_COMPLEXITY` parameter
 - `RANDOM_EQUATION_FOF_MAX_DEPTH` parameter

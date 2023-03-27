@@ -12,6 +12,7 @@ import matplotlib
 from matplotlib import cm
 from matplotlib.colors import ListedColormap
 from PIL import Image
+from .params import SAMILA_VERSION
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
 from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
@@ -472,6 +473,7 @@ def _GI_initializer(g, function1, function2):
     :type function2: python or lambda function
     :return: None
     """
+    g.__version__ = SAMILA_VERSION
     g.matplotlib_version = matplotlib.__version__
     g.python_version = get_python_version()
     g.function1 = function1
@@ -575,8 +577,6 @@ def get_data(g):
     :type g: GenerativeImage
     :return: data as a dict
     """
-    matplotlib_version = matplotlib.__version__
-    python_version = get_python_version()
     data = {}
     if g.data1 is None or g.data2 is None:
         raise samilaDataError(SAVE_NO_DATA_ERROR)
@@ -594,8 +594,9 @@ def get_data(g):
         "depth": g.depth,
         "rotation": g.rotation,
     }
-    data['matplotlib_version'] = matplotlib_version
-    data['python_version'] = python_version
+    data['matplotlib_version'] = g.matplotlib_version
+    data['python_version'] = g.python_version
+    data['__version__'] = g.__version__
     return data
 
 
@@ -607,8 +608,6 @@ def get_config(g):
     :type g: GenerativeImage
     :return: config as a dict
     """
-    matplotlib_version = matplotlib.__version__
-    python_version = get_python_version()
     config = {}
     if g.function1_str is None or g.function2_str is None:
         raise samilaConfigError(CONFIG_NO_STR_FUNCTION_ERROR)
@@ -632,8 +631,9 @@ def get_config(g):
         "depth": g.depth,
         "rotation": g.rotation,
     }
-    config['matplotlib_version'] = matplotlib_version
-    config['python_version'] = python_version
+    config['matplotlib_version'] = g.matplotlib_version
+    config['python_version'] = g.python_version
+    config['__version__'] = g.__version__
     return config
 
 
@@ -807,6 +807,8 @@ def load_data(g, data):
             g.matplotlib_version = data['matplotlib_version']
         if 'python_version' in data:
             g.python_version = data['python_version']
+        if '__version__' in data:
+            g.__version__ = data['__version__']
         plot_config = data.get("plot")
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
@@ -843,6 +845,8 @@ def load_config(g, config):
             g.matplotlib_version = config['matplotlib_version']
         if 'python_version' in config:
             g.python_version = config['python_version']
+        if '__version__' in config:
+            g.__version__ = config['__version__']
         generate_config = config.get("generate")
         if generate_config is not None:
             g.seed = generate_config.get("seed")

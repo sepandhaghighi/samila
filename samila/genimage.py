@@ -45,11 +45,13 @@ class GenerativeImage:
         elif data is not None:
             load_data(self, data)
         if self.matplotlib_version != matplotlib.__version__ or \
-           self.python_version != get_python_version():
+           self.python_version != get_python_version() or \
+           self.__version__ != SAMILA_VERSION:
             warn(
                 VERSION_WARNING.format(
                     self.matplotlib_version,
-                    self.python_version),
+                    self.python_version,
+                    self.__version__),
                 RuntimeWarning)
         if self.function1 is None:
             if self.function1_str is None:
