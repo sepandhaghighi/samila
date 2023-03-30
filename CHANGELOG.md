@@ -8,12 +8,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `__version__` attribute
 - `python_version` attribute
+- `get_python_version` function
 - `RANDOM_EQUATION_MIN_COMPLEXITY` parameter
 - `RANDOM_EQUATION_FOF_MAX_DEPTH` parameter
 - `RANDOM_EQUATION_FOF_MIN_DEPTH` parameter
 - `rotate` function
 ### Changed
-- `get_python_version` function modified
 - `rotation` parameter added to `plot` method
 - `timeout` parameter added to `nft_storage` method
 - `load_config` function modified
