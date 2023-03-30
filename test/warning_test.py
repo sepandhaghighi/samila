@@ -14,27 +14,27 @@ True
 True
 >>> with open('data.json', 'w') as fp:
 ...     json.dump({'data1': [0], 'data2': [0], '__version__': '0'}, fp)
->>> with warns(RuntimeWarning, match=r"Source matplotlib version(.*) or Python version(.*) is different from yours, plots may be different."):
+>>> with warns(RuntimeWarning, match=r"Your plots may differ as the version of matplotlib (.*), Python (.*), or Samila (.*) that you are using is not the same as the source."):
 ...     g = GenerativeImage(data=open('data.json', 'r'))
 >>> with open('config.json', 'w') as fp:
 ...     json.dump({'f1': 'x', 'f2': 'y', '__version__': '0'}, fp)
->>> with warns(RuntimeWarning, match=r"Source matplotlib version(.*) or Python version(.*) is different from yours, plots may be different."):
+>>> with warns(RuntimeWarning, match=r"Your plots may differ as the version of matplotlib (.*), Python (.*), or Samila (.*) that you are using is not the same as the source."):
 ...     g = GenerativeImage(config=open('config.json', 'r'))
 >>> with open('data.json', 'w') as fp:
 ...     json.dump({'data1': [0], 'data2': [0], 'python_version': '0'}, fp)
->>> with warns(RuntimeWarning, match=r"Source matplotlib version(.*) or Python version(.*) is different from yours, plots may be different."):
+>>> with warns(RuntimeWarning, match=r"Your plots may differ as the version of matplotlib (.*), Python (.*), or Samila (.*) that you are using is not the same as the source."):
 ...     g = GenerativeImage(data=open('data.json', 'r'))
 >>> with open('config.json', 'w') as fp:
 ...     json.dump({'f1': 'x', 'f2': 'y', 'python_version': '0'}, fp)
->>> with warns(RuntimeWarning, match=r"Source matplotlib version(.*) or Python version(.*) is different from yours, plots may be different."):
+>>> with warns(RuntimeWarning, match=r"Your plots may differ as the version of matplotlib (.*), Python (.*), or Samila (.*) that you are using is not the same as the source."):
 ...     g = GenerativeImage(config=open('config.json', 'r'))
 >>> with open('data.json', 'w') as fp:
 ...     json.dump({'data1': [0], 'data2': [0], 'matplotlib_version': '0'}, fp)
->>> with warns(RuntimeWarning, match=r"Source matplotlib version(.*) or Python version(.*) is different from yours, plots may be different."):
+>>> with warns(RuntimeWarning, match=r"Your plots may differ as the version of matplotlib (.*), Python (.*), or Samila (.*) that you are using is not the same as the source."):
 ...     g = GenerativeImage(data=open('data.json', 'r'))
 >>> with open('config.json', 'w') as fp:
 ...     json.dump({'f1': 'x', 'f2': 'y', 'matplotlib_version': '0'}, fp)
->>> with warns(RuntimeWarning, match=r"Source matplotlib version(.*) or Python version(.*) is different from yours, plots may be different."):
+>>> with warns(RuntimeWarning, match=r"Your plots may differ as the version of matplotlib (.*), Python (.*), or Samila (.*) that you are using is not the same as the source."):
 ...     g = GenerativeImage(config=open('config.json', 'r'))
 >>> g = GenerativeImage(lambda x, y: 1 / x, lambda x, y: 1 / (y - 1))
 >>> with warns(RuntimeWarning, match=r"The given functions are undefined at some points. Your plot may not be complete."):
