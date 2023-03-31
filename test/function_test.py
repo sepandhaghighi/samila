@@ -91,7 +91,7 @@ False
 1
 >>> distance_calc("test12","test234")
 3
->>> get_python_version() == sys.version.split()[0]
+>>> get_python_version() == '.'.join(sys.version.split()[0].split('.')[:2])
 True
 >>> samila_help()
 <BLANKLINE>
