@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [1.1] - 2023-04-05
 ### Added
 - `__version__` attribute
 - `python_version` attribute
@@ -138,7 +139,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `save_data_file` function
 - `save_data` method
 ### Changed
-- `data` parameter added to GenerativeImage `__init__`
+- `data` parameter added to GenerativeImage `__init__` method
 - `depth` parameter added to `save_image` method
 - `depth` parameter added to `save_fig_file` function
 - `save_image` and `nft_storage` methods background bug fixed
@@ -169,7 +170,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `generate` method
 - `nft_storage` method
 
-[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v1.0...dev
+[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v1.1...dev
+[1.1]: https://github.com/sepandhaghighi/samila/compare/v1.0...v1.1
 [1.0]: https://github.com/sepandhaghighi/samila/compare/v0.9...v1.0
 [0.9]: https://github.com/sepandhaghighi/samila/compare/v0.8...v0.9
 [0.8]: https://github.com/sepandhaghighi/samila/compare/v0.7...v0.8

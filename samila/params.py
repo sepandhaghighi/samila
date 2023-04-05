@@ -5,7 +5,7 @@ from enum import Enum
 from matplotlib import colors as mcolors
 from matplotlib import cm
 
-SAMILA_VERSION = "1.0"  # pragma: no cover
+SAMILA_VERSION = "1.1"  # pragma: no cover
 
 OVERVIEW = '''
 Samila is a generative art generator written in Python, Samila let's you
