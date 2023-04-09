@@ -20,6 +20,7 @@ requirements:
         - art >=1.8
         - matplotlib >=3.0.0
         - requests >=2.20.0
+        - pillow >=6.2
         - python >=3.5
 about:
     home: https://github.com/sepandhaghighi/samila
