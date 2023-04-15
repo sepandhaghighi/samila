@@ -56,9 +56,10 @@ jobs:
         pip install notebook>=5.2.2
         python otherfiles/notebook_check.py
       if: matrix.python-version == 3.8 && matrix.os == 'ubuntu-20.04'
-    - name: Codecov
-      run: |
-        codecov
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+          fail_ci_if_error: true
       if: matrix.python-version == 3.8 && matrix.os == 'ubuntu-20.04'
     - name: cProfile
       run: |
