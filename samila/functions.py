@@ -40,7 +40,7 @@ def random_equation_gen():
     result = ""
     index = 1
     random_coef = random.choice(RANDOM_COEF_LIST)
-    while(index <= num_elements):
+    while index <= num_elements:
         element = random.choice(ARGUMENTS_LIST)
         fof_depth = random.randint(
             RANDOM_EQUATION_FOF_MIN_DEPTH,
