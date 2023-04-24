@@ -14,7 +14,7 @@ from matplotlib.colors import ListedColormap
 from PIL import Image
 from .params import SAMILA_VERSION
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
-from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION
+from .params import DEFAULT_CMAP_NAME, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
 from .params import Projection, Marker, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_FORMAT_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
@@ -489,7 +489,7 @@ def _GI_initializer(g, function1, function2):
     g.data2 = None
     g.color = DEFAULT_COLOR
     g.bgcolor = DEFAULT_BACKGROUND_COLOR
-    g.cmap = cm.get_cmap(DEFAULT_CMAP)
+    g.cmap = get_cmap()
     g.spot_size = DEFAULT_SPOT_SIZE
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
@@ -782,7 +782,7 @@ def _load_cmap(config):
     :return: ListedColormap from cmap
     """
     if "cmap" not in config:
-        return cm.get_cmap(DEFAULT_CMAP)
+        return get_cmap()
     cmap = config["cmap"]
     return ListedColormap(cmap)
 
