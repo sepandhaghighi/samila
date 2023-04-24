@@ -169,6 +169,22 @@ def filter_color(color, bgcolor):
     return color, bgcolor
 
 
+def get_cmap(name=DEFAULT_CMAP_NAME, lut=256):
+    """
+    Get colormap.
+
+    :param name: colormap name
+    :type name: str
+    :param lut: look up table for colormap
+    :type lut: int
+    :return: desired colormap
+    """
+    try:
+        return matplotlib.colormaps.get_cmap(name)
+    except BaseException:
+        return cm.get_cmap(name, lut)
+
+
 def filter_cmap(cmap):
     """
     Filter given cmap.
@@ -178,9 +194,9 @@ def filter_cmap(cmap):
     :return: filtered version of cmap
     """
     if isinstance(cmap, str):
-        cmap = cm.get_cmap(cmap, 256)
+        cmap = get_cmap(cmap, 256)
     if type(cmap) == matplotlib.colors.Colormap:
-        cmap = cm.get_cmap(cmap.__getattribute__("name"))
+        cmap = get_cmap(cmap.__getattribute__("name"))
     if isinstance(cmap, matplotlib.colors.ListedColormap):
         return cmap
     if isinstance(cmap, (matplotlib.colors.LinearSegmentedColormap)):
