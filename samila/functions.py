@@ -489,7 +489,7 @@ def _GI_initializer(g, function1, function2):
     g.data2 = None
     g.color = DEFAULT_COLOR
     g.bgcolor = DEFAULT_BACKGROUND_COLOR
-    g.cmap = DEFAULT_CMAP
+    g.cmap = cm.get_cmap(DEFAULT_CMAP)
     g.spot_size = DEFAULT_SPOT_SIZE
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
@@ -782,7 +782,7 @@ def _load_cmap(config):
     :return: ListedColormap from cmap
     """
     if "cmap" not in config:
-        return DEFAULT_CMAP
+        return cm.get_cmap(DEFAULT_CMAP)
     cmap = config["cmap"]
     return ListedColormap(cmap)
 
