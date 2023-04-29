@@ -181,7 +181,7 @@ def get_cmap(name=DEFAULT_CMAP_NAME, lut=256):
     """
     try:
         return matplotlib.colormaps.get_cmap(name)
-    except BaseException:
+    except BaseException: # pragma: no cover
         return cm.get_cmap(name, lut)
 
 
