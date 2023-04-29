@@ -3,7 +3,6 @@
 import math
 from enum import Enum
 from matplotlib import colors as mcolors
-from matplotlib import cm
 
 SAMILA_VERSION = "1.1"  # pragma: no cover
 
