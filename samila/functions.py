@@ -14,7 +14,7 @@ from matplotlib.colors import ListedColormap
 from PIL import Image
 from .params import SAMILA_VERSION
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
-from .params import DEFAULT_CMAP, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION
+from .params import DEFAULT_CMAP_NAME, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
 from .params import Projection, Marker, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, NFT_STORAGE_LINK, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_FORMAT_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
@@ -40,7 +40,7 @@ def random_equation_gen():
     result = ""
     index = 1
     random_coef = random.choice(RANDOM_COEF_LIST)
-    while(index <= num_elements):
+    while index <= num_elements:
         element = random.choice(ARGUMENTS_LIST)
         fof_depth = random.randint(
             RANDOM_EQUATION_FOF_MIN_DEPTH,
@@ -169,6 +169,22 @@ def filter_color(color, bgcolor):
     return color, bgcolor
 
 
+def get_cmap(name=DEFAULT_CMAP_NAME, lut=256):
+    """
+    Get colormap.
+
+    :param name: colormap name
+    :type name: str
+    :param lut: look up table for colormap
+    :type lut: int
+    :return: desired colormap
+    """
+    try:
+        return matplotlib.colormaps.get_cmap(name)
+    except BaseException: # pragma: no cover
+        return cm.get_cmap(name, lut)
+
+
 def filter_cmap(cmap):
     """
     Filter given cmap.
@@ -178,9 +194,9 @@ def filter_cmap(cmap):
     :return: filtered version of cmap
     """
     if isinstance(cmap, str):
-        cmap = cm.get_cmap(cmap, 256)
+        cmap = get_cmap(cmap, 256)
     if type(cmap) == matplotlib.colors.Colormap:
-        cmap = cm.get_cmap(cmap.__getattribute__("name"))
+        cmap = get_cmap(cmap.__getattribute__("name"))
     if isinstance(cmap, matplotlib.colors.ListedColormap):
         return cmap
     if isinstance(cmap, (matplotlib.colors.LinearSegmentedColormap)):
@@ -489,7 +505,7 @@ def _GI_initializer(g, function1, function2):
     g.data2 = None
     g.color = DEFAULT_COLOR
     g.bgcolor = DEFAULT_BACKGROUND_COLOR
-    g.cmap = DEFAULT_CMAP
+    g.cmap = get_cmap()
     g.spot_size = DEFAULT_SPOT_SIZE
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
@@ -782,7 +798,7 @@ def _load_cmap(config):
     :return: ListedColormap from cmap
     """
     if "cmap" not in config:
-        return DEFAULT_CMAP
+        return get_cmap()
     cmap = config["cmap"]
     return ListedColormap(cmap)
 
