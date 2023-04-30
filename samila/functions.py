@@ -9,7 +9,6 @@ import re
 import json
 import random
 import matplotlib
-from matplotlib import cm
 from matplotlib.colors import ListedColormap
 from PIL import Image
 from .params import SAMILA_VERSION
@@ -182,7 +181,7 @@ def get_cmap(name=DEFAULT_CMAP_NAME, lut=256):
     try:
         return matplotlib.colormaps.get_cmap(name)
     except BaseException: # pragma: no cover
-        return cm.get_cmap(name, lut)
+        return matplotlib.cm.get_cmap(name, lut)
 
 
 def filter_cmap(cmap):
