@@ -2,7 +2,7 @@
 """Samila params."""
 import math
 from enum import Enum
-from matplotlib import colors as mcolors
+import matplotlib
 
 SAMILA_VERSION = "1.1"  # pragma: no cover
 
@@ -30,7 +30,10 @@ DEFAULT_PROJECTION = "rectilinear"
 DEFAULT_MARKER = "."
 SEED_LOWER_BOUND = 0
 SEED_UPPER_BOUND = 2**20
-VALID_COLORS = list(dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS).keys())
+VALID_COLORS = list(
+    dict(
+        matplotlib.colors.BASE_COLORS,
+        **matplotlib.colors.CSS4_COLORS).keys())
 HEX_COLOR_PATTERN = r'^#(?:[0-9a-fA-F]{3}){1,2}$'
 NFT_STORAGE_API = "https://api.nft.storage/upload"
 NFT_STORAGE_LINK = "https://ipfs.io/ipfs/{}"
@@ -57,6 +60,7 @@ class Projection(Enum):
     """
     Samila Projection type class.
 
+    >>> import samila
     >>> projection = samila.Projection.POLAR
     """
 
@@ -74,6 +78,7 @@ class Marker(Enum):
     """
     Samila Marker type class.
 
+    >>> import samila
     >>> marker = samila.Marker.POINT
     """
 
