@@ -9,8 +9,6 @@ import re
 import json
 import random
 import matplotlib
-from matplotlib import cm
-from matplotlib.colors import ListedColormap
 from PIL import Image
 from .params import SAMILA_VERSION
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
@@ -181,8 +179,8 @@ def get_cmap(name=DEFAULT_CMAP_NAME, lut=256):
     """
     try:
         return matplotlib.colormaps.get_cmap(name)
-    except BaseException: # pragma: no cover
-        return cm.get_cmap(name, lut)
+    except BaseException:  # pragma: no cover
+        return matplotlib.cm.get_cmap(name, lut)
 
 
 def filter_cmap(cmap):
@@ -201,10 +199,10 @@ def filter_cmap(cmap):
         return cmap
     if isinstance(cmap, (matplotlib.colors.LinearSegmentedColormap)):
         cmap = cmap(range(DEFAULT_CMAP_RANGE))
-        return ListedColormap(cmap)
+        return matplotlib.colors.ListedColormap(cmap)
     if isinstance(cmap, list):
         cmap = list(map(select_color, cmap))
-        return ListedColormap(cmap)
+        return matplotlib.colors.ListedColormap(cmap)
     return None
 
 
@@ -800,7 +798,7 @@ def _load_cmap(config):
     if "cmap" not in config:
         return get_cmap()
     cmap = config["cmap"]
-    return ListedColormap(cmap)
+    return matplotlib.colors.ListedColormap(cmap)
 
 
 def load_data(g, data):

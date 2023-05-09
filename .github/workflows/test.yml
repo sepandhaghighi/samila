@@ -5,6 +5,10 @@ name: CI
 
 on: [push, pull_request]
 
+env:
+  TEST_PYTHON_VERSION: 3.9
+  TEST_OS: 'ubuntu-20.04'
+
 jobs:
   build:
 
@@ -34,33 +38,32 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest --ignore-glob="*nft_upload_test.py" test --cov=samila --cov-report=term
-      if: matrix.python-version != 3.5
     - name: Test with pytest (+ NFT upload test)
       run: |
         python -m pytest test --cov=samila --cov-report=term
       env:
         NFT_STORAGE_API_KEY: ${{ secrets.NFT_STORAGE_API_KEY }}
-      if: matrix.python-version == 3.8 && matrix.os == 'ubuntu-20.04'
+      if: matrix.python-version == env.TEST_PYTHON_VERSION && matrix.os == env.TEST_OS
     - name: Version check
       run: |
         python otherfiles/version_check.py
-      if: matrix.python-version == 3.8
+      if: matrix.python-version == env.TEST_PYTHON_VERSION
     - name: Other tests
       run: |
         python -m vulture samila/ setup.py --min-confidence 65 --exclude=__init__.py --sort-by-size
         python -m bandit -r samila -s B311,B307
         python -m pydocstyle -v --match-dir=samila
-      if: matrix.python-version == 3.8
+      if: matrix.python-version == env.TEST_PYTHON_VERSION
     - name: Notebook check
       run: |
         pip install notebook>=5.2.2
         python otherfiles/notebook_check.py
-      if: matrix.python-version == 3.8 && matrix.os == 'ubuntu-20.04'
+      if: matrix.python-version == env.TEST_PYTHON_VERSION && matrix.os == env.TEST_OS
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
           fail_ci_if_error: true
-      if: matrix.python-version == 3.8 && matrix.os == 'ubuntu-20.04'
+      if: matrix.python-version == env.TEST_PYTHON_VERSION && matrix.os == env.TEST_OS
     - name: cProfile
       run: |
           python -m cProfile -s cumtime otherfiles/samila_profile.py

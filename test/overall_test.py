@@ -7,7 +7,7 @@
 >>> import socket
 >>> import json
 >>> import sys
->>> from matplotlib.colors import Colormap, ListedColormap
+>>> import matplotlib
 >>> def guard(*args, **kwargs):
 ...     raise Exception("No internet connection!")
 >>> from samila import GenerativeImage, Projection, Marker
@@ -309,7 +309,7 @@ False
 >>> g = GenerativeImage(config=open("config.json", 'r'))
 >>> g = GenerativeImage()
 >>> g.generate()
->>> cm = Colormap(name="Purples")
+>>> cm = matplotlib.colors.Colormap(name="Purples")
 >>> g.plot(cmap=cm)
 >>> result = g.save_config("config.json")
 >>> result["status"]
@@ -326,10 +326,10 @@ True
 >>> g_.cmap.colors == g.cmap.colors
 True
 >>> g.plot(cmap="Purples")
->>> cm = Colormap(name="viridis")
+>>> cm = matplotlib.colors.Colormap(name="viridis")
 >>> g.plot(cmap=cm)
 >>> cmap = [[0.7, 0.2, 0.2, 1], [0.6, 0.2, 0.2, 1], [0.3, 0.2, 0.2, 1], [0.2, 0.2, 0.2, 1]]
->>> g.plot(cmap=ListedColormap(cmap))
+>>> g.plot(cmap=matplotlib.colors.ListedColormap(cmap))
 >>> g = GenerativeImage()
 >>> g.generate()
 >>> g.plot(cmap=cmap, color=g.data1)

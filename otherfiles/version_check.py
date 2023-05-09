@@ -12,8 +12,7 @@ SETUP_ITEMS = [
     'https://github.com/sepandhaghighi/samila/tarball/v{0}']
 README_ITEMS = [
     "[Version {0}](https://github.com/sepandhaghighi/samila/archive/v{0}.zip)",
-    "pip install samila=={0}",
-    "pip3 install samila=={0}"]
+    "pip install samila=={0}"]
 CHANGELOG_ITEMS = [
     "## [{0}]",
     "https://github.com/sepandhaghighi/samila/compare/v{0}...dev",

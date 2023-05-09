@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `get_cmap` function
 ### Changed
+- minor edits in `functions.py`
 - `DEFAULT_CMAP` renamed to `DEFAULT_CMAP_NAME`
 - `pillow` added to conda dependencies
 - `codecov` removed from `dev-requirements.txt`
