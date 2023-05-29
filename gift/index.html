@@ -2,11 +2,12 @@
     <head>
     </head>
     <body>
+        <h2>Code: <span id="gift_code"></span></h2>
         <script>
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const code = urlParams.get('code')
-            console.log(code);
+            document.getElementById("gift_code").innerHTML = code;
         </script>
     </body>
 
