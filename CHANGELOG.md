@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `pillow` added to conda dependencies
 - `codecov` removed from `dev-requirements.txt`
 - Test system modified
+- `README.md` updated
 ## [1.1] - 2023-04-05
 ### Added
 - `__version__` attribute
