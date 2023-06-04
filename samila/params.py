@@ -56,6 +56,32 @@ BOTH_COLOR_COMPLEMENT_WARNING = "It is not possible to set color and bgcolor to 
 COLOR_NOT_FOUND_WARNING = "color '{0}' not found. Replacing it with '{1}'"
 
 
+class Gateway(Enum):
+    """
+    IPFS gateway class.
+
+    >>> import samila
+    >>> gateway = samila.Gateway.IPFS_IO
+    """
+    IPFS_IO = "https://ipfs.io/ipfs/{}"
+    VIA0 = "https://via0.com/ipfs/{}"
+    CLOUDFLARE_IPFS = "https://cloudflare-ipfs.com/ipfs/{}"
+    HARDBIN = "https://hardbin.com/ipfs/{}"
+    PINATA = "https://gateway.pinata.cloud/ipfs/{}"
+    JORROPO = "https://jorropo.net/ipfs/{}"
+    DWEB = "https://dweb.link/ipfs/{}"
+    BEST_PRACTICE = "https://ipfs.best-practice.se/ipfs/{}"
+    RUNFISSION = "https://ipfs.runfission.com/ipfs/{}"
+    ARAGON_NETWORK = "https://ipfs.eth.aragon.network/ipfs/{}"
+    TEXTILE = "https://hub.textile.io/ipfs/{}"
+    EVERLAND = "https://{}.ipfs.4everland.io"
+    CF_IPFS = "https://{}.ipfs.cf-ipfs.com"
+    LITNET = "https://ipfs.litnet.work/ipfs/{}"
+    JPU = "https://ipfs.jpu.jp/ipfs/{}"
+    CZIP = "https://ipfs.czip.it/ipfs/{}"
+    W3S = "https://{}.ipfs.w3s.link"
+
+
 class Projection(Enum):
     """
     Samila Projection type class.
