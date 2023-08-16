@@ -1,0 +1,73 @@
+@font-face {
+     font-family: "jost";
+     src: url("../fonts/jost.ttf");
+}
+
+body{
+    font-family: "jost";
+    text-align: center;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+a:hover{
+    opacity: 0.5;
+}
+
+.version{
+    color: firebrick;
+}
+
+.title{
+     text-align: center;
+}
+.title a{
+     font-size: 2em;
+     margin-right: 10px;
+}
+
+#gift_box{
+    width: 35%;
+    display:none;
+    font-size: 1.2em;
+}
+
+table{
+  margin-top: 15px;
+  border: 7px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  width: 100%;
+}
+
+#gift_image{
+    width: 100%;
+}
+
+table td{
+    padding: 5px;
+    border: 4px solid black;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+
+ @media only screen and (max-width: 700px) {
+     #gift_box{
+         width: 90%;
+         
+     }
+}
+ @media only screen and (max-width: 500px) {
+    #gift_box{
+         width: 90%;
+         
+     }
+}
+
+
+
+
