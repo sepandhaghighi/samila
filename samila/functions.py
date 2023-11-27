@@ -525,6 +525,8 @@ def nft_storage_upload(api_key, data, timeout, gateway):
     :type data: binary
     :param timeout: upload timeout (in seconds)
     :type timeout: int
+    :param gateway: IPFS gateway
+    :type gateway: Gateway enum
     :return: result as dict
     """
     result = {"status": True, "message": NFT_STORAGE_SUCCESS_MESSAGE}

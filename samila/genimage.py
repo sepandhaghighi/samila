@@ -191,7 +191,7 @@ class GenerativeImage:
         :param timeout: upload timeout (in seconds)
         :type timeout: int
         :param gateway: IPFS gateway
-        :type gateway: Gateway
+        :type gateway: Gateway enum
         :return: result as dict
         """
         save_params_filter(self, depth)
