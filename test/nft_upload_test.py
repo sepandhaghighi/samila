@@ -45,7 +45,7 @@ True
 >>> status = False
 >>> counter = 0
 >>> while(status == False and counter<try_limit):
-...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_data=True, gateway=Gateway.CID)
+...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_data=True, upload_config=True, gateway=Gateway.CID)
 ...     counter = counter + 1
 ...     status = all(result["status"].values())
 ...     time.sleep(10)
