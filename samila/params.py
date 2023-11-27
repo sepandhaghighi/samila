@@ -36,7 +36,6 @@ VALID_COLORS = list(
         **matplotlib.colors.CSS4_COLORS).keys())
 HEX_COLOR_PATTERN = r'^#(?:[0-9a-fA-F]{3}){1,2}$'
 NFT_STORAGE_API = "https://api.nft.storage/upload"
-NFT_STORAGE_LINK = "https://ipfs.io/ipfs/{}"
 NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good."
 FIG_SAVE_SUCCESS_MESSAGE = "Everything seems good."
 DATA_SAVE_SUCCESS_MESSAGE = "Everything seems good."
@@ -63,6 +62,7 @@ class Gateway(Enum):
     >>> import samila
     >>> gateway = samila.Gateway.IPFS_IO
     """
+
     CID = "{0}"
     IPFS_IO = "https://ipfs.io/ipfs/{0}"
     GATEWAY_IPFS_IO = "https://gateway.ipfs.io/ipfs/{0}"
