@@ -175,7 +175,8 @@ class GenerativeImage:
             upload_data=False,
             upload_config=False,
             depth=None,
-            timeout=3000):
+            timeout=3000,
+            gateway=Gateway.IPFS_IO):
         """
         Upload image to nft.storage.
 
@@ -189,6 +190,8 @@ class GenerativeImage:
         :type depth: float
         :param timeout: upload timeout (in seconds)
         :type timeout: int
+        :param gateway: IPFS gateway
+        :type gateway: Gateway
         :return: result as dict
         """
         save_params_filter(self, depth)
@@ -199,7 +202,8 @@ class GenerativeImage:
         response = nft_storage_upload(
             api_key=api_key,
             data=buf.getvalue(),
-            timeout=timeout)
+            timeout=timeout,
+            gateway=gateway)
         if upload_config == False and upload_data == False:
             return response
         result = {key: {'image': value} for key, value in response.items()}
@@ -207,14 +211,16 @@ class GenerativeImage:
             response = nft_storage_upload(
                 api_key=api_key,
                 data=json.dumps(get_config(self)),
-                timeout=timeout)
+                timeout=timeout,
+                gateway=gateway)
             for key, value in response.items():
                 result[key]['config'] = value
         if upload_data:
             response = nft_storage_upload(
                 api_key=api_key,
                 data=json.dumps(get_data(self)),
-                timeout=timeout)
+                timeout=timeout,
+                gateway=gateway)
             for key, value in response.items():
                 result[key]['data'] = value
         return result
