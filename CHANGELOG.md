@@ -7,11 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `get_cmap` function
+- `Gateway` enum
 ### Changed
 - minor edits in `functions.py`
 - `DEFAULT_CMAP` renamed to `DEFAULT_CMAP_NAME`
 - `pillow` added to conda dependencies
 - `codecov` removed from `dev-requirements.txt`
+- `gateway` parameter added to `nft_storage` method
 - Test system modified
 - `README.md` updated
 ## [1.1] - 2023-04-05
