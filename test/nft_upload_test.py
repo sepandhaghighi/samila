@@ -53,4 +53,6 @@ True
 True
 >>> result['status']["data"]
 True
+>>> result['status']["config"]
+True
 """
