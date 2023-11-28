@@ -2,7 +2,7 @@
 """
 >>> import os
 >>> import time
->>> from samila import GenerativeImage, Projection
+>>> from samila import GenerativeImage, Projection, Gateway
 >>> from samila.params import VALID_COLORS
 >>> g = GenerativeImage()
 >>> g.generate()
@@ -41,5 +41,18 @@ True
 >>> result['status']["image"]
 True
 >>> result['status']["data"]
+True
+>>> status = False
+>>> counter = 0
+>>> while(status == False and counter<try_limit):
+...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_data=True, upload_config=True, gateway=Gateway.CID)
+...     counter = counter + 1
+...     status = all(result["status"].values())
+...     time.sleep(10)
+>>> result['status']["image"]
+True
+>>> result['status']["data"]
+True
+>>> result['status']["config"]
 True
 """

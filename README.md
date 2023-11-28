@@ -261,7 +261,15 @@ or
 {'status': {'image': True, 'data':True}, 'message': {'image':'IMAGE_FILE_LINK', 'data':'DATA_FILE_LINK'}
 ```
 
+You have the option to choose a specific IPFS gateway:
+```pycon
+>>> from samila import Gateway
+>>> g.nft_storage(api_key="API_KEY", upload_data=True, gateway=Gateway.DWEB)
+{'status': {'image': True, 'data':True}, 'message': {'image':'IMAGE_FILE_LINK', 'data':'DATA_FILE_LINK'}
+```
+
 * Default timeout is **3000** seconds
+* Default gateway is **IPFS_IO**
 
 ### Save image
 Save generated image

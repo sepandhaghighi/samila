@@ -36,7 +36,6 @@ VALID_COLORS = list(
         **matplotlib.colors.CSS4_COLORS).keys())
 HEX_COLOR_PATTERN = r'^#(?:[0-9a-fA-F]{3}){1,2}$'
 NFT_STORAGE_API = "https://api.nft.storage/upload"
-NFT_STORAGE_LINK = "https://ipfs.io/ipfs/{}"
 NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good."
 FIG_SAVE_SUCCESS_MESSAGE = "Everything seems good."
 DATA_SAVE_SUCCESS_MESSAGE = "Everything seems good."
@@ -54,6 +53,36 @@ VERSION_WARNING = "Your plots may differ as the version of matplotlib ({0}), Pyt
 CALCULATION_EXCEPTION_WARNING = "The given functions are undefined at some points. Your plot may not be complete."
 BOTH_COLOR_COMPLEMENT_WARNING = "It is not possible to set color and bgcolor to 'complement' at the same time! Both are automatically set to the previous or default selection."
 COLOR_NOT_FOUND_WARNING = "color '{0}' not found. Replacing it with '{1}'"
+
+
+class Gateway(Enum):
+    """
+    IPFS gateway class.
+
+    >>> import samila
+    >>> gateway = samila.Gateway.IPFS_IO
+    """
+
+    CID = "{0}"
+    IPFS_IO = "https://ipfs.io/ipfs/{0}"
+    GATEWAY_IPFS_IO = "https://gateway.ipfs.io/ipfs/{0}"
+    VIA0 = "https://via0.com/ipfs/{0}"
+    CLOUDFLARE_IPFS = "https://cloudflare-ipfs.com/ipfs/{0}"
+    HARDBIN = "https://hardbin.com/ipfs/{0}"
+    PINATA = "https://gateway.pinata.cloud/ipfs/{0}"
+    JORROPO = "https://jorropo.net/ipfs/{0}"
+    DWEB = "https://dweb.link/ipfs/{0}"
+    BEST_PRACTICE = "https://ipfs.best-practice.se/ipfs/{0}"
+    RUNFISSION = "https://ipfs.runfission.com/ipfs/{0}"
+    ARAGON_NETWORK = "https://ipfs.eth.aragon.network/ipfs/{0}"
+    TEXTILE = "https://hub.textile.io/ipfs/{0}"
+    EVERLAND = "https://{0}.ipfs.4everland.io"
+    CF_IPFS = "https://{0}.ipfs.cf-ipfs.com"
+    LITNET = "https://ipfs.litnet.work/ipfs/{0}"
+    JPU = "https://ipfs.jpu.jp/ipfs/{0}"
+    CZIP = "https://ipfs.czip.it/ipfs/{0}"
+    W3S = "https://{0}.ipfs.w3s.link"
+    GW3 = "https://{0}.ipfs.gw3.io"
 
 
 class Projection(Enum):
