@@ -26,7 +26,13 @@ class GenerativeImage:
     >>> GI = GenerativeImage(f1, f2)
     """
 
-    def __init__(self, function1=None, function2=None, data=None, config=None):
+    def __init__(
+            self,
+            function1=None,
+            function2=None,
+            data=None,
+            config=None,
+            func_seed=None):
         """
         Init method.
 
@@ -38,7 +44,10 @@ class GenerativeImage:
         :type data: (io.IOBase & file)
         :param config: generative image config
         :type config: (io.IOBase & file)
+        :param func_seed: random seed for function generation
+        :type func_seed: Any
         """
+        random.seed(func_seed)
         _GI_initializer(self, function1, function2)
         if config is not None:
             load_config(self, config)
