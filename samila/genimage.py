@@ -47,7 +47,6 @@ class GenerativeImage:
         :param func_seed: random seed for function generation
         :type func_seed: Any
         """
-        random.seed(func_seed)
         _GI_initializer(self, function1, function2)
         if config is not None:
             load_config(self, config)
@@ -62,6 +61,8 @@ class GenerativeImage:
                     self.python_version,
                     self.__version__),
                 RuntimeWarning)
+        if func_seed is not None:
+            random.seed(func_seed)
         if self.function1 is None:
             if self.function1_str is None:
                 self.function1_str = random_equation_gen()
