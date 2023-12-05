@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `get_cmap` function
 - `Gateway` enum
 ### Changed
+- `func_seed` parameter added to GenerativeImage `__init__`
 - minor edits in `functions.py`
 - `DEFAULT_CMAP` renamed to `DEFAULT_CMAP_NAME`
 - `pillow` added to conda dependencies

@@ -361,6 +361,15 @@ True
 True
 >>> del(g1)
 >>> del(g2)
+>>> random.seed(22)
+>>> g = GenerativeImage()
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2)
+>>> g_ = GenerativeImage(func_seed=22)
+>>> g_.generate(start=-2*math.pi, step=0.1, stop=math.pi/2)
+>>> g.function1_str == g_.function1_str
+True
+>>> g.function2_str == g_.function2_str
+True
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 >>> os.remove("data.json")

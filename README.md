@@ -112,6 +112,8 @@ Samila is a generative art generator written in Python, Samila lets you create i
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/7.png">	
 
+* You can change function generation seed by `func_seed` parameter in `GenerativeImage`
+
 ### Basic
 ```pycon
 >>> import random

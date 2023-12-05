@@ -26,7 +26,13 @@ class GenerativeImage:
     >>> GI = GenerativeImage(f1, f2)
     """
 
-    def __init__(self, function1=None, function2=None, data=None, config=None):
+    def __init__(
+            self,
+            function1=None,
+            function2=None,
+            data=None,
+            config=None,
+            func_seed=None):
         """
         Init method.
 
@@ -38,6 +44,8 @@ class GenerativeImage:
         :type data: (io.IOBase & file)
         :param config: generative image config
         :type config: (io.IOBase & file)
+        :param func_seed: random seed for function generation
+        :type func_seed: Any
         """
         _GI_initializer(self, function1, function2)
         if config is not None:
@@ -53,6 +61,8 @@ class GenerativeImage:
                     self.python_version,
                     self.__version__),
                 RuntimeWarning)
+        if func_seed is not None:
+            random.seed(func_seed)
         if self.function1 is None:
             if self.function1_str is None:
                 self.function1_str = random_equation_gen()
