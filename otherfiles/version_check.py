@@ -25,7 +25,7 @@ FILES = {
     "setup.py": SETUP_ITEMS, "README.md": README_ITEMS, "CHANGELOG.md": CHANGELOG_ITEMS, os.path.join(
         "samila", "params.py"): PARAMS_ITEMS, os.path.join("otherfiles", "meta.yaml"): META_ITEMS}
 
-TEST_NUMBER = len(FILES.keys())
+TEST_NUMBER = len(FILES)
 
 
 def print_result(failed=False):
@@ -45,7 +45,7 @@ def print_result(failed=False):
 
 
 if __name__ == "__main__":
-    for file_name in FILES.keys():
+    for file_name in FILES:
         try:
             file_content = codecs.open(
                 file_name, "r", "utf-8", 'ignore').read()

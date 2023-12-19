@@ -33,7 +33,7 @@ SEED_UPPER_BOUND = 2**20
 VALID_COLORS = list(
     dict(
         matplotlib.colors.BASE_COLORS,
-        **matplotlib.colors.CSS4_COLORS).keys())
+        **matplotlib.colors.CSS4_COLORS))
 HEX_COLOR_PATTERN = r'^#(?:[0-9a-fA-F]{3}){1,2}$'
 NFT_STORAGE_API = "https://api.nft.storage/upload"
 NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good."
