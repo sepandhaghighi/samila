@@ -20,10 +20,19 @@ CHANGELOG_ITEMS = [
 PARAMS_ITEMS = ['SAMILA_VERSION = "{0}"']
 
 META_ITEMS = ['% set version = "{0}" %']
+ISSUE_TEMPLATE_ITEMS = ["- Samila {0}"]
 
 FILES = {
-    "setup.py": SETUP_ITEMS, "README.md": README_ITEMS, "CHANGELOG.md": CHANGELOG_ITEMS, os.path.join(
-        "samila", "params.py"): PARAMS_ITEMS, os.path.join("otherfiles", "meta.yaml"): META_ITEMS}
+    "setup.py": SETUP_ITEMS,
+    "README.md": README_ITEMS,
+    "CHANGELOG.md": CHANGELOG_ITEMS,
+    os.path.join("samila", "params.py"): PARAMS_ITEMS,
+    os.path.join("otherfiles", "meta.yaml"): META_ITEMS,
+    os.path.join(
+        ".github",
+        "ISSUE_TEMPLATE",
+        "bug_report.yml"): ISSUE_TEMPLATE_ITEMS,
+}
 
 TEST_NUMBER = len(FILES)
 
