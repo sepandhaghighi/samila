@@ -6,9 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- `feature_request.yml` template
+- `config.yml` for issue template
 - `get_cmap` function
 - `Gateway` enum
 ### Changed
+- Bug report template modified
 - `func_seed` parameter added to GenerativeImage `__init__`
 - minor edits in `functions.py`
 - `DEFAULT_CMAP` renamed to `DEFAULT_CMAP_NAME`
