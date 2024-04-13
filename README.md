@@ -18,22 +18,6 @@
 </div>
 
 ----------
-## Table of contents					
-   * [Overview](https://github.com/sepandhaghighi/samila#overview)
-   * [Installation](https://github.com/sepandhaghighi/samila#installation)
-   * [Usage](https://github.com/sepandhaghighi/samila#usage)
-   * [Mathematical Details](https://github.com/sepandhaghighi/samila#mathematical-details)
-   * [Try Samila in Your Browser](https://github.com/sepandhaghighi/samila#try-samila-in-your-browser)
-   * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
-   * [Social Media](https://github.com/sepandhaghighi/samila#social-media)
-   * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
-   * [References](https://github.com/sepandhaghighi/samila#references)
-   * [Acknowledgments](https://github.com/sepandhaghighi/samila#acknowledgments)
-   * [Authors](https://github.com/sepandhaghighi/samila/blob/master/AUTHORS.md)
-   * [License](https://github.com/sepandhaghighi/samila/blob/master/LICENSE)
-   * [Show Your Support](https://github.com/sepandhaghighi/samila#show-your-support)
-   * [Changelog](https://github.com/sepandhaghighi/samila/blob/master/CHANGELOG.md)
-   * [Code of Conduct](https://github.com/sepandhaghighi/samila/blob/master/.github/CODE_OF_CONDUCT.md)
 
 ## Overview
 
