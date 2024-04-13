@@ -23,7 +23,6 @@
 	</a>
 </div>
 
-----------
 
 ## Overview
 
@@ -203,7 +202,7 @@ You can even rotate your art by using `rotation` parameter. Enter your desired r
 
 ⚠️ In **List** mode, the length of this list must be equal to the lengths of data1 and data2
 
-#### Point Color
+#### Point color
 You can make your custom color map and use it in Samila
 
 ```pycon
