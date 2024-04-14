@@ -1,39 +1,28 @@
 <div align="center">
-<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/logo.png" width=400 height=400>
-<br/>
-<h1>Samila</h1>
-<br/>
-<a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3" /></a>
-<a href="https://codecov.io/gh/sepandhaghighi/samila">
-  <img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg" />
-</a>
-<a href="https://badge.fury.io/py/samila"><img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18"></a>
-<a href="https://anaconda.org/sepandhaghighi/samila"><img src="https://anaconda.org/sepandhaghighi/samila/badges/version.svg"></a>
-<a href="https://colab.research.google.com/github/sepandhaghighi/samila/blob/master">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Samila-Colab"/>
-</a>
-<a href="https://discord.com/invite/94bz5QGZWb">
-  <img src="https://img.shields.io/discord/900055829225562162.svg" alt="Discord Channel">
-</a>
+	<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/logo.png" width=400 height=400>
+	<br/>
+	<h1>Samila</h1>
+	<br/>
+	<a href="https://www.python.org/">
+		<img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3" />
+	</a>
+	<a href="https://codecov.io/gh/sepandhaghighi/samila">
+		<img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg" />
+	</a>
+	<a href="https://badge.fury.io/py/samila">
+		<img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18">
+	</a>
+	<a href="https://anaconda.org/sepandhaghighi/samila">
+		<img src="https://anaconda.org/sepandhaghighi/samila/badges/version.svg">
+	</a>
+	<a href="https://colab.research.google.com/github/sepandhaghighi/samila/blob/master">
+		<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Samila-Colab"/>
+	</a>
+	<a href="https://discord.com/invite/94bz5QGZWb">
+		<img src="https://img.shields.io/discord/900055829225562162.svg" alt="Discord Channel">
+	</a>
 </div>
 
-----------
-## Table of contents					
-   * [Overview](https://github.com/sepandhaghighi/samila#overview)
-   * [Installation](https://github.com/sepandhaghighi/samila#installation)
-   * [Usage](https://github.com/sepandhaghighi/samila#usage)
-   * [Mathematical Details](https://github.com/sepandhaghighi/samila#mathematical-details)
-   * [Try Samila in Your Browser](https://github.com/sepandhaghighi/samila#try-samila-in-your-browser)
-   * [Issues & Bug Reports](https://github.com/sepandhaghighi/samila#issues--bug-reports)
-   * [Social Media](https://github.com/sepandhaghighi/samila#social-media)
-   * [Contribution](https://github.com/sepandhaghighi/samila/blob/master/.github/CONTRIBUTING.md)
-   * [References](https://github.com/sepandhaghighi/samila#references)
-   * [Acknowledgments](https://github.com/sepandhaghighi/samila#acknowledgments)
-   * [Authors](https://github.com/sepandhaghighi/samila/blob/master/AUTHORS.md)
-   * [License](https://github.com/sepandhaghighi/samila/blob/master/LICENSE)
-   * [Show Your Support](https://github.com/sepandhaghighi/samila#show-your-support)
-   * [Changelog](https://github.com/sepandhaghighi/samila/blob/master/CHANGELOG.md)
-   * [Code of Conduct](https://github.com/sepandhaghighi/samila/blob/master/.github/CODE_OF_CONDUCT.md)
 
 ## Overview
 
@@ -213,7 +202,7 @@ You can even rotate your art by using `rotation` parameter. Enter your desired r
 
 ⚠️ In **List** mode, the length of this list must be equal to the lengths of data1 and data2
 
-#### Point Color
+#### Point color
 You can make your custom color map and use it in Samila
 
 ```pycon

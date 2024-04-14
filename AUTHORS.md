@@ -1,10 +1,10 @@
-# Core Developer #
+# Core Developers
 
 ----------
-- Sepand Haghighi - Sharif University of Technology - [@sepandhaghighi](http://github.com/sepandhaghighi)
-- Sadra Sabouri - Sharif University of Technology - [@sadrasabouri](https://github.com/sadrasabouri)
+- Sepand Haghighi - Open Science Laboratory ([Github](https://github.com/sepandhaghighi))
+- Sadra Sabouri - Open Science Laboratory ([Github](https://github.com/sadrasabouri))
 
-# Other Contributors #
+# Other Contributors
 - Mohammad Hosein Moslemi - [@mhmoslemi2338](https://github.com/mhmoslemi2338)
 - Evan Slack - [@evanofslack](https://github.com/evanofslack)
 ----------
