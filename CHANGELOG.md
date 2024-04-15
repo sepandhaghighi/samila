@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `config.yml` for issue template
 - `get_cmap` function
 - `Gateway` enum
+- `SECURITY.md`
 ### Changed
 - Bug report template modified
 - `func_seed` parameter added to GenerativeImage `__init__`
