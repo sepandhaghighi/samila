@@ -21,11 +21,13 @@ PARAMS_ITEMS = ['SAMILA_VERSION = "{0}"']
 
 META_ITEMS = ['% set version = "{0}" %']
 ISSUE_TEMPLATE_ITEMS = ["- Samila {0}"]
+SECURITY_ITEMS = ["| {0}           | :white_check_mark: |", "| < {0}         | :x:                |"]
 
 FILES = {
     "setup.py": SETUP_ITEMS,
     "README.md": README_ITEMS,
     "CHANGELOG.md": CHANGELOG_ITEMS,
+    "SECURITY.md": SECURITY_ITEMS,
     os.path.join("samila", "params.py"): PARAMS_ITEMS,
     os.path.join("otherfiles", "meta.yaml"): META_ITEMS,
     os.path.join(
