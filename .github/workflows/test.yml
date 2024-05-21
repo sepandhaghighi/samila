@@ -15,8 +15,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, windows-latest]
-        python-version: [3.5, 3.6, 3.7, 3.8, 3.9, 3.10.0, 3.11.0, 3.12.0]
+        os: [ubuntu-20.04, windows-2022]
+        python-version: [3.6, 3.7, 3.8, 3.9, 3.10.0, 3.11.0, 3.12.0]
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
@@ -62,8 +62,7 @@ jobs:
       uses: codecov/codecov-action@v4
       with:
           fail_ci_if_error: true
-      env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
       if: matrix.python-version == env.TEST_PYTHON_VERSION && matrix.os == env.TEST_OS
     - name: cProfile
       run: |
