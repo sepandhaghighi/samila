@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `gateway` parameter added to `nft_storage` method
 - Test system modified
 - `README.md` updated
+- `Python 3.5` support dropped
 - `Python 3.12` added to `test.yml`
 ## [1.1] - 2023-04-05
 ### Added
