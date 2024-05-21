@@ -62,8 +62,7 @@ jobs:
       uses: codecov/codecov-action@v4
       with:
           fail_ci_if_error: true
-      env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
       if: matrix.python-version == env.TEST_PYTHON_VERSION && matrix.os == env.TEST_OS
     - name: cProfile
       run: |
