@@ -1,6 +1,6 @@
 # Samila Release Instructions
 
-**Last Update: 2024-06-04**
+**Last Update: 2024-06-06**
 
 1. Create the `release` branch under `dev`
 2. Update all version tags
@@ -46,3 +46,4 @@
 		1. `index.html`
 	3. Update size of files
 		1. `index.html`
+	4. `git push origin gh-pages`
