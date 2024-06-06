@@ -21,10 +21,11 @@
 	2. Tag all related issues
 	3. Labels: `release`
 	4. Set milestone
-	5. Wait for all CI pass
-	6. Need review (**1** reviewer)
-	7. Squash and merge
-	8. Delete `release` branch
+	5. Set project
+	6. Wait for all CI pass
+	7. Need review (**1** reviewer)
+	8. Squash and merge
+	9. Delete `release` branch
 6. Merge `dev` branch into `master`
 	1. `git checkout master`
 	2. `git merge dev`
