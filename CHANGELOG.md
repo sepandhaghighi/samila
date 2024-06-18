@@ -14,12 +14,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Bug report template modified
 - `func_seed` parameter added to GenerativeImage `__init__`
-- minor edits in `functions.py`
+- Minor edits in `functions.py`
 - `DEFAULT_CMAP` renamed to `DEFAULT_CMAP_NAME`
 - `pillow` added to conda dependencies
 - `codecov` removed from `dev-requirements.txt`
 - `gateway` parameter added to `nft_storage` method
 - Test system modified
+- Random mode modified
 - `README.md` updated
 - `Python 3.5` support dropped
 - `Python 3.12` added to `test.yml`
