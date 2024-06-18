@@ -148,7 +148,6 @@ RANDOM_COEF_LIST = [
     "random.lognormvariate(0,1)"]
 
 ELEMENTS_LIST = [
-    "{0}*math.exp({1})",
     "{0}*math.atan({1})",
     "{0}*math.asinh({1})",
     "{0}*math.acosh(abs({1})+1)",
@@ -158,9 +157,7 @@ ELEMENTS_LIST = [
     "{0}*math.tanh({1})",
     "{0}*math.cos({1})",
     "{0}*math.sin({1})",
-    "{0}*math.tan({1})",
     "{0}*{1}",
-    "{0}/{1}",
     "{0}*abs({1})",
     "{0}*math.ceil({1})",
     "{0}*math.floor({1})"]
