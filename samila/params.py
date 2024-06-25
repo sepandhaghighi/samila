@@ -4,7 +4,7 @@ import math
 from enum import Enum
 import matplotlib
 
-SAMILA_VERSION = "1.1"  # pragma: no cover
+SAMILA_VERSION = "1.2"  # pragma: no cover
 
 OVERVIEW = '''
 Samila is a generative art generator written in Python, Samila let's you
