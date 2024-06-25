@@ -16,7 +16,7 @@ var backgrounds = range(15);
 function redirect(flag){
     switch(flag){
         case 1:
-            window.open("https://gitcoin.co/grants/3915/samila-generative-art-generator");
+            window.open("https://opencollective.com/openscilab/projects/samila");
             break;
         case 2:
             window.open("https://www.samila.site/wallets.html");
@@ -25,7 +25,7 @@ function redirect(flag){
             window.open("https://www.coffeete.ir/opensource");
             break;
         default:
-            window.open("https://gitcoin.co/grants/3915/samila-generative-art-generator");
+            window.open("https://opencollective.com/openscilab/projects/samila");
             
     }
     
