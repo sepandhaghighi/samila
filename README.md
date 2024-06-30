@@ -44,8 +44,8 @@ Samila is a generative art generator written in Python, Samila lets you create i
 	</tr>
     <tr>
 		<td align="center">CI</td>
-		<td align="center"><img src="https://github.com/sepandhaghighi/samila/workflows/CI/badge.svg?branch=master"></td>
-		<td align="center"><img src="https://github.com/sepandhaghighi/samila/workflows/CI/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/sepandhaghighi/samila/actions/workflows/test.yml/badge.svg?branch=master"></td>
+		<td align="center"><img src="https://github.com/sepandhaghighi/samila/actions/workflows/test.yml/badge.svg?branch=dev"></td>
 	</tr>
 </table>
 
