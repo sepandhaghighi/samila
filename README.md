@@ -3,24 +3,12 @@
 	<br/>
 	<h1>Samila</h1>
 	<br/>
-	<a href="https://www.python.org/">
-		<img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3" />
-	</a>
-	<a href="https://codecov.io/gh/sepandhaghighi/samila">
-		<img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg" />
-	</a>
-	<a href="https://badge.fury.io/py/samila">
-		<img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18">
-	</a>
-	<a href="https://anaconda.org/sepandhaghighi/samila">
-		<img src="https://anaconda.org/sepandhaghighi/samila/badges/version.svg">
-	</a>
-	<a href="https://colab.research.google.com/github/sepandhaghighi/samila/blob/master">
-		<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Samila-Colab"/>
-	</a>
-	<a href="https://discord.com/invite/94bz5QGZWb">
-		<img src="https://img.shields.io/discord/900055829225562162.svg" alt="Discord Channel">
-	</a>
+	<a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"></a>
+	<a href="https://codecov.io/gh/sepandhaghighi/samila"><img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg"></a>
+	<a href="https://badge.fury.io/py/samila"><img src="https://badge.fury.io/py/samila.svg" alt="PyPI version" height="18"></a>
+	<a href="https://anaconda.org/sepandhaghighi/samila"><img src="https://anaconda.org/sepandhaghighi/samila/badges/version.svg"></a>
+	<a href="https://colab.research.google.com/github/sepandhaghighi/samila/blob/master"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Samila-Colab"></a>
+	<a href="https://discord.com/invite/94bz5QGZWb"><img src="https://img.shields.io/discord/900055829225562162.svg" alt="Discord Channel"></a>
 </div>
 
 
@@ -56,8 +44,8 @@ Samila is a generative art generator written in Python, Samila lets you create i
 	</tr>
     <tr>
 		<td align="center">CI</td>
-		<td align="center"><img src="https://github.com/sepandhaghighi/samila/workflows/CI/badge.svg?branch=master"></td>
-		<td align="center"><img src="https://github.com/sepandhaghighi/samila/workflows/CI/badge.svg?branch=dev"></td>
+		<td align="center"><img src="https://github.com/sepandhaghighi/samila/actions/workflows/test.yml/badge.svg?branch=master"></td>
+		<td align="center"><img src="https://github.com/sepandhaghighi/samila/actions/workflows/test.yml/badge.svg?branch=dev"></td>
 	</tr>
 </table>
 
