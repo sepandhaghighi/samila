@@ -29,7 +29,7 @@ from warnings import warn
 
 def deprecated(func):
     """
-    Decorator for deprecated functions.
+    Decorate for deprecated functions.
 
     :param func: function to be deprecated
     :type func: function
