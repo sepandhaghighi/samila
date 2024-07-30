@@ -13,8 +13,10 @@
 >>> counter = 0
 >>> try_limit = 10
 >>> status = False
+>>> result = {}
 >>> while(status == False and counter<try_limit):
-...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, depth=3)
+...     with warns(DeprecationWarning, match='`test_deprecated` is deprecated and may be removed in future releases.')
+...         result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, depth=3)
 ...     counter = counter + 1
 ...     status = result["status"]
 ...     time.sleep(10)
@@ -23,7 +25,8 @@ True
 >>> status = False
 >>> counter = 0
 >>> while(status == False and counter<try_limit):
-...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_config=True)
+...     with warns(DeprecationWarning, match='`test_deprecated` is deprecated and may be removed in future releases.')
+...         result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_config=True)
 ...     counter = counter + 1
 ...     status = all(result["status"].values())
 ...     time.sleep(10)
@@ -34,7 +37,8 @@ True
 >>> status = False
 >>> counter = 0
 >>> while(status == False and counter<try_limit):
-...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_data=True)
+...     with warns(DeprecationWarning, match='`test_deprecated` is deprecated and may be removed in future releases.')
+...         result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_data=True)
 ...     counter = counter + 1
 ...     status = all(result["status"].values())
 ...     time.sleep(10)
@@ -45,7 +49,8 @@ True
 >>> status = False
 >>> counter = 0
 >>> while(status == False and counter<try_limit):
-...     result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_data=True, upload_config=True, gateway=Gateway.CID)
+...     with warns(DeprecationWarning, match='`test_deprecated` is deprecated and may be removed in future releases.')
+...         result = g.nft_storage(api_key=NFT_STORAGE_API_KEY, upload_data=True, upload_config=True, gateway=Gateway.CID)
 ...     counter = counter + 1
 ...     status = all(result["status"].values())
 ...     time.sleep(10)
