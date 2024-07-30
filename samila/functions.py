@@ -10,6 +10,7 @@ import json
 import random
 import matplotlib
 from PIL import Image
+from functions import wraps
 from .params import SAMILA_VERSION
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
 from .params import DEFAULT_CMAP_NAME, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION
@@ -18,12 +19,38 @@ from .params import Projection, Marker, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STO
 from .params import DATA_TYPE_ERROR, DATA_FORMAT_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
-from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING
+from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING, DEPRECATION_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
 from .params import ELEMENTS_LIST, ARGUMENTS_LIST, OPERATORS_LIST, RANDOM_COEF_LIST
 from .params import RANDOM_EQUATION_MIN_COMPLEXITY, RANDOM_EQUATION_MAX_COMPLEXITY, RANDOM_EQUATION_FOF_MIN_DEPTH, RANDOM_EQUATION_FOF_MAX_DEPTH
 from .errors import samilaDataError, samilaPlotError, samilaConfigError
 from warnings import warn
+
+
+def deprecated(func):
+    """
+    Decorator for deprecated functions.
+
+    :param func: function to be deprecated
+    :type func: function
+    :return: deprecated function
+    """
+    @wraps(func)
+    def inner_func(*args, **kwargs):
+        """
+        Inner function.
+
+        :param args: arguments
+        :type args: tuple
+        :param kwargs: keyword arguments
+        :type kwargs: dict
+        :return: modified result of function
+        """
+        warn(DEPRECATION_WARNING.format(func.__name__),
+             category=DeprecationWarning,
+             stacklevel=2)
+        return func(*args, **kwargs)
+    return inner_func
 
 
 def random_equation_gen():
@@ -515,6 +542,7 @@ def _GI_initializer(g, function1, function2):
     g.missed_points_number = 0
 
 
+@deprecated
 def nft_storage_upload(api_key, data, timeout, gateway):
     """
     Upload file to nft.storage.
