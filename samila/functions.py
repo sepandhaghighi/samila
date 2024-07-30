@@ -542,7 +542,6 @@ def _GI_initializer(g, function1, function2):
     g.missed_points_number = 0
 
 
-@deprecated
 def nft_storage_upload(api_key, data, timeout, gateway):
     """
     Upload file to nft.storage.
