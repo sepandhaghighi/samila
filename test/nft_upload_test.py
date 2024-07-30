@@ -2,6 +2,7 @@
 """
 >>> import os
 >>> import time
+>>> from pytest import warns
 >>> from samila import GenerativeImage, Projection, Gateway
 >>> from samila.params import VALID_COLORS
 >>> g = GenerativeImage()
