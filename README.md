@@ -220,6 +220,9 @@ You can make your custom color map and use it in Samila
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/5.png">	
 
 ### NFT.storage
+
+⚠️ This method is deprecated and may be removed in future releases.
+
 Upload generated image directly to [NFT.storage](https://NFT.storage)
 
 ```pycon
