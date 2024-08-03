@@ -10,7 +10,7 @@ from .functions import _GI_initializer, plot_params_filter, generate_params_filt
 from .functions import get_config, get_data, get_python_version
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
 from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
-from .functions import set_background, rotate
+from .functions import set_background, rotate, deprecated
 from .params import *
 from warnings import warn, catch_warnings, simplefilter
 
@@ -179,6 +179,7 @@ class GenerativeImage:
         ax = rotate(fig, ax, self.rotation)
         self.fig = fig
 
+    @deprecated
     def nft_storage(
             self,
             api_key,

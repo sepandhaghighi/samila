@@ -53,6 +53,7 @@ VERSION_WARNING = "Your plots may differ as the version of matplotlib ({0}), Pyt
 CALCULATION_EXCEPTION_WARNING = "The given functions are undefined at some points. Your plot may not be complete."
 BOTH_COLOR_COMPLEMENT_WARNING = "It is not possible to set color and bgcolor to 'complement' at the same time! Both are automatically set to the previous or default selection."
 COLOR_NOT_FOUND_WARNING = "color '{0}' not found. Replacing it with '{1}'"
+DEPRECATION_WARNING = "`{}` is deprecated and may be removed in future releases."
 
 
 class Gateway(Enum):

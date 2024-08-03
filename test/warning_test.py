@@ -3,6 +3,7 @@
 >>> import os
 >>> import json
 >>> from samila import *
+>>> from samila.functions import deprecated
 >>> from pytest import warns
 >>> g = GenerativeImage(lambda x,y: 0, lambda x,y: 0)
 >>> g.generate(step=0.1)
@@ -45,6 +46,11 @@ True
 ...     g.plot(color='complement', bgcolor='complement')
 >>> with warns(RuntimeWarning, match=r"color 'rad' not found. Replacing it with 'red'"):
 ...     g.plot(color='rad')
+>>> @deprecated
+... def test_deprecated():
+...    return
+>>> with warns(DeprecationWarning, match='`test_deprecated` is deprecated and may be removed in future releases.'):
+...    test_deprecated()
 >>> os.remove('data.json')
 >>> os.remove('config.json')
 """
