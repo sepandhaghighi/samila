@@ -492,6 +492,9 @@ def generate_params_filter(
     :return: None
     """
     start, step, stop = map(filter_float, [start, step, stop])
+    generate_mode = filter_generate_mode(mode)
+    if generate_mode is None:
+        generate_mode = g.generate_mode
     if start is None:
         start = g.start
     if step is None:
@@ -502,7 +505,6 @@ def generate_params_filter(
         seed = g.seed
         if g.seed is None:
             seed = random.randint(SEED_LOWER_BOUND, SEED_UPPER_BOUND)
-    generate_mode = filter_generate_mode(mode)
     g.seed, g.start, g.step, g.stop, g.generate_mode = seed, start, step, stop, generate_mode
 
 
