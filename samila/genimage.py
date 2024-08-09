@@ -91,10 +91,10 @@ class GenerativeImage:
         :param stop: range stop point
         :type stop: float
         :param mode: generate mode
-        :type mode: str
+        :type mode: GenerateMode enum
         :return: None
         """
-        generate_params_filter(self, seed, start, step, stop)
+        generate_params_filter(self, seed, start, step, stop, mode)
         self.data1 = []
         self.data2 = []
         self.missed_points_number = 0
