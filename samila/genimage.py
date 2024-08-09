@@ -100,7 +100,7 @@ class GenerativeImage:
         self.missed_points_number = 0
         range1 = list(float_range(self.start, self.stop, self.step))
         range_prod = itertools.product(range1, range1)
-        for index, point in range_prod:
+        for index, point in enumerate(range_prod):
             random.seed(self.seed)
             try:
                 if self.generate_mode == "f1_vs_f2":
