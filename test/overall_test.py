@@ -10,7 +10,7 @@
 >>> import matplotlib
 >>> def guard(*args, **kwargs):
 ...     raise Exception("No internet connection!")
->>> from samila import GenerativeImage, Projection, Marker
+>>> from samila import GenerativeImage, Projection, Marker, GenerateMode
 >>> from samila.functions import is_same_data
 >>> import pickle
 >>> def f1(x,y):
@@ -369,6 +369,11 @@ True
 >>> g.function1_str == g_.function1_str
 True
 >>> g.function2_str == g_.function2_str
+True
+>>> random.seed(22)
+>>> g = GenerativeImage()
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F1)
+>>> g.generate_mode == GenerateMode.F1.value
 True
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
