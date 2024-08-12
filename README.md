@@ -114,10 +114,10 @@ Samila is a generative art generator written in Python, Samila lets you create i
 ```pycon
 >>> from samila import GenerateMode
 >>> g = GenerativeImage(f1, f2)
->>> g.generate(mode=GenerateMode.F2)
+>>> g.generate(mode=GenerateMode.F1)
 >>> g.plot()
 >>> g.seed
-829730
+883114
 >>> plt.show()
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/10.png">	
