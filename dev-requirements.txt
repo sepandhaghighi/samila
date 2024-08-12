@@ -1,4 +1,4 @@
-matplotlib==3.9.1
+matplotlib==3.9.1.post1
 art==6.2
 vulture>=1.0
 bandit>=1.5.1
