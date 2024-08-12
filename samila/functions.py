@@ -304,6 +304,7 @@ def filter_projection(projection):
         return projection_value
     return None
 
+
 def filter_generate_mode(generate_mode):
     """
     Filter given generate-mode.

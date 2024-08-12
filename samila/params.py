@@ -56,6 +56,7 @@ BOTH_COLOR_COMPLEMENT_WARNING = "It is not possible to set color and bgcolor to 
 COLOR_NOT_FOUND_WARNING = "color '{0}' not found. Replacing it with '{1}'"
 DEPRECATION_WARNING = "`{}` is deprecated and may be removed in future releases."
 
+
 class GenerateMode(Enum):
     """
     Samila generate mode class.
@@ -69,6 +70,7 @@ class GenerateMode(Enum):
     F2_VS_F1 = "f2_vs_f1"
     F1 = "f1"
     F2 = "f2"
+
 
 class Gateway(Enum):
     """
