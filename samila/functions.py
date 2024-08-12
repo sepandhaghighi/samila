@@ -680,7 +680,8 @@ def get_config(g):
         "seed": g.seed,
         "start": g.start,
         "step": g.step,
-        "stop": g.stop
+        "stop": g.stop,
+        "mode": g.generate_mode
     }
     config['plot'] = {
         "color": g.color,
@@ -916,6 +917,7 @@ def load_config(g, config):
             g.start = generate_config.get("start", DEFAULT_START)
             g.step = generate_config.get("step", DEFAULT_STEP)
             g.stop = generate_config.get("stop", DEFAULT_STOP)
+            g.generate_mode = generate_config.get("mode", DEFAULT_GENERATE_MODE)
         plot_config = config.get("plot")
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
