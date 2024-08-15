@@ -27,6 +27,7 @@ DEFAULT_SPOT_SIZE = 0.01
 DEFAULT_DEPTH = 1
 DEFAULT_ROTATION = 0.0
 DEFAULT_PROJECTION = "rectilinear"
+DEFAULT_GENERATE_MODE = "f1_vs_f2"
 DEFAULT_MARKER = "."
 SEED_LOWER_BOUND = 0
 SEED_UPPER_BOUND = 2**20
@@ -54,6 +55,21 @@ CALCULATION_EXCEPTION_WARNING = "The given functions are undefined at some point
 BOTH_COLOR_COMPLEMENT_WARNING = "It is not possible to set color and bgcolor to 'complement' at the same time! Both are automatically set to the previous or default selection."
 COLOR_NOT_FOUND_WARNING = "color '{0}' not found. Replacing it with '{1}'"
 DEPRECATION_WARNING = "`{}` is deprecated and may be removed in future releases."
+
+
+class GenerateMode(Enum):
+    """
+    Samila generate mode class.
+
+    >>> import samila
+    >>> generate_mode = samila.GenerateMode.F2_VS_F1
+    """
+
+    DEFAULT = DEFAULT_GENERATE_MODE
+    F1_VS_F2 = "f1_vs_f2"
+    F2_VS_F1 = "f2_vs_f1"
+    F1 = "f1"
+    F2 = "f2"
 
 
 class Gateway(Enum):

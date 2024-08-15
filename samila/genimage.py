@@ -77,7 +77,8 @@ class GenerativeImage:
             seed=None,
             start=None,
             step=None,
-            stop=None):
+            stop=None,
+            mode=None):
         """
         Generate a raw format of art.
 
@@ -89,19 +90,31 @@ class GenerativeImage:
         :type step: float
         :param stop: range stop point
         :type stop: float
+        :param mode: generate mode
+        :type mode: GenerateMode enum
         :return: None
         """
-        generate_params_filter(self, seed, start, step, stop)
+        generate_params_filter(self, seed, start, step, stop, mode)
         self.data1 = []
         self.data2 = []
         self.missed_points_number = 0
         range1 = list(float_range(self.start, self.stop, self.step))
         range_prod = itertools.product(range1, range1)
-        for point in range_prod:
+        for index, point in enumerate(range_prod):
             random.seed(self.seed)
             try:
-                data1_ = self.function1(point[0], point[1]).real
-                data2_ = self.function2(point[0], point[1]).real
+                if self.generate_mode == "f1_vs_f2":
+                    data1_ = self.function1(point[0], point[1]).real
+                    data2_ = self.function2(point[0], point[1]).real
+                elif self.generate_mode == "f2_vs_f1":
+                    data2_ = self.function1(point[0], point[1]).real
+                    data1_ = self.function2(point[0], point[1]).real
+                elif self.generate_mode == "f2":
+                    data2_ = index
+                    data1_ = self.function2(point[0], point[1]).real
+                elif self.generate_mode == "f1":
+                    data2_ = index
+                    data1_ = self.function1(point[0], point[1]).real
                 self.data1.append(data1_)
                 self.data2.append(data2_)
             except Exception:

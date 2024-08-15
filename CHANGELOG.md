@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `deprecated` function
 ### Changed
+- `mode` parameter added to `generate` method
 - `README.md` updated
 ## [1.2] - 2024-06-25
 ### Added

@@ -13,9 +13,9 @@ from PIL import Image
 from functools import wraps
 from .params import SAMILA_VERSION
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
-from .params import DEFAULT_CMAP_NAME, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION
+from .params import DEFAULT_CMAP_NAME, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION, DEFAULT_GENERATE_MODE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
-from .params import Projection, Marker, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, OVERVIEW
+from .params import Projection, GenerateMode, Marker, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_FORMAT_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
@@ -305,6 +305,20 @@ def filter_projection(projection):
     return None
 
 
+def filter_generate_mode(generate_mode):
+    """
+    Filter given generate-mode.
+
+    :param generate_mode: given generate-mode
+    :type generate_mode: GenerateMode enum
+    :return: filtered version of generate-mode
+    """
+    if isinstance(generate_mode, GenerateMode):
+        generate_mode_value = generate_mode.value
+        return generate_mode_value
+    return None
+
+
 def filter_marker(marker):
     """
     Filter given marker.
@@ -459,7 +473,8 @@ def generate_params_filter(
         seed=None,
         start=None,
         step=None,
-        stop=None):
+        stop=None,
+        mode=None):
     """
     Filter generate method parameters.
 
@@ -473,9 +488,14 @@ def generate_params_filter(
     :type step: float
     :param stop: range stop point
     :type stop: float
+    :param mode: generate mode
+    :type mode: GenerateMode enum
     :return: None
     """
     start, step, stop = map(filter_float, [start, step, stop])
+    generate_mode = filter_generate_mode(mode)
+    if generate_mode is None:
+        generate_mode = g.generate_mode
     if start is None:
         start = g.start
     if step is None:
@@ -486,7 +506,7 @@ def generate_params_filter(
         seed = g.seed
         if g.seed is None:
             seed = random.randint(SEED_LOWER_BOUND, SEED_UPPER_BOUND)
-    g.seed, g.start, g.step, g.stop = seed, start, step, stop
+    g.seed, g.start, g.step, g.stop, g.generate_mode = seed, start, step, stop, generate_mode
 
 
 def save_params_filter(g, depth=None):
@@ -534,6 +554,7 @@ def _GI_initializer(g, function1, function2):
     g.spot_size = DEFAULT_SPOT_SIZE
     g.size = DEFAULT_IMAGE_SIZE
     g.projection = DEFAULT_PROJECTION
+    g.generate_mode = DEFAULT_GENERATE_MODE
     g.marker = DEFAULT_MARKER
     g.alpha = DEFAULT_ALPHA
     g.linewidth = DEFAULT_LINEWIDTH
@@ -660,7 +681,8 @@ def get_config(g):
         "seed": g.seed,
         "start": g.start,
         "step": g.step,
-        "stop": g.stop
+        "stop": g.stop,
+        "mode": g.generate_mode
     }
     config['plot'] = {
         "color": g.color,
@@ -896,6 +918,7 @@ def load_config(g, config):
             g.start = generate_config.get("start", DEFAULT_START)
             g.step = generate_config.get("step", DEFAULT_STEP)
             g.stop = generate_config.get("stop", DEFAULT_STOP)
+            g.generate_mode = generate_config.get("mode", DEFAULT_GENERATE_MODE)
         plot_config = config.get("plot")
         if plot_config is not None:
             g.color = plot_config.get("color", DEFAULT_COLOR)
