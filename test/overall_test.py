@@ -372,14 +372,20 @@ True
 True
 >>> random.seed(22)
 >>> g = GenerativeImage()
->>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F1)
->>> g.generate_mode == GenerateMode.F1.value
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F1_VS_INDEX)
+>>> g.generate_mode == GenerateMode.F1_VS_INDEX.value
 True
->>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F2)
->>> g.generate_mode == GenerateMode.F2.value
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F2_VS_INDEX)
+>>> g.generate_mode == GenerateMode.F2_VS_INDEX.value
 True
->>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F2)
->>> g.generate_mode == GenerateMode.F2.value
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.INDEX_VS_F1
+>>> g.generate_mode == GenerateMode.INDEX_VS_F!.value
+True
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.INDEX_VS_F2)
+>>> g.generate_mode == GenerateMode.INDEX_VS_F2.value
+True
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F1_VS_F2)
+>>> g.generate_mode == GenerateMode.F1_VS_F2.value
 True
 >>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F2_VS_F1)
 >>> g.generate_mode == GenerateMode.F2_VS_F1.value
