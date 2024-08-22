@@ -114,7 +114,7 @@ Samila is a generative art generator written in Python, Samila lets you create i
 ```pycon
 >>> from samila import GenerateMode
 >>> g = GenerativeImage(f1, f2)
->>> g.generate(mode=GenerateMode.F1)
+>>> g.generate(mode=GenerateMode.F1_VS_INDEX)
 >>> g.plot()
 >>> g.seed
 883114
@@ -122,7 +122,7 @@ Samila is a generative art generator written in Python, Samila lets you create i
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/10.png">	
 
-* Supported modes : `F1_VS_F2`, `F2_VS_F1`, `F1`, and `F2`
+* Supported modes : `F1_VS_F2`, `F2_VS_F1`, `F1_VS_INDEX`, `F2_VS_INDEX`, `INDEX_VS_F1` and `INDEX_VS_F2`
 * Default mode is `F1_VS_F2`
 
 ### Projection

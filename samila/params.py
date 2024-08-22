@@ -68,8 +68,10 @@ class GenerateMode(Enum):
     DEFAULT = DEFAULT_GENERATE_MODE
     F1_VS_F2 = "f1_vs_f2"
     F2_VS_F1 = "f2_vs_f1"
-    F1 = "f1"
-    F2 = "f2"
+    F1_VS_INDEX = "f1_vs_index"
+    F2_VS_INDEX = "f2_vs_index"
+    INDEX_VS_F1 = "index_vs_f1"
+    INDEX_VS_F2 = "index_vs_f2"
 
 
 class Gateway(Enum):

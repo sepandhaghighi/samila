@@ -103,18 +103,24 @@ class GenerativeImage:
         for index, point in enumerate(range_prod):
             random.seed(self.seed)
             try:
-                if self.generate_mode == "f1_vs_f2":
+                if self.generate_mode == GenerateMode.F1_VS_F2.value:
                     data1_ = self.function1(point[0], point[1]).real
                     data2_ = self.function2(point[0], point[1]).real
-                elif self.generate_mode == "f2_vs_f1":
+                elif self.generate_mode == GenerateMode.F2_VS_F1.value:
                     data2_ = self.function1(point[0], point[1]).real
                     data1_ = self.function2(point[0], point[1]).real
-                elif self.generate_mode == "f2":
+                elif self.generate_mode == GenerateMode.F2_VS_INDEX.value:
                     data2_ = index
                     data1_ = self.function2(point[0], point[1]).real
-                elif self.generate_mode == "f1":
+                elif self.generate_mode == GenerateMode.F1_VS_INDEX.value:
                     data2_ = index
                     data1_ = self.function1(point[0], point[1]).real
+                elif self.generate_mode == GenerateMode.INDEX_VS_F1.value:
+                    data1_ = index
+                    data2_ = self.function1(point[0], point[1]).real
+                elif self.generate_mode == GenerateMode.INDEX_VS_F2.value:
+                    data1_ = index
+                    data2_ = self.function2(point[0], point[1]).real
                 self.data1.append(data1_)
                 self.data2.append(data2_)
             except Exception:
