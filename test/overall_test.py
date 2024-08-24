@@ -390,6 +390,30 @@ True
 >>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F2_VS_F1)
 >>> g.generate_mode == GenerateMode.F2_VS_F1.value
 True
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F1_VS_X1)
+>>> g.generate_mode == GenerateMode.F1_VS_X1.value
+True
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F2_VS_X1)
+>>> g.generate_mode == GenerateMode.F2_VS_X1.value
+True
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F1_VS_X2)
+>>> g.generate_mode == GenerateMode.F1_VS_X2.value
+True
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.F2_VS_X2)
+>>> g.generate_mode == GenerateMode.F2_VS_X2.value
+True
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.X1_VS_F1)
+>>> g.generate_mode == GenerateMode.X1_VS_F1.value
+True
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.X1_VS_F2)
+>>> g.generate_mode == GenerateMode.X1_VS_F2.value
+True
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.X2_VS_F1)
+>>> g.generate_mode == GenerateMode.X2_VS_F1.value
+True
+>>> g.generate(start=-2*math.pi, step=0.1, stop=math.pi/2, mode=GenerateMode.X2_VS_F2)
+>>> g.generate_mode == GenerateMode.X2_VS_F2.value
+True
 >>> os.remove("test.png")
 >>> os.remove("test2.png")
 >>> os.remove("data.json")
