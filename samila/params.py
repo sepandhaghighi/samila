@@ -72,6 +72,15 @@ class GenerateMode(Enum):
     F2_VS_INDEX = "f2_vs_index"
     INDEX_VS_F1 = "index_vs_f1"
     INDEX_VS_F2 = "index_vs_f2"
+    F1_VS_X1 = "f1_vs_x1"
+    F2_VS_X1 = "f2_vs_x1"
+    F1_VS_X2 = "f1_vs_x2"
+    F2_VS_X2 = "f2_vs_x2"
+    X1_VS_F1 = "x1_vs_f1"
+    X1_VS_F2 = "x1_vs_f2"
+    X2_VS_F1 = "x2_vs_f1"
+    X2_VS_F2 = "x2_vs_f2"
+
 
 
 class Gateway(Enum):
