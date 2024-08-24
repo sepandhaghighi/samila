@@ -73,7 +73,7 @@ class GenerateMode(Enum):
     INDEX_VS_F1 = "index_vs_f1"
     INDEX_VS_F2 = "index_vs_f2"
     F1_VS_X1 = "f1_vs_x1"
-    F2_VS_X1 = "f2_vs_x2"
+    F2_VS_X1 = "f2_vs_x1"
     F1_VS_X2 = "f1_vs_x2"
     F2_VS_X2 = "f2_vs_x2"
     X1_VS_F1 = "x1_vs_f1"
