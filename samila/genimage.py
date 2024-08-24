@@ -121,6 +121,30 @@ class GenerativeImage:
                 elif self.generate_mode == GenerateMode.INDEX_VS_F2.value:
                     data1_ = index
                     data2_ = self.function2(point[0], point[1]).real
+                elif self.generate_mode == GenerateMode.F1_VS_X1.value:
+                    data1_ = self.function1(point[0], point[1]).real
+                    data2_ = point[0]
+                elif self.generate_mode == GenerateMode.F2_VS_X1.value:
+                    data1_ = self.function2(point[0], point[1]).real
+                    data2_ = point[0]
+                elif self.generate_mode == GenerateMode.F1_VS_X2.value:
+                    data1_ = self.function1(point[0], point[1]).real
+                    data2_ = point[1]
+                elif self.generate_mode == GenerateMode.F2_VS_X2.value:
+                    data1_ = self.function2(point[0], point[1]).real
+                    data2_ = point[1]
+                elif self.generate_mode == GenerateMode.X1_VS_F1:
+                    data1_ = point[0]
+                    data2_ = self.function1(point[0], point[1]).real
+                elif self.generate_mode == GenerateMode.X1_VS_F2:
+                    data1_ = point[0]
+                    data2_ = self.function2(point[0], point[1]).real
+                elif self.generate_mode == GenerateMode.X2_VS_F1:
+                    data1_ = point[1]
+                    data2_ = self.function1(point[0], point[1]).real
+                elif self.generate_mode == GenerateMode.X2_VS_F2:
+                    data1_ = point[1]
+                    data2_ = self.function2(point[0], point[1]).real
                 self.data1.append(data1_)
                 self.data2.append(data2_)
             except Exception:
