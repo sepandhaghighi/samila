@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - `deprecated` function
+- 14 new generation modes
+	1. `F1_VS_F2`
+	2. `F2_VS_F1`
+	3. `F1_VS_INDEX`
+	4. `F2_VS_INDEX`
+	5. `INDEX_VS_F1`
+	6. `INDEX_VS_F2`
+	7. `F1_VS_X1`
+	8. `F2_VS_X1`
+	9. `F1_VS_X2`
+	10. `F2_VS_X2`
+	11. `X1_VS_F1`
+	12. `X1_VS_F2`
+	13. `X2_VS_F1`
+	14. `X2_VS_F2`
 ### Changed
 - `mode` parameter added to `generate` method
 - `README.md` updated
