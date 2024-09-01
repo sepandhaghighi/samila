@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - `mode` parameter added to `generate` method
 - `README.md` updated
+- `demo.ipynb` updated
 ## [1.2] - 2024-06-25
 ### Added
 - `feature_request.yml` template

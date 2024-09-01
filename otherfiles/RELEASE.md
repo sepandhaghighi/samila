@@ -1,6 +1,6 @@
 # Samila Release Instructions
 
-**Last Update: 2024-06-06**
+**Last Update: 2024-08-30**
 
 1. Create the `release` branch under `dev`
 2. Update all version tags
@@ -10,6 +10,7 @@
 	4. `otherfiles/version_check.py`
 	5. `otherfiles/meta.yaml`
 	6. `samila/params.py`
+	7. `examples/demo.ipynb`
 3. Update `CHANGELOG.md`
 	1. Add a new header under `Unreleased` section (Example: `## [0.1] - 2022-08-17`)
 	2. Add a new compare link to the end of the file (Example: `[0.2]: https://github.com/sepandhaghighi/samila/compare/v0.1...v0.2`)
