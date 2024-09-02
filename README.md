@@ -399,7 +399,9 @@ here we use `Projection.POLAR` so later space will be the polar space and we hav
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/6.png">
 
 ## Try Samila in your browser!
-Samila can be used online in interactive Jupyter Notebooks via the Binder or Colab services! Try it out now! :
+Samila can be used online in interactive Jupyter Notebooks via the Binder or Colab services!
+
+Try it out now!
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sepandhaghighi/samila/master)
 
