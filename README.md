@@ -245,9 +245,6 @@ You can make your custom color map and use it in Samila.
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/5.png">	
 
 ### NFT.storage
-
-⚠️ This method is deprecated and may be removed in future releases.
-
 Upload generated image directly to [NFT.storage](https://NFT.storage)
 
 ```pycon
@@ -273,7 +270,11 @@ You have the option to choose a specific IPFS gateway:
 {'status': {'image': True, 'data':True}, 'message': {'image':'IMAGE_FILE_LINK', 'data':'DATA_FILE_LINK'}
 ```
 
+
+⚠️ This method is deprecated and may be removed in future releases
+
 ℹ️ Default timeout is `3000` seconds
+
 ℹ️ Default gateway is `IPFS_IO`
 
 ### Save image
