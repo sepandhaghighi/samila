@@ -201,13 +201,13 @@ You can even rotate your art by using `rotation` parameter. Enter your desired r
 
 ℹ️ `color` and `bgcolor` parameters supported formats:
 
-    1. Color name (example: `color="yellow"`)
-    2. RGB/RGBA (example: `color=(0.1,0.1,0.1)`, `color=(0.1,0.1,0.1,0.1)`)
-    3. Hex (example: `color="#eeefff"`)
-    4. Random (example: `color="random"`)
-    5. Complement (example: `color="complement", bgcolor="blue"`)
-    6. Transparent (example: `bgcolor="transparent"`)
-    7. List (example: `color=["black", "#fffeef",...]`)
+1. Color name (example: `color="yellow"`)
+2. RGB/RGBA (example: `color=(0.1,0.1,0.1)`, `color=(0.1,0.1,0.1,0.1)`)
+3. Hex (example: `color="#eeefff"`)
+4. Random (example: `color="random"`)
+5. Complement (example: `color="complement", bgcolor="blue"`)
+6. Transparent (example: `bgcolor="transparent"`)
+7. List (example: `color=["black", "#fffeef",...]`)
 
 ⚠️ **Transparent** mode is only available for background
 
