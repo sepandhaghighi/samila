@@ -89,7 +89,7 @@ Samila is a generative art generator written in Python, Samila lets you create i
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/7.png">	
 
-* You can change function generation seed by `func_seed` parameter in `GenerativeImage`
+ℹ️ You can change function generation seed by `func_seed` parameter in `GenerativeImage`
 
 ### Basic
 ```pycon
@@ -122,8 +122,9 @@ Samila is a generative art generator written in Python, Samila lets you create i
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/10.png">	
 
-* Supported modes : `F1_VS_F2`, `F2_VS_F1`, `F1_VS_INDEX`, `F2_VS_INDEX`, `INDEX_VS_F1`, `INDEX_VS_F2`, `F1_VS_X1`, `F1_VS_X2`, `F2_VS_X1`, `F2_VS_X2`, `X1_VS_F1`, `X1_VS_F2`, `X2_VS_F1` and `X2_VS_F2`
-* Default mode is `F1_VS_F2`
+ℹ️ Supported modes : `F1_VS_F2`, `F2_VS_F1`, `F1_VS_INDEX`, `F2_VS_INDEX`, `INDEX_VS_F1`, `INDEX_VS_F2`, `F1_VS_X1`, `F1_VS_X2`, `F2_VS_X1`, `F2_VS_X2`, `X1_VS_F1`, `X1_VS_F2`, `X2_VS_F1` and `X2_VS_F2`
+
+ℹ️ Default mode is `F1_VS_F2`
 
 ### Projection
 ```pycon
@@ -137,8 +138,9 @@ Samila is a generative art generator written in Python, Samila lets you create i
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/2.png">	
 
-* Supported projections : `RECTILINEAR`, `POLAR`, `AITOFF`, `HAMMER`, `LAMBERT`, `MOLLWEIDE` and `RANDOM`
-* Default projection is `RECTILINEAR`
+ℹ️ Supported projections : `RECTILINEAR`, `POLAR`, `AITOFF`, `HAMMER`, `LAMBERT`, `MOLLWEIDE` and `RANDOM`
+
+ℹ️ Default projection is `RECTILINEAR`
 
 ### Marker
 ```pycon
@@ -152,8 +154,9 @@ Samila is a generative art generator written in Python, Samila lets you create i
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/9.png">	
 
-* Supported markers : `POINT`, `PIXEL`, `CIRCLE`, `TRIANGLE_DOWN`, `TRIANGLE_UP`, `TRIANGLE_LEFT`, `TRIANGLE_RIGHT`, `TRI_DOWN`, `TRI_UP`, `TRI_LEFT`, `TRI_RIGHT`, `OCTAGON`, `SQUARE`, `PENTAGON`, `PLUS`, `PLUS_FILLED`, `STAR`, `HEXAGON_VERTICAL`, `HEXAGON_HORIZONTAL`, `X`, `X_FILLED`, `DIAMOND`, `DIAMON_THIN`, `VLINE`, `HLINE` and `RANDOM`
-* Default marker is `POINT`
+ℹ️ Supported markers : `POINT`, `PIXEL`, `CIRCLE`, `TRIANGLE_DOWN`, `TRIANGLE_UP`, `TRIANGLE_LEFT`, `TRIANGLE_RIGHT`, `TRI_DOWN`, `TRI_UP`, `TRI_LEFT`, `TRI_RIGHT`, `OCTAGON`, `SQUARE`, `PENTAGON`, `PLUS`, `PLUS_FILLED`, `STAR`, `HEXAGON_VERTICAL`, `HEXAGON_HORIZONTAL`, `X`, `X_FILLED`, `DIAMOND`, `DIAMON_THIN`, `VLINE`, `HLINE` and `RANDOM`
+
+ℹ️ Default marker is `POINT`
 
 ### Rotation
 You can even rotate your art by using `rotation` parameter. Enter your desired rotation for the image in degrees and you will have it.
@@ -164,7 +167,7 @@ You can even rotate your art by using `rotation` parameter. Enter your desired r
 >>> g.plot(rotation=45)
 ```
 
-* Default rotation is 0
+ℹ️ Default rotation is `0`
 
 ### Range
 ```pycon
@@ -177,6 +180,8 @@ You can even rotate your art by using `rotation` parameter. Enter your desired r
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/3.png">	
 
+ℹ️ Default range is $(-\pi, \pi)$
+
 ### Color
 ```pycon
 >>> g = GenerativeImage(f1, f2)
@@ -188,16 +193,21 @@ You can even rotate your art by using `rotation` parameter. Enter your desired r
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/4.png">	
 
-* Supported colors are available in `VALID_COLORS` list
-* `color` and `bgcolor` parameters supported formats:
+ℹ️ Default color is `black`
 
-    1. Color name (example: `color="yellow"`)
-    2. RGB/RGBA (example: `color=(0.1,0.1,0.1)`, `color=(0.1,0.1,0.1,0.1)`)
-    3. Hex (example: `color="#eeefff"`)
-    4. Random (example: `color="random"`)
-    5. Complement (example: `color="complement", bgcolor="blue"`)
-    6. Transparent (example: `bgcolor="transparent"`)
-    7. List (example: `color=["black", "#fffeef",...]`)
+ℹ️ Default background-color is `white`
+
+ℹ️ Supported colors are available in `VALID_COLORS` list
+
+ℹ️ `color` and `bgcolor` parameters supported formats:
+
+1. Color name (example: `color="yellow"`)
+2. RGB/RGBA (example: `color=(0.1,0.1,0.1)`, `color=(0.1,0.1,0.1,0.1)`)
+3. Hex (example: `color="#eeefff"`)
+4. Random (example: `color="random"`)
+5. Complement (example: `color="complement", bgcolor="blue"`)
+6. Transparent (example: `bgcolor="transparent"`)
+7. List (example: `color=["black", "#fffeef",...]`)
 
 ⚠️ **Transparent** mode is only available for background
 
@@ -206,7 +216,7 @@ You can even rotate your art by using `rotation` parameter. Enter your desired r
 ⚠️ In **List** mode, the length of this list must be equal to the lengths of data1 and data2
 
 #### Point color
-You can make your custom color map and use it in Samila
+You can make your custom color map and use it in Samila.
 
 ```pycon
 >>> colorarray = [
@@ -235,9 +245,6 @@ You can make your custom color map and use it in Samila
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/5.png">	
 
 ### NFT.storage
-
-⚠️ This method is deprecated and may be removed in future releases.
-
 Upload generated image directly to [NFT.storage](https://NFT.storage)
 
 ```pycon
@@ -263,17 +270,21 @@ You have the option to choose a specific IPFS gateway:
 {'status': {'image': True, 'data':True}, 'message': {'image':'IMAGE_FILE_LINK', 'data':'DATA_FILE_LINK'}
 ```
 
-* Default timeout is **3000** seconds
-* Default gateway is **IPFS_IO**
+
+⚠️ This method is deprecated and may be removed in future releases
+
+ℹ️ Default timeout is `3000` seconds
+
+ℹ️ Default gateway is `IPFS_IO`
 
 ### Save image
-Save generated image
+Save generated image.
 
 ```pycon
 >>> g.save_image(file_adr="test.png")
 {'status': True, 'message': 'FILE_PATH'}
 ```
-Save generated image in higher resolutions
+Save generated image in higher resolutions.
 
 ```pycon
 >>> g.save_image(file_adr="test.png", depth=5)
@@ -281,7 +292,7 @@ Save generated image in higher resolutions
 ```
 
 ### Save data
-Save generated image data
+Save generated image data.
 
 ```pycon
 >>> g.save_data(file_adr="data.json")
@@ -388,13 +399,15 @@ here we use `Projection.POLAR` so later space will be the polar space and we hav
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/6.png">
 
 ## Try Samila in your browser!
-Samila can be used online in interactive Jupyter Notebooks via the Binder or Colab services! Try it out now! :
+Samila can be used online in interactive Jupyter Notebooks via the Binder or Colab services!
+
+Try it out now!
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sepandhaghighi/samila/master)
 
 [![Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sepandhaghighi/samila/blob/master)
 
-* Check `examples` folder 
+ℹ️ Check `examples` folder 
 
 ## Issues & bug reports			
 
