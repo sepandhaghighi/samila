@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 	12. `X1_VS_F2`
 	13. `X2_VS_F1`
 	14. `X2_VS_F2`
+- `bulk.ipynb` notebook
 ### Changed
 - `mode` parameter added to `generate` method
 - `README.md` updated

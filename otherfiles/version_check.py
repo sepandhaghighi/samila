@@ -22,7 +22,7 @@ PARAMS_ITEMS = ['SAMILA_VERSION = "{0}"']
 META_ITEMS = ['% set version = "{0}" %']
 ISSUE_TEMPLATE_ITEMS = ["- Samila {0}"]
 SECURITY_ITEMS = ["| {0}           | :white_check_mark: |", "| < {0}         | :x:                |"]
-DEMO_ITEMS = ["### Version : {0}"]
+NOTEBOOK_ITEMS = ["### Version : {0}"]
 
 FILES = {
     "setup.py": SETUP_ITEMS,
@@ -35,7 +35,8 @@ FILES = {
         ".github",
         "ISSUE_TEMPLATE",
         "bug_report.yml"): ISSUE_TEMPLATE_ITEMS,
-    os.path.join("examples", "demo.ipynb"): DEMO_ITEMS
+    os.path.join("examples", "demo.ipynb"): NOTEBOOK_ITEMS,
+    os.path.join("examples", "bulk.ipynb"): NOTEBOOK_ITEMS,
 }
 
 TEST_NUMBER = len(FILES)
