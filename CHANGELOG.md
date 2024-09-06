@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+## [1.3] - 2024-09-09
 ### Added
 - `deprecated` function
 - 14 new generation modes
@@ -212,7 +213,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `generate` method
 - `nft_storage` method
 
-[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v1.2...dev
+[Unreleased]: https://github.com/sepandhaghighi/samila/compare/v1.3...dev
+[1.3]: https://github.com/sepandhaghighi/samila/compare/v1.2...v1.3
 [1.2]: https://github.com/sepandhaghighi/samila/compare/v1.1...v1.2
 [1.1]: https://github.com/sepandhaghighi/samila/compare/v1.0...v1.1
 [1.0]: https://github.com/sepandhaghighi/samila/compare/v0.9...v1.0
