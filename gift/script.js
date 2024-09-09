@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     
     function ipfs_url(cid){
-        return "https://cloudflare-ipfs.com/ipfs/" + cid;
+        return "https://gateway.pinata.cloud/ipfs/" + cid;
     }
 
     if (samila_gift_data.hasOwnProperty(code)){

@@ -30,7 +30,7 @@ function image_error(obj, id_number){
 }
 
 function ipfs_link(ipfs_id) {
-    return "https://ipfs.io/ipfs/" + ipfs_id
+    return "https://gateway.pinata.cloud/ipfs/" + ipfs_id
 }
 
 function refresh(id_number) {
