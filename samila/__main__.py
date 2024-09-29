@@ -6,11 +6,6 @@ import matplotlib.pyplot as plt
 
 from art import tprint
 from .params import SAMILA_VERSION, GenerateMode, Projection, Marker
-from .params import DEFAULT_ALPHA, DEFAULT_COLOR, DEFAULT_DEPTH
-from .params import DEFAULT_LINEWIDTH, DEFAULT_PROJECTION, DEFAULT_SPOT_SIZE
-from .params import DEFAULT_START, DEFAULT_STEP, DEFAULT_STOP
-from .params import DEFAULT_GENERATE_MODE, DEFAULT_MARKER, DEFAULT_ROTATION
-from .params import DEFAULT_IMAGE_SIZE
 from .functions import samila_help
 from .genimage import GenerativeImage
 
@@ -38,8 +33,8 @@ def main():
         '--mode',
         help='generation mode',
         type=str,
-        choices=[x.value for x in GenerateMode]),
-    
+        choices=[x.value for x in GenerateMode])
+
     parser.add_argument('--color', help='color', type=str)
     parser.add_argument('--bgcolor', help='bgcolor', type=str)
     parser.add_argument('--cmap', help='cmap', type=str)
