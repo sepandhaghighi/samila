@@ -30,7 +30,10 @@ jobs:
         pip install .
     - name: First test
       run: |
-        python -m samila
+        python -m samila --version
+    - name: Samila CLI test
+      run: |
+        python -m samila --color=red --bgcolor=black --rotation=30 --projection=polar --start 0 --stop 10 --mode f2_vs_f1 --spot-size 2 --save-image test.png --save-config test.json
     - name: Test requirements Installation
       run: |
         python otherfiles/requirements-splitter.py
