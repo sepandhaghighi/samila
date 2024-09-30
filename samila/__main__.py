@@ -59,6 +59,7 @@ def main():
     parser.add_argument('--depth', help='depth', type=float)
     parser.add_argument('--save-data', help='save data', type=str)
     parser.add_argument('--save-config', help='save config', type=str)
+    parser.add_argument('--show-image', help='show image', action='store_true', default=True)
     args = parser.parse_args()
 
     if args.version:
@@ -94,7 +95,8 @@ def main():
             linewidth=args.linewidth,
             rotation=args.rotation,
         )
-        plt.show()
+        if args.show_image:
+            plt.show()
 
         if args.save_image:
             gi.save_image(args.save_image, args.depth)
