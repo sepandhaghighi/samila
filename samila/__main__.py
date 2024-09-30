@@ -18,6 +18,7 @@ def main():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument('--version', help='version', action='store_true', default=False)
+    parser.add_argument('--info', help='info', action='store_true', default=False)
 
     parser.add_argument('--load-config', help='load config', type=str)
     parser.add_argument('--load-data', help='load data', type=str)
@@ -61,6 +62,8 @@ def main():
     args = parser.parse_args()
 
     if args.version:
+        print(SAMILA_VERSION)
+    elif args.info:
         tprint("samila")
         tprint("V:" + SAMILA_VERSION)
         samila_help()
