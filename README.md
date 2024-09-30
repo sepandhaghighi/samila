@@ -364,6 +364,26 @@ Config structure:
 }
 ```
 
+### Command Line Interface (CLI)
+You can easily create art directly from the command line with Samila CLI. Here's an example command to get started:
+```bash
+samila --color=red --bgcolor=black --rotation=30 --projection=polar --mode f2_vs_f1 --save-image test.png
+```
+
+In this example:
+- `--color=red`: Sets the primary color of the art.
+- `--bgcolor=black`: Sets the background color.
+- `--rotation=30`: Rotates the artwork by 30 degrees.
+- `--projection=polar`: Use polar projection for plotting.
+- `--mode=f2_vs_f1`: Sets the generation mode
+- `--save-image=test.png`: Saves the generated image as test.png.
+
+For more options and detailed usage, run the following command to access help:
+```bash
+samila --help
+```
+This will provide additional information on all available parameters and how to customize your artwork further.
+
 ## Mathematical details
 Samila is simply a transformation between a square-shaped space from the Cartesian coordinate system to any arbitrary coordination like [Polar coordinate system](https://en.wikipedia.org/wiki/Polar_coordinate_system).
 
