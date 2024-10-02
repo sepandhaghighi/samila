@@ -59,7 +59,7 @@ def main():
     parser.add_argument('--depth', help='depth', type=float)
     parser.add_argument('--save-data', help='save data', type=str)
     parser.add_argument('--save-config', help='save config', type=str)
-    parser.add_argument('--show-image', help='show image', action='store_true', default=True)
+    parser.add_argument('--no-display', help='no display', action='store_true', default=False)
     args = parser.parse_args()
 
     if args.version:
@@ -95,7 +95,7 @@ def main():
             linewidth=args.linewidth,
             rotation=args.rotation,
         )
-        if args.show_image:
+        if not args.no_display:
             plt.show()
 
         if args.save_image:
