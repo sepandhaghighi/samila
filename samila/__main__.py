@@ -10,11 +10,11 @@ from .functions import samila_help
 from .genimage import GenerativeImage
 
 
-def main():
+def init_argparse():
     """
-    CLI main function.
+    Initialize argparse.
 
-    :return: None
+    :return: parser
     """
     parser = argparse.ArgumentParser()
     parser.add_argument('--version', help='version', action='store_true', default=False)
@@ -61,6 +61,17 @@ def main():
     parser.add_argument('--save-data', help='save data', type=str)
     parser.add_argument('--save-config', help='save config', type=str)
     parser.add_argument('--no-display', help='no display', action='store_true', default=False)
+
+    return parser
+
+
+def main():
+    """
+    CLI main function.
+
+    :return: None
+    """
+    parser = init_argparse()
     args = parser.parse_args()
 
     if args.version:
