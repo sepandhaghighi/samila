@@ -19,6 +19,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--version', help='version', action='store_true', default=False)
     parser.add_argument('--info', help='info', action='store_true', default=False)
+    parser.add_argument('--verbose', help='verbose', action='store_true', default=False)
 
     parser.add_argument('--load-config', help='load config', type=str)
     parser.add_argument('--load-data', help='load data', type=str)
@@ -76,6 +77,8 @@ def main():
             data=args.load_data,
             config=args.load_config,
         )
+        if args.verbose:
+            print("[LOG] GenerativeImage object created.")
         gi.generate(
             seed=args.seed,
             start=args.start,
@@ -83,6 +86,8 @@ def main():
             stop=args.stop,
             mode=args.mode,
         )
+        if args.verbose:
+            print("[LOG] GenerativeImage generated.")
         gi.plot(
             color=args.color,
             bgcolor=args.bgcolor,
@@ -95,15 +100,23 @@ def main():
             linewidth=args.linewidth,
             rotation=args.rotation,
         )
+        if args.verbose:
+            print("[LOG] GenerativeImage plotted.")
         if not args.no_display:
             plt.show()
 
         if args.save_image:
-            gi.save_image(args.save_image, args.depth)
+            result = gi.save_image(args.save_image, args.depth)
+            if args.verbose:
+                print("[LOG] Image save. Result: ", result)
         if args.save_data:
-            gi.save_data(args.save_data)
+            result = gi.save_data(args.save_data)
+            if args.verbose:
+                print("[LOG] Data save. Result: ", result)
         if args.save_config:
-            gi.save_config(args.save_config)
+            result= gi.save_config(args.save_config)
+            if args.verbose:
+                print("[LOG] Config save. Result: ", result)
 
 
 if __name__ == "__main__":
