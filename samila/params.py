@@ -56,6 +56,16 @@ BOTH_COLOR_COMPLEMENT_WARNING = "It is not possible to set color and bgcolor to 
 COLOR_NOT_FOUND_WARNING = "color '{0}' not found. Replacing it with '{1}'"
 DEPRECATION_WARNING = "`{}` is deprecated and may be removed in future releases."
 
+LOG_GI_CREATED = "[LOG] GenerativeImage object created."
+LOG_GI_GENERATED = "[LOG] GenerativeImage generated."
+LOG_GI_PLOTTED = "[LOG] GenerativeImage plotted."
+LOG_IMG_SAVED = "[LOG] Image saved. File address: {0}"
+LOG_DATA_SAVED = "[LOG] Data saved. File address: {0}"
+LOG_CONFIG_SAVED = "[LOG] Config saved. File address: {0}"
+ERR_IMG_SAVE_FAILED = "[ERROR] Image save failed. Message: {0}"
+ERR_DATA_SAVE_FAILED = "[ERROR] Data save failed. Message: {0}"
+ERR_CONFIG_SAVE_FAILED = "[ERROR] Config save failed. Message: {0}"
+
 
 class GenerateMode(Enum):
     """
