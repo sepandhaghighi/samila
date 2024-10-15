@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 
 from art import tprint
 from .params import SAMILA_VERSION, GenerateMode, Projection, Marker
+from .params import LOG_GI_CREATED, LOG_GI_GENERATED, LOG_GI_PLOTTED
+from .params import LOG_IMG_SAVED, LOG_DATA_SAVED, LOG_CONFIG_SAVED
+from .params import ERR_IMG_SAVE_FAILED, ERR_DATA_SAVE_FAILED, ERR_CONFIG_SAVE_FAILED
 from .functions import samila_help
 from .genimage import GenerativeImage
 
@@ -89,7 +92,7 @@ def main():
             config=args.load_config,
         )
         if args.verbose:
-            print("[LOG] GenerativeImage object created.")
+            print(LOG_GI_CREATED)
         gi.generate(
             seed=args.seed,
             start=args.start,
@@ -98,7 +101,7 @@ def main():
             mode=args.mode,
         )
         if args.verbose:
-            print("[LOG] GenerativeImage generated.")
+            print(LOG_GI_GENERATED)
         gi.plot(
             color=args.color,
             bgcolor=args.bgcolor,
@@ -112,22 +115,31 @@ def main():
             rotation=args.rotation,
         )
         if args.verbose:
-            print("[LOG] GenerativeImage plotted.")
+            print(LOG_GI_PLOTTED)
         if not args.no_display:
             plt.show()
 
         if args.save_image:
             result = gi.save_image(args.save_image, args.depth)
             if args.verbose:
-                print("[LOG] Image save. Result: ", result)
+                if result['status']:
+                    print(LOG_IMG_SAVED.format(result['message']))
+                else:
+                    print(ERR_IMG_SAVE_FAILED.format(result['message']))
         if args.save_data:
             result = gi.save_data(args.save_data)
             if args.verbose:
-                print("[LOG] Data save. Result: ", result)
+                if result['status']:
+                    print(LOG_DATA_SAVED.format(result['message']))
+                else:
+                    print(ERR_DATA_SAVE_FAILED.format(result['message']))
         if args.save_config:
             result= gi.save_config(args.save_config)
             if args.verbose:
-                print("[LOG] Config save. Result: ", result)
+                if result['status']:
+                    print(LOG_CONFIG_SAVED.format(result['message']))
+                else:
+                    print(ERR_CONFIG_SAVE_FAILED.format(result['message']))
 
 
 if __name__ == "__main__":
