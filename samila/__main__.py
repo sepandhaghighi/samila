@@ -68,6 +68,27 @@ def init_argparse():
     return parser
 
 
+def log_results(is_verbose, result, log_success, log_fail):
+    """
+    Save result function.
+    
+    :param is_verbose: is verbose
+    :type is_verbose: bool
+    :param result: result dictionary
+    :type result: dict
+    :param log_success: log for successful result
+    :type log_success: str
+    :param log_fail: log for failed result
+    :type log_fail: str
+    :return: None
+    """
+    if is_verbose:
+        if result['status']:
+            print(log_success.format(result['message']))
+        else:
+            print(log_fail.format(result['message']))
+
+
 def main():
     """
     CLI main function.
@@ -85,34 +106,22 @@ def main():
         samila_help()
     else:
         gi = GenerativeImage(
-            function1=args.function1,
-            function2=args.function2,
-            func_seed=args.function_seed,
-            data=args.load_data,
-            config=args.load_config,
+            function1=args.function1, function2=args.function2,
+            func_seed=args.function_seed, data=args.load_data, config=args.load_config,
         )
         if args.verbose:
             print(LOG_GI_CREATED)
         gi.generate(
             seed=args.seed,
-            start=args.start,
-            step=args.step,
-            stop=args.stop,
+            start=args.start, step=args.step, stop=args.stop,
             mode=args.mode,
         )
         if args.verbose:
             print(LOG_GI_GENERATED)
         gi.plot(
-            color=args.color,
-            bgcolor=args.bgcolor,
-            cmap=args.cmap,
-            spot_size=args.spot_size,
-            size=args.size,
-            projection=args.projection,
-            marker=args.marker,
-            alpha=args.alpha,
-            linewidth=args.linewidth,
-            rotation=args.rotation,
+            color=args.color, bgcolor=args.bgcolor, cmap=args.cmap, spot_size=args.spot_size,
+            size=args.size, projection=args.projection, marker=args.marker, alpha=args.alpha,
+            linewidth=args.linewidth, rotation=args.rotation,
         )
         if args.verbose:
             print(LOG_GI_PLOTTED)
@@ -121,25 +130,13 @@ def main():
 
         if args.save_image:
             result = gi.save_image(args.save_image, args.depth)
-            if args.verbose:
-                if result['status']:
-                    print(LOG_IMG_SAVED.format(result['message']))
-                else:
-                    print(ERR_IMG_SAVE_FAILED.format(result['message']))
+            log_results(args.verbose, result, LOG_IMG_SAVED, ERR_IMG_SAVE_FAILED)
         if args.save_data:
             result = gi.save_data(args.save_data)
-            if args.verbose:
-                if result['status']:
-                    print(LOG_DATA_SAVED.format(result['message']))
-                else:
-                    print(ERR_DATA_SAVE_FAILED.format(result['message']))
+            log_results(args.verbose, result, LOG_DATA_SAVED, ERR_DATA_SAVE_FAILED)
         if args.save_config:
             result= gi.save_config(args.save_config)
-            if args.verbose:
-                if result['status']:
-                    print(LOG_CONFIG_SAVED.format(result['message']))
-                else:
-                    print(ERR_CONFIG_SAVE_FAILED.format(result['message']))
+            log_results(args.verbose, result, LOG_CONFIG_SAVED, ERR_CONFIG_SAVE_FAILED)
 
 
 if __name__ == "__main__":
