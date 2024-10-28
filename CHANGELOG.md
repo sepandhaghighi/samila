@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Command Line Interface (CLI)
 ### Changed
 - GitHub actions are limited to the `dev` and `master` branches
+- `Python 3.13` added to `test.yml`
 ## [1.3] - 2024-09-09
 ### Added
 - `deprecated` function
