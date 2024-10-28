@@ -6,19 +6,23 @@ import matplotlib.pyplot as plt
 
 from art import tprint
 from .params import SAMILA_VERSION, GenerateMode, Projection, Marker
+from .params import LOG_GI_CREATED, LOG_GI_GENERATED, LOG_GI_PLOTTED
+from .params import LOG_IMG_SAVED, LOG_DATA_SAVED, LOG_CONFIG_SAVED
+from .params import ERR_IMG_SAVE_FAILED, ERR_DATA_SAVE_FAILED, ERR_CONFIG_SAVE_FAILED
 from .functions import samila_help
 from .genimage import GenerativeImage
 
 
-def main():
+def init_argparse():
     """
-    CLI main function.
+    Initialize argparse.
 
-    :return: None
+    :return: parser
     """
     parser = argparse.ArgumentParser()
     parser.add_argument('--version', help='version', action='store_true', default=False)
     parser.add_argument('--info', help='info', action='store_true', default=False)
+    parser.add_argument('--verbose', help='verbose', action='store_true', default=False)
 
     parser.add_argument('--load-config', help='load config', type=str)
     parser.add_argument('--load-data', help='load data', type=str)
@@ -60,6 +64,38 @@ def main():
     parser.add_argument('--save-data', help='save data', type=str)
     parser.add_argument('--save-config', help='save config', type=str)
     parser.add_argument('--no-display', help='no display', action='store_true', default=False)
+
+    return parser
+
+
+def log_results(is_verbose, result, log_success, log_fail):
+    """
+    Save result function.
+    
+    :param is_verbose: is verbose
+    :type is_verbose: bool
+    :param result: result dictionary
+    :type result: dict
+    :param log_success: log for successful result
+    :type log_success: str
+    :param log_fail: log for failed result
+    :type log_fail: str
+    :return: None
+    """
+    if is_verbose:
+        if result['status']:
+            print(log_success.format(result['message']))
+        else:
+            print(log_fail.format(result['message']))
+
+
+def main():
+    """
+    CLI main function.
+
+    :return: None
+    """
+    parser = init_argparse()
     args = parser.parse_args()
 
     if args.version:
@@ -70,40 +106,37 @@ def main():
         samila_help()
     else:
         gi = GenerativeImage(
-            function1=args.function1,
-            function2=args.function2,
-            func_seed=args.function_seed,
-            data=args.load_data,
-            config=args.load_config,
+            function1=args.function1, function2=args.function2,
+            func_seed=args.function_seed, data=args.load_data, config=args.load_config,
         )
+        if args.verbose:
+            print(LOG_GI_CREATED)
         gi.generate(
             seed=args.seed,
-            start=args.start,
-            step=args.step,
-            stop=args.stop,
+            start=args.start, step=args.step, stop=args.stop,
             mode=args.mode,
         )
+        if args.verbose:
+            print(LOG_GI_GENERATED)
         gi.plot(
-            color=args.color,
-            bgcolor=args.bgcolor,
-            cmap=args.cmap,
-            spot_size=args.spot_size,
-            size=args.size,
-            projection=args.projection,
-            marker=args.marker,
-            alpha=args.alpha,
-            linewidth=args.linewidth,
-            rotation=args.rotation,
+            color=args.color, bgcolor=args.bgcolor, cmap=args.cmap, spot_size=args.spot_size,
+            size=args.size, projection=args.projection, marker=args.marker, alpha=args.alpha,
+            linewidth=args.linewidth, rotation=args.rotation,
         )
+        if args.verbose:
+            print(LOG_GI_PLOTTED)
         if not args.no_display:
             plt.show()
 
         if args.save_image:
-            gi.save_image(args.save_image, args.depth)
+            result = gi.save_image(args.save_image, args.depth)
+            log_results(args.verbose, result, LOG_IMG_SAVED, ERR_IMG_SAVE_FAILED)
         if args.save_data:
-            gi.save_data(args.save_data)
+            result = gi.save_data(args.save_data)
+            log_results(args.verbose, result, LOG_DATA_SAVED, ERR_DATA_SAVE_FAILED)
         if args.save_config:
-            gi.save_config(args.save_config)
+            result= gi.save_config(args.save_config)
+            log_results(args.verbose, result, LOG_CONFIG_SAVED, ERR_CONFIG_SAVE_FAILED)
 
 
 if __name__ == "__main__":
