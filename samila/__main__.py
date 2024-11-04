@@ -30,10 +30,10 @@ def init_argparse():
     parser.add_argument('--function2', help='function2', type=str)
     parser.add_argument('--function_seed', help='function seed', type=str)
 
-    parser.add_argument('--seed', help='seed', type=str)
-    parser.add_argument('--start', help='start', type=float)
-    parser.add_argument('--step', help='step', type=float)
-    parser.add_argument('--stop', help='stop', type=float)
+    parser.add_argument('--seed', help='generate seed', type=str)
+    parser.add_argument('--start', help='start point', type=float)
+    parser.add_argument('--step', help='step size', type=float)
+    parser.add_argument('--stop', help='stop point', type=float)
     parser.add_argument(
         '--mode',
         help='generation mode',
@@ -41,12 +41,12 @@ def init_argparse():
         choices=[x.value for x in GenerateMode])
 
     parser.add_argument('--color', help='color', type=str)
-    parser.add_argument('--bgcolor', help='bgcolor', type=str)
+    parser.add_argument('--bgcolor', help='background color', type=str)
     parser.add_argument('--cmap', help='cmap', type=str)
     parser.add_argument('--spot-size', help='spot size', type=float)
     parser.add_argument('--size', help='size', type=tuple)
     parser.add_argument('--alpha', help='alpha', type=float)
-    parser.add_argument('--linewidth', help='linewidth', type=float)
+    parser.add_argument('--linewidth', help='line width', type=float)
     parser.add_argument('--rotation', help='rotation', type=float)
     parser.add_argument(
         '--projection',
