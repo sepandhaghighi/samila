@@ -72,5 +72,10 @@ setup(
         'Programming Language :: Python :: 3.13',
     ],
     license='MIT',
-    include_package_data=True
+    include_package_data=True,
+    entry_points={
+            'console_scripts': [
+                'samila = samila.__main__:main',
+            ]
+    }
 )
