@@ -38,6 +38,7 @@ def print_line(char="*", number=30):
     """
     print(char * number)
 
+
 def deprecated(func):
     """
     Decorate for deprecated functions.

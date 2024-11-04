@@ -72,7 +72,7 @@ def init_argparse():
 def log_results(is_verbose, result, log_success, log_fail):
     """
     Save result function.
-    
+
     :param is_verbose: is verbose
     :type is_verbose: bool
     :param result: result dictionary
@@ -142,12 +142,13 @@ def main():
                 result = gi.save_data(args.save_data)
                 log_results(args.verbose, result, LOG_DATA_SAVED, ERR_DATA_SAVE_FAILED)
             if args.save_config:
-                result= gi.save_config(args.save_config)
+                result = gi.save_config(args.save_config)
                 log_results(args.verbose, result, LOG_CONFIG_SAVED, ERR_CONFIG_SAVE_FAILED)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
         except Exception as e:
             print(ERR_GENERAL.format(str(e)))
+
 
 if __name__ == "__main__":
     main()

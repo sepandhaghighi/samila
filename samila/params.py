@@ -94,7 +94,6 @@ class GenerateMode(Enum):
     X2_VS_F2 = "x2_vs_f2"
 
 
-
 class Gateway(Enum):
     """
     IPFS gateway class.
