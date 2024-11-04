@@ -9,7 +9,7 @@ from .params import SAMILA_VERSION, GenerateMode, Projection, Marker
 from .params import LOG_GI_CREATED, LOG_GI_GENERATED, LOG_GI_PLOTTED
 from .params import LOG_IMG_SAVED, LOG_DATA_SAVED, LOG_CONFIG_SAVED
 from .params import ERR_IMG_SAVE_FAILED, ERR_DATA_SAVE_FAILED, ERR_CONFIG_SAVE_FAILED
-from .functions import samila_help
+from .functions import samila_help, print_line
 from .genimage import GenerativeImage
 
 
@@ -85,8 +85,10 @@ def log_results(is_verbose, result, log_success, log_fail):
     if is_verbose:
         if result['status']:
             print(log_success.format(result['message']))
+            print_line()
         else:
             print(log_fail.format(result['message']))
+            print_line()
 
 
 def main():
@@ -111,6 +113,7 @@ def main():
         )
         if args.verbose:
             print(LOG_GI_CREATED)
+            print_line()
         gi.generate(
             seed=args.seed,
             start=args.start, step=args.step, stop=args.stop,
@@ -118,6 +121,7 @@ def main():
         )
         if args.verbose:
             print(LOG_GI_GENERATED)
+            print_line()
         gi.plot(
             color=args.color, bgcolor=args.bgcolor, cmap=args.cmap, spot_size=args.spot_size,
             size=args.size, projection=args.projection, marker=args.marker, alpha=args.alpha,
@@ -125,6 +129,7 @@ def main():
         )
         if args.verbose:
             print(LOG_GI_PLOTTED)
+            print_line()
         if not args.no_display:
             plt.show()
 

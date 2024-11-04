@@ -27,6 +27,17 @@ from .errors import samilaDataError, samilaPlotError, samilaConfigError
 from warnings import warn
 
 
+def print_line(char="*", number=30):
+    """
+    Print line of chars.
+
+    :param char: input character
+    :type char:str
+    :param number: number of characters
+    :return: None
+    """
+    print(char * number)
+
 def deprecated(func):
     """
     Decorate for deprecated functions.
