@@ -3,6 +3,10 @@
 >>> import random
 >>> import sys
 >>> from samila.functions import *
+>>> print_line()
+******************************
+>>> print_line("#", 5)
+#####
 >>> is_valid_color("blue")
 True
 >>> is_valid_color((0,0,0))
