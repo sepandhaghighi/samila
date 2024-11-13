@@ -9,7 +9,8 @@ from .params import SAMILA_VERSION, GenerateMode, Projection, Marker
 from .params import LOG_GI_CREATED, LOG_GI_GENERATED, LOG_GI_PLOTTED
 from .params import LOG_IMG_SAVED, LOG_DATA_SAVED, LOG_CONFIG_SAVED
 from .params import ERR_IMG_SAVE_FAILED, ERR_DATA_SAVE_FAILED, ERR_CONFIG_SAVE_FAILED
-from .functions import samila_help
+from .params import ERR_GENERAL, EXIT_MESSAGE
+from .functions import samila_help, print_line
 from .genimage import GenerativeImage
 
 
@@ -30,10 +31,10 @@ def init_argparse():
     parser.add_argument('--function2', help='function2', type=str)
     parser.add_argument('--function_seed', help='function seed', type=str)
 
-    parser.add_argument('--seed', help='seed', type=str)
-    parser.add_argument('--start', help='start', type=float)
-    parser.add_argument('--step', help='step', type=float)
-    parser.add_argument('--stop', help='stop', type=float)
+    parser.add_argument('--seed', help='generate seed', type=str)
+    parser.add_argument('--start', help='start point', type=float)
+    parser.add_argument('--step', help='step size', type=float)
+    parser.add_argument('--stop', help='stop point', type=float)
     parser.add_argument(
         '--mode',
         help='generation mode',
@@ -41,12 +42,12 @@ def init_argparse():
         choices=[x.value for x in GenerateMode])
 
     parser.add_argument('--color', help='color', type=str)
-    parser.add_argument('--bgcolor', help='bgcolor', type=str)
+    parser.add_argument('--bgcolor', help='background color', type=str)
     parser.add_argument('--cmap', help='cmap', type=str)
     parser.add_argument('--spot-size', help='spot size', type=float)
     parser.add_argument('--size', help='size', type=tuple)
     parser.add_argument('--alpha', help='alpha', type=float)
-    parser.add_argument('--linewidth', help='linewidth', type=float)
+    parser.add_argument('--linewidth', help='line width', type=float)
     parser.add_argument('--rotation', help='rotation', type=float)
     parser.add_argument(
         '--projection',
@@ -71,7 +72,7 @@ def init_argparse():
 def log_results(is_verbose, result, log_success, log_fail):
     """
     Save result function.
-    
+
     :param is_verbose: is verbose
     :type is_verbose: bool
     :param result: result dictionary
@@ -85,8 +86,10 @@ def log_results(is_verbose, result, log_success, log_fail):
     if is_verbose:
         if result['status']:
             print(log_success.format(result['message']))
+            print_line()
         else:
             print(log_fail.format(result['message']))
+            print_line()
 
 
 def main():
@@ -105,38 +108,46 @@ def main():
         tprint("V:" + SAMILA_VERSION)
         samila_help()
     else:
-        gi = GenerativeImage(
-            function1=args.function1, function2=args.function2,
-            func_seed=args.function_seed, data=args.load_data, config=args.load_config,
-        )
-        if args.verbose:
-            print(LOG_GI_CREATED)
-        gi.generate(
-            seed=args.seed,
-            start=args.start, step=args.step, stop=args.stop,
-            mode=args.mode,
-        )
-        if args.verbose:
-            print(LOG_GI_GENERATED)
-        gi.plot(
-            color=args.color, bgcolor=args.bgcolor, cmap=args.cmap, spot_size=args.spot_size,
-            size=args.size, projection=args.projection, marker=args.marker, alpha=args.alpha,
-            linewidth=args.linewidth, rotation=args.rotation,
-        )
-        if args.verbose:
-            print(LOG_GI_PLOTTED)
-        if not args.no_display:
-            plt.show()
+        try:
+            gi = GenerativeImage(
+                function1=args.function1, function2=args.function2,
+                func_seed=args.function_seed, data=args.load_data, config=args.load_config,
+            )
+            if args.verbose:
+                print(LOG_GI_CREATED)
+                print_line()
+            gi.generate(
+                seed=args.seed,
+                start=args.start, step=args.step, stop=args.stop,
+                mode=args.mode,
+            )
+            if args.verbose:
+                print(LOG_GI_GENERATED)
+                print_line()
+            gi.plot(
+                color=args.color, bgcolor=args.bgcolor, cmap=args.cmap, spot_size=args.spot_size,
+                size=args.size, projection=args.projection, marker=args.marker, alpha=args.alpha,
+                linewidth=args.linewidth, rotation=args.rotation,
+            )
+            if args.verbose:
+                print(LOG_GI_PLOTTED)
+                print_line()
+            if not args.no_display:
+                plt.show()
 
-        if args.save_image:
-            result = gi.save_image(args.save_image, args.depth)
-            log_results(args.verbose, result, LOG_IMG_SAVED, ERR_IMG_SAVE_FAILED)
-        if args.save_data:
-            result = gi.save_data(args.save_data)
-            log_results(args.verbose, result, LOG_DATA_SAVED, ERR_DATA_SAVE_FAILED)
-        if args.save_config:
-            result= gi.save_config(args.save_config)
-            log_results(args.verbose, result, LOG_CONFIG_SAVED, ERR_CONFIG_SAVE_FAILED)
+            if args.save_image:
+                result = gi.save_image(args.save_image, args.depth)
+                log_results(args.verbose, result, LOG_IMG_SAVED, ERR_IMG_SAVE_FAILED)
+            if args.save_data:
+                result = gi.save_data(args.save_data)
+                log_results(args.verbose, result, LOG_DATA_SAVED, ERR_DATA_SAVE_FAILED)
+            if args.save_config:
+                result = gi.save_config(args.save_config)
+                log_results(args.verbose, result, LOG_CONFIG_SAVED, ERR_CONFIG_SAVE_FAILED)
+        except (KeyboardInterrupt, EOFError):
+            print(EXIT_MESSAGE)
+        except Exception as e:
+            print(ERR_GENERAL.format(str(e)))
 
 
 if __name__ == "__main__":

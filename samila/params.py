@@ -55,6 +55,7 @@ CALCULATION_EXCEPTION_WARNING = "The given functions are undefined at some point
 BOTH_COLOR_COMPLEMENT_WARNING = "It is not possible to set color and bgcolor to 'complement' at the same time! Both are automatically set to the previous or default selection."
 COLOR_NOT_FOUND_WARNING = "color '{0}' not found. Replacing it with '{1}'"
 DEPRECATION_WARNING = "`{}` is deprecated and may be removed in future releases."
+EXIT_MESSAGE = "See you. Bye!"
 
 LOG_GI_CREATED = "[LOG] GenerativeImage object created."
 LOG_GI_GENERATED = "[LOG] GenerativeImage generated."
@@ -65,6 +66,7 @@ LOG_CONFIG_SAVED = "[LOG] Config saved. File address: {0}"
 ERR_IMG_SAVE_FAILED = "[ERROR] Image save failed. Message: {0}"
 ERR_DATA_SAVE_FAILED = "[ERROR] Data save failed. Message: {0}"
 ERR_CONFIG_SAVE_FAILED = "[ERROR] Config save failed. Message: {0}"
+ERR_GENERAL = "[ERROR] Something went wrong. Message: {0}"
 
 
 class GenerateMode(Enum):
@@ -90,7 +92,6 @@ class GenerateMode(Enum):
     X1_VS_F2 = "x1_vs_f2"
     X2_VS_F1 = "x2_vs_f1"
     X2_VS_F2 = "x2_vs_f2"
-
 
 
 class Gateway(Enum):
