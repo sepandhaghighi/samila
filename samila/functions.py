@@ -32,7 +32,7 @@ def print_line(char="*", number=30):
     Print line of chars.
 
     :param char: input character
-    :type char:str
+    :type char: str
     :param number: number of characters
     :return: None
     """
