@@ -34,6 +34,7 @@ def print_line(char="*", number=30):
     :param char: input character
     :type char: str
     :param number: number of characters
+    :type number: int
     :return: None
     """
     print(char * number)
