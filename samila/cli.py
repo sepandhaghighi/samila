@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Samila CLI"""
+"""Samila CLI."""
 
 import argparse
 import matplotlib.pyplot as plt
