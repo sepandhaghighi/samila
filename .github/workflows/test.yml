@@ -43,7 +43,7 @@ jobs:
         samila --info
     - name: Samila CLI test
       run: |
-        samila --no-display --color=red --bgcolor=black --rotation=30 --projection=polar --mode f2_vs_f1 --save-image test.png
+        samila --verbose --no-display --color=red --bgcolor=black --rotation=30 --projection=polar --mode f2_vs_f1 --save-image test.png
     - name: Test requirements Installation
       run: |
         python otherfiles/requirements-splitter.py
