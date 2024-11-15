@@ -90,6 +90,7 @@ def log_results(is_verbose, result, log_success, log_fail):
             print(log_fail.format(result['message']))
             print_line()
 
+
 def run_samila(args):
     """
     Run samila.
