@@ -90,6 +90,50 @@ def log_results(is_verbose, result, log_success, log_fail):
             print(log_fail.format(result['message']))
             print_line()
 
+def run_samila(args):
+    """
+    Run samila.
+
+    :param args: arguments
+    :type args: argparse.Namespace
+    :return: None
+    """
+    gi = GenerativeImage(
+        function1=args.function1, function2=args.function2,
+        func_seed=args.function_seed, data=args.load_data, config=args.load_config,
+    )
+    if args.verbose:
+        print(LOG_GI_CREATED)
+        print_line()
+    gi.generate(
+        seed=args.seed,
+        start=args.start, step=args.step, stop=args.stop,
+        mode=args.mode,
+    )
+    if args.verbose:
+        print(LOG_GI_GENERATED)
+        print_line()
+    gi.plot(
+        color=args.color, bgcolor=args.bgcolor, cmap=args.cmap, spot_size=args.spot_size,
+        size=args.size, projection=args.projection, marker=args.marker, alpha=args.alpha,
+        linewidth=args.linewidth, rotation=args.rotation,
+    )
+    if args.verbose:
+        print(LOG_GI_PLOTTED)
+        print_line()
+    if not args.no_display:
+        plt.show()
+
+    if args.save_image:
+        result = gi.save_image(args.save_image, args.depth)
+        log_results(args.verbose, result, LOG_IMG_SAVED, ERR_IMG_SAVE_FAILED)
+    if args.save_data:
+        result = gi.save_data(args.save_data)
+        log_results(args.verbose, result, LOG_DATA_SAVED, ERR_DATA_SAVE_FAILED)
+    if args.save_config:
+        result = gi.save_config(args.save_config)
+        log_results(args.verbose, result, LOG_CONFIG_SAVED, ERR_CONFIG_SAVE_FAILED)
+
 
 def main():
     """
@@ -108,41 +152,7 @@ def main():
         samila_help()
     else:
         try:
-            gi = GenerativeImage(
-                function1=args.function1, function2=args.function2,
-                func_seed=args.function_seed, data=args.load_data, config=args.load_config,
-            )
-            if args.verbose:
-                print(LOG_GI_CREATED)
-                print_line()
-            gi.generate(
-                seed=args.seed,
-                start=args.start, step=args.step, stop=args.stop,
-                mode=args.mode,
-            )
-            if args.verbose:
-                print(LOG_GI_GENERATED)
-                print_line()
-            gi.plot(
-                color=args.color, bgcolor=args.bgcolor, cmap=args.cmap, spot_size=args.spot_size,
-                size=args.size, projection=args.projection, marker=args.marker, alpha=args.alpha,
-                linewidth=args.linewidth, rotation=args.rotation,
-            )
-            if args.verbose:
-                print(LOG_GI_PLOTTED)
-                print_line()
-            if not args.no_display:
-                plt.show()
-
-            if args.save_image:
-                result = gi.save_image(args.save_image, args.depth)
-                log_results(args.verbose, result, LOG_IMG_SAVED, ERR_IMG_SAVE_FAILED)
-            if args.save_data:
-                result = gi.save_data(args.save_data)
-                log_results(args.verbose, result, LOG_DATA_SAVED, ERR_DATA_SAVE_FAILED)
-            if args.save_config:
-                result = gi.save_config(args.save_config)
-                log_results(args.verbose, result, LOG_CONFIG_SAVED, ERR_CONFIG_SAVE_FAILED)
+            run_samila(args=args)
         except (KeyboardInterrupt, EOFError):
             print(EXIT_MESSAGE)
         except Exception as e:
