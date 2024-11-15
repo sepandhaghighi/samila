@@ -135,14 +135,16 @@ def run_samila(args):
         log_results(args.verbose, result, LOG_CONFIG_SAVED, ERR_CONFIG_SAVE_FAILED)
 
 
-def main():
+def main(sys_args=None):
     """
     CLI main function.
 
+    :param sys_args: system arguments
+    :type sys_args: list
     :return: None
     """
     parser = init_argparse()
-    args = parser.parse_args()
+    args = parser.parse_args(args=sys_args)
 
     if args.version:
         print(SAMILA_VERSION)
