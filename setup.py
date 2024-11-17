@@ -75,7 +75,7 @@ setup(
     include_package_data=True,
     entry_points={
             'console_scripts': [
-                'samila = samila.__main__:main',
+                'samila = samila.cli:main',
             ]
     }
 )

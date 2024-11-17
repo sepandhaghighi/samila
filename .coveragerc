@@ -4,6 +4,7 @@ omit =
     */samila/__main__.py
     */samila/__init__.py
     */samila/test.py
+    */samila/cli.py
 [report]
 # Regexes for lines to exclude from consideration
 exclude_lines =
