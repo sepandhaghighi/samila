@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Samila CLI."""
 
+import time
 import argparse
 import matplotlib.pyplot as plt
 from art import tprint
@@ -99,6 +100,7 @@ def run_samila(args):
     :type args: argparse.Namespace
     :return: None
     """
+    start_time = time.time()
     gi = GenerativeImage(
         function1=args.function1, function2=args.function2,
         func_seed=args.function_seed, data=args.load_data, config=args.load_config,
@@ -122,9 +124,10 @@ def run_samila(args):
     if args.verbose:
         print(LOG_GI_PLOTTED)
         print_line()
+    plt_show_start = time.time()
     if not args.no_display:
         plt.show()
-
+    plt_show_end = time.time()
     if args.save_image:
         result = gi.save_image(args.save_image, args.depth)
         log_results(args.verbose, result, LOG_IMG_SAVED, ERR_IMG_SAVE_FAILED)
@@ -134,6 +137,10 @@ def run_samila(args):
     if args.save_config:
         result = gi.save_config(args.save_config)
         log_results(args.verbose, result, LOG_CONFIG_SAVED, ERR_CONFIG_SAVE_FAILED)
+    end_time = time.time()
+    elapsed_time = (end_time - start_time) - (plt_show_end - plt_show_start)
+    if args.verbose:
+        print("Elapsed time: {0} s".format(round(elapsed_time, 4)))
 
 
 def main(sys_args=None):
