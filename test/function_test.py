@@ -89,6 +89,12 @@ False
 >>> marker2 = filter_marker(Marker.RANDOM)
 >>> marker1 == marker2
 False
+>>> random.seed(2)
+>>> generate_mode1 = filter_generate_mode(GenerateMode.RANDOM)
+>>> random.seed(3)
+>>> generate_mode2 = filter_generate_mode(GenerateMode.RANDOM)
+>>> generate_mode1 == generate_mode2
+False
 >>> distance_calc("test","test1")
 1
 >>> distance_calc("te1st","test")
