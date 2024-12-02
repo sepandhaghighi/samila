@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Elapsed time added to CLI
 - `README.md` updated
+- `demo.ipynb` updated
 ## [1.4] - 2024-11-20
 ### Added
 - Command Line Interface (CLI)
