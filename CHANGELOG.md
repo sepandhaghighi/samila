@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- `generate` method `mode` parameter random mode
+- 1 new generation mode
+	1. `RANDOM`
 ### Changed
 - Elapsed time added to CLI
 - `README.md` updated
