@@ -330,7 +330,7 @@ def filter_generate_mode(generate_mode):
         generate_mode_value = generate_mode.value
         if generate_mode_value == "random":
             generate_mode_list = list(GenerateMode)
-            generate_mode.remove(GenerateMode.RANDOM)
+            generate_mode_list.remove(GenerateMode.RANDOM)
             generate_mode_value = random.choice(generate_mode_list).value
         return generate_mode_value
     return None
