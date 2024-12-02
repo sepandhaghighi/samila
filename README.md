@@ -122,7 +122,7 @@ Samila is a generative art generator written in Python, Samila lets you create i
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/10.png">	
 
-ℹ️ Supported modes : `F1_VS_F2`, `F2_VS_F1`, `F1_VS_INDEX`, `F2_VS_INDEX`, `INDEX_VS_F1`, `INDEX_VS_F2`, `F1_VS_X1`, `F1_VS_X2`, `F2_VS_X1`, `F2_VS_X2`, `X1_VS_F1`, `X1_VS_F2`, `X2_VS_F1` and `X2_VS_F2`
+ℹ️ Supported modes : `F1_VS_F2`, `F2_VS_F1`, `F1_VS_INDEX`, `F2_VS_INDEX`, `INDEX_VS_F1`, `INDEX_VS_F2`, `F1_VS_X1`, `F1_VS_X2`, `F2_VS_X1`, `F2_VS_X2`, `X1_VS_F1`, `X1_VS_F2`, `X2_VS_F1`, `X2_VS_F2` and `RANDOM`
 
 ℹ️ Default mode is `F1_VS_F2`
 

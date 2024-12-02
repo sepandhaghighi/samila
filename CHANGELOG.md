@@ -5,8 +5,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- 1 new generation mode
+	1. `RANDOM`
 ### Changed
 - Elapsed time added to CLI
+- `README.md` updated
+- `demo.ipynb` updated
 ## [1.4] - 2024-11-20
 ### Added
 - Command Line Interface (CLI)
