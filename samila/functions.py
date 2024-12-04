@@ -313,6 +313,7 @@ def filter_projection(projection):
         if projection_value == "random":
             projection_list = list(Projection)
             projection_list.remove(Projection.RANDOM)
+            projection_list.remove(Projection.DEFAULT)
             projection_value = random.choice(projection_list).value
         return projection_value
     return None
@@ -331,6 +332,7 @@ def filter_generate_mode(generate_mode):
         if generate_mode_value == "random":
             generate_mode_list = list(GenerateMode)
             generate_mode_list.remove(GenerateMode.RANDOM)
+            generate_mode_list.remove(GenerateMode.DEFAULT)
             generate_mode_value = random.choice(generate_mode_list).value
         return generate_mode_value
     return None
@@ -349,6 +351,7 @@ def filter_marker(marker):
         if marker_value == "random":
             marker_list = list(Marker)
             marker_list.remove(Marker.RANDOM)
+            marker_list.remove(Marker.DEFAULT)
             marker_value = random.choice(marker_list).value
         return marker_value
     return None
