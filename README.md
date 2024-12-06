@@ -4,6 +4,7 @@
 	<h1>Samila</h1>
 	<br/>
 	<a href="https://www.python.org/"><img src="https://img.shields.io/badge/built%20with-Python3-green.svg" alt="built with Python3"></a>
+	<a href="https://github.com/sepandhaghighi/samila"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/sepandhaghighi/samila"></a>
 	<a href="https://codecov.io/gh/sepandhaghighi/samila"><img src="https://codecov.io/gh/sepandhaghighi/samila/branch/master/graph/badge.svg"></a>
 	<a href="https://badge.fury.io/py/samila"><img src="https://badge.fury.io/py/samila.svg" alt="PyPI version"></a>
 	<a href="https://anaconda.org/sepandhaghighi/samila"><img src="https://anaconda.org/sepandhaghighi/samila/badges/version.svg"></a>
