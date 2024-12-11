@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 	1. `RANDOM`
 ### Changed
 - Elapsed time added to CLI
+- CLI bug fixed
 - Random mode modified
 - `README.md` updated
 - `demo.ipynb` updated
