@@ -39,7 +39,8 @@ def init_argparse():
         '--mode',
         help='generation mode',
         type=str,
-        choices=[x.value for x in GenerateMode])
+        choices=[x.value for x in GenerateMode],
+        default=GenerateMode.DEFAULT.value)
 
     parser.add_argument('--color', help='color', type=str)
     parser.add_argument('--bgcolor', help='background color', type=str)
@@ -53,12 +54,14 @@ def init_argparse():
         '--projection',
         help='projection type',
         type=str,
-        choices=[x.value for x in Projection])
+        choices=[x.value for x in Projection],
+        default=Projection.DEFAULT.value)
     parser.add_argument(
         '--marker',
         help='marker type',
         type=str,
-        choices=[x.value for x in Marker])
+        choices=[x.value for x in Marker],
+        default=Marker.DEFAULT.value)
 
     parser.add_argument('--save-image', help='save image', type=str)
     parser.add_argument('--depth', help='depth', type=float)
