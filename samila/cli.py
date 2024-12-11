@@ -104,6 +104,9 @@ def run_samila(args):
     :return: None
     """
     start_time = time.time()
+    projection = Projection(args.projection)
+    marker = Marker(args.marker)
+    gen_mode = GenerateMode(args.mode)
     gi = GenerativeImage(
         function1=args.function1, function2=args.function2,
         func_seed=args.function_seed, data=args.load_data, config=args.load_config,
@@ -114,14 +117,14 @@ def run_samila(args):
     gi.generate(
         seed=args.seed,
         start=args.start, step=args.step, stop=args.stop,
-        mode=args.mode,
+        mode=gen_mode,
     )
     if args.verbose:
         print(LOG_GI_GENERATED)
         print_line()
     gi.plot(
         color=args.color, bgcolor=args.bgcolor, cmap=args.cmap, spot_size=args.spot_size,
-        size=args.size, projection=args.projection, marker=args.marker, alpha=args.alpha,
+        size=args.size, projection=projection, marker=marker, alpha=args.alpha,
         linewidth=args.linewidth, rotation=args.rotation,
     )
     if args.verbose:
