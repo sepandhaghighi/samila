@@ -39,7 +39,8 @@ def init_argparse():
         '--mode',
         help='generation mode',
         type=str,
-        choices=[x.value for x in GenerateMode])
+        choices=[x.value for x in GenerateMode],
+        default=GenerateMode.DEFAULT.value)
 
     parser.add_argument('--color', help='color', type=str)
     parser.add_argument('--bgcolor', help='background color', type=str)
@@ -53,12 +54,14 @@ def init_argparse():
         '--projection',
         help='projection type',
         type=str,
-        choices=[x.value for x in Projection])
+        choices=[x.value for x in Projection],
+        default=Projection.DEFAULT.value)
     parser.add_argument(
         '--marker',
         help='marker type',
         type=str,
-        choices=[x.value for x in Marker])
+        choices=[x.value for x in Marker],
+        default=Marker.DEFAULT.value)
 
     parser.add_argument('--save-image', help='save image', type=str)
     parser.add_argument('--depth', help='depth', type=float)
@@ -101,6 +104,9 @@ def run_samila(args):
     :return: None
     """
     start_time = time.time()
+    projection = Projection(args.projection)
+    marker = Marker(args.marker)
+    gen_mode = GenerateMode(args.mode)
     gi = GenerativeImage(
         function1=args.function1, function2=args.function2,
         func_seed=args.function_seed, data=args.load_data, config=args.load_config,
@@ -111,14 +117,14 @@ def run_samila(args):
     gi.generate(
         seed=args.seed,
         start=args.start, step=args.step, stop=args.stop,
-        mode=args.mode,
+        mode=gen_mode,
     )
     if args.verbose:
         print(LOG_GI_GENERATED)
         print_line()
     gi.plot(
         color=args.color, bgcolor=args.bgcolor, cmap=args.cmap, spot_size=args.spot_size,
-        size=args.size, projection=args.projection, marker=args.marker, alpha=args.alpha,
+        size=args.size, projection=projection, marker=marker, alpha=args.alpha,
         linewidth=args.linewidth, rotation=args.rotation,
     )
     if args.verbose:
