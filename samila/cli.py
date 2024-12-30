@@ -29,7 +29,7 @@ def init_argparse():
     parser.add_argument('--load-data', help='load data', type=str)
     parser.add_argument('--function1', help='function1', type=str)
     parser.add_argument('--function2', help='function2', type=str)
-    parser.add_argument('--function_seed', help='function seed', type=str)
+    parser.add_argument('--function-seed', help='function seed', type=str)
 
     parser.add_argument('--seed', help='generate seed', type=str)
     parser.add_argument('--start', help='start point', type=float)
