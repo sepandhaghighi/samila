@@ -92,6 +92,8 @@ class GenerateMode(Enum):
     X1_VS_F2 = "x1_vs_f2"
     X2_VS_F1 = "x2_vs_f1"
     X2_VS_F2 = "x2_vs_f2"
+    F1F2_VS_F1 = "f1f2_vs_f1"
+    F1F2_VS_F2 = "f1f2_vs_f2"
     RANDOM = "random"
 
 
