@@ -6,8 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- 1 new generation mode
+- 3 new generation modes
 	1. `RANDOM`
+	2. `F1F2_VS_F1`
+	3. `F1F2_VS_F2`
 ### Changed
 - Elapsed time added to CLI
 - CLI bug fixed
