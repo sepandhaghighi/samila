@@ -33,14 +33,14 @@ def read_description():
 setup(
     name='samila',
     packages=['samila'],
-    version='1.4',
+    version='1.5',
     description='A Generative Art Generator',
     long_description=read_description(),
     long_description_content_type='text/markdown',
     author='Samila Development Team',
     author_email='info@samila.site',
     url='https://www.samila.site',
-    download_url='https://github.com/sepandhaghighi/samila/tarball/v1.4',
+    download_url='https://github.com/sepandhaghighi/samila/tarball/v1.5',
     keywords="generative generative-art art nft file",
     project_urls={
         'Source': 'https://github.com/sepandhaghighi/samila',
