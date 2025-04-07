@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- 2 new generation modes
+	1. `F1_VS_F1F2`
+	2. `F2_VS_F1F2`
 ## [1.5] - 2025-01-22
 ### Added
 - 3 new generation modes
