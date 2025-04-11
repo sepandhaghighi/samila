@@ -459,6 +459,24 @@ You can also join our discord server
 
 <blockquote>3- <a href="https://nft.storage/">NFT.storage : Free decentralized storage and bandwidth for NFTs</a></blockquote>
 
+
+## Cite
+
+If you use Samila in your research, we would appreciate citations to the following paper:
+
+
+[Sabouri, Sadra, Sepand Haghighi, and Elena Masrour. "Samila: A Generative Art Generator." *arXiv preprint arXiv:2504.04298* (2025).](https://arxiv.org/pdf/2504.04298)
+
+
+```bibtex
+@article{sabouri2025samila,
+  title={Samila: A Generative Art Generator},
+  author={Sabouri, Sadra and Haghighi, Sepand and Masrour, Elena},
+  journal={arXiv preprint arXiv:2504.04298},
+  year={2025}
+}
+```
+
 ## Acknowledgments
 
 This project was funded through the **Next Step Microgrant**, a program established by [Protocol Labs](https://protocol.ai/).
