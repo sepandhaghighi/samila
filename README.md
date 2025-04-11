@@ -465,7 +465,7 @@ You can also join our discord server
 If you use Samila in your research, we would appreciate citations to the following paper:
 
 
-[Sabouri, Sadra, Sepand Haghighi, and Elena Masrour. "Samila: A Generative Art Generator." *arXiv preprint arXiv:2504.04298* (2025).](https://arxiv.org/pdf/2504.04298)
+[Sabouri, Sadra, Sepand Haghighi, and Elena Masrour. "Samila: A Generative Art Generator." *arXiv preprint arXiv:2504.04298* (2025).](https://arxiv.org/abs/2504.04298)
 
 
 ```bibtex
