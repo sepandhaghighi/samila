@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - 2 new generation modes
 	1. `F1_VS_F1F2`
 	2. `F2_VS_F1F2`
+### Changed
+- `README.md` updated
 ## [1.5] - 2025-01-22
 ### Added
 - 3 new generation modes
