@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 	2. `F2_VS_F1F2`
 ### Changed
 - `README.md` updated
+- Test system modified
+- `Python 3.6` support dropped
 ## [1.5] - 2025-01-22
 ### Added
 - 3 new generation modes
