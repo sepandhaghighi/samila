@@ -4,10 +4,8 @@ from typing import Callable, Tuple, Dict, Generator, List
 from typing import Any, Union, Iterable
 import sys
 import matplotlib.axes
-import matplotlib.axes._subplots
 import matplotlib.colors
 import matplotlib.figure
-import matplotlib.pyplot
 import requests
 import io
 import os
