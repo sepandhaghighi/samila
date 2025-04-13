@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - `README.md` updated
 - Test system modified
 - `Python 3.6` support dropped
+- Python typing features added to all modules
 ## [1.5] - 2025-01-22
 ### Added
 - 3 new generation modes
