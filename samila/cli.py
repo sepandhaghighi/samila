@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Samila CLI."""
-
+from typing import Dict, List, Any
 import time
 import argparse
 import matplotlib.pyplot as plt
@@ -14,12 +14,8 @@ from .functions import samila_help, print_line
 from .genimage import GenerativeImage
 
 
-def init_argparse():
-    """
-    Initialize argparse.
-
-    :return: parser
-    """
+def init_argparse() -> argparse.ArgumentParser:
+    """Initialize argparse."""
     parser = argparse.ArgumentParser()
     parser.add_argument('--version', help='version', action='store_true', default=False)
     parser.add_argument('--info', help='info', action='store_true', default=False)
@@ -72,19 +68,14 @@ def init_argparse():
     return parser
 
 
-def log_results(is_verbose, result, log_success, log_fail):
+def log_results(is_verbose: bool, result: Dict[str, Any], log_success: str, log_fail: str) -> None:
     """
     Save result function.
 
     :param is_verbose: is verbose
-    :type is_verbose: bool
     :param result: result dictionary
-    :type result: dict
     :param log_success: log for successful result
-    :type log_success: str
     :param log_fail: log for failed result
-    :type log_fail: str
-    :return: None
     """
     if is_verbose:
         if result['status']:
@@ -95,13 +86,11 @@ def log_results(is_verbose, result, log_success, log_fail):
             print_line()
 
 
-def run_samila(args):
+def run_samila(args: argparse.Namespace) -> None:
     """
     Run samila.
 
     :param args: arguments
-    :type args: argparse.Namespace
-    :return: None
     """
     start_time = time.time()
     projection = Projection(args.projection)
@@ -149,13 +138,11 @@ def run_samila(args):
         print("Elapsed time: {0} s".format(round(elapsed_time, 4)))
 
 
-def main(sys_args=None):
+def main(sys_args: List[Any] = None) -> None:
     """
     CLI main function.
 
     :param sys_args: system arguments
-    :type sys_args: list
-    :return: None
     """
     parser = init_argparse()
     args = parser.parse_args(args=sys_args)
