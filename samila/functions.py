@@ -346,7 +346,7 @@ def rotate(
     Rotate the given figure and return axis.
 
     :param fig: figure containing the image
-    :param ax: axis on which rotated image is ploted
+    :param ax: axis on which rotated image is plotted
     :param rotation: desired rotation (in degrees)
     """
     if rotation != DEFAULT_ROTATION:
