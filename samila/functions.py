@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 """Samila functions."""
-
+from typing import Callable, Tuple, Dict, Generator, List
+from typing import Any, Union, Iterable
 import sys
+import matplotlib.axes
+import matplotlib.axes._subplots
+import matplotlib.colors
+import matplotlib.figure
+import matplotlib.pyplot
 import requests
 import io
 import os
@@ -11,11 +17,12 @@ import random
 import matplotlib
 from PIL import Image
 from functools import wraps
+from .params import Projection, GenerateMode, Marker, Gateway
 from .params import SAMILA_VERSION
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
 from .params import DEFAULT_CMAP_NAME, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION, DEFAULT_GENERATE_MODE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
-from .params import Projection, GenerateMode, Marker, VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, OVERVIEW
+from .params import VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_FORMAT_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
 from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
@@ -27,37 +34,29 @@ from .errors import samilaDataError, samilaPlotError, samilaConfigError
 from warnings import warn
 
 
-def print_line(char="*", number=30):
+def print_line(char: str = "*", number: int = 30) -> None:
     """
     Print line of chars.
 
     :param char: input character
-    :type char: str
     :param number: number of characters
-    :type number: int
-    :return: None
     """
     print(char * number)
 
 
-def deprecated(func):
+def deprecated(func: Callable) -> Callable:
     """
     Decorate for deprecated functions.
 
     :param func: function to be deprecated
-    :type func: function
-    :return: deprecated function
     """
     @wraps(func)
-    def inner_func(*args, **kwargs):
+    def inner_func(*args: Tuple, **kwargs: Dict) -> Callable:
         """
         Inner function.
 
         :param args: arguments
-        :type args: tuple
         :param kwargs: keyword arguments
-        :type kwargs: dict
-        :return: modified result of function
         """
         warn(DEPRECATION_WARNING.format(func.__name__),
              category=DeprecationWarning,
@@ -66,12 +65,8 @@ def deprecated(func):
     return inner_func
 
 
-def random_equation_gen():
-    """
-    Generate random equation.
-
-    :return: equation as str
-    """
+def random_equation_gen() -> str:
+    """Generate random equation."""
     num_elements = random.randint(
         RANDOM_EQUATION_MIN_COMPLEXITY,
         RANDOM_EQUATION_MAX_COMPLEXITY)
@@ -94,42 +89,31 @@ def random_equation_gen():
     return result
 
 
-def random_hex_color_gen():
-    """
-    Generate random hex color code.
-
-    :return: color code as str
-    """
+def random_hex_color_gen() -> str:
+    """Generate random hex color code."""
     random_color = "#%06x" % random.randint(0, 0xFFFFFF)
     return random_color
 
 
-def float_range(start, stop, step):
+def float_range(start: float, stop: float, step: float) -> Generator[float, None, None]:
     """
     Generate float range.
 
     :param start: start point
-    :type start: float
     :param stop: stop point
-    :type step: float
-    :param step: step
-    :type step: float
-    :return: yield result
+    :param step: step size
     """
     while start < stop:
         yield float(start)
         start += step
 
 
-def distance_calc(s1, s2):
+def distance_calc(s1: str, s2: str) -> int:
     """
     Calculate Levenshtein distance between two words.
 
     :param s1: first string
-    :type s1 : str
     :param s2: second string
-    :type s2 : str
-    :return: distance between two string
 
     References :
     1- https://stackoverflow.com/questions/2460177/edit-distance-in-python
@@ -151,13 +135,11 @@ def distance_calc(s1, s2):
     return distances[-1]
 
 
-def is_valid_color(color):
+def is_valid_color(color: Any) -> bool:
     """
     Check that input color format is valid or not.
 
     :param color: given color
-    :type color: any format
-    :return: result as bool
     """
     if color is None:
         return True
@@ -168,13 +150,11 @@ def is_valid_color(color):
         return False
 
 
-def color_complement(color):
+def color_complement(color: str) -> str:
     """
     Calculate complement color.
 
     :param color: given color (hex format)
-    :type color: str
-    :return: complement color (hex format) as str
     """
     color = color[1:]
     color = int(color, 16)
@@ -183,15 +163,12 @@ def color_complement(color):
     return comp_color
 
 
-def filter_color(color, bgcolor):
+def filter_color(color: Any, bgcolor: Any) -> Tuple[str, str]:
     """
     Filter given color and bgcolor.
 
     :param color: given color
-    :type color: any format
     :param bgcolor: given background color
-    :type bgcolor: any format
-    :return: filtered version of color and bgcolor
     """
     color = select_color(color)
     bgcolor = select_color(bgcolor)
@@ -207,15 +184,12 @@ def filter_color(color, bgcolor):
     return color, bgcolor
 
 
-def get_cmap(name=DEFAULT_CMAP_NAME, lut=256):
+def get_cmap(name: str = DEFAULT_CMAP_NAME, lut: int = 256) -> matplotlib.colors.Colormap:
     """
     Get colormap.
 
     :param name: colormap name
-    :type name: str
     :param lut: look up table for colormap
-    :type lut: int
-    :return: desired colormap
     """
     try:
         return matplotlib.colormaps.get_cmap(name)
@@ -223,13 +197,11 @@ def get_cmap(name=DEFAULT_CMAP_NAME, lut=256):
         return matplotlib.cm.get_cmap(name, lut)
 
 
-def filter_cmap(cmap):
+def filter_cmap(cmap: Union[str, matplotlib.colors.Colormap, List[str]]) -> matplotlib.colors.ListedColormap:
     """
     Filter given cmap.
 
     :param cmap: color map
-    :type cmap: matplotlib.colors.Colormap or list of colors
-    :return: filtered version of cmap
     """
     if isinstance(cmap, str):
         cmap = get_cmap(cmap, 256)
@@ -246,13 +218,11 @@ def filter_cmap(cmap):
     return None
 
 
-def select_color(color):
+def select_color(color: Union[str, Any]) -> str:
     """
     Select color and return it.
 
     :param color: given color
-    :type color: any format
-    :return: color
     """
     if isinstance(color, str):
         if color.upper() == "TRANSPARENT":
@@ -279,17 +249,14 @@ def select_color(color):
     raise samilaPlotError(INVALID_COLOR_TYPE_ERROR)
 
 
-def set_background(bgcolor, fig, ax):
+def set_background(bgcolor: Any, fig: matplotlib.figure.Figure, ax: matplotlib.axes._subplots.AxesSubplot) -> None:
     """
     Set background for figure and axis.
 
     :param bgcolor: given background color
-    :type bgcolor: any format
     :param fig: figure
     :type fig: matplotlib.figure.Figure
-    :param ax: axis
     :type ax: matplotlib.axes._subplots.AxesSubplot
-    :return: None
     """
     if bgcolor == "TRANSPARENT":
         ax.patch.set_visible(False)
@@ -300,13 +267,11 @@ def set_background(bgcolor, fig, ax):
     return
 
 
-def filter_projection(projection):
+def filter_projection(projection: Projection) -> str:
     """
     Filter given projection.
 
     :param projection: given projection
-    :type projection: Projection enum
-    :return: filtered version of projection
     """
     if isinstance(projection, Projection):
         projection_value = projection.value
@@ -319,13 +284,11 @@ def filter_projection(projection):
     return None
 
 
-def filter_generate_mode(generate_mode):
+def filter_generate_mode(generate_mode: GenerateMode) -> str:
     """
     Filter given generate-mode.
 
     :param generate_mode: given generate-mode
-    :type generate_mode: GenerateMode enum
-    :return: filtered version of generate-mode
     """
     if isinstance(generate_mode, GenerateMode):
         generate_mode_value = generate_mode.value
@@ -338,13 +301,11 @@ def filter_generate_mode(generate_mode):
     return None
 
 
-def filter_marker(marker):
+def filter_marker(marker: Marker) -> str:
     """
     Filter given marker.
 
     :param marker: given marker
-    :type marker: Marker enum
-    :return: filtered version of marker
     """
     if isinstance(marker, Marker):
         marker_value = marker.value
@@ -357,26 +318,22 @@ def filter_marker(marker):
     return None
 
 
-def filter_float(value):
+def filter_float(value: float) -> Union[float, int, None]:
     """
     Filter given float value.
 
     :param value: given value
-    :type value: float
-    :return: filtered version of value
     """
     if isinstance(value, (float, int)):
         return value
     return None
 
 
-def filter_size(size):
+def filter_size(size: Tuple[float, float]) -> Tuple[float, float]:
     """
     Filter given image size.
 
-    :param value: given size
-    :type value: tuple of float
-    :return: filtered version of size
+    :param size: given size
     """
     if isinstance(size, tuple):
         if not any(map(lambda x: x != filter_float(x), size)):
@@ -384,17 +341,16 @@ def filter_size(size):
     return None
 
 
-def rotate(fig, ax, rotation):
+def rotate(
+        fig: matplotlib.figure.Figure,
+        ax: matplotlib.axes.Axes,
+        rotation: float) -> matplotlib.axes.Axes:
     """
     Rotate the given figure and return axis.
 
     :param fig: figure containing the image
-    :type fig: Figure
     :param ax: axis on which rotated image is ploted
-    :type ax: Axis
     :param rotation: desired rotation (in degrees)
-    :type rotation: float
-    :return: axis containing rotated image
     """
     if rotation != DEFAULT_ROTATION:
         buf = io.BytesIO()
@@ -409,43 +365,31 @@ def rotate(fig, ax, rotation):
 
 
 def plot_params_filter(
-        g,
-        color=None,
-        bgcolor=None,
-        cmap=None,
-        spot_size=None,
-        size=None,
-        projection=None,
-        marker=None,
-        alpha=None,
-        linewidth=None,
-        rotation=None):
+        g: "GenerativeImage",
+        color: str = None,
+        bgcolor: str = None,
+        cmap: Union[matplotlib.colors.Colormap, List] = None,
+        spot_size: float = None,
+        size: Tuple[float, float] = None,
+        projection: str = None,
+        marker: str = None,
+        alpha: float = None,
+        linewidth: float = None,
+        rotation: float = None) -> None:
     """
     Filter plot method parameters.
 
     :param g: generative image instance
-    :type g: GenerativeImage
     :param color: point colors
-    :type color: str
     :param bgcolor: background color
-    :type bgcolor: str
     :param cmap: color map
-    :type cmap: matplotlib.colors.Colormap or list of colors
     :param spot_size: point spot size
-    :type spot_size: float
     :param size: figure size
-    :type size: tuple
     :param projection: projection type
-    :type projection: str
     :param marker: marker type
-    :type marker: str
     :param alpha: point transparency
-    :type alpha: float
     :param linewidth: width of line
-    :type linewidth: float
     :param rotation: desired rotation (in degrees)
-    :type rotation: float
-    :return: None
     """
     if g.data1 is None:
         raise samilaPlotError(PLOT_DATA_ERROR.format(1))
@@ -489,28 +433,21 @@ def plot_params_filter(
 
 
 def generate_params_filter(
-        g,
-        seed=None,
-        start=None,
-        step=None,
-        stop=None,
-        mode=None):
+        g: "GenerativeImage",
+        seed: int =None,
+        start: float = None,
+        step: float = None,
+        stop: float = None,
+        mode: GenerateMode = None) -> None:
     """
     Filter generate method parameters.
 
     :param g: generative image instance
-    :type g: GenerativeImage
     :param seed: random seed
-    :type seed: int
     :param start: range start point
-    :type start: float
     :param step: range step size
-    :type step: float
     :param stop: range stop point
-    :type stop: float
     :param mode: generate mode
-    :type mode: GenerateMode enum
-    :return: None
     """
     start, step, stop = map(filter_float, [start, step, stop])
     generate_mode = filter_generate_mode(mode)
@@ -529,30 +466,24 @@ def generate_params_filter(
     g.seed, g.start, g.step, g.stop, g.generate_mode = seed, start, step, stop, generate_mode
 
 
-def save_params_filter(g, depth=None):
+def save_params_filter(g: "GenerativeImage", depth: float = None) -> None:
     """
     Filter save_image method parameters.
 
     :param depth: depth of image
-    :type depth: float
-    :return: None
     """
     if depth is None:
         depth = g.depth
     g.depth = depth
 
 
-def _GI_initializer(g, function1, function2):
+def _GI_initializer(g: "GenerativeImage", function1: Callable, function2: Callable) -> None:
     """
     Initialize the generative image.
 
     :param g: generative image instance
-    :type g: GenerativeImage
     :param function1: function 1
-    :type function1: python or lambda function
     :param function2: function 2
-    :type function2: python or lambda function
-    :return: None
     """
     g.__version__ = SAMILA_VERSION
     g.matplotlib_version = matplotlib.__version__
@@ -583,19 +514,18 @@ def _GI_initializer(g, function1, function2):
     g.missed_points_number = 0
 
 
-def nft_storage_upload(api_key, data, timeout, gateway):
+def nft_storage_upload(
+        api_key: str,
+        data: bytes,
+        timeout: int,
+        gateway: Gateway) -> Dict[str, Any]:
     """
     Upload file to nft.storage.
 
     :param api_key: API key
-    :type api_key: str
     :param data: image data
-    :type data: binary
     :param timeout: upload timeout (in seconds)
-    :type timeout: int
     :param gateway: IPFS gateway
-    :type gateway: Gateway enum
-    :return: result as dict
     """
     result = {"status": True, "message": NFT_STORAGE_SUCCESS_MESSAGE}
     try:
@@ -619,15 +549,12 @@ def nft_storage_upload(api_key, data, timeout, gateway):
         return result
 
 
-def save_data_file(g, file_adr):
+def save_data_file(g: "GenerativeImage", file_adr: str) -> Dict[str, Any]:
     """
     Save data as file.
 
     :param g: generative image instance
-    :type g: GenerativeImage
     :param file_adr: file address
-    :type file_adr: str
-    :return: result as dict
     """
     data = get_data(g)
     result = {"status": True, "message": DATA_SAVE_SUCCESS_MESSAGE}
@@ -641,25 +568,19 @@ def save_data_file(g, file_adr):
     return result
 
 
-def get_python_version():
-    """
-    Get Python's version.
-
-    :return: python's version as 'major.minor'
-    """
+def get_python_version() -> str:
+    """Get Python's version as 'major.minor'."""
     return "{}.{}".format(
         sys.version_info.major,
         sys.version_info.minor
     )
 
 
-def get_data(g):
+def get_data(g: "GenerativeImage") -> Dict[str, Any]:
     """
     Return data.
 
     :param g: generative image instance
-    :type g: GenerativeImage
-    :return: data as a dict
     """
     data = {}
     if g.data1 is None or g.data2 is None:
@@ -684,13 +605,11 @@ def get_data(g):
     return data
 
 
-def get_config(g):
+def get_config(g: "GenerativeImage") -> Dict[str, Any]:
     """
     Return config.
 
     :param g: generative image instance
-    :type g: GenerativeImage
-    :return: config as a dict
     """
     config = {}
     if g.function1_str is None or g.function2_str is None:
@@ -722,7 +641,7 @@ def get_config(g):
     return config
 
 
-def save_config_file(g, file_adr):
+def save_config_file(g: "GenerativeImage", file_adr: str) -> Dict[str, Any]:
     """
     Save config as file.
 
@@ -744,17 +663,13 @@ def save_config_file(g, file_adr):
     return result
 
 
-def save_fig_file(figure, file_adr, depth):
+def save_fig_file(figure: matplotlib.figure.Figure, file_adr: str, depth: float) -> Dict[str, Any]:
     """
     Save figure as file.
 
     :param figure: matplotlib figure
-    :type figure: matplotlib.figure.Figure
     :param file_adr: file address
-    :type file_adr: str
     :param depth: image depth
-    :type depth: float
-    :return: result as dict
     """
     if figure is None:
         return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
@@ -773,15 +688,12 @@ def save_fig_file(figure, file_adr, depth):
         return result
 
 
-def save_fig_buf(figure, depth):
+def save_fig_buf(figure: matplotlib.figure.Figure, depth: float) -> Dict[str, Any]:
     """
     Save figure as buffer.
 
     :param figure: matplotlib figure
-    :type figure: matplotlib.figure.Figure
     :param depth: image depth
-    :type depth: float
-    :return: result as dict
     """
     if figure is None:
         return {"status": False, "message": NO_FIG_ERROR_MESSAGE}
@@ -805,28 +717,20 @@ def save_fig_buf(figure, depth):
         return result
 
 
-def samila_help():
-    """
-    Print samila details.
-
-    :return: None
-    """
+def samila_help() -> None:
+    """Print samila details."""
     print(OVERVIEW)
     print("Website : https://www.samila.site")
     print("Repo : https://github.com/sepandhaghighi/samila")
 
 
-def is_same_data(data1, data2, precision=10**-5):
+def is_same_data(data1: List[float], data2: List[float], precision: float = 10**-5) -> bool:
     """
-    Compare two data to be the same.
+    Compare two data to be the same, return True if they are.
 
     :param data1: given data1
-    :type data1: list
     :param data2: given data2
-    :type data2: list
     :param precision: comparing precision
-    :type precision: float
-    :return: True if they are the same
     """
     if len(data1) != len(data2):
         return False
@@ -834,37 +738,31 @@ def is_same_data(data1, data2, precision=10**-5):
     return all(is_same)
 
 
-def _serialize_color(color):
+def _serialize_color(color: Union[str, Iterable[str]]) -> Union[str, List[str]]:
     """
     Serialize the given color to a json serializable object.
 
     :param color: given color
-    :type color: str or nd.array
-    :return: the serializable version of the color
     """
     if isinstance(color, str):
         return color
     return list(color)
 
 
-def _serialize_cmap(cmap):
+def _serialize_cmap(cmap: matplotlib.colors.Colormap) -> List[str]:
     """
     Serialize the cmap for saving.
 
     :param cmap: color map
-    :type cmap: matplotlib.colors.Colormap
-    :return: list of colors
     """
     return list(map(_serialize_color, cmap.colors))
 
 
-def _load_cmap(config):
+def _load_cmap(config: Dict[str, Any]) -> matplotlib.colors.ListedColormap:
     """
     Load the cmap from config.
 
     :param config: plot part configuration
-    :type config: dict or json
-    :return: ListedColormap from cmap
     """
     if "cmap" not in config:
         return get_cmap()
@@ -872,15 +770,12 @@ def _load_cmap(config):
     return matplotlib.colors.ListedColormap(cmap)
 
 
-def load_data(g, data):
+def load_data(g: "GenerativeImage", data: io.IOBase) -> None:
     """
     Load data file.
 
     :param g: generative image instance
-    :type g: GenerativeImage
     :param data: prior generated data
-    :type data: (io.IOBase & file)
-    :return: None
     """
     if isinstance(data, io.IOBase):
         data = json.load(data)
@@ -910,15 +805,12 @@ def load_data(g, data):
     raise samilaDataError(DATA_TYPE_ERROR)
 
 
-def load_config(g, config):
+def load_config(g: "GenerativeImage", config: io.IOBase) -> None:
     """
     Load config file.
 
     :param g: generative image instance
-    :type g: GenerativeImage
     :param config: config JSON file
-    :type config: (io.IOBase & file)
-    :return: None
     """
     if isinstance(config, io.IOBase):
         config = json.load(config)

@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 """Samila generative image."""
+from typing import List, Tuple, Dict, Callable
+from typing import Union, Iterable
+from typing import Any
 import json
 import random
+import io
 import gc
 import itertools
 import matplotlib
@@ -28,24 +32,19 @@ class GenerativeImage:
 
     def __init__(
             self,
-            function1=None,
-            function2=None,
-            data=None,
-            config=None,
-            func_seed=None):
+            function1: Callable = None,
+            function2: Callable = None,
+            data: io.IOBase = None,
+            config: io.IOBase = None,
+            func_seed: Any = None) -> None:
         """
         Init method.
 
         :param function1: function 1
-        :type function1: python or lambda function
         :param function2: function 2
-        :type function2: python or lambda function
         :param data: prior generated data
-        :type data: (io.IOBase & file)
         :param config: generative image config
-        :type config: (io.IOBase & file)
         :param func_seed: random seed for function generation
-        :type func_seed: Any
         """
         _GI_initializer(self, function1, function2)
         if config is not None:
@@ -74,25 +73,19 @@ class GenerativeImage:
 
     def generate(
             self,
-            seed=None,
-            start=None,
-            step=None,
-            stop=None,
-            mode=None):
+            seed: int = None,
+            start: float = None,
+            step: float = None,
+            stop: float = None,
+            mode: GenerateMode = None) -> None:
         """
         Generate a raw format of art.
 
         :param seed: random seed
-        :type seed: int
         :param start: range start point
-        :type start: float
         :param step: range step size
-        :type step: float
         :param stop: range stop point
-        :type stop: float
         :param mode: generate mode
-        :type mode: GenerateMode enum
-        :return: None
         """
         generate_params_filter(self, seed, start, step, stop, mode)
         self.data1 = []
@@ -166,40 +159,29 @@ class GenerativeImage:
 
     def plot(
             self,
-            color=None,
-            bgcolor=None,
-            cmap=None,
-            spot_size=None,
-            size=None,
-            projection=None,
-            marker=None,
-            alpha=None,
-            linewidth=None,
-            rotation=None):
+            color: Union[str, Iterable[str]] = None,
+            bgcolor: Union[str, Iterable[str]] = None,
+            cmap: Union[matplotlib.colors.Colormap, List]=None,
+            spot_size: float=None,
+            size: Tuple[float, float]=None,
+            projection: Projection = None,
+            marker: Marker = None,
+            alpha: float = None,
+            linewidth: float = None,
+            rotation: float = None) -> None:
         """
         Plot the generated art.
 
         :param color: point colors
-        :type color: str
         :param bgcolor: background color
-        :type bgcolor: str
         :param cmap: color map
-        :type cmap: matplotlib.colors.Colormap or list of colors
         :param spot_size: point spot size
-        :type spot_size: float
         :param size: figure size
-        :type size: tuple
         :param projection: projection type
-        :type projection: str
         :param marker: marker type
-        :type marker: str
         :param alpha: point transparency
-        :type alpha: float
         :param linewidth: width of line
-        :type linewidth: float
         :param rotation: desired rotation (in degrees)
-        :type rotation: float
-        :return: None
         """
         plot_params_filter(
             self,
@@ -237,28 +219,21 @@ class GenerativeImage:
     @deprecated
     def nft_storage(
             self,
-            api_key,
-            upload_data=False,
-            upload_config=False,
-            depth=None,
-            timeout=3000,
-            gateway=Gateway.IPFS_IO):
+            api_key: str,
+            upload_data: bool = False,
+            upload_config: bool = False,
+            depth: float = None,
+            timeout: int = 3000,
+            gateway: Gateway = Gateway.IPFS_IO) -> Dict[str, Any]:
         """
         Upload image to nft.storage.
 
         :param api_key: API key
-        :type api_key: str
         :param upload_data: upload data flag
-        :type upload_data: bool
         :param upload_config: upload config flag
-        :type upload_config: bool
         :param depth: image depth
-        :type depth: float
         :param timeout: upload timeout (in seconds)
-        :type timeout: int
         :param gateway: IPFS gateway
-        :type gateway: Gateway enum
-        :return: result as dict
         """
         save_params_filter(self, depth)
         response = save_fig_buf(self.fig, self.depth)
@@ -291,45 +266,34 @@ class GenerativeImage:
                 result[key]['data'] = value
         return result
 
-    def save_image(self, file_adr, depth=None):
+    def save_image(self, file_adr: str, depth: float = None) -> Dict[str, Any]:
         """
         Save generated image.
 
         :param file_adr: file address
-        :type file_adr: str
         :param depth: image depth
-        :type depth: float
-        :return: result as dict
         """
         save_params_filter(self, depth)
         return save_fig_file(self.fig, file_adr, self.depth)
 
-    def save_data(self, file_adr='data.json'):
+    def save_data(self, file_adr: str = 'data.json') -> Dict[str, Any]:
         """
         Save data into a file.
 
         :param file_adr: file address
-        :type file_adr: str
-        :return: result as dict
         """
         return save_data_file(self, file_adr)
 
-    def save_config(self, file_adr='config.json'):
+    def save_config(self, file_adr: str = 'config.json') -> Dict[str, Any]:
         """
         Save config into a file.
 
         :param file_adr: file address
-        :type file_adr: str
-        :return: result as a dict
         """
         return save_config_file(self, file_adr)
 
-    def __del__(self):
-        """
-        Destructor.
-
-        :return:None
-        """
+    def __del__(self) -> None:
+        """Destructor."""
         try:
             del self.data1
             del self.data2
