@@ -5,12 +5,12 @@ import random
 import math
 
 
-def f1(x, y):
+def f1(x: float, y: float) -> float:
     result = random.uniform(-1, 1) * x**2 - math.sin(y**2) + abs(y-x)
     return result
 
 
-def f2(x, y):
+def f2(x: float, y: float) -> float:
     result = random.uniform(-1, 1) * y**3 - math.cos(x**2) + 2*x
     return result
 

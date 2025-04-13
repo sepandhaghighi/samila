@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Setup module."""
+from typing import List
 try:
     from setuptools import setup
 except ImportError:
@@ -10,13 +11,13 @@ MINIMAL_DESCRIPTION = '''Samila is a generative art generator written in Python,
 formula, which has random parameters. Because of the random numbers, every image looks different.'''
 
 
-def get_requires():
+def get_requires() -> List[str]:
     """Read requirements.txt."""
     requirements = open("requirements.txt", "r").read()
     return list(filter(lambda x: x != "", requirements.split()))
 
 
-def read_description():
+def read_description() -> str:
     """Read README.md and CHANGELOG.md."""
     try:
         with open("README.md") as r:
