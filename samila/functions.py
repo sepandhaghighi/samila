@@ -249,14 +249,13 @@ def select_color(color: Union[str, Any]) -> str:
     raise samilaPlotError(INVALID_COLOR_TYPE_ERROR)
 
 
-def set_background(bgcolor: Any, fig: matplotlib.figure.Figure, ax: matplotlib.axes._subplots.AxesSubplot) -> None:
+def set_background(bgcolor: Any, fig: matplotlib.figure.Figure, ax: matplotlib.axes.Axes) -> None:
     """
     Set background for figure and axis.
 
     :param bgcolor: given background color
     :param fig: figure
-    :type fig: matplotlib.figure.Figure
-    :type ax: matplotlib.axes._subplots.AxesSubplot
+    :param ax: axis
     """
     if bgcolor == "TRANSPARENT":
         ax.patch.set_visible(False)
