@@ -3,9 +3,6 @@
 from typing import Callable, Tuple, Dict, Generator, List
 from typing import Any, Union, Iterable
 import sys
-import matplotlib.axes
-import matplotlib.colors
-import matplotlib.figure
 import requests
 import io
 import os
