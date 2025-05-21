@@ -11,9 +11,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 	2. `F2_VS_F1F2`
 ### Changed
 - `README.md` updated
+- `demo.ipynb` updated
 - Test system modified
 - `Python 3.6` support dropped
 - Python typing features added to all modules
+### Removed
+- `nft_storage` method
+- `Gateway` enum
 ## [1.5] - 2025-01-22
 ### Added
 - 3 new generation modes
