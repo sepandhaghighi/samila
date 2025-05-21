@@ -50,12 +50,7 @@ jobs:
         pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
     - name: Test with pytest
       run: |
-        python -m pytest --ignore-glob="*nft_upload_test.py" test --cov=samila --cov-report=term
-    - name: Test with pytest (+ NFT upload test)
-      run: |
         python -m pytest test --cov=samila --cov-report=term
-      env:
-        NFT_STORAGE_API_KEY: ${{ secrets.NFT_STORAGE_API_KEY }}
       if: matrix.python-version == env.TEST_PYTHON_VERSION && matrix.os == env.TEST_OS
     - name: Version check
       run: |
