@@ -3,7 +3,6 @@
 from typing import List, Tuple, Dict, Callable
 from typing import Union, Iterable
 from typing import Any
-import json
 import random
 import io
 import gc
@@ -11,10 +10,10 @@ import itertools
 import matplotlib
 import matplotlib.pyplot as plt
 from .functions import _GI_initializer, plot_params_filter, generate_params_filter, save_params_filter
-from .functions import get_config, get_data, get_python_version
-from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
+from .functions import get_python_version
+from .functions import float_range, save_data_file, save_fig_file, save_config_file
 from .functions import load_data, load_config, random_equation_gen
-from .functions import set_background, rotate, deprecated
+from .functions import set_background, rotate
 from .params import *
 from warnings import warn, catch_warnings, simplefilter
 

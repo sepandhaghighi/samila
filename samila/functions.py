@@ -3,7 +3,6 @@
 from typing import Callable, Tuple, Dict, Generator, List
 from typing import Any, Union, Iterable
 import sys
-import requests
 import io
 import os
 import re
