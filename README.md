@@ -245,38 +245,6 @@ You can make your custom color map and use it in Samila.
 ```
 <img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/images/5.png">	
 
-### NFT.storage
-Upload generated image directly to [NFT.storage](https://NFT.storage)
-
-```pycon
->>> g.nft_storage(api_key="YOUR_API_KEY", timeout=5000)
-{'status': True, 'message': 'FILE_LINK'}
-```
-
-You can also upload your config/data to nft storage as follows:
-```pycon
->>> g.nft_storage(api_key="API_KEY", upload_config=True)
-{'status': {'image': True, 'config':True}, 'message': {'image':'IMAGE_FILE_LINK', 'config':'CONFIG_FILE_LINK'}
-```
-or
-```pycon
->>> g.nft_storage(api_key="API_KEY", upload_data=True)
-{'status': {'image': True, 'data':True}, 'message': {'image':'IMAGE_FILE_LINK', 'data':'DATA_FILE_LINK'}
-```
-
-You have the option to choose a specific IPFS gateway:
-```pycon
->>> from samila import Gateway
->>> g.nft_storage(api_key="API_KEY", upload_data=True, gateway=Gateway.DWEB)
-{'status': {'image': True, 'data':True}, 'message': {'image':'IMAGE_FILE_LINK', 'data':'DATA_FILE_LINK'}
-```
-
-
-⚠️ This method is deprecated and may be removed in future releases
-
-ℹ️ Default timeout is `3000` seconds
-
-ℹ️ Default gateway is `IPFS_IO`
 
 ### Save image
 Save generated image.
