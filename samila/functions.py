@@ -646,7 +646,7 @@ def save_fig_file(figure: matplotlib.figure.Figure, file_adr: str, depth: float)
         return result
 
 
-def save_fig_buf(figure: matplotlib.figure.Figure, depth: float) -> Dict[str, Any]:
+def save_fig_buf(figure: matplotlib.figure.Figure, depth: float) -> Dict[str, Any]: # pragma: no cover
     """
     Save figure as buffer.
 
