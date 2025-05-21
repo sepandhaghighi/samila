@@ -215,7 +215,6 @@ class GenerativeImage:
         ax = rotate(fig, ax, self.rotation)
         self.fig = fig
 
-
     def save_image(self, file_adr: str, depth: float = None) -> Dict[str, Any]:
         """
         Save generated image.
