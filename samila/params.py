@@ -36,8 +36,6 @@ VALID_COLORS = list(
         matplotlib.colors.BASE_COLORS,
         **matplotlib.colors.CSS4_COLORS))
 HEX_COLOR_PATTERN = r'^#(?:[0-9a-fA-F]{3}){1,2}$'
-NFT_STORAGE_API = "https://api.nft.storage/upload"
-NFT_STORAGE_SUCCESS_MESSAGE = "Everything seems good."
 FIG_SAVE_SUCCESS_MESSAGE = "Everything seems good."
 DATA_SAVE_SUCCESS_MESSAGE = "Everything seems good."
 NO_FIG_ERROR_MESSAGE = "No figure was found. First run `generate` and `plot` methods."
