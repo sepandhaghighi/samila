@@ -12,7 +12,7 @@ import random
 import matplotlib
 from PIL import Image
 from functools import wraps
-from .params import Projection, GenerateMode, Marker, Gateway
+from .params import Projection, GenerateMode, Marker
 from .params import SAMILA_VERSION
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
 from .params import DEFAULT_CMAP_NAME, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION, DEFAULT_GENERATE_MODE
