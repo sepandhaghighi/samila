@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from .functions import _GI_initializer, plot_params_filter, generate_params_filter, save_params_filter
 from .functions import get_config, get_data, get_python_version
 from .functions import float_range, save_data_file, save_fig_file, save_fig_buf, save_config_file
-from .functions import load_data, load_config, random_equation_gen, nft_storage_upload
+from .functions import load_data, load_config, random_equation_gen
 from .functions import set_background, rotate, deprecated
 from .params import *
 from warnings import warn, catch_warnings, simplefilter
@@ -216,55 +216,6 @@ class GenerativeImage:
         ax = rotate(fig, ax, self.rotation)
         self.fig = fig
 
-    @deprecated
-    def nft_storage(
-            self,
-            api_key: str,
-            upload_data: bool = False,
-            upload_config: bool = False,
-            depth: float = None,
-            timeout: int = 3000,
-            gateway: Gateway = Gateway.IPFS_IO) -> Dict[str, Any]:
-        """
-        Upload image to nft.storage.
-
-        :param api_key: API key
-        :param upload_data: upload data flag
-        :param upload_config: upload config flag
-        :param depth: image depth
-        :param timeout: upload timeout (in seconds)
-        :param gateway: IPFS gateway
-        """
-        save_params_filter(self, depth)
-        response = save_fig_buf(self.fig, self.depth)
-        if not response["status"]:
-            return {"status": False, "message": response["message"]}
-        buf = response["buffer"]
-        response = nft_storage_upload(
-            api_key=api_key,
-            data=buf.getvalue(),
-            timeout=timeout,
-            gateway=gateway)
-        if upload_config == False and upload_data == False:
-            return response
-        result = {key: {'image': value} for key, value in response.items()}
-        if upload_config:
-            response = nft_storage_upload(
-                api_key=api_key,
-                data=json.dumps(get_config(self)),
-                timeout=timeout,
-                gateway=gateway)
-            for key, value in response.items():
-                result[key]['config'] = value
-        if upload_data:
-            response = nft_storage_upload(
-                api_key=api_key,
-                data=json.dumps(get_data(self)),
-                timeout=timeout,
-                gateway=gateway)
-            for key, value in response.items():
-                result[key]['data'] = value
-        return result
 
     def save_image(self, file_adr: str, depth: float = None) -> Dict[str, Any]:
         """

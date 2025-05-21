@@ -17,9 +17,9 @@ from .params import SAMILA_VERSION
 from .params import DEFAULT_MARKER, DEFAULT_START, DEFAULT_STOP, DEFAULT_STEP, DEFAULT_COLOR, DEFAULT_IMAGE_SIZE, DEFAULT_DEPTH
 from .params import DEFAULT_CMAP_NAME, DEFAULT_CMAP_RANGE, DEFAULT_ROTATION, DEFAULT_GENERATE_MODE
 from .params import DEFAULT_BACKGROUND_COLOR, DEFAULT_SPOT_SIZE, DEFAULT_PROJECTION, DEFAULT_ALPHA, DEFAULT_LINEWIDTH
-from .params import VALID_COLORS, HEX_COLOR_PATTERN, NFT_STORAGE_API, OVERVIEW
+from .params import VALID_COLORS, HEX_COLOR_PATTERN, OVERVIEW
 from .params import DATA_TYPE_ERROR, DATA_FORMAT_ERROR, CONFIG_TYPE_ERROR, CONFIG_FORMAT_ERROR, PLOT_DATA_ERROR, CONFIG_NO_STR_FUNCTION_ERROR
-from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, NFT_STORAGE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
+from .params import NO_FIG_ERROR_MESSAGE, FIG_SAVE_SUCCESS_MESSAGE, SAVE_NO_DATA_ERROR
 from .params import INVALID_COLOR_TYPE_ERROR, COLOR_SIZE_ERROR
 from .params import BOTH_COLOR_COMPLEMENT_WARNING, COLOR_NOT_FOUND_WARNING, DEPRECATION_WARNING
 from .params import DATA_SAVE_SUCCESS_MESSAGE, SEED_LOWER_BOUND, SEED_UPPER_BOUND
@@ -506,41 +506,6 @@ def _GI_initializer(g: "GenerativeImage", function1: Callable, function2: Callab
     g.rotation = DEFAULT_ROTATION
     g.depth = DEFAULT_DEPTH
     g.missed_points_number = 0
-
-
-def nft_storage_upload(
-        api_key: str,
-        data: bytes,
-        timeout: int,
-        gateway: Gateway) -> Dict[str, Any]:
-    """
-    Upload file to nft.storage.
-
-    :param api_key: API key
-    :param data: image data
-    :param timeout: upload timeout (in seconds)
-    :param gateway: IPFS gateway
-    """
-    result = {"status": True, "message": NFT_STORAGE_SUCCESS_MESSAGE}
-    try:
-        headers = {'Authorization': 'Bearer {0}'.format(api_key)}
-        response = requests.post(
-            url=NFT_STORAGE_API,
-            data=data,
-            headers=headers,
-            timeout=timeout)
-        response_json = response.json()
-        if response_json["ok"]:
-            result["message"] = gateway.value.format(
-                response_json['value']['cid'])
-            return result
-        result["status"] = False
-        result["message"] = response_json["error"]["message"]
-        return result
-    except Exception as e:
-        result["status"] = False
-        result["message"] = str(e)
-        return result
 
 
 def save_data_file(g: "GenerativeImage", file_adr: str) -> Dict[str, Any]:
