@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/logo.png" width=400 height=400>
+	<img src="https://github.com/sepandhaghighi/samila/raw/master/otherfiles/logo.png" width="400">
 	<br/>
 	<h1>Samila</h1>
 	<br/>
@@ -55,7 +55,6 @@ Samila is a generative art generator written in Python, Samila lets you create i
 	<tr> 
 		<td align="center">Code Quality</td>
 		<td><a href="https://www.codacy.com/gh/sepandhaghighi/samila/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=sepandhaghighi/samila&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/14df8ed5f8434aaea85889555b0182a9"/></a></td>
-		<td><a href="https://codebeat.co/projects/github-com-sepandhaghighi-samila-dev"><img alt="codebeat badge" src="https://codebeat.co/badges/01e6aa48-4cc2-4d9c-8288-c9fb490ad371" /></a></td>
 		<td><a href="https://www.codefactor.io/repository/github/sepandhaghighi/samila"><img src="https://www.codefactor.io/repository/github/sepandhaghighi/samila/badge" alt="CodeFactor" /></a></td>
 	</tr>
 </table>
