@@ -65,10 +65,10 @@ Samila is a generative art generator written in Python, Samila lets you create i
 
 ### PyPI
 - Check [Python Packaging User Guide](https://packaging.python.org/installing/)     
-- Run `pip install samila==1.5`
+- Run `pip install samila==1.6`
 
 ### Source code
-- Download [Version 1.5](https://github.com/sepandhaghighi/samila/archive/v1.5.zip) or [Latest Source](https://github.com/sepandhaghighi/samila/archive/dev.zip)
+- Download [Version 1.6](https://github.com/sepandhaghighi/samila/archive/v1.6.zip) or [Latest Source](https://github.com/sepandhaghighi/samila/archive/dev.zip)
 - Run `pip install .`
 
 ### Conda
