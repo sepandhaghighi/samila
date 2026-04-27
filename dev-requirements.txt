@@ -5,6 +5,6 @@ bandit>=1.5.1
 pydocstyle>=3.0.0
 setuptools>=40.8.0
 coverage>=4.1
-pytest>=4.3.1
+pytest>=8.4.2
 pytest-cov>=2.6.1
 
