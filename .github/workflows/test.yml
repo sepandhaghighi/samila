@@ -44,10 +44,9 @@ jobs:
     - name: Samila CLI test
       run: |
         samila --verbose --no-display --color=red --bgcolor=black --rotation=30 --projection=polar --mode f2_vs_f1 --save-image test.png
-    - name: Test requirements Installation
+    - name: Dev requirements Installation
       run: |
-        python otherfiles/requirements-splitter.py
-        pip install --upgrade --upgrade-strategy=only-if-needed -r test-requirements.txt
+        pip install --upgrade --upgrade-strategy=only-if-needed -r requirements-dev.txt
     - name: Test with pytest
       run: |
         python -m pytest test --cov=samila --cov-report=term

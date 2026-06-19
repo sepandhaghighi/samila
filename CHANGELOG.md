@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Test system modified
+- Dependencies structure modified
 - `Python 3.14` added to `test.yml`
 ## [1.6] - 2025-07-16
 ### Added
