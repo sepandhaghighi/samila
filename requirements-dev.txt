@@ -1,5 +1,5 @@
 vulture>=1.0
-bandit>=1.5.1
+bandit>=1.9.4
 pydocstyle>=6.3.0
 setuptools>=40.8.0
 coverage>=4.1
